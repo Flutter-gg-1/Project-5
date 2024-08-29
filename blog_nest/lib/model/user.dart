@@ -29,13 +29,13 @@ class User {
 
   static var defaultUsers = [
     User(
-      id: 0,
+      id: 1,
       name: 'Kyle Barr',
       jobTitle: 'Software developer',
       avatarData: '',
     ),
     User(
-      id: 1,
+      id: 2,
       name: 'John Doe',
       jobTitle: 'Magician',
       avatarData: '',

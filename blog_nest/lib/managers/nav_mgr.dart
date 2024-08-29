@@ -1,1 +1,44 @@
-class NavMgr {}
+import 'package:blog_nest/screens/login/login_screen.dart';
+import 'package:flutter/material.dart';
+import '../screens/add_blog/add_blog_screen.dart';
+import '../screens/blog_details/blog_details_screen.dart';
+import '../screens/bottom_nav_bar_view.dart';
+
+class NavMgr {
+  Future<void> navigate(
+      {required BuildContext context, required Destination dest}) {
+    return Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => getDestination(dest)))
+        .then((value) {
+      if (!context.mounted) return;
+      if (value != null) {
+        ScaffoldMessenger.of(context)
+          ..removeCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(value.toString())));
+      }
+    });
+  }
+
+  void navigateBack({required BuildContext context, String? str}) =>
+      Navigator.pop(context, str);
+
+  Widget getDestination(Destination dest) {
+    switch (dest) {
+      case Destination.home:
+        return const PopScope(canPop: false, child: BottomNavBarView());
+      case Destination.addBlog:
+        return const PopScope(canPop: false, child: AddBlogScreen());
+      case Destination.blogDetails:
+        return const PopScope(canPop: false, child: BlogDetailsScreen());
+      default:
+        try {
+          throw Error();
+        } catch (_) {}
+        return LoginScreen();
+    }
+  }
+}
+
+// MARK: - Update getDestination() when a new view is added
+
+enum Destination { home, addBlog, blogDetails }

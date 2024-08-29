@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BottomTabBarView extends StatelessWidget {
-  const BottomTabBarView({super.key});
+class BottomNavBarView extends StatelessWidget {
+  const BottomNavBarView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class BottomTabBarView extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomTabBarView(),
+      bottomNavigationBar: Text(''),
     );
   }
 }

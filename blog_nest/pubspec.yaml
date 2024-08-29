@@ -22,4 +22,4 @@ flutter:
   fonts:
     - family: Inter
       fonts:
-        - asset: Inter-VariableFont.ttf
+        - asset: fonts/Inter-VariableFont.ttf
