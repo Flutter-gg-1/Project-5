@@ -1,4 +1,4 @@
-### Project Description: Blog App
+# Project Description: Blog App
 
 #### Overview
 In this project, you will create a fully functional Blog App where users can log in, create, update, delete, and view blogs. The app should follow clean code principles and utilize GetIt for dependency injection and GetStorage for managing the login process. You will store all blog data locally, ensuring a well-structured database to manage the content effectively.
