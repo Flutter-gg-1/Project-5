@@ -32,7 +32,7 @@ class HomScreen extends StatelessWidget {
                       style: TextStyle(color: MyColors.pinkColor),
                     ),
                   ),
-                  SizedBox(height: context.getHeightScreen(height: 0.02)),
+                  SizedBox(height: context.getHeightScreen(height: 0.03)),
                   SizedBox(
                     height: context.getHeightScreen(height: 0.05),
                     width: context.getWidthScreen(width: 0.5),
@@ -43,7 +43,22 @@ class HomScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: context.getHeightScreen(height: 0.02)),
-                  TextButton(onPressed: () {}, child: const Text('Register')),
+                  TextButton(
+                      onPressed: () {},
+                      child: RichText(
+                          text: const TextSpan(
+                        children: [
+                          TextSpan(
+                              text: '____  ',
+                              style: TextStyle(color: MyColors.whiteTextColor)),
+                          TextSpan(
+                              text: 'Enter as a guest',
+                              style: TextStyle(color: MyColors.pinkColor)),
+                          TextSpan(
+                              text: '  ____',
+                              style: TextStyle(color: MyColors.whiteTextColor)),
+                        ],
+                      ))),
                 ],
               ),
             ),
