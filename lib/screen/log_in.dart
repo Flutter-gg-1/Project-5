@@ -32,6 +32,16 @@ class HomScreen extends StatelessWidget {
                       style: TextStyle(color: MyColors.pinkColor),
                     ),
                   ),
+                  SizedBox(height: context.getHeightScreen(height: 0.02)),
+                  SizedBox(
+                    height: context.getHeightScreen(height: 0.05),
+                    width: context.getWidthScreen(width: 0.5),
+                    child: MaterialButton(
+                      onPressed: () {},
+                      color: MyColors.pinkColor,
+                      child: const Text('Login'),
+                    ),
+                  ),
                 ],
               ),
             ),
