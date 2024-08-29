@@ -6,16 +6,33 @@ class HomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: MyColors.primaryColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MyContainer(
-              child: MyTextField(
-                hintText: 'Enter your username',
-                leftText: 'Username',
+              child: Column(
+                children: [
+                  const MyTextField(
+                    hintText: 'Enter your username',
+                    leftText: 'Username',
+                  ),
+                  const MyTextField(
+                    hintText: 'Enter your password',
+                    leftText: 'Password',
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: context.getHeightScreen(height: 0.025),
+                        left: context.getWidthScreen(width: 0.56)),
+                    child: const Text(
+                      'Forgot password?',
+                      style: TextStyle(color: MyColors.pinkColor),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

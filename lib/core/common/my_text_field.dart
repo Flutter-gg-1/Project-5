@@ -33,13 +33,6 @@ class MyTextField extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: context.getWidthScreen(width: 0.59),
-              top: context.getHeightScreen(height: 0.04),
-            ),
-            child: Text(rightText ?? ''),
-          ),
         ],
       ),
     );
