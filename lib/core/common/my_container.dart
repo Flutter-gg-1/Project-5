@@ -11,7 +11,7 @@ class MyContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width ?? context.getWidthScreen(width: 0.96),
-      height: height ?? context.getHeightScreen(height: 0.45),
+      height: height ?? context.getHeightScreen(height: 0.495),
       decoration: BoxDecoration(
         color: MyColors.containerBlackColor,
         borderRadius: BorderRadius.all(Radius.circular(radius)),

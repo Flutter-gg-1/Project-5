@@ -42,6 +42,8 @@ class HomScreen extends StatelessWidget {
                       child: const Text('Login'),
                     ),
                   ),
+                  SizedBox(height: context.getHeightScreen(height: 0.02)),
+                  TextButton(onPressed: () {}, child: const Text('Register')),
                 ],
               ),
             ),
