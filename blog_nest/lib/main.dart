@@ -1,6 +1,10 @@
+import 'package:blog_nest/screens/login/login_screen.dart';
+import 'package:blog_nest/services/di_container.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DIContainer.setup();
   runApp(const MainApp());
 }
 
@@ -10,11 +14,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+        debugShowCheckedModeBanner: false, home: LoginScreen());
   }
 }
