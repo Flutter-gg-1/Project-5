@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:project_5/core/all_file.dart';
 
 class HomScreen extends StatelessWidget {
   const HomScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
-        child: Text('Hello World!'),
+        child: Column(
+          children: [
+            Container(
+              color: MyColors.containerBlackColor,
+              
+            ),
+          ],
+        ),
       ),
     );
   }
