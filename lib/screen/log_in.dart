@@ -13,7 +13,10 @@ class HomScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MyContainer(
-              child: MyTextField(),
+              child: MyTextField(
+                hintText: 'Enter your username',
+                leftText: 'Username',
+              ),
             ),
           ],
         ),
