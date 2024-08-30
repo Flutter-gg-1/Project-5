@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:project_5/core/all_file.dart';
 
 class MyTextField extends StatelessWidget {
-  const MyTextField({super.key, this.rightText, this.leftText, this.hintText});
+  const MyTextField({super.key, this.rightText, this.leftText, this.hintText, this.prefixIcon});
 
   final String? rightText;
   final String? leftText;
   final String? hintText;
+  final Widget? prefixIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,6 +25,7 @@ class MyTextField extends StatelessWidget {
           ),
           TextField(
             decoration: InputDecoration(
+              prefixIcon: prefixIcon,
               filled: true,
               fillColor: MyColors.containerBlackLightColor,
               hintText: hintText ?? '',

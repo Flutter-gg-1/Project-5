@@ -13,17 +13,15 @@ int bottomIndex = 0;
 
 List<Widget> pagesNavigationBottomBar = const [
   FeedScreen(),
-  SavedScreen(),
   ExploreScreen(),
+  SavedScreen(),
   ProfileScreen(),
 ];
-GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       body: pagesNavigationBottomBar[bottomIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
