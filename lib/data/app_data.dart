@@ -4,6 +4,7 @@ import 'package:blog_app/models/user.dart';
 class AppData {
   List<Blog> blogs = [];
   User user = User(username: "turki", password: "turki", blogs: []);
+  bool loggedIn = false;
 
   Blog blog1 = Blog.create(
     category: 'Technology',
@@ -33,13 +34,13 @@ class AppData {
     required String image,
     required String authorName,
   }) {
-    Blog blog =  Blog.create(
+    Blog blog = Blog.create(
         authorName: authorName,
         category: category,
         content: content,
         title: title,
         image: image,
         summary: summary);
-  blogs.add(blog);
+    blogs.add(blog);
   }
 }

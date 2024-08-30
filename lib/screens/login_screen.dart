@@ -1,5 +1,7 @@
+import 'package:blog_app/data/app_data.dart';
 import 'package:blog_app/widgets/navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  String email = '';
+  String username = '';
   String password = '';
 
   @override
@@ -103,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             onChanged: (value) {
                               setState(() {
-                                email = value;
+                                username = value;
                               });
                             },
                           ),
@@ -180,12 +182,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // Assuming `users` is a list of user objects with email and password fields
                                 // Replace the below code with your actual authentication logic
 
-                                
+                                if (GetIt.I.get<AppData>().user.username ==
+                                        username &&
+                                    GetIt.I.get<AppData>().user.password ==
+                                        password) {
+                                  userFound = true;
+                                  GetIt.I.get<AppData>().loggedIn = true;
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Navbar()),
+                                  );
+                                }
 
                                 if (!userFound) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                      content: Text('Incorrect email or password'),
+                                      content:
+                                          Text('Incorrect email or password'),
                                     ),
                                   );
                                 }
@@ -207,31 +221,42 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SizedBox(
                             height: 30,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                child: Container(
-                                  height: 1.0,
-                                  width: 30.0,
-                                  color: Colors.white,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Navbar()),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Container(
+                                    height: 1.0,
+                                    width: 30.0,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              const Text(
-                                "Enter as a guest",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                child: Container(
-                                  height: 1.0,
-                                  width: 30.0,
-                                  color: Colors.white,
+                                const Text(
+                                  "Enter as a guest",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Container(
+                                    height: 1.0,
+                                    width: 30.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             height: 10,

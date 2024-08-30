@@ -1,3 +1,4 @@
+import 'package:blog_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -48,7 +49,14 @@ class ProfileScreen extends StatelessWidget {
                               height: 50,
                             ),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LoginScreen()),
+                                );
+                              },
                               child: Container(
                                 height: 50,
                                 width: 250,
@@ -56,7 +64,15 @@ class ProfileScreen extends StatelessWidget {
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                child: Center(child: Text("Login", style: TextStyle(color:  Color(0xffBDA6F5), fontSize: 24, fontWeight: FontWeight.bold),),),
+                                child: const Center(
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        color: Color(0xffBDA6F5),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               ),
                             ),
                           ],
