@@ -18,7 +18,7 @@ class Post {
         title: json['title'],
         summary: json['summary'],
         content: json['content'],
-        category: json['catgory'],
+        category: json['category'],
         readingMinutes: json['readingMinutes']);
   }
 
