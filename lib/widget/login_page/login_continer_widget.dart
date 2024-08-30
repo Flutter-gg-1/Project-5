@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pro_5/page/home_page.dart';
+import 'package:pro_5/page/navbar_page.dart';
 import 'package:pro_5/widget/login_page/gust_row_widget.dart';
 import 'package:pro_5/widget/textfield_widget.dart';
 
@@ -22,22 +24,22 @@ class LoginContinerWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height:20 ,),
+            const SizedBox(height:20 ,),
             Text("Username",
                 style: GoogleFonts.inter(
                   color: Colors.white, fontWeight: FontWeight.bold
                 )),
-                SizedBox(height:5 ,),
+                const SizedBox(height:5 ,),
             const Padding(
               padding: EdgeInsets.only(right: 16),
               child: TextfieldWidget(),
             ),
-            SizedBox(height:20 ,),
+            const SizedBox(height:20 ,),
             Text("Password",
                 style: GoogleFonts.inter(
                   color: Colors.white, fontWeight: FontWeight.bold
                 )),
-                SizedBox(height:5 ,),
+                const SizedBox(height:5 ,),
             const Padding(
               padding: EdgeInsets.only(right: 16),
               child: TextfieldWidget(),
@@ -55,7 +57,7 @@ class LoginContinerWidget extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 34,),
+            const SizedBox(height: 34,),
             Align(
               alignment: Alignment.center,
               child: SizedBox(
@@ -66,7 +68,15 @@ class LoginContinerWidget extends StatelessWidget {
                       backgroundColor: const Color(0xffBDA6F5).withOpacity(0.71),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {},
+                  onPressed: () {
+
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+
+
+                      return const NavbarPage();
+                      
+                    },));
+                  },
                   child: Text(
                     "Login",
                     style: GoogleFonts.inter(color: Colors.white),
