@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
       minLines: 1,
       maxLines: 20,
                       decoration: InputDecoration(
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)), 
                         hintText: hintmsg,
                         hintStyle: const TextStyle(color: Color(0xffB8B8B8)),
                         filled: true,
