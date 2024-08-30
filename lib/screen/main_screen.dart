@@ -24,25 +24,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: MyColors.containerBlackColor,
-        leading: IconButton(
-            onPressed: () {
-              scaffoldKey.currentState!.openDrawer();
-            },
-            icon: const Icon(Icons.menu, color: MyColors.whiteTextColor)),
-        actions: [
-          IconButton(
-              onPressed: () {
-                context.showScreen(const SavedScreen());
-              },
-              icon: Icon(
-                Icons.search,
-                color: MyColors.whiteTextColor,
-                size: context.getHeightScreen(height: 0.05),
-              ))
-        ],
-      ),
       body: pagesNavigationBottomBar[bottomIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
