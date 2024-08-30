@@ -9,27 +9,20 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.primaryColor,
-      body: NestedScrollView(
-          headerSliverBuilder: (context, value) => [
-                const SliverAppBar(
-                  backgroundColor: MyColors.containerBlackColor,
-                  title: Text('Feed'),
+      body: ListView.builder(
+          itemBuilder: (context, index) => const Card(
+                color: MyColors.containerBlackLightColor,
+                child: ListTile(
+                  title: Text(
+                    'title',
+                    style: TextStyle(color: MyColors.whiteTextColor),
+                  ),
+                  subtitle: Text(
+                    'subtitle',
+                    style: TextStyle(color: MyColors.greyTextColor),
+                  ),
                 ),
-              ],
-          body: ListView.builder(
-              itemBuilder: (context, index) => const Card(
-                    color: MyColors.containerBlackLightColor,
-                    child: ListTile(
-                      title: Text(
-                        'title',
-                        style: TextStyle(color: MyColors.whiteTextColor),
-                      ),
-                      subtitle: Text(
-                        'subtitle',
-                        style: TextStyle(color: MyColors.greyTextColor),
-                      ),
-                    ),
-                  ))),
+              )),
     );
   }
 }
