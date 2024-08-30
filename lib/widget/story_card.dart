@@ -7,12 +7,13 @@ class StoryCard extends StatelessWidget {
     required this.writer,
     required this.title,
     required this.date,
-    required this.min,
+    required this.min, this.onTap,
   });
   final String writer;
   final String title;
   final String date;
   final String min;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,6 +22,7 @@ class StoryCard extends StatelessWidget {
         child: Column(
           children: [
             InkWell(
+              onTap: onTap,
               child: ListTile(
                 leading: SizedBox(
                   height: context.getHight(value: .1),
