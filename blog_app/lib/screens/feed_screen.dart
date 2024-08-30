@@ -1,3 +1,5 @@
+import 'package:blog_app/helper/extensions/nav.dart';
+import 'package:blog_app/screens/add_screen.dart';
 import 'package:blog_app/screens/news_screen.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/widgets/blog_widget.dart';
@@ -20,8 +22,13 @@ class FeedScreen extends StatelessWidget {
             color: Colors.white,
           ),
           actions: [
-            Icon(Icons.search, color: Colors.white),
-            box.read("token") != null ? Icon(Icons.add) : Text("")
+            const Icon(Icons.search, color: Colors.white),
+            box.read("token") != null
+                ? IconButton(
+                    onPressed: () => context.navTo(page: const AddScreen()),
+                    icon: Icon(Icons.add, color: Colors.white, size: 25))
+                : const Text(""),
+            const SizedBox(width: 5)
           ],
           bottom: const TabBar(
               labelColor: Colors.white,
