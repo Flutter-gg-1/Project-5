@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:project5/widgets/custom_text/custom_text.dart';
 
+import '../update_stories_detail.dart';
+
 class GoogleDetails extends StatelessWidget {
   const GoogleDetails({super.key});
 
@@ -15,20 +17,20 @@ class GoogleDetails extends StatelessWidget {
           Icons.arrow_back_ios_new,
           color: Colors.white,
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.text_increase_outlined,
-              color: Colors.white,
-            ),
+        actions: [
+          const Icon(
+            Icons.text_increase_outlined,
+            color: Colors.white,
           ),
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.bookmark_border,
-              color: Colors.white,
-            ),
+          IconButton(onPressed: () { }, icon: const Icon(Icons.bookmark_border,
+            color: Colors.white,),              
+          ),
+          IconButton(onPressed: () { 
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){
+              return UpdateStoriesDetail();
+            }));
+          }, icon: const Icon(Icons.edit_outlined,
+            color: Colors.white,),              
           )
         ],
       ),

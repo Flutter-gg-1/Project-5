@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project5/widgets/custom_text/custom_text.dart';
 import 'package:project5/widgets/custom_top_stories.dart';
-
+import '../add_blog_post.dart';
 import '../stories_details/google_details.dart';
 import '../stories_details/job_details.dart';
 import '../stories_details/watchOS_details.dart';
@@ -18,11 +18,13 @@ class FeedScreen extends StatelessWidget {
         backgroundColor: const Color(0xff111111),
         appBar: AppBar(
           leading: const Icon(Icons.menu, color: Color(0xffffffff), size: 28,),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(Icons.search, color: Color(0xffffffff), size: 28,),
-            )
+          actions:  [
+            IconButton(onPressed: (){}, icon: const Icon(Icons.search, color: const Color(0xffffffff), size: 28,),),
+            IconButton(onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                return const AddBlogPost();
+              }));
+            }, icon: const Icon(Icons.add, color: const Color(0xffffffff), size: 28,),),
           ],
           backgroundColor: const Color(0xff1E1E1E),
           bottom: const TabBar(tabs: [

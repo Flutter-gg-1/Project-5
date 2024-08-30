@@ -7,11 +7,14 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+      minLines: 1,
+      maxLines: 20,
                       decoration: InputDecoration(
                         hintText: hintmsg,
-                        hintStyle: TextStyle(color: Color(0xffB8B8B8)),
+                        hintStyle: const TextStyle(color: Color(0xffB8B8B8)),
                         filled: true,
-                        fillColor: Color(0xffFFFFFF).withOpacity(0.12),
+                        fillColor: const Color(0xffFFFFFF).withOpacity(0.12),
                       ),
                     );
   }
