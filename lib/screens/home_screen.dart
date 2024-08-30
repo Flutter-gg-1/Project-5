@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'bottom_navigation_bar_screens/explore_screen.dart';
 import 'bottom_navigation_bar_screens/feed_screen.dart';
+import 'bottom_navigation_bar_screens/profile_screen.dart';
 import 'bottom_navigation_bar_screens/saved_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const FeedScreen(),
     const ExploreScreen(),
     const SavedScreen(),
-    const Text("data4",  style: TextStyle(color: Color(0xffffffff))),
+    const ProfileScreen(),
   ];
   int currentIndex = 0;
   @override

@@ -64,7 +64,8 @@ class LogInScreen extends StatelessWidget {
                           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
                             return const HomeScreen();
                           }), ModalRoute.withName('/'));
-                        },
+                        }, textColor: Colors.white ,
+                        backgroundColor: const Color(0xffBDA6F5).withOpacity(0.7), width: 173, height: 35, fontSize: 14,
                       ),
                       const SizedBox(
                         height: 20,
