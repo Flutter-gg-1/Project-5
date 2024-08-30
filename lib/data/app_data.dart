@@ -3,7 +3,7 @@ import 'package:blog_app/models/user.dart';
 
 class AppData {
   List<Blog> blogs = [];
-  List<User> users = [];
+  User user = User(username: "turki", password: "turki", blogs: []);
 
   Blog blog1 = Blog.create(
     category: 'Technology',
