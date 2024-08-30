@@ -9,7 +9,8 @@ Map<String, List<Post>> posts = {
       'content': 'content',
       'category': 'category',
       'readingMinutes': 2,
-      'author': 'Kyle Barr'
+      'author': 'Kyle Barr',
+      'date_created' : 'Jul 13, 2023'
     }),
     Post.fromJson({
       'title': 'title',
@@ -17,7 +18,8 @@ Map<String, List<Post>> posts = {
       'content': 'content',
       'category': 'category',
       'readingMinutes': 2,
-      'author': 'Kyle Barr'
+      'author': 'Kyle Barr',
+      'date_created' : 'Jul 13, 2023'
     }),
     Post.fromJson({
       'title': 'title',
@@ -25,7 +27,8 @@ Map<String, List<Post>> posts = {
       'content': 'content',
       'category': 'category',
       'readingMinutes': 2,
-      'author': 'Kyle Barr'
+      'author': 'Kyle Barr',
+      'date_created' : 'Jul 13, 2023'
     }),
     Post.fromJson({
       'title': 'title',
@@ -33,7 +36,8 @@ Map<String, List<Post>> posts = {
       'content': 'content',
       'category': 'category',
       'readingMinutes': 2,
-      'author': 'Kyle Barr'
+      'author': 'Kyle Barr',
+      'date_created' : 'Jul 13, 2023'
     }),
     Post.fromJson({
       'title': 'title',
@@ -41,7 +45,8 @@ Map<String, List<Post>> posts = {
       'content': 'content',
       'category': 'category',
       'readingMinutes': 2,
-      'author': 'Kyle Barr'
+      'author': 'Kyle Barr',
+      'date_created' : 'Jul 13, 2023'
     }),
     Post.fromJson({
       'title': 'title',
@@ -49,7 +54,8 @@ Map<String, List<Post>> posts = {
       'content': 'content',
       'category': 'category',
       'readingMinutes': 2,
-      'author': 'Kyle Barr'
+      'author': 'Kyle Barr',
+      'date_created' : 'Jul 13, 2023'
     }),
   ]
 };

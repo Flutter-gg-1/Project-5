@@ -11,6 +11,7 @@ class Colours {
   // Icon
   static const Color iconPrimary = Color(0xfffefefe);
   static const Color iconSecondary = Color(0xffe7e7e7);
+  static const Color iconTertiary = Color(0xffcfcfcf);
   static const Color iconDisabled = Color(0xff595959);
 
   // Divider
