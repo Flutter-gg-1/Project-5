@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, required this.hintmsg});
+  const CustomTextFormField({super.key, required this.hintmsg, this.prefixIcon});
   final String hintmsg;
+  final Widget? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +12,7 @@ class CustomTextFormField extends StatelessWidget {
       minLines: 1,
       maxLines: 20,
                       decoration: InputDecoration(
+                        prefixIcon: prefixIcon,
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)), 
                         hintText: hintmsg,
                         hintStyle: const TextStyle(color: Color(0xffB8B8B8)),

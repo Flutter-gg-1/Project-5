@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'bottom_navigation_bar_screens/explore_screen.dart';
 import 'bottom_navigation_bar_screens/feed_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List screens = [
     const FeedScreen(),
-    const Text("data2",  style: TextStyle(color: Color(0xffffffff))),
+    const ExploreScreen(),
     const Text("data3",  style: TextStyle(color: Color(0xffffffff))),
     const Text("data4",  style: TextStyle(color: Color(0xffffffff))),
   ];
