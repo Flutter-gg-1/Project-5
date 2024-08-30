@@ -7,7 +7,7 @@ class RoboticsContentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: const Color(0xff111111),
       body: SingleChildScrollView(
         // Makes the content scrollable
@@ -74,7 +74,7 @@ class RoboticsContentScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const CardView(
-              screentogo: FullPageNews(),
+              screentogo: GuestBlogPage(),
               title: "Kyle Barr",
               subtitle:
                   "Now Google’s Bard AI can talk\n& respond to visual prompts",
@@ -83,14 +83,14 @@ class RoboticsContentScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const CardView(
-              screentogo: FullPageNews(),
+                screentogo: GuestBlogPage(),
                 title: "Jeremy Morgan",
                 subtitle: "WatchOS 10 preview: widgets\nall the way down",
                 date: "Jul 10, 2023 • 4 min read",
                 imagePath: "assets/desk.png"),
             const SizedBox(height: 10),
             const CardView(
-              screentogo: FullPageNews(),
+                screentogo: GuestBlogPage(),
                 title: "Amber Israelsen",
                 subtitle:
                     "How Gen Z are disrupting the\ndefinition of ‘prestigious’ jobs",

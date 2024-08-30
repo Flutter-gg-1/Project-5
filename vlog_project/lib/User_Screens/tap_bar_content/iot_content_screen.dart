@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vlog_project/Guest_Screens/full_page_news_screen.dart';
+import 'package:vlog_project/User_Screens/user_blog_page_screen.dart';
 import 'package:vlog_project/widget/card_view_viedo.dart';
 
-class AiContntScreen extends StatelessWidget {
-  const AiContntScreen({super.key});
+class UserIotContentScreen extends StatelessWidget {
+  const UserIotContentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff111111),
+    return  Scaffold(
+  backgroundColor: const Color(0xff111111),
       body: SingleChildScrollView(
         // Makes the content scrollable
         child: Column(
@@ -74,28 +75,26 @@ class AiContntScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const CardView(
-              screentogo: GuestBlogPage(),
-              title: "Kyle Barr",
-              subtitle:
-                  "Now Google’s Bard AI can talk\n& respond to visual prompts",
-              date: "Jul 13, 2023 • 2 min read",
-              imagePath: "assets/instagram.png",
+              screentogo: UserBlogPage(),
+              title: "The Verge • Tech",
+              subtitle:"Instagram’s Threads surpasses\n100 million users!",
+              date: "Jul 10, 2023 • 4 min read",
+              imagePath: "assets/google.png",
             ),
             const SizedBox(height: 10),
             const CardView(
-                screentogo: GuestBlogPage(),
-                title: "Jeremy Morgan",
-                subtitle: "WatchOS 10 preview: widgets\nall the way down",
-                date: "Jul 10, 2023 • 4 min read",
-                imagePath: "assets/desk.png"),
+              screentogo: UserBlogPage(),
+                title: "The Verge • shopping",
+                subtitle: "July 2023: The best early\nPrime Day deals!",
+                date: "Jul 12, 2023 • 5 min read",
+                imagePath: "assets/smart_watch.png"),
             const SizedBox(height: 10),
             const CardView(
-                screentogo: GuestBlogPage(),
-                title: "Amber Israelsen",
-                subtitle:
-                    "How Gen Z are disrupting the\ndefinition of ‘prestigious’ jobs",
-                date: "Jul 24, 2023 • 8 min read",
-                imagePath: "assets/bus.png"),
+              screentogo: UserBlogPage(),
+                title: "BBC News • Weather",
+                subtitle: "Flood warning in Delhi as rains\nbatter north India",
+                date: "Jul 11, 2023 • 2 min read",
+                imagePath: "assets/men.png"),
             const SizedBox(height: 10),
           ],
         ),

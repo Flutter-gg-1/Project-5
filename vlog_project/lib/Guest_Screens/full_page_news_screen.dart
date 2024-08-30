@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vlog_project/Guest_Screens/guest_home.dart';
 import 'package:vlog_project/helper/navigation.dart';
 
-class FullPageNews extends StatelessWidget {
-  const FullPageNews({super.key});
+class GuestBlogPage extends StatelessWidget {
+  const GuestBlogPage({super.key});
 
   @override
   Widget build(BuildContext context) {

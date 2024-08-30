@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vlog_project/Guest_Screens/guest_home.dart';
 import 'package:vlog_project/User_Screens/edit_page_screen.dart';
+import 'package:vlog_project/User_Screens/user_home_screen.dart';
 import 'package:vlog_project/helper/navigation.dart';
 
 class UserBlogPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class UserBlogPage extends StatelessWidget {
         backgroundColor: const Color(0xff111111),
         leading: IconButton(
           onPressed: () {
-            context.push(screen: HomeScreen());
+            context.push(screen: UserHomeScreen());
           },
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.white,
@@ -36,7 +37,10 @@ class UserBlogPage extends StatelessWidget {
               onPressed: () {
                 context.push(screen: EditPage());
               },
-              icon: Icon(Icons.mode_edit_outlined)),
+              icon: Icon(
+                Icons.mode_edit_outlined,
+                color: Colors.white,
+              )),
           SizedBox(width: 10),
         ],
       ),

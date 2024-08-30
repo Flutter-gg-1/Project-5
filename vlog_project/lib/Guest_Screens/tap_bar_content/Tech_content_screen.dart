@@ -74,7 +74,7 @@ class TechContentScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const CardView(
-              screentogo: FullPageNews(),
+              screentogo: GuestBlogPage(),
               title: "The Verge • Tech",
               subtitle: "Instagram’s Threads surpasses\n100 million users!",
               date: "Jul 10, 2023 • 4 min read",
@@ -82,14 +82,14 @@ class TechContentScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const CardView(
-                screentogo: FullPageNews(),
+                screentogo: GuestBlogPage(),
                 title: "The Verge • shopping",
                 subtitle: "July 2023: The best early\nPrime Day deals!",
                 date: "Jul 12, 2023 • 5 min read",
                 imagePath: "assets/smart_watch.png"),
             const SizedBox(height: 10),
             const CardView(
-                screentogo: FullPageNews(),
+                screentogo: GuestBlogPage(),
                 title: "BBC News • Weather",
                 subtitle: "Flood warning in Delhi as rains\nbatter north India",
                 date: "Jul 11, 2023 • 2 min read",

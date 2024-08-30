@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:vlog_project/Guest_Screens/full_page_news_screen.dart';
+import 'package:vlog_project/User_Screens/user_blog_page_screen.dart';
 import 'package:vlog_project/widget/card_view_viedo.dart';
 
-class AiContntScreen extends StatelessWidget {
-  const AiContntScreen({super.key});
+class UserAiContntScreen extends StatelessWidget {
+  const UserAiContntScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,7 @@ class AiContntScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const CardView(
-              screentogo: GuestBlogPage(),
+              screentogo: UserBlogPage(),
               title: "Kyle Barr",
               subtitle:
                   "Now Google’s Bard AI can talk\n& respond to visual prompts",
@@ -83,14 +84,14 @@ class AiContntScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const CardView(
-                screentogo: GuestBlogPage(),
+                screentogo: UserBlogPage(),
                 title: "Jeremy Morgan",
                 subtitle: "WatchOS 10 preview: widgets\nall the way down",
                 date: "Jul 10, 2023 • 4 min read",
                 imagePath: "assets/desk.png"),
             const SizedBox(height: 10),
             const CardView(
-                screentogo: GuestBlogPage(),
+                screentogo: UserBlogPage(),
                 title: "Amber Israelsen",
                 subtitle:
                     "How Gen Z are disrupting the\ndefinition of ‘prestigious’ jobs",

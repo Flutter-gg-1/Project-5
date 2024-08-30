@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vlog_project/Guest_Screens/explore_guest_screen.dart';
-import 'package:vlog_project/Guest_Screens/guest_home.dart';
 import 'package:vlog_project/Guest_Screens/guest_profile_screen.dart';
 import 'package:vlog_project/Guest_Screens/saved_guest_screen.dart';
 import 'package:vlog_project/Guest_Screens/tap_bar_content/Tech_content_screen.dart';
@@ -9,7 +8,11 @@ import 'package:vlog_project/Guest_Screens/tap_bar_content/cloud_content_screen.
 import 'package:vlog_project/Guest_Screens/tap_bar_content/iot_content_screen.dart';
 import 'package:vlog_project/Guest_Screens/tap_bar_content/robotics_content_screen.dart';
 import 'package:vlog_project/User_Screens/add_nwes_screen.dart';
-import 'package:vlog_project/helper/navigation.dart'; // Assuming this is a custom navigation helper
+import 'package:vlog_project/User_Screens/tap_bar_content/Tech_content_screen.dart';
+import 'package:vlog_project/User_Screens/tap_bar_content/ai_content_screen.dart';
+import 'package:vlog_project/User_Screens/tap_bar_content/cloud_content_screen.dart';
+import 'package:vlog_project/User_Screens/tap_bar_content/iot_content_screen.dart';
+import 'package:vlog_project/User_Screens/tap_bar_content/robotics_content_screen.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({super.key});
@@ -74,11 +77,11 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           ),
           body: const TabBarView(
             children: [
-              TechContentScreen(),
-              AiContntScreen(),
-              CloudContentScreen(),
-              RoboticsContentScreen(),
-              IotContentScreen(),
+              UserTechContentScreen(),
+              UserAiContntScreen(),
+              UserCloudContentScreen(),
+              UserRoboticsContentScreen(),
+              UserIotContentScreen(),
             ],
           ),
         ),
