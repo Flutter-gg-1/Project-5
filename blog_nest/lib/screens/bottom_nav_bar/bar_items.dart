@@ -12,11 +12,11 @@ extension BarItemValues on BarItems {
       case BarItems.home:
         return const HomeScreen();
       case BarItems.explore:
-        return const ExploreScreen();
+        return ExploreScreen();
       case BarItems.bookmark:
-        return const BookmarksScreen();
+        return BookmarksScreen();
       case BarItems.profile:
-        return const AccountScreen();
+        return AccountScreen();
     }
   }
 

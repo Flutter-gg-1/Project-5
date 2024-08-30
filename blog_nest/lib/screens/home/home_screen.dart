@@ -50,9 +50,10 @@ class _HomeScreenState extends State<HomeScreen>
         padding: const EdgeInsets.all(16.0),
         child: TabBarView(
           controller: tabController,
-          children: [
-            HomeContentView(blogs: Blog.defaultBlogs),
-          ],
+          children: List.generate(
+            BlogCategory.values.length,
+            (_) => HomeContentView(blogs: Blog.defaultBlogs),
+          ),
         ),
       ),
     );
