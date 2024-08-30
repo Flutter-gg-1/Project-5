@@ -84,12 +84,22 @@ class NewPost extends StatelessWidget {
                   TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
                 ])),
                 SizedBox(height: context.getWidthScreen(width: 0.04)),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    MyButton(text: 'Technology'),
-                    MyButton2(text: 'Technology'),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const MyButton(text: 'Technology'),
+                      SizedBox(width: context.getWidthScreen(width: 0.02)),
+                      const MyButton2(text: 'AI'),
+                      SizedBox(width: context.getWidthScreen(width: 0.02)),
+                      const MyButton2(text: 'CLOUD'),
+                      SizedBox(width: context.getWidthScreen(width: 0.02)),
+                      const MyButton2(text: 'ROBOTIC'),
+                      SizedBox(width: context.getWidthScreen(width: 0.02)),
+                      const MyButton2(text: 'IOT'),
+                    ],
+                  ),
                 ),
                 SizedBox(height: context.getWidthScreen(width: 0.04)),
                 RichText(
