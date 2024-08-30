@@ -7,7 +7,8 @@ class StoryCard extends StatelessWidget {
     required this.writer,
     required this.title,
     required this.date,
-    required this.min, this.onTap,
+    required this.min,
+    this.onTap,
   });
   final String writer;
   final String title;
@@ -29,9 +30,11 @@ class StoryCard extends StatelessWidget {
                   width: context.getWidth(value: .2),
                   child: const Placeholder(),
                 ),
-                title: Text(style: const TextStyle(color: Color(0xffB8B8B8)), writer),
+                title: Text(
+                    style: const TextStyle(color: Color(0xffB8B8B8)), writer),
                 subtitle: Text(
-                    style: const TextStyle(color: Colors.white, fontSize: 18), title),
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
+                    title),
               ),
             ),
             Row(
@@ -39,14 +42,15 @@ class StoryCard extends StatelessWidget {
               children: [
                 Text(
                     style: const TextStyle(color: Color(0xffB8B8B8)),
-                    "$date . $min read"),
+                    "$date . $min to read"),
                 Row(
                   children: [
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.bookmark_border),
                     ),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.more_vert)),
                   ],
                 )
               ],

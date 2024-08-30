@@ -1,8 +1,10 @@
+import 'package:blog_app/data_layer/get_blog.dart';
 import 'package:blog_app/helper/nav.dart';
 import 'package:blog_app/screens/artical_screen.dart';
 import 'package:blog_app/widget/high_lights.dart';
 import 'package:blog_app/widget/story_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class FeadScreen extends StatefulWidget {
   const FeadScreen({
@@ -23,14 +25,20 @@ class _FeadScreenState extends State<FeadScreen> with TickerProviderStateMixin {
   }
 }
 
-class FeedContet extends StatelessWidget {
+class FeedContet extends StatefulWidget {
   const FeedContet({
     super.key,
   });
 
   @override
+  State<FeedContet> createState() => _FeedContetState();
+}
+
+class _FeedContetState extends State<FeedContet> {
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      
       child: Column(
         children: [
           const HighLights(
@@ -52,14 +60,30 @@ class FeedContet extends StatelessWidget {
               ),
             ),
           ),
-          StoryCard(
-              onTap: () {
-                context.navTo(ArticalScreen());
-              },
-              writer: "writer",
-              title: "title",
-              date: "Jul 13, 2023",
-              min: "2"),
+
+          ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: GetIt.I.get<GetBlog>().blogs.length,
+            itemBuilder: (context, index) {
+              return StoryCard(
+                  onTap: () {
+                    context.navTo(const ArticalScreen());
+                  },
+                  writer: GetIt.I.get<GetBlog>().blogs[index].authorName,
+                  title: GetIt.I.get<GetBlog>().blogs[index].title,
+                  date: GetIt.I.get<GetBlog>().blogs[index].date,
+                  min: GetIt.I.get<GetBlog>().blogs[index].minutesToRead);
+            },
+          )
+          // StoryCard(
+          //     onTap: () {
+          //       context.navTo(const ArticalScreen());
+          //     },
+          //     writer: "writer",
+          //     title: "title",
+          //     date: "Jul 13, 2023",
+          //     min: "2"),
         ],
       ),
     );

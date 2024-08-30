@@ -30,7 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: IconButton(
                           onPressed: () {
                             context.navToUpdate(const AddBlog(), () {
-                              setState(() {});
+                              setState(() {
+                                Navigator.pop(context);
+                                context.navTo(const HomeScreen());
+                              });
                             });
                           },
                           icon: const Icon(Icons.add)),

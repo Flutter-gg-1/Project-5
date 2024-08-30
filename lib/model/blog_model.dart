@@ -7,7 +7,9 @@ class BlogModel {
   late final String date;
   late final String minutesToRead;
   late final String imageSrc;
-    BlogModel({
+  late final bool saved;
+
+  BlogModel({
     required this.category,
     required this.authorName,
     required this.title,
@@ -16,10 +18,10 @@ class BlogModel {
     required this.date,
     required this.minutesToRead,
     required this.imageSrc,
+    required this.saved,
   });
 
-   
-  BlogModel.fromJson(Map<String, dynamic> json){
+  BlogModel.fromJson(Map<String, dynamic> json) {
     category = json['category'];
     authorName = json['authorName'];
     title = json['title'];
@@ -28,6 +30,7 @@ class BlogModel {
     date = json['date'];
     minutesToRead = json['minutesToRead'];
     imageSrc = json['imageSrc'];
+    saved = json['saved'];
   }
 
   Map<String, dynamic> toJson() {
@@ -40,7 +43,8 @@ class BlogModel {
     data['date'] = date;
     data['minutesToRead'] = minutesToRead;
     data['imageSrc'] = imageSrc;
+    data['saved'] = saved;
+
     return data;
   }
 }
-
