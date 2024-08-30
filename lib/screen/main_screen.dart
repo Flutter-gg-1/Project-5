@@ -27,7 +27,13 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: MyColors.containerBlackColor,
         selectedItemColor: MyColors.whiteTextColor,
-        unselectedItemColor: Colors.blueGrey,
+        selectedFontSize: context.getHeightScreen(height: 0.02),
+        unselectedItemColor: MyColors.greyTextColor,
+        unselectedFontSize: context.getHeightScreen(height: 0.018),
+        selectedIconTheme:
+            IconThemeData(size: context.getHeightScreen(height: 0.05)),
+        unselectedIconTheme:
+            IconThemeData(size: context.getHeightScreen(height: 0.03)),
         currentIndex: bottomIndex,
         onTap: (index) {
           setState(() {
