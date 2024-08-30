@@ -18,13 +18,14 @@ class LoginButton extends StatelessWidget {
         backgroundColor: WidgetStatePropertyAll(const Color(0xffBDA6F5).withOpacity(0.71))),
         onPressed: () {
           if(usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-            Navigator.pushReplacement(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context){
                   return const HomeScreen();
                 }
-              )
+              ),
+              (predicate) => false,
             );
           }
           else {

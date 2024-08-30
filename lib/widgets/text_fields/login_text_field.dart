@@ -24,6 +24,7 @@ class LoginTextField extends StatelessWidget {
           height: 41,
           width: 303,
           child: TextField(
+            obscureText: inputName == 'Password' ? true : false,
             controller: controller,
             style: const TextStyle(color: Colors.white),
             onTapOutside: (e) => FocusManager.instance.primaryFocus?.unfocus(),

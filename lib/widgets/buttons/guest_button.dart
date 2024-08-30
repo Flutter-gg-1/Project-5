@@ -13,13 +13,14 @@ class GuestButton extends StatelessWidget {
         Container(height: 1, width: 32.02,color: Colors.white),
         TextButton(
           onPressed: () {
-            Navigator.pushReplacement(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) {
                   return const HomeScreen();
                 }
-              )
+              ),
+              (predicate) => false,
             );
           },
           child: const Text("Enter as a guest",style: TextStyle(color: Colors.white)),
