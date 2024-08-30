@@ -10,7 +10,9 @@ class NewPost extends StatelessWidget {
       backgroundColor: MyColors.primaryColor,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(Icons.arrow_back_ios,
                 size: 20, color: MyColors.whiteTextColor)),
         backgroundColor: MyColors.primaryColor,
@@ -73,7 +75,15 @@ class NewPost extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: context.getWidthScreen(width: 0.02)),
+                SizedBox(height: context.getWidthScreen(width: 0.04)),
+                RichText(
+                    text: const TextSpan(children: [
+                  TextSpan(
+                      text: 'Content',
+                      style: TextStyle(color: MyColors.whiteTextColor)),
+                  TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
+                ])),
+                SizedBox(height: context.getWidthScreen(width: 0.04)),
                 RichText(
                     text: const TextSpan(children: [
                   TextSpan(
