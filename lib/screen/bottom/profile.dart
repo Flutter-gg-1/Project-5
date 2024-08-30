@@ -34,7 +34,9 @@ class ProfileScreen extends StatelessWidget {
             color: MyColors.whiteTextColor,
             minWidth: context.getWidthScreen(width: 0.6),
             height: context.getHeightScreen(height: 0.05),
-            onPressed: () {},
+            onPressed: () {
+              context.showScreen(const NewPost());
+            },
             child: const Text(
               'Logout',
               style: TextStyle(color: Colors.red),
