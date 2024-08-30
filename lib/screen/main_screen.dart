@@ -25,12 +25,12 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: MyColors.greyTextColor,
+        backgroundColor: MyColors.containerBlackColor,
         leading: IconButton(
             onPressed: () {
               scaffoldKey.currentState!.openDrawer();
             },
-            icon: const Icon(Icons.menu)),
+            icon: const Icon(Icons.menu, color: MyColors.whiteTextColor)),
         actions: [
           IconButton(
               onPressed: () {},
