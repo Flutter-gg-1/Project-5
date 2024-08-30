@@ -1,4 +1,4 @@
-import 'package:blog_app/text/custom_text.dart';
+import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class RequiredText extends StatelessWidget {

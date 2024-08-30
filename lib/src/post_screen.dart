@@ -1,18 +1,36 @@
+import 'dart:io';
+
+import 'package:blog_app/widget/bars/category_tabs.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:blog_app/widget/text/required_text.dart';
 import 'package:blog_app/widget/text_feild/custom_feild.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
-class PostScreen extends StatelessWidget {
+class PostScreen extends StatefulWidget {
   const PostScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController titleController = TextEditingController();
-    TextEditingController summaryController = TextEditingController();
-    TextEditingController contentController = TextEditingController();
-    TextEditingController readingMinController = TextEditingController();
+  State<PostScreen> createState() => _PostScreenState();
+}
 
+class _PostScreenState extends State<PostScreen> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController summaryController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
+  TextEditingController readingMinController = TextEditingController();
+  String categoryType = 'Technology';
+  File? selectedImage;
+  @override
+  Widget build(BuildContext context) {
+    List<String> category = [
+      'Technology',
+      'AI',
+      'Cloud',
+      'Robotic',
+      'IoT',
+    ];
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -31,20 +49,25 @@ class PostScreen extends StatelessWidget {
           children: [
             const CustomText(text: 'Image'),
             Container(
-              margin: const EdgeInsets.only(top: 7, bottom: 32),
-              width: double.infinity,
-              height: 140,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: const Color(0xff2e2e2e)),
-              child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.add,
-                    size: 65,
-                    color: Color(0xff969696),
-                  )),
-            ),
+                margin: const EdgeInsets.only(top: 7, bottom: 32),
+                width: double.infinity,
+                height: 140,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: const Color(0xff2e2e2e)),
+                child: selectedImage == null
+                    ? IconButton(
+                        onPressed: () {
+                          pickImage();
+                         
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          size: 65,
+                          color: Color(0xff969696),
+                        ))
+                    : Image.file(selectedImage!)),
+
             //title
             const RequiredText(
               text: 'Title',
@@ -76,7 +99,12 @@ class PostScreen extends StatelessWidget {
             const RequiredText(
               text: 'Category',
             ),
-            
+            CategoryTabs(
+              onTap: (p0) {
+                categoryType = category[p0];
+                setState(() {});
+              },
+            ),
             //Reading minutes
             const RequiredText(
               text: 'Reading minutes',
@@ -85,10 +113,22 @@ class PostScreen extends StatelessWidget {
               hintText: 'Minutes of reading this blog',
               maxLines: 1,
               controller: readingMinController,
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             ),
           ],
         ),
       )),
     );
+  }
+
+  Future<void> pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        selectedImage = File(image.path);
+      });
+    }
   }
 }
