@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'bottom_navigation_bar_screens/explore_screen.dart';
 import 'bottom_navigation_bar_screens/feed_screen.dart';
+import 'bottom_navigation_bar_screens/saved_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List screens = [
     const FeedScreen(),
     const ExploreScreen(),
-    const Text("data3",  style: TextStyle(color: Color(0xffffffff))),
+    const SavedScreen(),
     const Text("data4",  style: TextStyle(color: Color(0xffffffff))),
   ];
   int currentIndex = 0;
