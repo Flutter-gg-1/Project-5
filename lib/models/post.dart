@@ -1,9 +1,9 @@
 class Post {
   final String category;
   final String authorName;
-  final String title;
-  final String summary;
-  final String content;
+  String title;
+  String summary;
+  String content;
   final String date;
   final int minutesToRead;
   final String postImage;

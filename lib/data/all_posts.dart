@@ -155,4 +155,10 @@ Google first opened up access to Bard in March, but at the time, it was availabl
   getCarousel({required String category}) {
     return carouselMap[category];
   }
+
+  editPost({required Post post, required String newTitle, required String newSummary, required String newContent}) {
+    post.title = newTitle;
+    post.summary = newSummary;
+    post.content = newContent;
+  }
 }

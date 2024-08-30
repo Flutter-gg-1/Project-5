@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project5/data/all_posts.dart';
+import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
+import 'package:project5/models/user.dart';
+import 'package:project5/screens/view_post_screen.dart';
 import 'package:project5/widgets/cards/post_card.dart';
 import 'package:project5/widgets/images_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final User? user;
+  const HomeScreen({super.key, this.user});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // get lists
   List<String> categories = GetIt.I.get<AllPosts>().categories;
   List<Post> posts = GetIt.I.get<AllPosts>().posts;
+  
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -22,9 +28,25 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: const Color(0xff111111),
         appBar: AppBar(
+          foregroundColor: Colors.white,
           backgroundColor: const Color(0xff1e1e1e),
-          leading: const Icon(Icons.list,color: Colors.white,size: 28,),
-          actions: [IconButton(onPressed: () {},icon: const Icon(Icons.search,size: 28,color: Colors.white,))],
+          leading: const Icon(Icons.list,size: 28,),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search,size: 28,)
+            ),
+            IconButton(
+              onPressed: () {
+                // context.push(target: AddPostScreen(), saveData: (p0){
+                //   if(p0==true) {
+                //     setState(() {});
+                //   }
+                // });
+              },
+              icon: const Icon(Icons.add,size: 28,color: Colors.white,)
+            )
+          ],
           bottom: TabBar(
             labelColor: Colors.white,
             labelPadding: const EdgeInsets.symmetric(vertical: 16),
@@ -66,7 +88,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: List.generate(categoryPosts.length, (postIndex){
                           return Column(
                             children: [
-                              PostCard(post: categoryPosts[postIndex]),
+                              PostCard(
+                                post: categoryPosts[postIndex],
+                                onTap: (){
+                                  context.push(
+                                    target: ViewPostScreen(post: categoryPosts[postIndex]),
+                                    saveData: (p0) {
+                                      if(p0==true){
+                                        setState(() {});
+                                      }
+                                    },
+                                  );
+                                },
+                              ),
                               const SizedBox(height: 12,)
                             ],
                           );

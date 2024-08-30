@@ -9,8 +9,7 @@ class UserScreenNavigator extends StatefulWidget {
 }
 
 class _UserScreenNavigatorState extends State<UserScreenNavigator> {
-  
-  List<Widget> screens = [const HomeScreen(), const Placeholder(), const Placeholder(), const Placeholder()];
+  List<Widget> screens = [HomeScreen(), Placeholder(), Placeholder(), Placeholder()];
   List<String> labels = ['Feed', 'Explore', 'Saved', 'Profile'];
   List<IconData> icons = [Icons.newspaper, Icons.explore_outlined, Icons.bookmark_border, Icons.person_2_outlined];
   int currentPage = 0;
