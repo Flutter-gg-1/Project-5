@@ -2,7 +2,7 @@ import 'package:blog_nest/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/add_blog/add_blog_screen.dart';
 import '../screens/blog_details/blog_details_screen.dart';
-import '../screens/bottom_nav_bar_view.dart';
+import '../screens/bottom_nav_bar/bottom_nav_bar_view.dart';
 
 class NavMgr {
   Future<void> navigate(

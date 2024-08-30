@@ -6,7 +6,7 @@ extension CustomTextStyle on Text {
     double size = 14,
     Color color = C.text1,
     FontWeight weight = FontWeight.w400,
-    TextAlign align = TextAlign.center,
+    TextAlign align = TextAlign.start,
     int lineLimit = 30,
     bool cross = false,
   }) {
