@@ -12,6 +12,18 @@ class HomScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const ListTile(
+              title: Text(
+                'Welcome Back!',
+                style: TextStyle(
+                    color: MyColors.whiteTextColor,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                'Glad to see you again',
+              ),
+            ),
             MyContainer(
               child: Column(
                 children: [
@@ -27,12 +39,15 @@ class HomScreen extends StatelessWidget {
                     padding: EdgeInsets.only(
                         top: context.getHeightScreen(height: 0.025),
                         left: context.getWidthScreen(width: 0.56)),
-                    child: const Text(
-                      'Forgot password?',
-                      style: TextStyle(color: MyColors.pinkColor),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Forgot password?',
+                        style: TextStyle(color: MyColors.pinkColor),
+                      ),
                     ),
                   ),
-                  SizedBox(height: context.getHeightScreen(height: 0.03)),
+                  SizedBox(height: context.getHeightScreen(height: 0.02)),
                   SizedBox(
                     height: context.getHeightScreen(height: 0.05),
                     width: context.getWidthScreen(width: 0.5),
@@ -42,7 +57,7 @@ class HomScreen extends StatelessWidget {
                       child: const Text('Login'),
                     ),
                   ),
-                  SizedBox(height: context.getHeightScreen(height: 0.02)),
+                  SizedBox(height: context.getHeightScreen(height: 0.01)),
                   TextButton(
                       onPressed: () {},
                       child: RichText(
