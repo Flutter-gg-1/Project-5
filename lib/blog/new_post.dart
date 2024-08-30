@@ -22,18 +22,26 @@ class NewPost extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Container(
           color: MyColors.primaryColor,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: context.getHeightScreen(height: 0.1)),
+              const Text('Image',
+                  style: TextStyle(color: MyColors.whiteTextColor)),
+              SizedBox(height: context.getHeightScreen(height: 0.01)),
               MyContainer(
                 height: context.getWidthScreen(width: 0.4),
                 width: context.getWidthScreen(width: 0.9),
                 child:
                     IconButton(onPressed: () {}, icon: const Icon(Icons.close)),
               ),
+              SizedBox(height: context.getWidthScreen(width: 0.1)),
+              const Text('Image',
+                  style: TextStyle(color: MyColors.whiteTextColor)),
+              // SizedBox(height: context.getWidthScreen(width: 0.1)),
+              const MyPostTextField(),
             ],
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_5/core/all_file.dart';
 
-class MyTextField extends StatelessWidget {
-  const MyTextField(
+class MyPostTextField extends StatelessWidget {
+  const MyPostTextField(
       {super.key,
       this.rightText,
       this.leftText,
@@ -18,12 +18,9 @@ class MyTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5, top: 30),
-          child: Text(
-            leftText ?? '',
-            style: const TextStyle(color: MyColors.whiteTextColor),
-          ),
+        Text(
+          leftText ?? '',
+          style: const TextStyle(color: MyColors.whiteTextColor),
         ),
         TextField(
           decoration: InputDecoration(
