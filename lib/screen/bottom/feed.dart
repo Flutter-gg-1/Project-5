@@ -9,20 +9,28 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.primaryColor,
-      body: ListView.builder(
-          itemBuilder: (context, index) => const Card(
-                color: MyColors.containerBlackLightColor,
-                child: ListTile(
-                  title: Text(
-                    'title',
-                    style: TextStyle(color: MyColors.whiteTextColor),
-                  ),
-                  subtitle: Text(
-                    'subtitle',
-                    style: TextStyle(color: MyColors.greyTextColor),
-                  ),
-                ),
-              )),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            SizedBox(height: context.getHeightScreen(height: 0.02)),
+            MyContainer(
+              width: context.getWidthScreen(width: 0.96),
+              height: context.getHeightScreen(height: 0.2),
+            ),
+            SizedBox(height: context.getHeightScreen(height: 0.02)),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Top Stories',
+                    style: TextStyle(color: MyColors.whiteTextColor)),
+                Text('See all',
+                    style: TextStyle(color: MyColors.greyTextColor)),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -33,7 +33,9 @@ class _MainScreenState extends State<MainScreen> {
             icon: const Icon(Icons.menu, color: MyColors.whiteTextColor)),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.showScreen(const SavedScreen());
+              },
               icon: Icon(
                 Icons.search,
                 color: MyColors.whiteTextColor,

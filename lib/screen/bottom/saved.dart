@@ -7,9 +7,30 @@ class SavedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: MyColors.whiteTextColor,
-      body: Center(
+      appBar: AppBar(
+        backgroundColor: MyColors.containerBlackColor,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon:
+              const Icon(Icons.arrow_back_ios, color: MyColors.whiteTextColor),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                context.showScreen(const SavedScreen());
+              },
+              icon: Icon(
+                Icons.search,
+                color: MyColors.whiteTextColor,
+                size: context.getHeightScreen(height: 0.05),
+              ))
+        ],
+      ),
+      body: const Center(
         child: Text('Saved'),
       ),
     );
