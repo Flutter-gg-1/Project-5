@@ -33,35 +33,42 @@ class AppBarContainer extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: context.getHeightScreen(height: 0.02)),
-          const TabBar(tabs: [
-            Tab(
-              icon: Icon(Icons.feed, color: MyColors.whiteTextColor),
-              text: 'Feed',
-            ),
-            Tab(
-              icon:
-                  Icon(Icons.explore_outlined, color: MyColors.whiteTextColor),
-              text: 'Explore',
-            ),
-            Tab(
-              icon: Icon(Icons.bookmark_border_outlined,
-                  color: MyColors.whiteTextColor),
-              text: 'Saved',
-            ),
-            Tab(
-              icon: Icon(Icons.person_outline, color: MyColors.whiteTextColor),
-              text: 'Profile',
-            ),
-          ]),
+          Container(
+            color: MyColors.containerBlackColor,
+            height: context.getHeightScreen(height: 0.08),
+            child: const TabBar(
+                indicatorWeight: 3,
+                indicatorColor: Colors.red,
+                tabs: [
+                  Tab(
+                    icon: Icon(Icons.feed, color: MyColors.whiteTextColor),
+                    text: 'Feed',
+                  ),
+                  Tab(
+                    icon: Icon(Icons.explore_outlined,
+                        color: MyColors.whiteTextColor),
+                    text: 'Explore',
+                  ),
+                  Tab(
+                    icon: Icon(Icons.bookmark_border_outlined,
+                        color: MyColors.whiteTextColor),
+                    text: 'Saved',
+                  ),
+                  Tab(
+                    icon: Icon(Icons.person_outline,
+                        color: MyColors.whiteTextColor),
+                    text: 'Profile',
+                  ),
+                ]),
+          ),
           SizedBox(
             height: context.getHeightScreen(height: 0.02),
             child: const TabBarView(
               children: [
-                Text('Feed'),
-                Text('Explore'),
-                Text('Saved'),
-                Text('Profile'),
+                Text(''),
+                Text(''),
+                Text(''),
+                Text(''),
               ],
             ),
           ),
