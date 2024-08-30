@@ -1,4 +1,5 @@
 import '../models/post.dart';
+import '../models/user.dart';
 
 class PostData {
   Map<String, List<Post>> posts = {
@@ -9,6 +10,9 @@ class PostData {
       'content': 'content',
       'category': 'category',
       'readingMinutes': 2,
+      'author': {
+        
+      }
       }),
       Post.fromJson({
        'title': 'title',

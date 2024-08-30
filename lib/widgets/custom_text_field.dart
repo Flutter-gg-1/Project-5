@@ -8,11 +8,13 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final double heightFactor;
+  final bool isEditing;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hint,
     required this.heightFactor,
+    this.isEditing = false
   });
 
   @override
@@ -25,6 +27,7 @@ class CustomTextField extends StatelessWidget {
           width: context.getWidth() / 1.103,
           color: Colours.chipPrimary,
           child: TextField(
+            controller: controller,
             style: const TextStyle(color: Colours.textSecondary),
             cursorColor: Colours.textPrimary,
             maxLines: null,

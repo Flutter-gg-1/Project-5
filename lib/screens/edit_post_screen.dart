@@ -1,18 +1,24 @@
-import 'package:blog_app/services/extensions/screen.dart';
 import 'package:blog_app/widgets/category_card.dart';
 import 'package:flutter/material.dart';
+import '../models/post.dart';
 import '../styles/colours.dart';
 import '../widgets/custom_text_field.dart';
 
-class EditScreen extends StatelessWidget {
-  const EditScreen({super.key});
+class EditPostScreen extends StatelessWidget {
+  final Post post;
+  const EditPostScreen({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController titleController = TextEditingController();
-    TextEditingController summaryController = TextEditingController();
-    TextEditingController contentController = TextEditingController();
-    TextEditingController minutesController = TextEditingController();
+    TextEditingController titleController =
+        TextEditingController(text: post.title);
+    TextEditingController summaryController =
+        TextEditingController(text: post.summary);
+    TextEditingController contentController =
+        TextEditingController(text: post.content);
+    TextEditingController minutesController =
+        TextEditingController(text: '${post.readingMinutes}');
+    String? selectedCategory = post.category;
 
     List categories = [
       'TECHNOOLOGY',
@@ -21,31 +27,26 @@ class EditScreen extends StatelessWidget {
       'ROBOTICS',
       'IOT',
     ];
-    String? selectedCategory;
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(
           color: Colours.iconPrimary,
         ),
         centerTitle: true,
-        title: const Text(
-          'Post',
-          style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: Colours.textPrimary),
-        ),
-        actions:  [
-         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colours.chipPrimary),
-          onPressed: (){
-          }, child: const Text(
-          'Post',
-          style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: Colours.textPrimary),
-        ),),
+        actions: [
+          ElevatedButton(
+            style:
+                ElevatedButton.styleFrom(backgroundColor: Colours.chipPrimary),
+            onPressed: () {},
+            child: const Text(
+              'Save',
+              style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colours.textPrimary),
+            ),
+          ),
           const SizedBox(
             width: 16,
           )
@@ -58,29 +59,6 @@ class EditScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(bottom: 7),
-                child: Text(
-                  'Image',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: Colours.textPrimary),
-                ),
-              ),
-              Center(
-                child: Container(
-                    height: context.getHeight() / 5.8,
-                    width: context.getWidth() / 1.113,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colours.chipPrimary,
-                    ),
-                    child: Image.asset('assets/images/add.png')),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
               const Text(
                 'Title',
                 style: TextStyle(
@@ -91,7 +69,7 @@ class EditScreen extends StatelessWidget {
               CustomTextField(
                   controller: titleController,
                   hint: 'Enter your blog title',
-                  heightFactor: 20.3),
+                  heightFactor: 14),
               const SizedBox(
                 height: 32,
               ),
@@ -152,7 +130,7 @@ class EditScreen extends StatelessWidget {
               CustomTextField(
                   controller: minutesController,
                   hint: 'Minutes of reading this blog',
-                  heightFactor: 20.3),
+                  heightFactor: 14),
             ],
           ),
         ),

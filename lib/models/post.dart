@@ -5,12 +5,14 @@ class Post {
   final String content;
   final String category;
   final int readingMinutes;
+  final String author;
   Post({
     required this.title,
     required this.summary,
     required this.content,
     required this.category,
     required this.readingMinutes,
+    required this.author
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
@@ -19,7 +21,8 @@ class Post {
         summary: json['summary'],
         content: json['content'],
         category: json['category'],
-        readingMinutes: json['readingMinutes']);
+        readingMinutes: json['readingMinutes'],author: json['author']);
+        
   }
 
   toJson() {
@@ -29,6 +32,7 @@ class Post {
       'content': content,
       'category': category,
       'readingMinutes': readingMinutes,
+      'author' : author
     };
   }
 }
