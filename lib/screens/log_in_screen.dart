@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project5/screens/home_screen.dart';
 
 import '../widgets/custom_elevated_button.dart';
+import '../widgets/custom_text/custom_text.dart';
 import '../widgets/custom_text_form_field.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -17,20 +18,8 @@ class LogInScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Welcome Back!",
-                style: TextStyle(
-                    color: Color(0xffffffff),
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                "Glad to see you again",
-                style: TextStyle(
-                  color: Color(0xffffffff),
-                  fontSize: 15,
-                ),
-              ),
+              const CustomText(text: 'Welcome Back!', size: 20, color:  Color(0xffffffff), fontWeight: FontWeight.bold,),
+              const CustomText(text: "Glad to see you again", color: Color(0xffffffff), size: 15),
               const SizedBox(
                 height: 20,
               ),
@@ -46,13 +35,7 @@ class LogInScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Username",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500),
-                      ),
+                      const CustomText(text: "Username", color: Colors.white, size: 14, fontWeight: FontWeight.w500),
                       const SizedBox(
                         height: 8,
                       ),
@@ -60,13 +43,7 @@ class LogInScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const Text(
-                        "Password",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500),
-                      ),
+                      const CustomText(text: "Password", color: Colors.white, size: 14, fontWeight: FontWeight.w500),
                       const SizedBox(
                         height: 8,
                       ),
@@ -76,11 +53,8 @@ class LogInScreen extends StatelessWidget {
                       ),
                       const Align(
                           alignment: Alignment.bottomRight,
-                          child: const Text("forget password",
-                              style: TextStyle(
-                                  color: Color(0xffBDA6F5),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500))),
+                          child: CustomText(text: "forget password", color: Color(0xffBDA6F5), size: 14, fontWeight: FontWeight.w500),
+                          ),
                       const SizedBox(
                         height: 30,
                       ),
@@ -88,7 +62,7 @@ class LogInScreen extends StatelessWidget {
                         text: "Login",
                         onPressed: () {
                           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
-                            return HomeScreen();
+                            return const HomeScreen();
                           }), ModalRoute.withName('/'));
                         },
                       ),
@@ -107,13 +81,11 @@ class LogInScreen extends StatelessWidget {
                           TextButton(
                               onPressed: () {
                                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
-                            return HomeScreen();
+                            return const HomeScreen();
                           }), ModalRoute.withName('/'));
                               },
-                              child: const Text(
-                                "Enter as a guest",
-                                style: TextStyle(color: Colors.white),
-                              )),
+                              child: const CustomText(text: "Enter as a guest", color: Colors.white, size: 12)
+                               ),
                           Container(
                             height: 1,
                             width: 35,
