@@ -8,7 +8,7 @@ class AppBarContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Column(
         children: [
           Container(
@@ -37,27 +37,25 @@ class AppBarContainer extends StatelessWidget {
             color: MyColors.containerBlackColor,
             height: context.getHeightScreen(height: 0.08),
             child: const TabBar(
+                labelColor: MyColors.whiteTextColor,
+                unselectedLabelColor: MyColors.greyTextColor,
                 indicatorWeight: 3,
                 indicatorColor: Colors.red,
                 tabs: [
                   Tab(
-                    icon: Icon(Icons.feed, color: MyColors.whiteTextColor),
-                    text: 'Feed',
+                    text: 'Tech',
                   ),
                   Tab(
-                    icon: Icon(Icons.explore_outlined,
-                        color: MyColors.whiteTextColor),
-                    text: 'Explore',
+                    text: 'AI',
                   ),
                   Tab(
-                    icon: Icon(Icons.bookmark_border_outlined,
-                        color: MyColors.whiteTextColor),
-                    text: 'Saved',
+                    text: 'Cloud',
                   ),
                   Tab(
-                    icon: Icon(Icons.person_outline,
-                        color: MyColors.whiteTextColor),
-                    text: 'Profile',
+                    text: 'Robotics',
+                  ),
+                  Tab(
+                    text: 'IoT',
                   ),
                 ]),
           ),
@@ -65,6 +63,7 @@ class AppBarContainer extends StatelessWidget {
             height: context.getHeightScreen(height: 0.02),
             child: const TabBarView(
               children: [
+                Text(''),
                 Text(''),
                 Text(''),
                 Text(''),
