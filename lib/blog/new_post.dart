@@ -84,6 +84,12 @@ class NewPost extends StatelessWidget {
                   TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
                 ])),
                 SizedBox(height: context.getWidthScreen(width: 0.04)),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    MyButton(text: 'Technology'),
+                  ],
+                ),
                 RichText(
                     text: const TextSpan(children: [
                   TextSpan(

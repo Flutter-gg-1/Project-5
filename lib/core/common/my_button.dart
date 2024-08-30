@@ -5,13 +5,11 @@ class MyButton extends StatelessWidget {
   const MyButton(
       {super.key,
       this.textColor,
-      this.color,
       this.text,
       this.onPressed,
       this.minWidth,
       this.height});
   final Color? textColor;
-  final Color? color;
   final String? text;
   final Function()? onPressed;
   final double? minWidth;
@@ -19,14 +17,19 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      color: color,
-      minWidth: minWidth,
-      height: height,
-      onPressed: onPressed,
-      child: Text(
-        text!,
-        style: TextStyle(color: textColor),
+    return Container(
+      width: context.getWidthScreen(width: minWidth ?? 0.3),
+      height: context.getWidthScreen(width: height ?? 0.09),
+      decoration: BoxDecoration(
+        color: MyColors.whiteTextColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: MaterialButton(
+        onPressed: onPressed,
+        child: Text(
+          text!,
+          style: const TextStyle(color: MyColors.pinkColor),
+        ),
       ),
     );
   }
