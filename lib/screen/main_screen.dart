@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: MyColors.primaryColor,
       body: pagesNavigationBottomBar[bottomIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: MyColors.primaryColor,
+        backgroundColor: Colors.amber,
         selectedItemColor: MyColors.whiteTextColor,
         unselectedItemColor: Colors.blueGrey,
         currentIndex: bottomIndex,
@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
         },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: MyColors.whiteTextColor),
+            icon: Icon(Icons.feed, color: MyColors.whiteTextColor),
             label: '',
           ),
           BottomNavigationBarItem(
