@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../core/all_file.dart';
 
 class MainScreen extends StatefulWidget {
@@ -21,16 +22,14 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.primaryColor,
       body: pagesNavigationBottomBar[bottomIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.amber,
+        backgroundColor: MyColors.containerBlackColor,
         selectedItemColor: MyColors.whiteTextColor,
         unselectedItemColor: Colors.blueGrey,
         currentIndex: bottomIndex,
         onTap: (index) {
-          print(index);
           setState(() {
             bottomIndex = index;
           });
@@ -38,20 +37,19 @@ class _MainScreenState extends State<MainScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.feed, color: MyColors.whiteTextColor),
-            label: '',
+            label: 'Feed',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined,
-                color: MyColors.whiteTextColor),
-            label: '',
+            icon: Icon(Icons.explore_outlined, color: MyColors.whiteTextColor),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_3_outlined, color: MyColors.whiteTextColor),
-            label: '',
+            icon: Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
+            label: 'Saved',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_3_outlined, color: MyColors.whiteTextColor),
-            label: '',
+            icon: FaIcon(FontAwesomeIcons.user, color: MyColors.whiteTextColor),
+            label: 'Profile',
           ),
         ],
       ),
