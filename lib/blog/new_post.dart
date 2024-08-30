@@ -88,8 +88,10 @@ class NewPost extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     MyButton(text: 'Technology'),
+                    MyButton2(text: 'Technology'),
                   ],
                 ),
+                SizedBox(height: context.getWidthScreen(width: 0.04)),
                 RichText(
                     text: const TextSpan(children: [
                   TextSpan(
