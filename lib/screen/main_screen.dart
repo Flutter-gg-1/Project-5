@@ -24,11 +24,13 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: MyColors.primaryColor,
       body: pagesNavigationBottomBar[bottomIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.amber,
         selectedItemColor: MyColors.whiteTextColor,
         unselectedItemColor: Colors.blueGrey,
         currentIndex: bottomIndex,
         onTap: (index) {
+          print(index);
           setState(() {
             bottomIndex = index;
           });
