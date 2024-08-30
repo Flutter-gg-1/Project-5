@@ -1,4 +1,5 @@
 import 'package:blog_app/src/home_screen.dart';
+import 'package:blog_app/src/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white)),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               backgroundColor: Color(0xff131313))),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }

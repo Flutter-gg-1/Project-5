@@ -9,17 +9,18 @@ class CustomTextFeild extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final EdgeInsetsGeometry? padding;
   const CustomTextFeild({
     super.key,
     required this.hintText,
     required this.maxLines,
-    this.controller, this.validator, this.keyboardType, this.inputFormatters,
+    this.controller, this.validator, this.keyboardType, this.inputFormatters, this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 7, bottom: 32),
+      padding: padding ?? const EdgeInsets.only(top: 7, bottom: 32),
       child: TextFormField(
         style: const TextStyle(color: Color(0xffDCD5D5)),
         keyboardType: keyboardType,

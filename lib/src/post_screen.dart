@@ -59,7 +59,6 @@ class _PostScreenState extends State<PostScreen> {
                     ? IconButton(
                         onPressed: () {
                           pickImage();
-                         
                         },
                         icon: const Icon(
                           Icons.add,
