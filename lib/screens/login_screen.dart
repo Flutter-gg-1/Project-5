@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 137),
-                const Text("Welcome Back!", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                const Text("Welcome Back!", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),),
                 const Text("Glad to see you again", style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
                 const SizedBox(height: 31,),
                 Center(
@@ -47,7 +47,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text("forget password", style: TextStyle(fontWeight: FontWeight.w500, color: Color(0xffBDA6F5), fontSize: 10),),
+                            Text("forget password", style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xffBDA6F5),
+                              fontSize: 10
+                              )
+                            ),
                           ],
                         ),
                         const SizedBox(height: 34,),

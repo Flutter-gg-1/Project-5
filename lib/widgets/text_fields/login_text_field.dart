@@ -14,9 +14,9 @@ class LoginTextField extends StatelessWidget {
         Text(
           inputName,
           style: const TextStyle(
-            fontWeight: FontWeight.w500,
+            color: Colors.white,
             fontSize: 14,
-            color: Colors.white
+            fontWeight: FontWeight.w500,
           )
         ),
         const SizedBox(height: 8,),
@@ -35,8 +35,8 @@ class LoginTextField extends StatelessWidget {
               hintText: inputHint,
               hintStyle: const TextStyle(
                 color: Color(0xffB8B8B8),
-                fontSize: 14, fontWeight:
-                FontWeight.w500
+                fontSize: 14,
+                fontWeight: FontWeight.w500
               ),
             ),
           ),

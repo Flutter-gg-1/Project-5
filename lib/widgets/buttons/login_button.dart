@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project5/extensions/screen_size.dart';
-import 'package:project5/screens/home_screen.dart';
+import 'package:project5/screens/user_screen_navigator.dart';
 
 class LoginButton extends StatelessWidget {
   final TextEditingController usernameController;
@@ -22,7 +22,7 @@ class LoginButton extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context){
-                  return const HomeScreen();
+                  return const UserScreenNavigator();
                 }
               ),
               (predicate) => false,
