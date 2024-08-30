@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project5/widgets/custom_text/custom_text.dart';
 import 'package:project5/widgets/custom_top_stories.dart';
 
+import '../stories_details/google_details.dart';
+import '../stories_details/job_details.dart';
+import '../stories_details/watchOS_details.dart';
+
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
@@ -82,11 +86,23 @@ class FeedScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12,),
-                  CustomTopStories(image: Image.asset("assets/google_small.png"), title: 'Kyle Barr', subtitle: 'Now Google’s Bard AI can talk & respond to visual prompts', text: "Jul 13, 2023 • 2 min read"),
+                  CustomTopStories(image: Image.asset("assets/google_small.png"), title: 'Kyle Barr', subtitle: 'Now Google’s Bard AI can talk & respond to visual prompts', text: "Jul 13, 2023 • 2 min read", onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        return const GoogleDetails();
+                      }));
+                  },),
                   const SizedBox(height: 12,),
-                  CustomTopStories(image: Image.asset("assets/watch.png"), title: 'Jeremy Morgan', subtitle: 'WatchOS 10 preview: widgets all the way down', text: "Jul 10, 2023 • 4 min read"),
+                  CustomTopStories(image: Image.asset("assets/watch.png"), title: 'Jeremy Morgan', subtitle: 'WatchOS 10 preview: widgets all the way down', text: "Jul 10, 2023 • 4 min read", onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        return const WatchosDetails();
+                      }));
+                  },),
                   const SizedBox(height: 12,),
-                  CustomTopStories(image: Image.asset("assets/job.png"), title: 'Amber Israelsen', subtitle: 'How Gen Z are disrupting the definition of ‘prestigious’ jobs', text: "Jul 13, 2023 • 2 min read"),
+                  CustomTopStories(image: Image.asset("assets/job.png"), title: 'Amber Israelsen', subtitle: 'How Gen Z are disrupting the definition of ‘prestigious’ jobs', text: "Jul 13, 2023 • 2 min read", onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        return const JobDetails();
+                      }));
+                  },),
                 ],
               ),
             ),

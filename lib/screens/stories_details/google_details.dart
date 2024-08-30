@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:project5/widgets/custom_text/custom_text.dart';
 
-class StoriesDetails extends StatelessWidget {
-  const StoriesDetails({super.key});
+class GoogleDetails extends StatelessWidget {
+  const GoogleDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +16,19 @@ class StoriesDetails extends StatelessWidget {
           color: Colors.white,
         ),
         actions: const [
-          Icon(
-            Icons.text_increase_outlined,
-            color: Colors.white,
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(
+              Icons.text_increase_outlined,
+              color: Colors.white,
+            ),
           ),
-          Icon(
-            Icons.bookmark_border,
-            color: Colors.white,
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(
+              Icons.bookmark_border,
+              color: Colors.white,
+            ),
           )
         ],
       ),
@@ -33,7 +40,7 @@ class StoriesDetails extends StatelessWidget {
               height: 266,
               width: 470,
               child: Image.asset(
-                "assets/Image-2.png",
+                "assets/google_large.png",
                 fit: BoxFit.cover,
               ),
             ),
@@ -58,13 +65,11 @@ class StoriesDetails extends StatelessWidget {
                   const SizedBox(
                     height: 8,
                   ),
-                  const Text(
+                  const CustomText( text: 
                     "Now Google’s Bard AI Chatbot can talk & respond to visual prompts!",
-                    style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        size: 20,
                         fontWeight: FontWeight.bold),
-                  ),
                   const SizedBox(
                     height: 8,
                   ),
@@ -73,19 +78,17 @@ class StoriesDetails extends StatelessWidget {
                     width: 28,
                     height: 28,
                   ),
-                  const Text("Kyle Barr",
-                      style: TextStyle(
+                  const CustomText(text: "Kyle Barr",
                           color: Color(0xffB8B8B8),
                           fontWeight: FontWeight.bold,
-                          fontSize: 14)),
+                          size: 14),
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text("2 min read • Jul 13, 2023",
-                      style: TextStyle(
+                  const CustomText(text:  "2 min read • Jul 13, 2023",
                           color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500)),
+                          size: 12,
+                          fontWeight: FontWeight.w500),
                   const SizedBox(
                     height: 16,
                   ),
@@ -102,37 +105,34 @@ class StoriesDetails extends StatelessWidget {
                   const SizedBox(
                     height: 79,
                   ),
-                  const Text("Summary",
-                      style: TextStyle(
+                  const CustomText(text:  "Summary",
                           color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)),
+                          size: 16,
+                          fontWeight: FontWeight.bold),
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
+                  const CustomText(text: 
                       "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU.In a blog post, Google is positioning Bard’s spoken responses as a helpful way to “correct ",
-                      style: TextStyle(color: Color(0xffB8B8B8),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500)),
+                      color: Color(0xffB8B8B8),
+                      size: 14,
+                      fontWeight: FontWeight.w500),
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
+                  const CustomText( text: 
                     "Content",
-                    style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        size: 16,
                         fontWeight: FontWeight.bold),
-                  ),
                   const SizedBox(
                     height: 30,
                   ),
-                  const Text(
+                  const CustomText(text: 
                       "The feature that lets you add images to prompts is something that Google first showed off at its I/O conference in May. In one example, Google suggested you could use this to ask for help writing a funny caption about a picture of two dogs. Google says the feature is now available in English and is expanding to new languages “soon.”",
-                      style: TextStyle(color: Color(0xffB8B8B8),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500))
+                      color: Color(0xffB8B8B8),
+                      size: 14,
+                      fontWeight: FontWeight.w500)
                 ],
               ),
             ),

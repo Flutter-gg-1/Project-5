@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../screens/stories_details.dart';
 import 'custom_list_tile.dart';
 import 'custom_text/custom_text.dart';
 
@@ -18,11 +16,7 @@ class CustomTopStories extends StatelessWidget {
                   width: 450,
                   decoration: BoxDecoration(color: const Color(0xff1E1E1E), borderRadius: BorderRadius.circular(8)),
                   child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                        return const StoriesDetails();
-                      }));
-                    },
+                    onTap: onTap,
                     child: Column(
                       children: [
                         CustomListTile(image: image, title: title, subtitle: subtitle,),
