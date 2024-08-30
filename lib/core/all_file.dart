@@ -3,6 +3,7 @@ export 'common/my_text_field.dart';
 export 'common/my_post_text_field.dart';
 export 'common/my_container.dart';
 export 'common/bar_container.dart';
+export 'common/my_button.dart';
 export 'my_extension/get_screen.dart';
 export 'my_extension/go_to_nav.dart';
 export '../screen/log_in.dart';
