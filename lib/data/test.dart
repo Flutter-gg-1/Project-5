@@ -1,5 +1,4 @@
 import '../models/post.dart';
-import '../models/user.dart';
 
 Map<String, List<Post>> posts = {
   'Tech': [

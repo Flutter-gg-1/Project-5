@@ -15,13 +15,13 @@ class NewsScreen extends StatelessWidget {
         leading: const BackButton(
           color: Colours.iconPrimary,
         ),
-        actions: [
-          const Icon(
+        actions: const [
+          Icon(
             Icons.format_size_outlined,
             color: Colours.iconPrimary,
             size: 35,
           ),
-          const Icon(
+          Icon(
             Icons.bookmark_border_outlined,
             color: Colours.iconPrimary,
             size: 35,

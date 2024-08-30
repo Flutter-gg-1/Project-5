@@ -2,7 +2,7 @@ import 'package:blog_app/services/extensions/screen.dart';
 import 'package:blog_app/styles/colours.dart';
 import 'package:flutter/material.dart';
 import '../data/test.dart';
-import 'custom_list_tile.dart';
+import 'custom_post_tile.dart';
 
 class TabBody extends StatelessWidget {
   final int tabIndex;
@@ -17,8 +17,8 @@ class TabBody extends StatelessWidget {
           children: [
             Center(
               child: Container(
-                height: context.getHeight()/4.5,
-                width: context.getWidth()/1.1,
+                height: context.getHeight() / 4.5,
+                width: context.getWidth() / 1.1,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
@@ -37,8 +37,7 @@ class TabBody extends StatelessWidget {
                 top: context.getHeight() / 5.7,
                 child: const Text(
                   'A month with DJI Mini 3 Pro',
-                  style:
-                      const TextStyle(fontSize: 16, color: Colours.textPrimary),
+                  style: TextStyle(fontSize: 16, color: Colours.textPrimary),
                 )),
             Positioned(
                 top: context.getHeight() / 5.7,
@@ -72,7 +71,7 @@ class TabBody extends StatelessWidget {
             (index) {
               return Column(
                 children: [
-                  CustomListTile(
+                  CustomPostTile(
                     post: posts[tabName[tabIndex]]![index],
                   ),
                   const SizedBox(height: 12),
