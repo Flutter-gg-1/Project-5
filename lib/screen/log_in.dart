@@ -52,7 +52,12 @@ class HomScreen extends StatelessWidget {
                     height: context.getHeightScreen(height: 0.05),
                     width: context.getWidthScreen(width: 0.5),
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MainScreen()));
+                      },
                       color: MyColors.pinkColor,
                       child: const Text('Login'),
                     ),
