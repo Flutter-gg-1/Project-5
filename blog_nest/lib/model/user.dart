@@ -3,12 +3,16 @@ class User {
   String name;
   String jobTitle;
   String avatarData;
+  String username;
+  String password;
 
   User({
     required this.id,
     required this.name,
     required this.jobTitle,
     required this.avatarData,
+    required this.username,
+    required this.password,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -17,6 +21,8 @@ class User {
       name: json['name'],
       jobTitle: json['jobTitle'],
       avatarData: json['avatarData'],
+      username: json['username'],
+      password: json['password'],
     );
   }
 
@@ -25,6 +31,8 @@ class User {
         'name': name,
         'jobTitle': jobTitle,
         'avatarData': avatarData,
+        'username': username,
+        'password': password
       };
 
   static var defaultUsers = [
@@ -33,12 +41,16 @@ class User {
       name: 'Kyle Barr',
       jobTitle: 'Software developer',
       avatarData: '',
+      username: 'kyle',
+      password: '123',
     ),
     User(
       id: 2,
       name: 'John Doe',
       jobTitle: 'Magician',
       avatarData: '',
+      username: 'john',
+      password: '123',
     ),
   ];
 }

@@ -21,15 +21,15 @@ extension StringValues on BlogCategory {
   String titleStr() {
     switch (this) {
       case BlogCategory.tech:
-        return 'Technology';
+        return 'TECHNOLOGY';
       case BlogCategory.ai:
-        return 'Artificial Intelligence';
+        return 'ARTIFICIAL INTELLIGENCE';
       case BlogCategory.cloud:
-        return 'Cloud Computing';
+        return 'CLOUD COMPUTING';
       case BlogCategory.robotics:
-        return 'Robotics';
+        return 'ROBOTICS';
       case BlogCategory.iot:
-        return 'Internet of Things';
+        return 'INTERNET OF THINGS';
     }
   }
 

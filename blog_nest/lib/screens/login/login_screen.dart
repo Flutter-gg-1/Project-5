@@ -4,13 +4,13 @@ import 'package:blog_nest/reusable_components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import '../../extensions/color_ext.dart';
-import '../../managers/data_mgr.dart';
+import '../../managers/user_mgr.dart';
 import '../../managers/nav_mgr.dart';
 import '../../utils/typedefs.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  final dataMgr = GetIt.I.get<DataMgr>();
+  final dataMgr = GetIt.I.get<UserMgr>();
   final nameController = TextEditingController();
   final pwdController = TextEditingController();
 

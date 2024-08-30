@@ -1,7 +1,9 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/screens/home/home_content_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import '../../extensions/color_ext.dart';
+import '../../managers/nav_mgr.dart';
 import '../../model/blog.dart';
 import '../../model/enum/blog_category.dart';
 
@@ -14,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  final navMgr = GetIt.I.get<NavMgr>();
   late TabController tabController;
 
   @override
@@ -38,7 +41,11 @@ class _HomeScreenState extends State<HomeScreen>
           actions: [
             IconButton(
                 onPressed: () => (),
-                icon: const Icon(Icons.search).withSizeAndColor())
+                icon: const Icon(Icons.search).withSizeAndColor()),
+            IconButton(
+                onPressed: () => navMgr.navigate(
+                    context: context, dest: Destination.addBlog),
+                icon: const Icon(Icons.add).withSizeAndColor())
           ],
           bottom: TabBar(
               controller: tabController,

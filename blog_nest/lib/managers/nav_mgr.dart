@@ -9,14 +9,7 @@ class NavMgr {
       {required BuildContext context, required Destination dest}) {
     return Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => getDestination(dest)))
-        .then((value) {
-      if (!context.mounted) return;
-      if (value != null) {
-        ScaffoldMessenger.of(context)
-          ..removeCurrentSnackBar()
-          ..showSnackBar(SnackBar(content: Text(value.toString())));
-      }
-    });
+        .then((value) {});
   }
 
   void navigateBack({required BuildContext context, String? str}) =>
@@ -27,9 +20,9 @@ class NavMgr {
       case Destination.home:
         return const PopScope(canPop: false, child: BottomNavBarView());
       case Destination.addBlog:
-        return const PopScope(canPop: false, child: AddBlogScreen());
+        return PopScope(canPop: true, child: AddBlogScreen());
       case Destination.blogDetails:
-        return const PopScope(canPop: false, child: BlogDetailsScreen());
+        return PopScope(canPop: true, child: BlogDetailsScreen());
       default:
         try {
           throw Error();
