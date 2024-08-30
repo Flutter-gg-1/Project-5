@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
-import 'package:project5/screens/view_post_screen.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;

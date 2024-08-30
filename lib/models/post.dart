@@ -9,7 +9,7 @@ class Post {
   final String postImage;
   final bool isSaved;
 
-  Post({required this.category, required this.authorName, required this.title, required this.summary, required this.content, required this.date, required this.minutesToRead, required this.postImage, required this.isSaved});
+  Post({required this.category, required this.authorName, required this.title, required this.summary, required this.content, required this.date, required this.minutesToRead, this.postImage='assets/placeholder.png', required this.isSaved});
   
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(

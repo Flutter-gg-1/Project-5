@@ -4,6 +4,7 @@ import 'package:project5/data/all_posts.dart';
 import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
 import 'package:project5/models/user.dart';
+import 'package:project5/screens/add_post_screen.dart';
 import 'package:project5/screens/view_post_screen.dart';
 import 'package:project5/widgets/cards/post_card.dart';
 import 'package:project5/widgets/images_carousel.dart';
@@ -38,11 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             IconButton(
               onPressed: () {
-                // context.push(target: AddPostScreen(), saveData: (p0){
-                //   if(p0==true) {
-                //     setState(() {});
-                //   }
-                // });
+                context.push(target: const AddPostScreen(), saveData: (p0){
+                  if(p0==true) {
+                    setState(() {});
+                  }
+                });
               },
               icon: const Icon(Icons.add,size: 28,color: Colors.white,)
             )
