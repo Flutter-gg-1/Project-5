@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vlog_project/Guest_Screens/guest_home.dart';
+import 'package:vlog_project/User_Screens/user_home_screen.dart';
 import 'package:vlog_project/helper/navigation.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -117,7 +117,7 @@ class LogInScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8))),
                         onPressed: () {
-                          context.push(screen: HomeScreen());
+                          context.push(screen: UserHomeScreen());
                         },
                         child: const Text(
                           "Login",
