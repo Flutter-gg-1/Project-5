@@ -17,13 +17,20 @@ List<Widget> pagesNavigationBottomBar = const [
   ExploreScreen(),
   ProfileScreen(),
 ];
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: MyColors.containerBlackColor,
+        backgroundColor: MyColors.greyTextColor,
+        leading: IconButton(
+            onPressed: () {
+              scaffoldKey.currentState!.openDrawer();
+            },
+            icon: const Icon(Icons.menu)),
         actions: [
           IconButton(
               onPressed: () {},
