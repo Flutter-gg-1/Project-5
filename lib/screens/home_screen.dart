@@ -13,37 +13,59 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentPageIndex = 0;
-  List<Widget> screens =const [FeadScreen(),ExploreScreen(),SavedScreen(),ProfileScreen()];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: currentPageIndex,
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Icons.list_alt),
-              label: 'Feed',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.explore_outlined),
-              label: 'Explore',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.bookmark_border),
-              label: 'Saved',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.person_outlined),
-              label: 'Profile',
-            ),
-          ],
-        ),
-    
-        body: screens[currentPageIndex]);
+    return DefaultTabController(
+        length: 1,
+        child: Scaffold(
+          drawer: const Drawer(),
+          appBar: currentPageIndex == 0
+              ? AppBar(
+                  backgroundColor: const Color(0xff1e1e1e),
+                  bottom: const TabBar(
+                    tabs: [
+                      Tab(
+                        child: Text("Tech"),
+                      )
+                    ],
+                    labelColor: Colors.white,
+                    indicatorColor: Colors.red,
+                  ),
+                )
+              : null,
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: currentPageIndex,
+            onDestinationSelected: (int index) {
+              setState(() {
+                currentPageIndex = index;
+              });
+            },
+            destinations: const <Widget>[
+              NavigationDestination(
+                icon: Icon(Icons.list_alt),
+                label: 'Feed',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.explore_outlined),
+                label: 'Explore',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.bookmark_border),
+                label: 'Saved',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.person_outlined),
+                label: 'Profile',
+              ),
+            ],
+          ),
+          body: [
+            const FeadScreen(),
+            const ExploreScreen(),
+            const SavedScreen(),
+            const ProfileScreen()
+          ][currentPageIndex],
+        ));
   }
 }
