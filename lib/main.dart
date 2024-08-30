@@ -1,3 +1,4 @@
+import 'package:blog_app/screens/edit_screen.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,11 @@ class MainApp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(backgroundColor: Colours.surfaceNavBar),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colours.surfacePrimary
+        ),
         scaffoldBackgroundColor: Colours.surfacePrimary),
-      home: HomeScreen()
+      home: EditScreen()
     );
   }
 }
