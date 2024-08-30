@@ -9,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.obscure = false,
     required this.hintText,
+    this.maxLines,
   });
 
   final TextEditingController userTextcontroller;
@@ -17,6 +18,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool obscure;
   final String hintText;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -25,8 +27,9 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       keyboardType: keyboardType,
       obscureText: obscure,
+      maxLines: maxLines,
       decoration: InputDecoration(
-        
+        fillColor: Color(0xffB8B8B8),
         hintText: hintText,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
