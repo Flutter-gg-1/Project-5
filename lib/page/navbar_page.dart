@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pro_5/page/Home_page.dart';
 import 'package:pro_5/page/explore_page.dart';
+import 'package:pro_5/page/profile_page.dart';
 import 'package:pro_5/page/saved_page.dart';
 
 class NavbarPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _NavbarPageState extends State<NavbarPage> {
     const HomePage(),
     const ExplorePage(),
     const SavedPage(),
-    const HomePage(),
+    const ProfilePage(),
   ];
 
 

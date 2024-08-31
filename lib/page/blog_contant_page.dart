@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:pro_5/data_handle/models/blog_data_model.dart';
 import 'package:pro_5/page/edit_blog_page.dart';
 import 'package:pro_5/widget/blog_conatan_page/bold_title_widget.dart';
 import 'package:pro_5/widget/blog_conatan_page/socail_midea_icons.dart';
 import 'package:pro_5/widget/blog_conatan_page/text_blog_widget.dart';
 
-class BlogContantPage extends StatelessWidget {
-  const BlogContantPage({super.key});
+class BlogContantPage extends StatefulWidget {
+  const BlogContantPage({super.key, required this.blogDataModel});
 
+
+  final BlogDataModel  blogDataModel;
+
+  @override
+  State<BlogContantPage> createState() => _BlogContantPageState();
+}
+
+class _BlogContantPageState extends State<BlogContantPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +30,7 @@ class BlogContantPage extends StatelessWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(context,true);
           },
         ),
         actions: [
@@ -45,9 +54,15 @@ class BlogContantPage extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
 
 
-                return  const EditBlogPage()  ;
+                return   EditBlogPage(blogDataModel: widget.blogDataModel,)  ;
                 
-              },));
+              },)).then((onValue){
+                if(onValue == true){
+                  setState(() {
+                    
+                  });
+                }
+              });
             },
             icon: const Icon(
               FontAwesome.pencil_solid,
@@ -61,7 +76,7 @@ class BlogContantPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              "asset/img/Image.png",
+              widget.blogDataModel.img,
               width: double.infinity,
               fit: BoxFit.fitWidth,
             ),
@@ -77,7 +92,7 @@ class BlogContantPage extends StatelessWidget {
                     color: Color(0xffBDA6F5),
                   ),
                   Text(
-                    "Technology",
+                    widget.blogDataModel.category,
                     style: GoogleFonts.inter(
                         color: const Color(0xffBDA6F5),
                         fontWeight: FontWeight.bold),
@@ -91,7 +106,7 @@ class BlogContantPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Now Google’s Bard AI Chatbot can talk & respond to visual prompts!",
+                widget.blogDataModel.title,
                 style: GoogleFonts.inter(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -111,7 +126,7 @@ class BlogContantPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Kyle Barr",
+                widget.blogDataModel.userName,
                 style: GoogleFonts.inter(
                     color: const Color(0xffB8B8B8), fontSize: 14),
               ),
@@ -122,7 +137,7 @@ class BlogContantPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "2 min read • Jul 13, 2023",
+                "${widget.blogDataModel.readingMin} • ${widget.blogDataModel.date}",
                 style: GoogleFonts.inter(
                     color: const Color(0xffB8B8B8), fontSize: 14),
               ),
@@ -138,7 +153,7 @@ class BlogContantPage extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            const TextBlogWidget(text: "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU.",),
+             TextBlogWidget(text: widget.blogDataModel.summary,),
 
             const SizedBox(
               height: 38,
@@ -148,7 +163,7 @@ class BlogContantPage extends StatelessWidget {
 
             SizedBox(height: 15,),
 
-            TextBlogWidget(text: "The feature that lets you add images to prompts is something that Google first showed off at its I/O conference in May. In one example, Google suggested you could use this to ask for help writing a funny caption about a picture of two dogs. Google says the feature is now available in English and is expanding to new languages “soon.”",)
+            TextBlogWidget(text: widget.blogDataModel.content,)
 
 
            , const SizedBox(height: 100,)

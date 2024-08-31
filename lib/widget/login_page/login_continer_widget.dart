@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pro_5/data_handle/git_it/setup.dart';
+import 'package:pro_5/data_handle/models/app_model.dart';
 import 'package:pro_5/page/home_page.dart';
 import 'package:pro_5/page/navbar_page.dart';
 import 'package:pro_5/widget/login_page/gust_row_widget.dart';
 import 'package:pro_5/widget/textfield_widget.dart';
 
-class LoginContinerWidget extends StatelessWidget {
-  const LoginContinerWidget({
+class LoginContinerWidget extends StatefulWidget {
+  const  LoginContinerWidget({
     super.key,
   });
+
+  @override
+  State<LoginContinerWidget> createState() => _LoginContinerWidgetState();
+}
+
+class _LoginContinerWidgetState extends State<LoginContinerWidget> {
+
+  String name = "";
+
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +42,15 @@ class LoginContinerWidget extends StatelessWidget {
                   color: Colors.white, fontWeight: FontWeight.bold
                 )),
                 const SizedBox(height:5 ,),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(right: 16),
-              child: TextfieldWidget(hint: "Enter your username",),
+              child: TextfieldWidget(
+                 
+
+                 onChanged: (p0) {
+                   name = p0;
+                 },
+                hint: "Enter your username",),
             ),
             const SizedBox(height:20 ,),
             Text("Password",
@@ -40,9 +58,15 @@ class LoginContinerWidget extends StatelessWidget {
                   color: Colors.white, fontWeight: FontWeight.bold
                 )),
                 const SizedBox(height:5 ,),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(right: 16),
-              child: TextfieldWidget(hint: "Enter your password",),
+              child: TextfieldWidget(
+
+                onChanged: (p0) {
+                  password = p0;
+                },
+                
+                hint: "Enter your password",),
             ),
 
             
@@ -69,6 +93,8 @@ class LoginContinerWidget extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
+
+                    getIt.get<AppModel>().userLog(name: name, passowrd: password);
 
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
 
