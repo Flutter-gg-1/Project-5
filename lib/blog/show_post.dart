@@ -5,6 +5,13 @@ class ShowPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('Show Post'),
+        ],
+      ),
+    );
   }
 }

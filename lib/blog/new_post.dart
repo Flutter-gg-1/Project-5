@@ -52,7 +52,10 @@ class _NewPostState extends State<NewPost> {
                         await ImagePicker()
                             .pickImage(source: ImageSource.gallery);
                         setState(() {
-                          imageFile = File(imageFile!.path);
+                          if (imageFile != null) {
+                            imageFile = File(imageFile!.path);
+                          }
+                          print(imageFile);
                         });
                       },
                       icon: const Icon(
@@ -153,7 +156,7 @@ class _NewPostState extends State<NewPost> {
                     child: MyButton(
                         text: 'Post',
                         onPressed: () {
-                          context.showScreen(const MainScreen());
+                          context.showScreen(const ShowPost());
                         })),
                 SizedBox(height: context.getWidthScreen(width: 0.07)),
               ],

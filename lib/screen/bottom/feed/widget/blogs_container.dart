@@ -16,8 +16,8 @@ class MyContainerBlogs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyContainer(
-      width: context.getWidthScreen(width: 0.9),
-      height: context.getWidthScreen(width: 0.46),
+      width: context.getWidthScreen(width: 0.91),
+      height: context.getWidthScreen(width: 0.47),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
