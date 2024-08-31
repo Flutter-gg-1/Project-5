@@ -11,11 +11,11 @@ class MainScreen extends StatefulWidget {
 
 int bottomIndex = 0;
 
-List<Widget> pagesNavigationBottomBar = const [
+List<Widget> pagesNavigationBottomBar = [
   FeedScreen(),
-  ExploreScreen(),
-  SavedScreen(),
-  ProfileScreen(),
+  const ExploreScreen(),
+  const SavedScreen(),
+  const ProfileScreen(),
 ];
 
 class _MainScreenState extends State<MainScreen> {

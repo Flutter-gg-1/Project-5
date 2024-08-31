@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../core/all_file.dart';
 
 class FeedScreen extends StatelessWidget {
-  const FeedScreen({super.key});
-
+  FeedScreen({super.key});
+  final List<ArticleModel> articleList =
+      getIt.get<ArticleDataServers>().articleData;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,8 @@ class FeedScreen extends StatelessWidget {
                   (index) => Column(
                     children: [
                       const MyContainerBlogs(
-                        text: 'example',
+                        topTitle: 'example',
+                        title: 'example',
                         imagePath: 'assets/1.png',
                       ),
                       SizedBox(height: context.getHeightScreen(height: 0.02)),

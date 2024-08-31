@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_5/core/all_file.dart';
-import 'package:project_5/model/user.dart';
-import 'package:project_5/servers/setup.dart';
-
-import '../servers/user_data_servers.dart';
 
 class HomScreen extends StatelessWidget {
   HomScreen({super.key});
@@ -11,7 +7,7 @@ class HomScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  List<UserModel> userList = getIt.get<UserDataServers>().usersData;
+  final List<UserModel> userList = getIt.get<UserDataServers>().usersData;
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +62,7 @@ class HomScreen extends StatelessWidget {
                       onPressed: () {
                         if (userList
                                 .any((element) =>
-                                    element.name ==
-                                        usernameController.text &&
+                                    element.name == usernameController.text &&
                                     element.password == passwordController.text)
                                 .toString() ==
                             'true') {
