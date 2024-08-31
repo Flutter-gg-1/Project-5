@@ -121,15 +121,15 @@ class _NewPostState extends State<NewPost> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const MyButton(text: 'Technology'),
+                      MyButton(text: 'Technology', onPressed: () {}),
                       SizedBox(width: context.getWidthScreen(width: 0.02)),
-                      const MyButton2(text: 'AI'),
+                      MyButton2(text: 'AI', onPressed: () {}),
                       SizedBox(width: context.getWidthScreen(width: 0.02)),
-                      const MyButton2(text: 'CLOUD'),
+                      MyButton2(text: 'CLOUD', onPressed: () {}),
                       SizedBox(width: context.getWidthScreen(width: 0.02)),
-                      const MyButton2(text: 'ROBOTIC'),
+                      MyButton2(text: 'ROBOTIC', onPressed: () {}),
                       SizedBox(width: context.getWidthScreen(width: 0.02)),
-                      const MyButton2(text: 'IOT'),
+                      MyButton2(text: 'IOT', onPressed: () {}),
                     ],
                   ),
                 ),
@@ -144,6 +144,15 @@ class _NewPostState extends State<NewPost> {
                 const MyPostTextField(
                   hintText: 'Minutes of reading this blog',
                 ),
+                SizedBox(height: context.getWidthScreen(width: 0.07)),
+                Align(
+                    child: MyButton(
+                        text: 'Post',
+                        onPressed: () {
+                          context.showScreen(const MainScreen());
+                        })),
+                SizedBox(height: context.getWidthScreen(width: 0.07)),
+                const Text(''),
               ],
             ),
           ),

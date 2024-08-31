@@ -17,6 +17,7 @@ export '../screen/bottom/explore.dart';
 export '../screen/bottom/profile/profile.dart';
 export '../screen/bottom/profile/widget/my_container.dart';
 export '../blog/new_post.dart';
+export '../blog/show_post.dart';
 export '../model/user.dart';
 export '../servers/user_data_servers.dart';
 export '../model/article.dart';

@@ -38,8 +38,8 @@ class FeedScreen extends StatelessWidget {
                   (index) => Column(
                     children: [
                       MyContainerBlogs(
-                        topTitle: articleList[index].content,
-                        title: articleList[index].title,
+                        topTitle: articleList[index].title,
+                        title: articleList[index].content,
                         imagePath: articleList[index].imagePath,
                         publishedAt: articleList[index].publishedAt,
                       ),
