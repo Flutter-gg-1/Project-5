@@ -20,7 +20,6 @@ class AllUsers {
     List<String> usernames = users.map((user)=>user.username).toList();
     if(usernames.contains(username)==false) {
       addUser(username: username, password: password);
-      print("new user added");
       currentUser = users.last;
     }
     if(usernames.contains(username)) {
