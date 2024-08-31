@@ -7,12 +7,14 @@ class MyPostTextField extends StatelessWidget {
       this.rightText,
       this.leftText,
       this.hintText,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.controller});
 
   final String? rightText;
   final String? leftText;
   final String? hintText;
   final Widget? prefixIcon;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,6 +25,8 @@ class MyPostTextField extends StatelessWidget {
           style: const TextStyle(color: MyColors.whiteTextColor),
         ),
         TextField(
+          style: const TextStyle(color: MyColors.whiteTextColor),
+          controller: controller,
           decoration: InputDecoration(
             prefixIcon: prefixIcon,
             filled: true,

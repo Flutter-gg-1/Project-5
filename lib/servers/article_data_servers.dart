@@ -31,11 +31,5 @@ class ArticleDataServers {
       postImage: 'assets/3.png',
     ),
   ];
-  final box = GetStorage();
-
-  addArticle (ArticleModel article){
-    articleData.add(article);
-    box.write('articleData', articleData);
-    print('Article Added');
-  }
+  
 }

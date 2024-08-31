@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project_5/servers/storge/storge.dart';
 import '../core/all_file.dart';
 
 class NewPost extends StatefulWidget {
@@ -12,7 +13,11 @@ class NewPost extends StatefulWidget {
 }
 
 class _NewPostState extends State<NewPost> {
-  File? imageFile;
+  File? imageSelected;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController summaryController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
+  TextEditingController readingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +54,12 @@ class _NewPostState extends State<NewPost> {
                   width: context.getWidthScreen(width: 0.9),
                   child: IconButton(
                       onPressed: () async {
-                        await ImagePicker()
+                        final image = await ImagePicker()
                             .pickImage(source: ImageSource.gallery);
                         setState(() {
-                          if (imageFile != null) {
-                            imageFile = File(imageFile!.path);
-                          }
-                          print(imageFile);
+                          imageSelected = File(image!.path);
                         });
+                        print(imageSelected);
                       },
                       icon: const Icon(
                         Icons.add,
@@ -71,7 +74,8 @@ class _NewPostState extends State<NewPost> {
                       style: TextStyle(color: MyColors.whiteTextColor)),
                   TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
                 ])),
-                const MyPostTextField(
+                MyPostTextField(
+                  controller: titleController,
                   hintText: 'Enter Your blog title',
                 ),
                 SizedBox(height: context.getWidthScreen(width: 0.1)),
@@ -86,8 +90,9 @@ class _NewPostState extends State<NewPost> {
                 MyContainer(
                   height: context.getWidthScreen(width: 0.3),
                   width: context.getWidthScreen(width: 0.9),
-                  child: const TextField(
-                    decoration: InputDecoration(
+                  child: TextField(
+                    controller: summaryController,
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Give a short summary of your blog',
                       hintStyle: TextStyle(color: MyColors.greyTextColor),
@@ -106,8 +111,9 @@ class _NewPostState extends State<NewPost> {
                 MyContainer(
                   height: context.getWidthScreen(width: 0.5),
                   width: context.getWidthScreen(width: 0.9),
-                  child: const TextField(
-                    decoration: InputDecoration(
+                  child: TextField(
+                    controller: contentController,
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Enter Your blog content',
                       hintStyle: TextStyle(color: MyColors.greyTextColor),
@@ -118,7 +124,7 @@ class _NewPostState extends State<NewPost> {
                 RichText(
                     text: const TextSpan(children: [
                   TextSpan(
-                      text: 'Content',
+                      text: 'Category',
                       style: TextStyle(color: MyColors.whiteTextColor)),
                   TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
                 ])),
@@ -148,7 +154,8 @@ class _NewPostState extends State<NewPost> {
                       style: TextStyle(color: MyColors.whiteTextColor)),
                   TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
                 ])),
-                const MyPostTextField(
+                MyPostTextField(
+                  controller: readingController,
                   hintText: 'Minutes of reading this blog',
                 ),
                 SizedBox(height: context.getWidthScreen(width: 0.07)),
@@ -156,6 +163,10 @@ class _NewPostState extends State<NewPost> {
                     child: MyButton(
                         text: 'Post',
                         onPressed: () {
+                          box.write('title', titleController.text);
+                          box.write('summary', summaryController.text);
+                          box.write('content', contentController.text);
+                          box.write('reading', readingController.text);
                           context.showScreen(const ShowPost());
                         })),
                 SizedBox(height: context.getWidthScreen(width: 0.07)),
