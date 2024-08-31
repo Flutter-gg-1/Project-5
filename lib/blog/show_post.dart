@@ -13,7 +13,7 @@ class ShowPost extends StatelessWidget {
       body: SizedBox(
         width: double.infinity,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: context.getHeightScreen(height: 0.06)),
             AppBarContainer(
@@ -36,9 +36,44 @@ class ShowPost extends StatelessWidget {
               child: const Text(''),
             ),
             SizedBox(height: context.getHeightScreen(height: 0.01)),
-            MyContainer(
-              height: context.getHeightScreen(height: 0.2),
-              child: Image.asset('assets/1.png', fit: BoxFit.cover),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: MyContainer(
+                height: context.getHeightScreen(height: 0.2),
+                child: Image.asset('assets/1.png', fit: BoxFit.cover),
+              ),
+            ),
+            SizedBox(height: context.getHeightScreen(height: 0.01)),
+            const Text('category',
+                style: TextStyle(color: MyColors.whiteTextColor)),
+            SizedBox(height: context.getHeightScreen(height: 0.01)),
+            const Text('title',
+                style: TextStyle(color: MyColors.whiteTextColor)),
+            SizedBox(height: context.getHeightScreen(height: 0.01)),
+            const CircleAvatar(
+              radius: 20,
+              backgroundImage: NetworkImage(
+                  'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'),
+              backgroundColor: MyColors.primaryColor,
+            ),
+            SizedBox(height: context.getHeightScreen(height: 0.01)),
+            const Text('Author',
+                style: TextStyle(color: MyColors.whiteTextColor)),
+            SizedBox(height: context.getHeightScreen(height: 0.01)),
+            const Text('Published At',
+                style: TextStyle(color: MyColors.whiteTextColor)),
+            SizedBox(height: context.getHeightScreen(height: 0.01)),
+            Row(
+              children: [
+                const Icon(FontAwesomeIcons.facebook,
+                    color: MyColors.whiteTextColor),
+                SizedBox(width: context.getWidthScreen(width: 0.02)),
+                const Icon(FontAwesomeIcons.twitter,
+                    color: MyColors.whiteTextColor),
+                SizedBox(width: context.getWidthScreen(width: 0.02)),
+                const Icon(FontAwesomeIcons.share,
+                    color: MyColors.whiteTextColor),
+              ],
             )
           ],
         ),
