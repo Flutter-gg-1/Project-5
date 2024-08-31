@@ -7,7 +7,8 @@ class MyTextField extends StatelessWidget {
       this.rightText,
       this.leftText,
       this.hintText,
-      this.prefixIcon, this.controller});
+      this.prefixIcon,
+      this.controller});
 
   final String? rightText;
   final String? leftText;
@@ -27,6 +28,8 @@ class MyTextField extends StatelessWidget {
           ),
         ),
         TextField(
+          keyboardType: TextInputType.text,
+          style: const TextStyle(color: MyColors.whiteTextColor),
           controller: controller,
           decoration: InputDecoration(
             prefixIcon: prefixIcon,

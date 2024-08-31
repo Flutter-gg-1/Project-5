@@ -64,9 +64,24 @@ class HomScreen extends StatelessWidget {
                     width: context.getWidthScreen(width: 0.5),
                     child: MaterialButton(
                       onPressed: () {
-                        print(userList.map(
-                              (e) => e.toJson(),
-                            ));
+                        if (userList
+                                .any((element) =>
+                                    element.name ==
+                                        usernameController.text &&
+                                    element.password == passwordController.text)
+                                .toString() ==
+                            'true') {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MainScreen()));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Wrong username or password'),
+                            ),
+                          );
+                        }
                       },
                       color: MyColors.pinkColor,
                       child: const Text('Login'),

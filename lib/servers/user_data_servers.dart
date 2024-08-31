@@ -4,13 +4,13 @@ class UserDataServers {
   List<UserModel> usersData = [
     UserModel(
         id: 1,
-        name: 'Abdullah',
+        name: 'abdullah',
         username: 'Abu_Mukhlef',
         email: 'Abu_Mukhlef@example.com',
         password: '1234'),
     UserModel(
         id: 2,
-        name: 'Mukhlef',
+        name: 'mukhlef',
         username: 'Al-Shammari',
         email: 'Al-Shammari@example.com',
         password: '1234'),
