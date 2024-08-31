@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:project_5/core/all_file.dart';
+import 'package:project_5/model/user.dart';
+import 'package:project_5/servers/setup.dart';
+
+import '../servers/user_data_servers.dart';
 
 class HomScreen extends StatelessWidget {
-  const HomScreen({super.key});
+  HomScreen({super.key});
+
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  List<UserModel> userList = getIt.get<UserDataServers>().usersData;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +36,13 @@ class HomScreen extends StatelessWidget {
             MyContainer(
               child: Column(
                 children: [
-                  const MyTextField(
+                  MyTextField(
+                    controller: usernameController,
                     hintText: 'Enter your username',
                     leftText: 'Username',
                   ),
-                  const MyTextField(
+                  MyTextField(
+                    controller: passwordController,
                     hintText: 'Enter your password',
                     leftText: 'Password',
                   ),
@@ -52,7 +63,11 @@ class HomScreen extends StatelessWidget {
                     height: context.getHeightScreen(height: 0.05),
                     width: context.getWidthScreen(width: 0.5),
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print(userList.map(
+                              (e) => e.toJson(),
+                            ));
+                      },
                       color: MyColors.pinkColor,
                       child: const Text('Login'),
                     ),
