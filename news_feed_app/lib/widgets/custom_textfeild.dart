@@ -6,12 +6,18 @@ class TextContainer extends StatelessWidget {
     super.key,
     required this.title,
     required this.hint,
-    this.showIcon = false, 
+    this.showIcon = false,
+    this.titleSize = 14, 
+    this.titleWeight = FontWeight.w500,
+    this.unlimittedLines = false,
   });
 
   final String title;
   final String hint;
   final bool showIcon; 
+  final double titleSize;
+  final FontWeight titleWeight;
+  final bool unlimittedLines;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +27,15 @@ class TextContainer extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xffffffff)),
+          style: TextStyle(fontSize: titleSize, fontWeight: titleWeight, color: Color(0xffffffff)),
         ),
         const SizedBox(height: 10),
         SizedBox(
-          height: 40,
+          //height: 40,
           width: 370,
           child: TextFormField(
+            minLines: 1,
+            maxLines: unlimittedLines ? null : 1,
             style: const TextStyle(color: Colors.white), // User input text color
             decoration: InputDecoration(
               prefixIcon: showIcon

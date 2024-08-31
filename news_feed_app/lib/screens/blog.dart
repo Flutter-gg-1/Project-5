@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:news_feed_app/screens/edit_post.dart';
 
 class BlogPage extends StatelessWidget {
   const BlogPage({super.key});
@@ -27,7 +28,9 @@ class BlogPage extends StatelessWidget {
           ),
            IconButton(
             icon: const Icon(Icons.create_outlined , color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const EditPost()));
+            },
           ),
         ],
       ),

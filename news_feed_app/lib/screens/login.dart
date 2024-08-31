@@ -21,7 +21,7 @@ class Login extends StatelessWidget {
                  const SizedBox(height: 30,),
                  Container(
                   width: 337,
-                  height: 335,
+                  height: 360,
                   decoration: const BoxDecoration(
                     color: Color(0xff1E1E1E),
                     borderRadius:BorderRadius.all(Radius.circular(8))
