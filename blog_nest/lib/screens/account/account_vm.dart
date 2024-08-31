@@ -19,6 +19,7 @@ class AccountVM {
   }
 
   void signOut(BuildContext context) {
+    userMgr.setCurrentUser(user: currentUser, isSignIn: false);
     navMgr.signOut(context: context);
   }
 }

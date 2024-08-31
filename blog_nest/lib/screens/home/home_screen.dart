@@ -53,10 +53,11 @@ class _HomeScreenState extends State<HomeScreen>
           IconButton(
               onPressed: () => (),
               icon: const Icon(Icons.search).withSizeAndColor()),
-          IconButton(
-              onPressed: () => vm.navMgr
-                  .navigate(context: context, dest: Destination.addBlog),
-              icon: const Icon(Icons.add).withSizeAndColor())
+          if (vm.currentUser != null)
+            IconButton(
+                onPressed: () => vm.navMgr
+                    .navigate(context: context, dest: Destination.addBlog),
+                icon: const Icon(Icons.add).withSizeAndColor())
         ],
         bottom: TabBar(
           indicatorColor: C.red,

@@ -13,7 +13,6 @@ class LoginVM {
   bool shouldShowAlert = false;
 
   Future<void> login() async {
-    print(userMgr.allUsers.length);
     for (var user in userMgr.allUsers) {
       if (user.username.toLowerCase() == nameController.text.toLowerCase() &&
           user.password == pwdController.text) {

@@ -8,7 +8,7 @@ import '../../utils/typedefs.dart';
 import 'login_vm.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,25 @@ class LoginScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Welcome Back').styled(size: 20, weight: FW.w700),
-              const Text('Glad to see you again')
-                  .styled(size: 15, weight: FW.w300),
-              _FormView(),
+              const Expanded(child: Text('')),
+              Expanded(
+                flex: 4,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Welcome Back')
+                          .styled(size: 20, weight: FW.w700),
+                      const Text('Glad to see you again')
+                          .styled(size: 15, weight: FW.w300),
+                      _FormView(),
+                    ],
+                  ),
+                ),
+              ),
+              const Expanded(child: Text('')),
             ],
           ),
         ),
@@ -69,29 +81,27 @@ class _FormView extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: Colors.white,
-                              width: 2,
+                      const Expanded(flex: 1, child: Text('')),
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          children: [
+                            CustomBtnView(
+                              callBack: () async {
+                                await vm.login();
+                                if (vm.shouldNavigate) {
+                                  if (!context.mounted) return;
+                                  vm.navMgr.navigate(
+                                      context: context, dest: Destination.home);
+                                }
+                              },
                             ),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 32.0),
-                          child: CustomBtnView(
-                            callBack: () async {
-                              await vm.login();
-                              if (vm.shouldNavigate) {
-                                if (!context.mounted) return;
-                                vm.navMgr.navigate(
-                                    context: context, dest: Destination.home);
-                              }
-                            },
-                          ),
+                            const SizedBox(height: 32),
+                            _DividerTextView()
+                          ],
                         ),
                       ),
+                      const Expanded(flex: 1, child: Text('')),
                     ],
                   ),
                 ),
@@ -100,6 +110,39 @@ class _FormView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _DividerTextView extends StatelessWidget {
+  _DividerTextView();
+  final vm = LoginVM();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Expanded(
+          child: Divider(
+            indent: 0,
+            endIndent: 10.0,
+            thickness: 1,
+          ),
+        ),
+        TextButton(
+          onPressed: () =>
+              vm.navMgr.navigate(context: context, dest: Destination.home),
+          child: const Text("Enter as guest").styled(size: 12),
+        ),
+        const Expanded(
+          child: Divider(
+            indent: 10.0,
+            endIndent: 0,
+            thickness: 1,
+          ),
+        ),
+      ],
     );
   }
 }

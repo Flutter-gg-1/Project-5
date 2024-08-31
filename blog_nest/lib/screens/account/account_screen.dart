@@ -7,9 +7,16 @@ import '../../reusable_components/custom_btn_view.dart';
 import '../../utils/typedefs.dart';
 import 'account_vm.dart';
 
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends StatefulWidget {
   AccountScreen({super.key});
+
+  @override
+  State<AccountScreen> createState() => _AccountScreenState();
+}
+
+class _AccountScreenState extends State<AccountScreen> {
   final vm = AccountVM();
+  void callBack() => setState(() => ());
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,9 @@ class AccountScreen extends StatelessWidget {
                             children: [
                               const Text('You are not logged in yet')
                                   .styled(size: 12, weight: FW.w700),
-                              CustomBtnView(isLogin: true, callBack: () => ()),
+                              CustomBtnView(
+                                  isLogin: true,
+                                  callBack: () => vm.signOut(context)),
                             ],
                           ),
                         ),
@@ -63,7 +72,8 @@ class AccountScreen extends StatelessWidget {
                       Expanded(
                         child: ListView(
                           children: vm.blogs
-                              .map((blog) => AccountBlogCellView(blog: blog))
+                              .map((blog) => AccountBlogCellView(
+                                  blog: blog, setState: callBack))
                               .toList(),
                         ),
                       ),

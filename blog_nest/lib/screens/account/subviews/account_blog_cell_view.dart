@@ -5,10 +5,13 @@ import '../../../extensions/color_ext.dart';
 import '../../../model/blog.dart';
 import '../../../utils/img_converter.dart';
 import '../../../utils/typedefs.dart';
+import '../account_vm.dart';
 
 class AccountBlogCellView extends StatelessWidget {
-  const AccountBlogCellView({super.key, required this.blog});
+  AccountBlogCellView({super.key, required this.blog, required this.setState});
+  final vm = AccountVM();
   final Blog blog;
+  final VoidCallback setState;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,10 @@ class AccountBlogCellView extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   InkWell(
-                    onTap: () => (),
+                    onTap: () {
+                      vm.removeBlog(blogId: blog.id);
+                      setState();
+                    },
                     child: const Icon(Icons.delete_outline, color: C.text3)
                         .withSizeAndColor(size: 16, color: C.red),
                   ),

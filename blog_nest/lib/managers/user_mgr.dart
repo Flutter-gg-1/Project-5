@@ -35,11 +35,10 @@ class UserMgr extends ChangeNotifier {
     }
   }
 
-  Future<void> setCurrentUser(
-      {required User user, required bool isSignIn}) async {
+  Future<void> setCurrentUser({User? user, required bool isSignIn}) async {
     if (isSignIn) {
       currentUser = user;
-      String jsonString = jsonEncode(user.toJson());
+      String jsonString = jsonEncode(user!.toJson());
       await box.write('currentUser', jsonString);
     } else {
       currentUser = null;
@@ -86,7 +85,6 @@ class UserMgr extends ChangeNotifier {
         allBookmarks.add(Bookmark.fromJson(bookmark));
       }
     }
-    print('bookmarks count: ${allBookmarks.length}');
   }
 
   // Toggle Bookmark
