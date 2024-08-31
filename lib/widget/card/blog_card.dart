@@ -1,9 +1,15 @@
-
+import 'package:blog_app/src/blog_screen.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class BlogCard extends StatelessWidget {
-  final String writer, title, timeToRead, creationDate;
+  final String writer,
+      title,
+      timeToRead,
+      creationDate,
+      category,
+      summary,
+      content;
   final bool isFaveiorte;
   final Function()? onPressedBookMark;
   const BlogCard({
@@ -14,12 +20,27 @@ class BlogCard extends StatelessWidget {
     required this.creationDate,
     required this.isFaveiorte,
     this.onPressedBookMark,
+    required this.category,
+    required this.summary,
+    required this.content,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => debugPrint('Hello'),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BlogScreen(
+                category: category,
+                title: title,
+                writer: writer,
+                time: timeToRead,
+                date: creationDate,
+                summary: summary,
+                content: content,
+                isFaveiorte: isFaveiorte,),
+          )),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.only(top: 8),

@@ -111,6 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     timeToRead: e.time,
                     creationDate: e.creationDate,
                     isFaveiorte: e.isFaveiorte,
+                    category: e.category,
+                    summary: e.summary,
+                    content: e.content,
                     onPressedBookMark: () {
                       e.isFaveiorte = !e.isFaveiorte;
       
