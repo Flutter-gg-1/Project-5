@@ -5,6 +5,7 @@ import 'package:blog_nest/screens/add_blog/add_blog_vm.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
+import '../../extensions/img_ext.dart';
 import '../../model/blog.dart';
 import '../../model/enum/blog_category.dart';
 import '../../utils/typedefs.dart';
@@ -66,9 +67,33 @@ class _AddBlogScreenState extends State<AddBlogScreen>
                     children: [
                       const Text('Image').styled(size: 17, weight: FW.w700),
                       const SizedBox(height: 16),
-                      const AspectRatio(
+                      AspectRatio(
                         aspectRatio: 2,
-                        child: Placeholder(),
+                        child: Stack(
+                          alignment: AL.center,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: vm.selectedImg == null
+                                      ? ClipRRect(
+                                          borderRadius: BR.circular(16),
+                                          child: const Image(
+                                              image: Img.blank,
+                                              fit: BoxFit.cover))
+                                      : ClipRRect(
+                                          borderRadius: BR.circular(16),
+                                          child: Image.file(vm.selectedImg!),
+                                        ),
+                                ),
+                              ],
+                            ),
+                            IconButton(
+                                onPressed: () => vm.getImage(),
+                                icon: const Icon(Icons.add).withSizeAndColor(
+                                    size: 48, color: C.text2)),
+                          ],
+                        ),
                       ),
                     ],
                   ),
