@@ -1,3 +1,4 @@
+import 'package:blog_app/services/decode_image.dart';
 import 'package:blog_app/services/extensions/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -93,8 +94,7 @@ class _NewsScreenState extends State<NewsScreen> {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(widget.post.image ??
-                              'assets/images/default.png'))),
+                          image: decodeImageAsBase64(widget.post.image))),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),

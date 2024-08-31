@@ -178,48 +178,55 @@ List<User> mockUsers = [
     'password': 'ahmed',
     'position': 'Web Developer',
     'posts': mockPosts.where((post) => post.author == 'Ahmed').toList(),
-    'saved': [].cast<Post>()
+    'saved': [].cast<Post>(),
+    'logged':false
   }),
   User.fromJson({
     'username': 'Fahad',
     'password': 'fahad',
     'position': 'Software Engineer',
     'posts': mockPosts.where((post) => post.author == 'Fahad').toList(),
-    'saved': <Post>[]
+    'saved': <Post>[],
+    'logged':false
   }),
   User.fromJson({
     'username': 'Abdulaziz',
     'password': 'abdulaziz',
     'position': 'Software Developer',
     'posts': mockPosts.where((post) => post.author == 'Abdulaziz').toList(),
-    'saved': <Post>[]
+    'saved': <Post>[],
+    'logged':false
   }),
   User.fromJson({
     'username': 'Laura',
     'password': 'laura',
     'position': 'Data Scientist',
     'posts': mockPosts.where((post) => post.author == 'Laura').toList(),
-    'saved': <Post>[]
+    'saved': <Post>[],
+    'logged':false
   }),
   User.fromJson({
     'username': 'Ethan',
     'password': 'ethan',
     'position': 'Cloud Engineer',
     'posts': mockPosts.where((post) => post.author == 'Ethan').toList(),
-    'saved': <Post>[]
+    'saved': <Post>[],
+    'logged':false
   }),
   User.fromJson({
     'username': 'Olivia',
     'password': 'olivia',
     'position': 'Robotics Engineer',
     'posts': mockPosts.where((post) => post.author == 'Olivia').toList(),
-    'saved': <Post>[]
+    'saved': <Post>[],
+    'logged':false
   }),
   User.fromJson({
     'username': 'Sophia',
     'password': 'sophia',
     'position': 'IoT Specialist',
     'posts': mockPosts.where((post) => post.author == 'Sophia').toList(),
-    'saved': <Post>[]
+    'saved': <Post>[],
+    'logged':false
   }),
 ];

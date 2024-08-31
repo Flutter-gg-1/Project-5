@@ -4,6 +4,7 @@ import 'package:blog_app/services/setup.dart';
 import 'package:flutter/material.dart';
 import '../models/post.dart';
 import '../models/user.dart';
+import '../services/decode_image.dart';
 import '../styles/colours.dart';
 
 class CustomPostTile extends StatefulWidget {

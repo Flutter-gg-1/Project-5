@@ -147,24 +147,28 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     final image = await ImagePicker()
                         .pickImage(source: ImageSource.gallery);
                     if (image != null) {
-                      setState(() async {
-                        selectedImage = File(image.path);
-                        final imageToBase64 = await image.readAsBytes();
-                        imageAsBase64 = base64Encode(imageToBase64);
-                      });
+                      selectedImage = File(image.path);
+                      final imageToBase64 = await image.readAsBytes();
+                      imageAsBase64 = base64Encode(imageToBase64);
+                      setState(() {});
                     }
                   },
                   child: Center(
                     child: Container(
-                        height: context.getHeight() / 5.8,
-                        width: context.getWidth() / 1.113,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colours.chipPrimary,
+                      height: context.getHeight() / 5.8,
+                      width: context.getWidth() / 1.113,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colours.chipPrimary,
+                        image: DecorationImage(
+                          image: selectedImage == null
+                              ? const AssetImage('assets/images/add.png')
+                                  as ImageProvider
+                              : FileImage(selectedImage!) as ImageProvider,
+                          fit: selectedImage==null ? null:  BoxFit.cover,
                         ),
-                        child: selectedImage == null
-                            ? Image.asset('assets/images/add.png')
-                            : Image.file(selectedImage!)),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(

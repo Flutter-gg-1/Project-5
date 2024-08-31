@@ -1,3 +1,4 @@
+import 'package:blog_app/screens/navigation_screens/home_screen.dart';
 import 'package:blog_app/services/extensions/screen.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/styles/colours.dart';
@@ -6,16 +7,41 @@ import 'package:blog_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 import '../data/blog_data.dart';
+import '../models/user.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    final key = GlobalKey<FormState>();
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final key = GlobalKey<FormState>();
+  User? user;
+
+  @override
+  void initState() {
+    getUser();
+    if (user != null && user!.isLoggedIn) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomeScreen(
+                    user: user,
+                  )));
+    }
+    super.initState();
+  }
+
+  getUser()async{
+    user = locator.get<BlogData>().loggedUser;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -84,14 +110,16 @@ class LoginScreen extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color(0xffBDA6F5).withOpacity(0.71)),
-                            onPressed: () {
+                            onPressed: () async {
                               if (key.currentState!.validate()) {
                                 for (var user
                                     in locator.get<BlogData>().users) {
                                   if (user.username == nameController.text &&
                                       user.password ==
                                           passwordController.text) {
-                                    user.isLoggedIn = true;
+                                    await locator
+                                        .get<BlogData>()
+                                        .saveLogin(user);
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
@@ -113,7 +141,7 @@ class LoginScreen extends StatelessWidget {
                     Center(
                       child: TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>

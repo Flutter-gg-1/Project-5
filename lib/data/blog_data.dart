@@ -1,10 +1,12 @@
+import 'package:blog_app/data/mock_data.dart';
 import 'package:get_storage/get_storage.dart';
 import '../models/post.dart';
 import '../models/user.dart';
 
 class BlogData {
-  List<Post> posts = [];
-  List<User> users = [];
+  List<Post> posts = mockPosts;
+  List<User> users = mockUsers;
+  User? loggedUser;
   final box = GetStorage();
 
   BlogData() {
@@ -36,6 +38,14 @@ class BlogData {
     saveUser();
   }
 
+  saveLogin(User user) async {
+    Map<String, dynamic> activeUser = {};
+    activeUser = user.toJson();
+    user.isLoggedIn = true;
+    await box.write('logged', activeUser);
+    saveUser();
+  }
+
   savePost() async {
     List<Map<String, dynamic>> listOfPosts = [];
     for (var post in posts) {
@@ -52,17 +62,22 @@ class BlogData {
     await box.write('users', listOfUsers);
   }
 
-  loadInfo() async {
+  Future<void> loadInfo() async {
     List<Map<String, dynamic>> listOfPosts =
         List.from(await box.read('posts')).cast<Map<String, dynamic>>();
     List<Map<String, dynamic>> listOfUsers =
         List.from(await box.read('users')).cast<Map<String, dynamic>>();
+
+    Map<String, dynamic>? activeUser = await box.read('logged');
 
     for (var post in listOfPosts) {
       posts.add(Post.fromJson(post));
     }
     for (var user in listOfUsers) {
       users.add(User.fromJson(user));
+    }
+    if (activeUser != null) {
+      loggedUser = User.fromJson(activeUser);
     }
   }
 }

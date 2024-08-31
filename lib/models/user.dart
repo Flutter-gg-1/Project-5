@@ -21,7 +21,9 @@ class User {
         password: json['password'],
         position: json['position'],
         posts: json['posts'],
-        saved: json['saved']);
+        saved: json['saved'],
+        isLoggedIn: json['logged']
+        );
   }
 
   toJson() {
@@ -30,7 +32,8 @@ class User {
       'password': password,
       'position': position,
       'posts': posts,
-      'saved': saved
+      'saved': saved,
+      'logged':isLoggedIn
     };
   }
 }
