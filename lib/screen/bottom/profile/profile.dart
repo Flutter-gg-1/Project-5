@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/all_file.dart';
+import '../../../core/all_file.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -67,14 +67,9 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: context.getHeightScreen(height: 0.01)),
               ...List.generate(
                 3,
-                (index) => Column(
-                  children: [
-                    MyContainer(
-                      width: context.getWidthScreen(width: 0.96),
-                      height: context.getHeightScreen(height: 0.2),
-                    ),
-                    SizedBox(height: context.getHeightScreen(height: 0.02)),
-                  ],
+                (index) => const MyContainerBlog(
+                  text: 'example',
+                  imagePath: 'assets/1.png',
                 ),
               ),
 

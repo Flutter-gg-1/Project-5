@@ -12,6 +12,7 @@ export '../screen/main_screen.dart';
 export '../screen/bottom/feed.dart';
 export '../screen/bottom/saved.dart';
 export '../screen/bottom/explore.dart';
-export '../screen/bottom/profile.dart';
+export '../screen/bottom/profile/profile.dart';
+export '../screen/bottom/profile/widget/my_container.dart';
 export '../screen/feed_page_view/views/view_widget.dart';
 export '../blog/new_post.dart';
