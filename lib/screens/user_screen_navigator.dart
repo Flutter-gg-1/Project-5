@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project5/screens/explore_screen.dart';
 import 'package:project5/screens/feed_screen.dart';
+import 'package:project5/screens/saved_screen.dart';
 
 class UserScreenNavigator extends StatefulWidget {
   final int? goTo;
@@ -11,7 +12,7 @@ class UserScreenNavigator extends StatefulWidget {
 }
 
 class _UserScreenNavigatorState extends State<UserScreenNavigator> {
-  List<Widget> screens = [const FeedScreen(), const ExploreScreen(), const Placeholder(), const Placeholder()];
+  List<Widget> screens = [const FeedScreen(), const ExploreScreen(), const SavedScreen(), const Placeholder()];
   List<String> labels = ['Feed', 'Explore', 'Saved', 'Profile'];
   List<IconData> icons = [Icons.newspaper, Icons.explore_outlined, Icons.bookmark_border, Icons.person_2_outlined];
   late int currentPage = widget.goTo ?? 0;

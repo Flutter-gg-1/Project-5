@@ -99,19 +99,36 @@ class _FeedScreenState extends State<FeedScreen> {
                       const SizedBox(height: 12,),
                       Column(
                         children: List.generate(categoryPosts.length, (postIndex){
+                          Post post = categoryPosts[postIndex];
                           return Column(
                             children: [
                               PostCard(
-                                post: categoryPosts[postIndex],
+                                post: post,
                                 onTap: (){
                                   context.push(
-                                    target: ViewPostScreen(post: categoryPosts[postIndex]),
+                                    target: ViewPostScreen(
+                                      post: post,
+                                      onSave: () {
+                                        post.isSaved ?
+                                        GetIt.I.get<AllPosts>().removeFromUserSavedPosts(post: post)
+                                        : GetIt.I.get<AllPosts>().addToUserSavedPosts(post: post);
+                                        post.isSaved = !post.isSaved;
+                                        setState(() {});
+                                      },
+                                    ),
                                     saveData: (p0) {
                                       if(p0==true){
                                         setState(() {});
                                       }
                                     },
                                   );
+                                },
+                                onSave: () {
+                                  post.isSaved ?
+                                  GetIt.I.get<AllPosts>().removeFromUserSavedPosts(post: post)
+                                  : GetIt.I.get<AllPosts>().addToUserSavedPosts(post: post);
+                                  post.isSaved = !post.isSaved;
+                                  setState(() {});
                                 },
                               ),
                               const SizedBox(height: 12,)

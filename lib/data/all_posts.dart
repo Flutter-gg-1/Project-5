@@ -1,4 +1,7 @@
+import 'package:get_it/get_it.dart';
+import 'package:project5/data/all_users.dart';
 import 'package:project5/models/post.dart';
+import 'package:project5/models/user.dart';
 
 class AllPosts {
   // list of posts categories
@@ -168,5 +171,19 @@ Google first opened up access to Bard in March, but at the time, it was availabl
 
   searchPost({required String searchTerm}) {
     return posts.where((post)=>post.title.toLowerCase().contains(searchTerm.toLowerCase())).toList();
+  }
+
+  addToUserSavedPosts({required Post post}) {
+    User? user = GetIt.I.get<AllUsers>().currentUser; 
+    if(user!=null) {
+      user.savedPosts.add(post);
+    }
+  }
+
+  removeFromUserSavedPosts({required Post post}) {
+    User? user = GetIt.I.get<AllUsers>().currentUser; 
+    if(user!=null) {
+      user.savedPosts.remove(post);
+    }
   }
 }

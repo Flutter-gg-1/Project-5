@@ -49,19 +49,27 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 child: ListView.builder(
                   itemCount: searchResult.length,
                   itemBuilder: (context, index) {
+                    Post post = searchResult[index];
                     return Column(
                       children: [
                         PostCard(
-                          post: searchResult[index],
+                          post: post,
                           onTap: (){
                             context.push(
-                              target: ViewPostScreen(post: searchResult[index]),
+                              target: ViewPostScreen(post: post),
                               saveData: (p0) {
                                 if(p0==true){
                                   setState(() {});
                                 }
                               },
                             );
+                          },
+                          onSave: () {
+                            post.isSaved ?
+                            GetIt.I.get<AllPosts>().removeFromUserSavedPosts(post: post)
+                            : GetIt.I.get<AllPosts>().addToUserSavedPosts(post: post);
+                            post.isSaved = !post.isSaved;
+                            setState(() {});
                           },
                         ),
                         const SizedBox(height: 12)

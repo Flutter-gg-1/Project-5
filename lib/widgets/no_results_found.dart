@@ -12,8 +12,8 @@ class NoResultsFound extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: context.getHeight(divideBy: 3),),
-        Icon(icon,color: const Color(0xffb8b8b8)),
-        const SizedBox(width: 10),
+        icon!=null ? Icon(icon,color: const Color(0xffb8b8b8)) : const SizedBox(),
+        icon!=null ? const SizedBox(width: 10) : const SizedBox(),
         Text(
           message,
           style: const TextStyle(

@@ -7,7 +7,7 @@ class Post {
   final String date;
   final int minutesToRead;
   final String postImage;
-  final bool isSaved;
+  bool isSaved;
 
   Post({required this.category, required this.authorName, required this.title, required this.summary, required this.content, required this.date, required this.minutesToRead, this.postImage='assets/placeholder.png', required this.isSaved});
   

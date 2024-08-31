@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project5/data/all_posts.dart';
@@ -11,7 +10,8 @@ import 'package:project5/screens/edit_post_screen.dart';
 
 class ViewPostScreen extends StatefulWidget {
   final Post post;
-  const ViewPostScreen({super.key, required this.post});
+  final Function()? onSave;
+  const ViewPostScreen({super.key, required this.post, this.onSave});
 
   @override
   State<ViewPostScreen> createState() => _ViewPostScreenState();
@@ -46,10 +46,8 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
             onPressed: (){},
           ),
           IconButton(
-            icon: const Icon(Icons.bookmark_border),
-            onPressed: (){
-              // user
-            },
+            icon: widget.post.isSaved ? const Icon(Icons.bookmark) : const Icon(Icons.bookmark_border),
+            onPressed: widget.onSave,
           ),
           user!=null ? IconButton(
             icon: const Icon(Icons.edit_outlined),
