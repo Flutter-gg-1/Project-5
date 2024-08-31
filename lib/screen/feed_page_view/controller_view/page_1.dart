@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../core/all_file.dart';
 
 class Page1 extends StatelessWidget {
   const Page1({super.key});
@@ -7,15 +6,11 @@ class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.whiteTextColor,
-      body: Column(
-        children: [
-          const SizedBox(height: 100),
-          Container(
-            color: MyColors.primaryColor,
-          ),
-          const SizedBox(height: 30),
-        ],
+      body: Image.asset(
+        'assets/1.png',
+        fit: BoxFit.cover,
+        height: double.infinity,
+        width: double.infinity,
       ),
     );
   }
