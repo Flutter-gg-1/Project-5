@@ -1,9 +1,12 @@
 import 'dart:math';
 
+import 'package:blog_app/data_layer/blog_data.dart';
 import 'package:blog_app/extension/size_config.dart';
+import 'package:blog_app/src/home_screen.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:blog_app/widget/text_feild/custom_feild.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class BlogEditorScreen extends StatefulWidget {
   final String title, summary, content;
@@ -33,7 +36,16 @@ class _BlogEditorScreenState extends State<BlogEditorScreen> {
                 if (newTitle.isNotEmpty &&
                     newSummary.isNotEmpty &&
                     newContent.isNotEmpty) {
-                  debugPrint(newContent);
+                  GetIt.I.get<BlogData>().editBlog(
+                      id: widget.id,
+                      title: newTitle,
+                      summary: newSummary,
+                      content: newContent);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ));
                 } else if (newTitle.isEmpty ||
                     newSummary.isEmpty ||
                     newContent.isEmpty) {

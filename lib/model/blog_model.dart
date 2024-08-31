@@ -1,11 +1,11 @@
 class BlogModel {
   late final int id;
   late final String category;
-  late final String title;
+  late  String title;
   late final String writer;
   late final String time;
-  late final String summary;
-  late final String content;
+  late  String summary;
+  late  String content;
   late final String creationDate;
   late  bool isFaveiorte;
 

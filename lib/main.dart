@@ -3,7 +3,7 @@ import 'package:blog_app/src/home_screen.dart';
 import 'package:blog_app/src/login_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
   runApp(const MyApp());
@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
               backgroundColor: Color(0xff1e1e1e),
               iconTheme: IconThemeData(color: Colors.white)),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              backgroundColor: Color(0xff131313))),
+              backgroundColor: Color(0xff131313)),
+          bottomSheetTheme: const BottomSheetThemeData(
+              backgroundColor:  Color(0xff2e2e2e))),
       home: const HomeScreen(),
     );
   }

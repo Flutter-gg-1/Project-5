@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -16,7 +15,13 @@ class CustomTextFeild extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.maxLines,
-    this.controller, this.validator, this.keyboardType, this.inputFormatters, this.padding, this.initialValue, this.onChanged,
+    this.controller,
+    this.validator,
+    this.keyboardType,
+    this.inputFormatters,
+    this.padding,
+    this.initialValue,
+    this.onChanged,
   });
 
   @override
