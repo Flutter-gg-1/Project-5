@@ -21,7 +21,6 @@ class MyContainerBlog extends StatelessWidget {
                   width: context.getWidthScreen(width: 0.21),
                   height: context.getHeightScreen(height: 0.11),
                   decoration: BoxDecoration(
-                    color: MyColors.whiteTextColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Image.asset(imagePath!, fit: BoxFit.cover)),
