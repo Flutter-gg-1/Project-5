@@ -1,11 +1,15 @@
 import 'dart:io';
 
+import 'package:blog_app/data_layer/blog_data.dart';
+import 'package:blog_app/extension/size_config.dart';
+import 'package:blog_app/model/blog_model.dart';
 import 'package:blog_app/widget/bars/category_tabs.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:blog_app/widget/text/required_text.dart';
 import 'package:blog_app/widget/text_feild/custom_feild.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PostScreen extends StatefulWidget {
@@ -36,7 +40,35 @@ class _PostScreenState extends State<PostScreen> {
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.pop(context, true);
+                if (titleController.text.isNotEmpty &&
+                    summaryController.text.isNotEmpty &&
+                    contentController.text.isNotEmpty &&
+                    readingMinController.text.isNotEmpty) {
+                  GetIt.I.get<BlogData>().blogs.add(BlogModel(
+                      category: categoryType,
+                      title: titleController.text,
+                      writer: 'writer',
+                      time: readingMinController.text,
+                      summary: summaryController.text,
+                      content: contentController.text));
+                  Navigator.pop(context, true);
+                } else {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) => SizedBox(
+                      width: double.infinity,
+                      height: context.getHeight() * 0.25,
+                      child: const Center(
+                          child: Text(
+                        "Fill the requierd feild if you want to post",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  );
+                }
               },
               child: const CustomText(text: 'Post')),
         ],

@@ -1,8 +1,11 @@
+import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/src/home_screen.dart';
 import 'package:blog_app/src/login_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
   runApp(const MyApp());
 }
 
@@ -16,11 +19,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xff111111),
           appBarTheme: const AppBarTheme(
-            backgroundColor: Color(0xff1e1e1e),
-            iconTheme: IconThemeData(color: Colors.white)),
+              backgroundColor: Color(0xff1e1e1e),
+              iconTheme: IconThemeData(color: Colors.white)),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               backgroundColor: Color(0xff131313))),
-      home: const LoginScreen(),
+      home: const HomeScreen(),
     );
   }
 }
