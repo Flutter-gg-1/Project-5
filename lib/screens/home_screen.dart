@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project5/data/all_posts.dart';
+import 'package:project5/data/all_users.dart';
 import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
 import 'package:project5/models/user.dart';
@@ -21,6 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
   // get lists
   List<String> categories = GetIt.I.get<AllPosts>().categories;
   List<Post> posts = GetIt.I.get<AllPosts>().posts;
+
+  // get current user (if exist)
+  User? user = GetIt.I.get<AllUsers>().currentUser;
   
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {},
               icon: const Icon(Icons.search,size: 28,)
             ),
-            IconButton(
+            user!=null ? IconButton(
               onPressed: () {
                 context.push(target: const AddPostScreen(), saveData: (p0){
                   if(p0==true) {
@@ -47,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               icon: const Icon(Icons.add,size: 28,color: Colors.white,)
             )
+            : const SizedBox()
           ],
           bottom: TabBar(
             labelColor: Colors.white,

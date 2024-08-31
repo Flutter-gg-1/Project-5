@@ -161,4 +161,8 @@ Google first opened up access to Bard in March, but at the time, it was availabl
     post.summary = newSummary;
     post.content = newContent;
   }
+
+  addPost({required Post post}) {
+    posts.add(post);
+  }
 }

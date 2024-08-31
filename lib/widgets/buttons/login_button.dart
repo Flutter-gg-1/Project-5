@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project5/extensions/screen_size.dart';
+import 'package:get_it/get_it.dart';
+import 'package:project5/data/all_users.dart';
 import 'package:project5/screens/user_screen_navigator.dart';
+import 'package:project5/widgets/alert_dialogs/error_alert_dialog.dart';
 
 class LoginButton extends StatelessWidget {
   final TextEditingController usernameController;
@@ -18,44 +20,22 @@ class LoginButton extends StatelessWidget {
         backgroundColor: WidgetStatePropertyAll(const Color(0xffBDA6F5).withOpacity(0.71))),
         onPressed: () {
           if(usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+            bool checkLogin = GetIt.I.get<AllUsers>().setCurrentUser(username: usernameController.text, password: passwordController.text);
+            checkLogin ?
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context){
-                  return UserScreenNavigator();
-                }
-              ),
+              MaterialPageRoute(builder: (context)=>const UserScreenNavigator()),
               (predicate) => false,
+            )
+            : showDialog(
+              context: context,
+              builder: (context) => const ErrorAlertDialog(message:"Wrong Username or Password")
             );
           }
           else {
             showDialog(
               context: context,
-              builder: (context) {
-                return AlertDialog(
-                  backgroundColor: const Color(0xff3e3e3e),
-                  content: Container(
-                    width: 50,
-                    height: context.getHeight(divideBy: 7),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.close, color: Colors.red,size: 70),
-                        Text("Account Not Found", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),)
-                      ],
-                    ),
-                  ),
-                  actionsAlignment: MainAxisAlignment.center,
-                  actions: [
-                    ElevatedButton(
-                      style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(const Color(0xffBDA6F5).withOpacity(0.71))),
-                      onPressed: ()=>Navigator.pop(context),
-                      child: const Text("Back", style: TextStyle(color: Colors.white),)
-                    )
-                  ],
-                );
-              },
+              builder: (context) => const ErrorAlertDialog(message:"Invalid Input")
             );
           }
         },

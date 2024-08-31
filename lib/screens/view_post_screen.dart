@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project5/data/all_posts.dart';
+import 'package:project5/data/all_users.dart';
 import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
+import 'package:project5/models/user.dart';
 import 'package:project5/screens/edit_post_screen.dart';
 
 class ViewPostScreen extends StatefulWidget {
@@ -18,6 +22,7 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
   late TextEditingController newTitleController;
   late TextEditingController newSummaryController;
   late TextEditingController newContentController;
+  User? user = GetIt.I.get<AllUsers>().currentUser;
 
   @override
   void initState(){
@@ -36,54 +41,63 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
         foregroundColor: Colors.white,
         leading: IconButton(onPressed: ()=>Navigator.pop(context,updateHome), icon: const Icon(Icons.arrow_back_ios)),
         actions: [
-          IconButton(onPressed: (){
-            
-          }, icon: const Icon(Icons.format_size_outlined)),
-          IconButton(onPressed: (){
-
-          }, icon: const Icon(Icons.bookmark_border)),
-          IconButton(onPressed: (){
-            context.push(
-              target: EditPostScreen(
-                post: widget.post,
-                newTitleController: newTitleController,
-                newSummaryController: newSummaryController,
-                newContentController: newContentController,
-              ),
-              saveData: (p0) {
-                if(p0==true) {
-                  updateHome = true;
-                  GetIt.I.get<AllPosts>().editPost(
-                    post:widget.post,
-                    newTitle : newTitleController.text,
-                    newSummary : newSummaryController.text,
-                    newContent : newContentController.text
-                  );
-                  setState(() {});
-                }
-              },
-            );
-          }, icon: const Icon(Icons.edit_outlined))
+          IconButton(
+            icon: const Icon(Icons.format_size_outlined),
+            onPressed: (){},
+          ),
+          IconButton(
+            icon: const Icon(Icons.bookmark_border),
+            onPressed: (){
+              // user
+            },
+          ),
+          user!=null ? IconButton(
+            icon: const Icon(Icons.edit_outlined),
+            onPressed: (){
+              context.push(
+                target: EditPostScreen(
+                  post: widget.post,
+                  newTitleController: newTitleController,
+                  newSummaryController: newSummaryController,
+                  newContentController: newContentController,
+                ),
+                saveData: (p0) {
+                  if(p0==true) {
+                    updateHome = true;
+                    GetIt.I.get<AllPosts>().editPost(
+                      post:widget.post,
+                      newTitle : newTitleController.text,
+                      newSummary : newSummaryController.text,
+                      newContent : newContentController.text
+                    );
+                    setState(() {});
+                  }
+                },
+              );
+            },
+          ) : const SizedBox()
         ],
       ),
       body: ListView(
         children: [
-          Image.asset(widget.post.postImage, width: 375, height: 266, fit: BoxFit.cover,),
+          widget.post.postImage.contains('assets') ?
+          Image.asset(widget.post.postImage, width: 375, height: 266, fit: BoxFit.cover)
+          : Image.file(File(widget.post.postImage), width: 375, height: 266, fit: BoxFit.cover),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(widget.post.category, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xffBDA6F5))),
-                SizedBox(height: 8,),
+                const SizedBox(height: 8),
                 Text(widget.post.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),),
-                SizedBox(height: 8,),
+                const SizedBox(height: 8),
                 const CircleAvatar(radius: 14,backgroundImage: AssetImage('assets/avatar.png'),),
-                SizedBox(height: 8,),
+                const SizedBox(height: 8),
                 Text(widget.post.authorName, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xffb8b8b8)),),
-                SizedBox(height: 16,),
+                const SizedBox(height: 16),
                 Text("${widget.post.minutesToRead} min read • ${widget.post.date}",style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xff888888)),),
-                SizedBox(height: 16,),
+                const SizedBox(height: 16),
                 SizedBox(
                   width: 84,
                   child: Row(

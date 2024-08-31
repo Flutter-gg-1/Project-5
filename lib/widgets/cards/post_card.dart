@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:project5/models/post.dart';
 
@@ -23,7 +25,9 @@ class PostCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(post.postImage, width: 80, height: 62,fit: BoxFit.cover),
+                post.postImage.contains('assets') ?
+                Image.asset(post.postImage, width: 80, height: 62,fit: BoxFit.cover)
+                : Image.file(File(post.postImage), width: 80, height: 62,fit: BoxFit.cover,),
                 const SizedBox(width: 8),
                 SizedBox(
                   width: 239,

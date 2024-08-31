@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project5/data/all_posts.dart';
+import 'package:project5/data/all_users.dart';
+import 'package:project5/models/post.dart';
+import 'package:project5/widgets/alert_dialogs/error_alert_dialog.dart';
 import 'package:project5/widgets/text_fields/add_post_text_field.dart';
 
 class AddPostScreen extends StatefulWidget {
@@ -15,7 +18,8 @@ class AddPostScreen extends StatefulWidget {
 
 class _AddPostScreenState extends State<AddPostScreen> {
 
-  late Widget postImage;
+  late Widget previewImage;
+  String? postImage;
   TextEditingController titleController = TextEditingController();
   TextEditingController summaryController = TextEditingController();
   TextEditingController contentController = TextEditingController();
@@ -25,7 +29,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   @override
   void initState() {
     super.initState();
-    postImage = Container(
+    previewImage = Container(
       width: 337,
       height: 140,
       alignment: Alignment.center,
@@ -42,7 +46,42 @@ class _AddPostScreenState extends State<AddPostScreen> {
         backgroundColor: const Color(0xff111111),
         foregroundColor: Colors.white,
         leading: IconButton(onPressed: ()=>Navigator.pop(context), icon: const Icon(Icons.arrow_back_ios)),
-        actions: [TextButton(onPressed: ()=>Navigator.pop(context,true), child: const Text("Post", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: Colors.white),))],
+        actions: [
+          TextButton(
+            onPressed: (){
+              if(titleController.text.isNotEmpty && summaryController.text.isNotEmpty && contentController.text.isNotEmpty && selectedCategory.isNotEmpty && readingMinutesController.text.isNotEmpty) {
+                Post post = Post(
+                  category: selectedCategory,
+                  postImage: postImage == null ? 'assets/placeholder.png' : postImage!,
+                  authorName: GetIt.I.get<AllUsers>().currentUser!.username,
+                  title: titleController.text,
+                  summary: summaryController.text,
+                  content: contentController.text,
+                  date: DateTime.now().toString(),
+                  minutesToRead: int.parse(readingMinutesController.text),
+                  isSaved: false
+                );
+                GetIt.I.get<AllPosts>().addPost(post: post);
+                GetIt.I.get<AllUsers>().currentUser!.userPosts.add(post);
+                Navigator.pop(context,true);
+              }
+              else {
+                showDialog(
+                  context: context,
+                  builder: (context)=> const ErrorAlertDialog(message: 'Some required fields are not filled'),
+                );
+              }
+            },
+            child: const Text(
+              "Post",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+                color: Colors.white
+              )
+            )
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(17),
@@ -57,10 +96,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 if (newImg == null) {
                   return;
                 }
-                postImage = Image.file(File(newImg.path), width: 337, height: 140, fit: BoxFit.cover,);
+                postImage = newImg.path;
+                previewImage = Image.file(File(postImage!), width: 337, height: 140, fit: BoxFit.cover,);
                 setState(() {});
               },
-              child: postImage
+              child: previewImage
             ),
             const SizedBox(height: 32),
             AddPostTextField(
