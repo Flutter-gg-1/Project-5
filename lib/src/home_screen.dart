@@ -1,13 +1,23 @@
+import 'package:blog_app/data_layer/blog_data.dart';
+import 'package:blog_app/extension/size_config.dart';
 import 'package:blog_app/src/post_screen.dart';
 import 'package:blog_app/widget/bars/bottom_nav_bar.dart';
 import 'package:blog_app/widget/bars/custom_app_bar.dart';
+import 'package:blog_app/widget/card/blog_card.dart';
 import 'package:blog_app/widget/slider/image_slider.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, String>> slides = [
@@ -67,10 +77,54 @@ class HomeScreen extends StatelessWidget {
                         color: Color(0xff636363)),
                   )
                 ],
-              )
+              ),
+              SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: context.getHeight()*0.45,
+                  child: TabBarView(children: [
+                    displayBlog(tabName: 'Technology'),
+                    displayBlog(tabName: 'AI'),
+                    displayBlog(tabName: 'Cloud'),
+                    displayBlog(tabName: 'Robotic'),
+                    displayBlog(tabName: 'IoT'),
+                  ]),
+                ),
+              ),
             ],
           ),
         )),
+      ),
+    );
+  }
+
+  SingleChildScrollView displayBlog({required String tabName}) {
+    return SingleChildScrollView(
+      child: Column(
+        children: GetIt.I
+            .get<BlogData>()
+            .blogs
+            .map((e) => e.category == tabName
+                ? BlogCard(
+                    writer: e.writer,
+                    title: e.title,
+                    timeToRead: e.time,
+                    creationDate: e.creationDate,
+                    isFaveiorte: e.isFaveiorte,
+                    onPressedBookMark: () {
+                      e.isFaveiorte = !e.isFaveiorte;
+      
+                      setState(() {});
+                      if (e.isFaveiorte) {
+                        //later save on fav screen
+                      }
+                    },
+                  )
+                : Padding(
+                  padding:  EdgeInsets.all(context.getWidth()*0.20),
+                  child: const CustomText(text: 'No Blog Here right now :('),
+                ))
+            .toList(),
       ),
     );
   }

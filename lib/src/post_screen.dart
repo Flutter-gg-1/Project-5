@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({super.key});
@@ -49,8 +50,11 @@ class _PostScreenState extends State<PostScreen> {
                       title: titleController.text,
                       writer: 'writer',
                       time: readingMinController.text,
+                      isFaveiorte: false,
                       summary: summaryController.text,
-                      content: contentController.text));
+                      content: contentController.text,
+                      creationDate:
+                          DateFormat('MMM dd, yyyy').format(DateTime.now())));
                   Navigator.pop(context, true);
                 } else {
                   showModalBottomSheet(
