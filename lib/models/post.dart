@@ -7,6 +7,7 @@ class Post {
   final int readingMinutes;
   final String author;
   final String dateCreated;
+  final bool isSaved;
   Post({
     required this.title,
     required this.summary,
@@ -14,7 +15,8 @@ class Post {
     required this.category,
     required this.readingMinutes,
     required this.author,
-    required this.dateCreated
+    required this.dateCreated,
+    this.isSaved = false
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {

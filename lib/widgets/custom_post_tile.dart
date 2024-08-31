@@ -1,11 +1,27 @@
+import 'package:blog_app/services/setup.dart';
 import 'package:flutter/material.dart';
-
 import '../models/post.dart';
+import '../models/user.dart';
 import '../styles/colours.dart';
 
-class CustomPostTile extends StatelessWidget {
+class CustomPostTile extends StatefulWidget {
   final Post post;
-  const CustomPostTile({super.key, required this.post});
+  final User? user;
+  const CustomPostTile({super.key, required this.post, required this.user});
+
+  @override
+  State<CustomPostTile> createState() => _CustomPostTileState();
+}
+
+class _CustomPostTileState extends State<CustomPostTile> {
+  late bool isBookmarked;
+
+  @override
+  void initState() {
+    isBookmarked =
+        widget.user != null && !widget.user!.saved.contains(widget.post);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,26 +31,32 @@ class CustomPostTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Card(
-                child: Image.asset('assets/images/1.png'),
+              Container(
+                height: 62,
+                width: 80,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: const DecorationImage(
+                        image: AssetImage('assets/images/1.png'),
+                        fit: BoxFit.contain)),
               ),
-              SizedBox(width: 8,),
               const SizedBox(
+                width: 8,
+              ),
+              SizedBox(
                 width: 240,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Kyle Barr',
-                        style: TextStyle(
+                    Text(widget.post.author,
+                        style: const TextStyle(
                           fontSize: 12,
                           color: Colours.textSecondary,
                         )),
-                    Text(
-                        'Now Google’s Bard AI can talk & respond to visual prompts',
-                        style: TextStyle(
+                    Text(widget.post.title,
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Colours.iconSecondary,
-                          // overflow: TextOverflow.visible,
                         )),
                   ],
                 ),
@@ -44,15 +66,15 @@ class CustomPostTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Text('Jul 13, 2023 - ',
-                      style: TextStyle(
+                  Text('${widget.post.dateCreated} - ',
+                      style: const TextStyle(
                         fontSize: 10,
                         color: Colours.textTertiary,
                       )),
-                  Text('2 min read',
-                      style: TextStyle(
+                  Text('${widget.post.readingMinutes} min read',
+                      style: const TextStyle(
                         fontSize: 10,
                         color: Colours.textTertiary,
                       )),
@@ -61,15 +83,44 @@ class CustomPostTile extends StatelessWidget {
               Row(
                 children: [
                   InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.abc,
-                        color: Colours.textTertiary,
+                      onTap: () {
+                        if (widget.user != null) {
+                          setState(() {
+                            isBookmarked = !isBookmarked;
+                            if (isBookmarked) {
+                              locator.get<User>().saved.add(widget.post);
+                              widget.user!.saved.add(widget.post);
+                            } else {
+                              locator.get<User>().saved.remove(widget.post);
+                              widget.user!.saved.remove(widget.post);
+                            }
+                          });
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const AlertDialog(
+                                  content: Text(
+                                    'You must be logged in to save posts',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
+                              });
+                        }
+                      },
+                      child: Icon(
+                        isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                        color: isBookmarked
+                            ? Colours.iconPrimary
+                            : Colours.textTertiary,
                       )),
                   InkWell(
                       onTap: () {},
                       child: const Icon(
-                        Icons.abc,
+                        Icons.more_vert_rounded,
                         color: Colours.textTertiary,
                       )),
                 ],

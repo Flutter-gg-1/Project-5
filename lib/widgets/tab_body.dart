@@ -2,11 +2,13 @@ import 'package:blog_app/services/extensions/screen.dart';
 import 'package:blog_app/styles/colours.dart';
 import 'package:flutter/material.dart';
 import '../data/test.dart';
+import '../models/user.dart';
 import 'custom_post_tile.dart';
 
 class TabBody extends StatelessWidget {
+  final User? user;
   final int tabIndex;
-  const TabBody({super.key, required this.tabIndex});
+  const TabBody({super.key, required this.user,required this.tabIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +69,13 @@ class TabBody extends StatelessWidget {
         ),
         Column(
           children: List.generate(
-            6,
+            posts[tabName[tabIndex]]!.length,
             (index) {
               return Column(
                 children: [
                   CustomPostTile(
                     post: posts[tabName[tabIndex]]![index],
+                    user: user,
                   ),
                   const SizedBox(height: 12),
                 ],

@@ -4,13 +4,15 @@ class User {
   final String username;
   final String password;
   final String position;
-  final List<Post> posts;
+  List<Post> posts;
+  List<Post> saved;
   bool isLoggedIn;
   User(
       {required this.username,
       required this.password,
       required this.position,
-      required this.posts,
+      this.posts = const [],
+      this.saved = const [],
       this.isLoggedIn = false});
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -18,7 +20,14 @@ class User {
         username: json['username'],
         password: json['password'],
         position: json['position'],
-        posts: json['posts']);
+       posts: (json['posts'] as List<dynamic>)
+        .map((post) => Post.fromJson(post as Map<String, dynamic>))
+        .toList(),
+    saved: (json['saved'] as List<dynamic>)
+        .map((post) => Post.fromJson(post as Map<String, dynamic>))
+        .toList(),
+        )
+        ;
   }
 
   toJson() {
@@ -26,7 +35,8 @@ class User {
       'username': username,
       'password': password,
       'position': position,
-      'posts': posts
+      'posts': posts,
+      'saved' : saved
     };
   }
 }

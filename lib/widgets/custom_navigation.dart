@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
+import '../models/user.dart';
+import '../screens/navigation_screens/explore_screen.dart';
+import '../screens/navigation_screens/home_screen.dart';
+import '../screens/navigation_screens/profile_screen.dart';
+import '../screens/navigation_screens/saved_screen.dart';
 import '../styles/colours.dart';
-import 'navigation_screens/explore_screen.dart';
-import 'navigation_screens/home_screen.dart';
-import 'navigation_screens/profile_screen.dart';
-import 'navigation_screens/saved_screen.dart';
 
-class CustomBottomNavigation extends StatefulWidget {
-  const CustomBottomNavigation({super.key});
+class CustomNavigation extends StatefulWidget {
+  final User? user;
+  const CustomNavigation({super.key, this.user});
 
   @override
-  State<CustomBottomNavigation> createState() => _CustomBottomNavigationState();
+  State<CustomNavigation> createState() => _CustomNavigationState();
 }
 
-class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
-  int pageIndex = 0;
-
-  final List<Widget> pages = [
-    const HomeScreen(),
-    const ExploreScreen(),
-    const SavedScreen(),
-    const ProfileScreen(),
+class _CustomNavigationState extends State<CustomNavigation> {
+  late List pages;
+  late int pageIndex;
+  @override
+  void initState() {
+    pages = [
+    HomeScreen(user: widget.user),
+    ExploreScreen(),
+    SavedScreen(),
+    ProfileScreen()
   ];
-
+  pageIndex = 0;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
