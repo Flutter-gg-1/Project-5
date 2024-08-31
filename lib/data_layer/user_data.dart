@@ -5,35 +5,27 @@ import '../model/user_data_model.dart';
 class UserData {
   List<UserDataModel> userData = [];
   final box = GetStorage();
-  bool isLogin = false;
   
-
   addUser({required UserDataModel user}){
     userData.add(user);
     saveUserDetail();
   }
 
-  bool get isLogedIn{
-    if(isLogin == true){
-      return box.read("islogin");
+  bool isLogedIn(){
+    if(box.hasData("islogin")){
+    return true;
     }
     else{
-      return isLogin = false;
+      return false;
     }
   }
 
   logIn({required String userName, required String password}) async {
     loadData();
-    for (var element in userData) {
-      if(element.userName == userName && element.password == password){
         await box.write("islogin", true);
         await box.write("userName", userName);
-        isLogin = true;
-        return true;
       }
-    }
-    return false;
-  }
+
   saveUserDetail() async{
     List<Map<String, dynamic>> saveData = [];
     for (var element in userData) {
@@ -54,5 +46,11 @@ class UserData {
       }
     }
   }
+
+  logOut() async {
+    await box.remove("islogin");
+  }
+
+  
 
 }

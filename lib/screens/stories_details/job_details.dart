@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:project5/data_layer/blog_data.dart';
 
 import '../../widgets/custom_text/custom_text.dart';
+import '../update_stories_detail.dart';
 
-class JobDetails extends StatelessWidget {
-  const JobDetails({super.key});
+class JobDetails extends StatefulWidget {
+  const JobDetails({super.key, required this.id});
+  final int id;
 
   @override
+  State<JobDetails> createState() => _JobDetailsState();
+}
+
+class _JobDetailsState extends State<JobDetails> {
+  bool isSave = false;
+  @override
   Widget build(BuildContext context) {
+    var selectedBlog = GetIt.I.get<BlogData>().blogData.firstWhere((blog) => blog.id == widget.id);
     return Scaffold(
       backgroundColor: const Color(0xff111111),
       appBar: AppBar(
@@ -16,21 +27,40 @@ class JobDetails extends StatelessWidget {
           Icons.arrow_back_ios_new,
           color: Colors.white,
         ),
-        actions: const [
-          Padding(
+        actions: [
+          const Padding(
             padding: EdgeInsets.only(right: 20),
             child: Icon(
               Icons.text_increase_outlined,
               color: Colors.white,
             ),
           ),
-          Padding(
+          IconButton(onPressed: () { 
+            isSave = true;
+            Navigator.of(context).push(MaterialPageRoute(builder: (context){
+              return UpdateStoriesDetail(id: selectedBlog.id);
+            })).then((value) =>{
+              if(value != null){
+                setState(() {
+                })
+              }
+            });
+          }, icon: const Icon(Icons.edit_outlined,
+            color: Colors.white,),              
+          ),
+          const Padding(
             padding: EdgeInsets.only(right: 20),
             child: Icon(
               Icons.bookmark_border,
               color: Colors.white,
             ),
-          )
+          ),
+          isSave ? TextButton(onPressed: (){
+            Navigator.pop(context, true);
+            setState(() {
+              isSave = false;
+            });
+          }, child: const Text("Save", style: TextStyle(color: Colors.white),)) : const SizedBox.shrink()
         ],
       ),
       body: SingleChildScrollView(
@@ -66,8 +96,8 @@ class JobDetails extends StatelessWidget {
                   const SizedBox(
                     height: 8,
                   ),
-                  const CustomText( text: 
-                    "How Gen Z are disrupting the definition of ‘prestigious’ jobs",
+                  CustomText( text: 
+                    selectedBlog.title,
                         color: Colors.white,
                         size: 20,
                         fontWeight: FontWeight.bold),
@@ -79,14 +109,14 @@ class JobDetails extends StatelessWidget {
                     width: 28,
                     height: 28,
                   ),
-                  const CustomText(text: "Amber Israelsen",
-                          color: Color(0xffB8B8B8),
+                  CustomText(text: selectedBlog.authorName,
+                          color: const Color(0xffB8B8B8),
                           fontWeight: FontWeight.bold,
                           size: 14),
                   const SizedBox(
                     height: 20,
                   ),
-                  const CustomText(text:  "2 min read • Jul 13, 2023",
+                  CustomText(text:  "${selectedBlog.date} . ${selectedBlog.minutesToRead}",
                           color: Colors.white,
                           size: 12,
                           fontWeight: FontWeight.w500),
@@ -113,9 +143,9 @@ class JobDetails extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const CustomText(text: 
-                      "Generation Z is redefining what it means to hold a ‘prestigious’ job, shifting away from traditional markers of success such as high salaries and well-known corporate roles. Instead, they value jobs that offer flexibility, personal fulfillment, and alignment with their values. This shift reflects broader changes in societal attitudes towards work and success. ",
-                      color: Color(0xffB8B8B8),
+                   CustomText(text: 
+                      selectedBlog.summary,
+                      color: const Color(0xffB8B8B8),
                       size: 14,
                       fontWeight: FontWeight.w500),
                   const SizedBox(
@@ -129,9 +159,9 @@ class JobDetails extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  const CustomText(text: 
-                      "Generation Z is challenging conventional notions of prestigious careers by prioritizing job attributes that align with their values and lifestyles. Unlike previous generations, who often equated prestige with high-paying positions at established companies or prestigious institutions, Gen Z is placing greater emphasis on flexibility, work-life balance, and opportunities for personal and professional growth. They are increasingly drawn to roles that offer creative freedom, social impact, and alignment with their personal values, such as environmental sustainability or social justice. This shift is prompting companies and industries to rethink their definitions of success and prestige, as traditional markers of status give way to new standards set by this emerging workforce. Gen Z’s preferences are reshaping the job market, driving changes in how both employers and employees view and value different types of work.”",
-                      color: Color(0xffB8B8B8),
+                  CustomText(text: 
+                      selectedBlog.content,
+                      color: const Color(0xffB8B8B8),
                       size: 14,
                       fontWeight: FontWeight.w500)
                 ],

@@ -8,37 +8,47 @@ class BlogDataModel {
     required this.date,
     required this.minutesToRead,
     required this.postImage,
+    required this.id,
+    required this.isSaved
   });
-  late final String category;
-  late final String authorName;
-  late final String title;
-  late final String summary;
-  late final String content;
-  late final DateTime date;
-  late final int minutesToRead;
-  late final String postImage;
+   String category;
+  final String authorName;
+   String title;
+   String summary;
+   String content;
+   DateTime date;
+   int minutesToRead;
+   String postImage;
+  final int id;
+  bool isSaved;
 
-  BlogDataModel.fromJson(Map<String, dynamic> json) {
-    category = json['category'];
-    authorName = json['authorName'];
-    title = json['title'];
-    summary = json['summary'];
-    content = json['content'];
-    date = DateTime.parse(json['date']);
-    minutesToRead = json['minutesToRead'];
-    postImage = json['postImage'];
+ factory BlogDataModel.fromJson(Map<String, dynamic> json) {
+  return BlogDataModel(
+   category: json['category'],
+    authorName: json['authorName'],
+    title : json['title'],
+    summary : json['summary'],
+    content : json['content'],
+    date : DateTime.parse(json['date']),
+    minutesToRead : json['minutesToRead'],
+    postImage : json['postImage'],
+    id : json['id'],
+    isSaved : json['isSaved'],
+  );
   }
 
   Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['category'] = category;
-    data['authorName'] = authorName;
-    data['title'] = title;
-    data['summary'] = summary;
-    data['content'] = content;
-    data['date'] = date.toString();
-    data['minutesToRead'] = minutesToRead;
-    data['postImage'] = postImage;
-    return data;
+    return {
+    'category' : category,
+    'authorName' : authorName,
+    'title' : title,
+    'summary' : summary,
+    'content' : content,
+    'date' : date.toString(),
+    'minutesToRead' : minutesToRead,
+    'postImage' : postImage,
+    'id' : id,
+    'isSaved' : isSaved,
+    };
   }
 }

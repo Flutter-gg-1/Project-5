@@ -27,9 +27,10 @@ class GoogleDetails extends StatelessWidget {
           ),
           IconButton(onPressed: () { 
             Navigator.of(context).push(MaterialPageRoute(builder: (context){
-              return UpdateStoriesDetail();
+              return UpdateStoriesDetail(id: 1,);
             }));
-          }, icon: const Icon(Icons.edit_outlined,
+          }, 
+          icon: const Icon(Icons.edit_outlined,
             color: Colors.white,),              
           )
         ],
