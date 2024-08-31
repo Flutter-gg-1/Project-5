@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 
-class BlogWidget extends StatelessWidget {
-  const BlogWidget({super.key, this.onTap});
+class PostWidget extends StatelessWidget {
+  const PostWidget(
+      {super.key,
+      this.onTap,
+      required this.image,
+      required this.title,
+      required this.subTitle,
+      required this.date,
+      required this.min});
   final Function()? onTap;
+  final String? image;
+  final String title;
+  final String subTitle;
+  final String date;
+  final String min;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8),
         alignment: Alignment.center,
         width: 343,
         height: 108,
@@ -19,8 +33,7 @@ class BlogWidget extends StatelessWidget {
             ListTile(
               leading: Container(
                 decoration: BoxDecoration(
-                    image: const DecorationImage(
-                        image: AssetImage("assets/Image (1).png")),
+                    image: DecorationImage(image: AssetImage(image ?? '')),
                     borderRadius: BorderRadius.circular(5)),
                 width: 80,
                 height: 62,
@@ -31,21 +44,23 @@ class BlogWidget extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w400),
-              title: const Text("DJI • Jul 10, 2023"),
-              subtitle: const Text("A month with DJI Mini 3 Pro"),
+              title: Text(subTitle),
+              subtitle: Text(title),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    "Jul 13, 2023 • 2 min read",
-                    style: TextStyle(color: Color(0xff888888), fontSize: 10),
+                    "$date • $min min read",
+                    style:
+                        const TextStyle(color: Color(0xff888888), fontSize: 10),
                   ),
-                  SizedBox(width: 130),
-                  Icon(Icons.bookmark_border_outlined,
+                  const SizedBox(width: 100),
+                  const Icon(Icons.bookmark_border_outlined,
                       color: Color(0xff888888)),
-                  Icon(Icons.more_vert_outlined, color: Color(0xff888888))
+                  const Icon(Icons.more_vert_outlined, color: Color(0xff888888))
                 ],
               ),
             )

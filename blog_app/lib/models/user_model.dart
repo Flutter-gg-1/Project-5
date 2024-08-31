@@ -2,7 +2,7 @@ class UserModel {
   late String userName;
   String? position;
   late String password;
-  String? avatar;
+  String? avatar = "assets/avatar_holder.png";
 
   UserModel(
       {required this.userName,

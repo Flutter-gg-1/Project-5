@@ -1,14 +1,21 @@
-import 'package:blog_app/helper/extensions/nav.dart';
+import 'package:blog_app/data/post_data.dart';
+
 import 'package:blog_app/screens/add_screen.dart';
 import 'package:blog_app/screens/news_screen.dart';
 import 'package:blog_app/services/setup.dart';
-import 'package:blog_app/widgets/blog_widget.dart';
+import 'package:blog_app/widgets/post_widget.dart';
 import 'package:blog_app/widgets/home_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-class FeedScreen extends StatelessWidget {
+class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
 
+  @override
+  State<FeedScreen> createState() => _FeedScreenState();
+}
+
+class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -25,8 +32,15 @@ class FeedScreen extends StatelessWidget {
             const Icon(Icons.search, color: Colors.white),
             box.read("token") != null
                 ? IconButton(
-                    onPressed: () => context.navTo(page: const AddScreen()),
-                    icon: Icon(Icons.add, color: Colors.white, size: 25))
+                    onPressed: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddScreen()),
+                      );
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.add, color: Colors.white, size: 25))
                 : const Text(""),
             const SizedBox(width: 5)
           ],
@@ -46,35 +60,57 @@ class FeedScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
-          child: Column(
-            children: [
-              const HomeWidget(),
-              const SizedBox(height: 10),
-              const Divider(color: Color.fromARGB(255, 59, 59, 59)),
-              const SizedBox(height: 10),
-              const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Top Stories",
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const HomeWidget(),
+                const SizedBox(height: 10),
+                const Divider(color: Color.fromARGB(255, 59, 59, 59)),
+                const SizedBox(height: 10),
+                const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Top Stories",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold)),
+                      Text(
+                        "See all",
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold)),
-                    Text(
-                      "See all",
-                      style: TextStyle(
-                          color: Color(0xff888888),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400),
-                    )
-                  ]),
-              const SizedBox(height: 10),
-              BlogWidget(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const NewsScreen())))
-            ],
+                            color: Color(0xff888888),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400),
+                      )
+                    ]),
+                const SizedBox(height: 10),
+                Column(
+                  children: GetIt.I
+                      .get<PostData>()
+                      .allPostes
+                      .map((e) => PostWidget(
+                          image: e.image,
+                          title: e.title,
+                          subTitle: e.auther,
+                          date: e.date,
+                          min: e.minutes,
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NewsScreen(
+                                        title: e.title,
+                                        category: e.category,
+                                        content: e.content,
+                                        summary: e.summary,
+                                        date: e.date,
+                                        image: e.image,
+                                        min: e.minutes,
+                                        userAvatar: e.userAvatar,
+                                      )))))
+                      .toList(),
+                )
+              ],
+            ),
           ),
         ),
       ),
