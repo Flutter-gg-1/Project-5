@@ -1,9 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../core/all_file.dart';
 
-class NewPost extends StatelessWidget {
+class NewPost extends StatefulWidget {
   const NewPost({super.key});
+
+  @override
+  State<NewPost> createState() => _NewPostState();
+}
+
+class _NewPostState extends State<NewPost> {
+  File? imageFile;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +49,7 @@ class NewPost extends StatelessWidget {
                   width: context.getWidthScreen(width: 0.9),
                   child: IconButton(
                       onPressed: () {
-                        ImagePicker().pickImage(source: ImageSource.gallery);
+                        myImagePicker();
                       },
                       icon: const Icon(
                         Icons.add,
@@ -121,5 +130,13 @@ class NewPost extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void myImagePicker() async {
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    // setState(() {
+    //   imageFile = File(imageFile!.path);
+    // });
   }
 }
