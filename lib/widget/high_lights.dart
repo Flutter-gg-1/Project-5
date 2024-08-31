@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:blog_app/helper/screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +8,12 @@ class HighLights extends StatelessWidget {
     super.key,
     required this.writer,
     required this.date,
-    required this.title,
+    required this.title, this.imageSrc,
   });
   final String writer;
   final String date;
   final String title;
+  final String? imageSrc;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -19,7 +22,9 @@ class HighLights extends StatelessWidget {
           SizedBox(
             width: context.getWidth(),
             height: context.getHight(value: .2),
-            child:const Placeholder(),
+            child:imageSrc != ""
+                      ? Image.file(File(imageSrc!))
+                      : const Placeholder(),
           ),
           SizedBox(
             width: context.getWidth(),

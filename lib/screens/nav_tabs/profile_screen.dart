@@ -37,6 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     ...GetIt.I.get<GetBlog>().blogs.map((blog) {
                       return MyBlog(
+                        imageSrc: blog.imageSrc,
                         writer: blog.authorName,
                         title: blog.title,
                         date: blog.date,

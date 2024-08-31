@@ -5,7 +5,6 @@ import 'package:blog_app/widget/high_lights.dart';
 import 'package:blog_app/widget/story_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-
 class AiFeed extends StatefulWidget {
   const AiFeed({
     super.key,

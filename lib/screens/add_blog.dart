@@ -5,6 +5,7 @@ import 'package:blog_app/widget/button/textfield/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class AddBlog extends StatefulWidget {
   const AddBlog({super.key});
@@ -143,7 +144,9 @@ class _AddBlogState extends State<AddBlog> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Processing Data')),
                         );
-
+                        DateTime date = DateTime.now();
+                        String formattedDate =
+                            DateFormat('MMM dd, yyyy').format(date);
                         GetIt.I.get<GetBlog>().addblog(BlogModel(
                             category: categories[value!],
                             authorName:
@@ -151,7 +154,7 @@ class _AddBlogState extends State<AddBlog> {
                             title: titleFieldController.text,
                             summary: summaryFieldController.text,
                             content: contetFieldController.text,
-                            date: "date",
+                            date: formattedDate,
                             minutesToRead: readingMinFieldController.text,
                             imageSrc: imageSrc,
                             saved: false));
