@@ -4,8 +4,8 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     required this.userTextcontroller,
-    required this.onChanged,
-     this.validator,
+    this.onChanged,
+    this.validator,
     this.keyboardType,
     this.obscure = false,
     required this.hintText,

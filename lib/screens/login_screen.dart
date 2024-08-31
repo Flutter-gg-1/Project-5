@@ -17,12 +17,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginState extends State<LoginScreen> {
+  final formKey = GlobalKey<FormState>();
+  TextEditingController userTextcontroller = TextEditingController();
+  TextEditingController passTextcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    TextEditingController userTextcontroller = TextEditingController();
-    TextEditingController passTextcontroller = TextEditingController();
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -39,7 +39,7 @@ class _LoginState extends State<LoginScreen> {
                     subtitle: Text("Glad to see you again"),
                   ),
                   SizedBox(
-                    height: context.getHight(value: .51),
+                    height: context.getHight(value: .61),
                     child: Card(
                       elevation: 10,
                       child: Padding(

@@ -8,12 +8,15 @@ class HighLights extends StatelessWidget {
     super.key,
     required this.writer,
     required this.date,
-    required this.title, this.imageSrc,
+    required this.title,
+    this.imageSrc = "",
+    this.onPressed,
   });
   final String writer;
   final String date;
   final String title;
   final String? imageSrc;
+  final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -22,9 +25,11 @@ class HighLights extends StatelessWidget {
           SizedBox(
             width: context.getWidth(),
             height: context.getHight(value: .2),
-            child:imageSrc != ""
-                      ? Image.file(File(imageSrc!))
-                      : const Placeholder(),
+            child: imageSrc != ""
+                ? Image.file(File(imageSrc!))
+                : const Center(
+                    child: Text("No image"),
+                  ),
           ),
           SizedBox(
             width: context.getWidth(),
@@ -40,7 +45,7 @@ class HighLights extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: onPressed,
                       icon: const Icon(Icons.arrow_outward_sharp))
                 ],
               ),

@@ -23,11 +23,6 @@ class _TechnologyFeed extends State<TechnologyFeed> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // const HighLights(
-          //   date: "Jul 10, 2023",
-          //   title: "A month with DJI Mini 3 Pro",
-          //   writer: "DJI",
-          // ),
           SizedBox(
             width: context.getWidth(),
             height: context.getHight(value: .2),
@@ -39,6 +34,11 @@ class _TechnologyFeed extends State<TechnologyFeed> {
                   .toList()
                   .map((element) {
                 return HighLights(
+                    onPressed: () {
+                      context.navTo(ArticalScreen(
+                        blog: element,
+                      ));
+                    },
                     date: element.date,
                     title: element.title,
                     writer: element.authorName,

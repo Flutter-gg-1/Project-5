@@ -62,7 +62,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           });
                         },
                       );
-                    })
+                    }),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white),
+                          onPressed: () {
+                            GetIt.I.get<GetBlog>().deleteUser();
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()),
+                                (Route route) => false);
+                          },
+                          child: const Text(
+                              style: TextStyle(color: Colors.red), "Logout")),
+                    )
                   ],
                 )
               : ElevatedButton(

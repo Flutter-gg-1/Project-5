@@ -1,8 +1,10 @@
 import 'package:blog_app/data_layer/get_blog.dart';
 import 'package:blog_app/helper/nav.dart';
+import 'package:blog_app/helper/screen.dart';
 import 'package:blog_app/screens/artical_screen.dart';
 import 'package:blog_app/widget/high_lights.dart';
 import 'package:blog_app/widget/story_card.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -21,10 +23,35 @@ class _IotFeed extends State<IotFeed> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const HighLights(
-            date: "Jul 10, 2023",
-            title: "A month with DJI Mini 3 Pro",
-            writer: "DJI",
+         SizedBox(
+            width: context.getWidth(),
+            height: context.getHight(value: .2),
+            child: CarouselSlider(
+              items: GetIt.I
+                  .get<GetBlog>()
+                  .blogs
+                  .where((blog) => blog.category == "iot")
+                  .toList()
+                  .map((element) {
+                return HighLights(
+                    onPressed: () {
+                      context.navTo(ArticalScreen(
+                        blog: element,
+                      ));
+                    },
+                    date: element.date,
+                    title: element.title,
+                    writer: element.authorName,
+                    imageSrc: element.imageSrc);
+              }).toList(),
+              options: CarouselOptions(
+                autoPlay: false,
+                enlargeCenterPage: true,
+                viewportFraction: 0.9,
+                aspectRatio: 2.0,
+                initialPage: 3,
+              ),
+            ),
           ),
           const Divider(),
           Padding(

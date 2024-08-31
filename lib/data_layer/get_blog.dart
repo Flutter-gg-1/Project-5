@@ -55,6 +55,14 @@ class GetBlog {
     box.write("blog", map);
   }
 
+  void deleteUser() {
+    currentUser.userName = "";
+    currentUser.password = "";
+    if (box.hasData("user")) {
+      box.remove("user");
+    }
+  }
+
   void saveUser(UserModel user) {
     box.write("user", user);
   }
