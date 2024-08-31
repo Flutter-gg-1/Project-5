@@ -38,9 +38,9 @@ class FeedScreen extends StatelessWidget {
                   (index) => Column(
                     children: [
                       MyContainerBlogs(
-                        topTitle: articleList[index].title,
+                        topTitle: articleList[index].authorName,
                         title: articleList[index].content,
-                        imagePath: articleList[index].imagePath,
+                        imagePath: articleList[index].postImage,
                         publishedAt: articleList[index].publishedAt,
                       ),
                       SizedBox(height: context.getHeightScreen(height: 0.02)),

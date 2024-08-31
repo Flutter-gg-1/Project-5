@@ -27,14 +27,16 @@ class MyContainerBlogs extends StatelessWidget {
               SizedBox(width: context.getWidthScreen(width: 0.02)),
               Image.asset(imagePath!, width: 150, height: 100),
               SizedBox(width: context.getWidthScreen(width: 0.02)),
-              Column(
-                children: [
-                  Text(topTitle!,
-                      style: const TextStyle(color: MyColors.greyTextColor)),
-                  Text(title!,
-                      style: const TextStyle(color: MyColors.whiteTextColor)),
-                  SizedBox(height: context.getHeightScreen(height: 0.06)),
-                ],
+              Flexible(
+                child: Column(
+                  children: [
+                    Text(topTitle!,
+                        style: const TextStyle(color: MyColors.greyTextColor)),
+                    Text(title!,
+                        style: const TextStyle(color: MyColors.whiteTextColor)),
+                    SizedBox(height: context.getHeightScreen(height: 0.06)),
+                  ],
+                ),
               ),
             ],
           ),

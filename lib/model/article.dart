@@ -1,30 +1,44 @@
 class ArticleModel {
   late int id;
-  late String title;
-  late String imagePath;
-  late String publishedAt;
+  late String category;
+  late String authorName;
+  late String summary;
   late String content;
+  late String? publishedAt;
+  late double minutesToRead;
+  late String postImage;
 
   ArticleModel({
     required this.id,
-    required this.title,
-    required this.imagePath,
+    required this.category,
+    required this.authorName,
+    required this.summary,
     required this.content,
+    required this.minutesToRead,
+    required this.postImage,
   }) : publishedAt = DateTime.now().toString();
 
   ArticleModel.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    imagePath = json['imagePath'];
-    publishedAt = json['publishedAt'];
+    id = json['id'];
+    category = json['category'];
+    authorName = json['authorName'];
+    summary = json['summary'];
     content = json['content'];
+    publishedAt = json['publishedAt'];
+    minutesToRead = json['minutesToRead'];
+    postImage = json['postImage'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['title'] = title;
-    data['imagePath'] = imagePath;
-    data['publishedAt'] = publishedAt;
-    data['content'] = content;
-    return data;
+    return {
+      'id': id,
+      'category': category,
+      'authorName': authorName,
+      'summary': summary,
+      'content': content,
+      'publishedAt': publishedAt,
+      'minutesToRead': minutesToRead,
+      'postImage': postImage,
+    };
   }
 }
