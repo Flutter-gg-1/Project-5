@@ -2,12 +2,10 @@ import 'dart:convert';
 import 'package:blog_nest/model/bookmark.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_storage/get_storage.dart';
-import '../model/blog.dart';
 import '../model/user.dart';
 
 class UserMgr extends ChangeNotifier {
   List<User> allUsers = [];
-  List<Blog> allBlogs = [];
   List<Bookmark> allBookmarks = [];
   final box = GetStorage();
   User? currentUser;
