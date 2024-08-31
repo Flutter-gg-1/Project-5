@@ -49,12 +49,12 @@ class _IotFeed extends State<IotFeed> {
                 .where((blog) => blog.category == "iot")
                 .length,
             itemBuilder: (context, index) {
-              final cloudBlogs = GetIt.I
+              final iot = GetIt.I
                   .get<GetBlog>()
                   .blogs
                   .where((blog) => blog.category == "iot")
                   .toList();
-              final blog = cloudBlogs[index];
+              final blog = iot[index];
               return StoryCard(
                 onTap: () {
                   context.navTo(ArticalScreen(

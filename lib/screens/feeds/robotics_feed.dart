@@ -49,12 +49,12 @@ class _RoboticsFeed extends State<RoboticsFeed> {
                 .where((blog) => blog.category == "robotic")
                 .length,
             itemBuilder: (context, index) {
-              final cloudBlogs = GetIt.I
+              final robotic = GetIt.I
                   .get<GetBlog>()
                   .blogs
                   .where((blog) => blog.category == "robotic")
                   .toList();
-              final blog = cloudBlogs[index];
+              final blog = robotic[index];
               return StoryCard(
                 onTap: () {
                   context.navTo(ArticalScreen(

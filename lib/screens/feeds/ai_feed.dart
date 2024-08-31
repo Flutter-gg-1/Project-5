@@ -49,12 +49,12 @@ class _AiFeed extends State<AiFeed> {
                 .where((blog) => blog.category == "ai")
                 .length,
             itemBuilder: (context, index) {
-              final cloudBlogs = GetIt.I
+              final ai = GetIt.I
                   .get<GetBlog>()
                   .blogs
                   .where((blog) => blog.category == "ai")
                   .toList();
-              final blog = cloudBlogs[index];
+              final blog = ai[index];
               return StoryCard(
                 onTap: () {
                   context.navTo(ArticalScreen(

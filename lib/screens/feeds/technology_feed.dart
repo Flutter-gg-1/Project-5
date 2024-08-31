@@ -50,12 +50,12 @@ class _TechnologyFeed extends State<TechnologyFeed> {
                 .where((blog) => blog.category == "technology")
                 .length,
             itemBuilder: (context, index) {
-              final cloudBlogs = GetIt.I
+              final technology = GetIt.I
                   .get<GetBlog>()
                   .blogs
                   .where((blog) => blog.category == "technology")
                   .toList();
-              final blog = cloudBlogs[index];
+              final blog = technology[index];
               return StoryCard(
                 onTap: () {
                   context.navTo(ArticalScreen(
