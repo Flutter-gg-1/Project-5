@@ -3,12 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TextfieldWidget extends StatelessWidget {
   const TextfieldWidget({
-    super.key, required this.hint,  this.texLine = 1,
+    super.key, required this.hint,  this.texLine = 1,  this.hasIcon = false,
   });
 
   final String hint;
 
   final int texLine;
+
+  final bool hasIcon;
 
 
 
@@ -17,11 +19,13 @@ class TextfieldWidget extends StatelessWidget {
     return SizedBox(
       height: 48,
       child: TextField(
+        
         style: GoogleFonts.inter(color: Colors.white),
         
         minLines: texLine,
         maxLines: texLine+2,
         decoration: InputDecoration(
+          prefixIcon: hasIcon ? Icon(Icons.search,color: Color(0xffB8B8B8),) : null,
           
           
             hintText: hint,
