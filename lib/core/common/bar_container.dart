@@ -24,13 +24,25 @@ class AppBarContainer extends StatelessWidget {
                       color: MyColors.whiteTextColor,
                       size: context.getHeightScreen(height: 0.05)),
                 ),
-                IconButton(
-                  onPressed: () {
-                    context.showScreen(const ExploreScreen());
-                  },
-                  icon: Icon(Icons.search,
-                      color: MyColors.whiteTextColor,
-                      size: context.getHeightScreen(height: 0.05)),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        context.showScreen(const ExploreScreen());
+                      },
+                      icon: Icon(Icons.search,
+                          color: MyColors.whiteTextColor,
+                          size: context.getHeightScreen(height: 0.05)),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        context.showScreen(const ExploreScreen());
+                      },
+                      icon: Icon(Icons.add,
+                          color: MyColors.whiteTextColor,
+                          size: context.getHeightScreen(height: 0.05)),
+                    ),
+                  ],
                 ),
               ],
             ),
