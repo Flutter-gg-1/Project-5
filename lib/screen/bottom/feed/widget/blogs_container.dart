@@ -6,11 +6,13 @@ class MyContainerBlogs extends StatelessWidget {
       {super.key,
       required this.imagePath,
       required this.title,
-      required this.topTitle});
+      required this.topTitle,
+      required this.publishedAt});
 
   final String? title;
   final String? topTitle;
   final String? imagePath;
+  final String? publishedAt;
   @override
   Widget build(BuildContext context) {
     return MyContainer(
@@ -39,10 +41,10 @@ class MyContainerBlogs extends StatelessWidget {
           Row(
             children: [
               SizedBox(width: context.getWidthScreen(width: 0.02)),
-              const Text('1h',
-                  style: TextStyle(color: MyColors.whiteTextColor)),
+              Text(publishedAt!,
+                  style: const TextStyle(color: MyColors.whiteTextColor)),
               const Padding(
-                padding: EdgeInsets.only(left: 270),
+                padding: EdgeInsets.only(left: 80),
                 child: Row(
                   children: [
                     Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
@@ -57,8 +59,3 @@ class MyContainerBlogs extends StatelessWidget {
     );
   }
 }
-/*
-Text(title!,
-            style: const TextStyle(color: MyColors.whiteTextColor)),
-         
-*/
