@@ -22,7 +22,7 @@ class MyContainerBlogs extends StatelessWidget {
           SizedBox(height: context.getHeightScreen(height: 0.02)),
           Row(
             children: [
-              Image.asset(imagePath!, width: 150),
+              Image.asset(imagePath!, width: 170),
               Column(
                 children: [
                   Text(topTitle!,
@@ -33,15 +33,19 @@ class MyContainerBlogs extends StatelessWidget {
               ),
             ],
           ),
-          const Text('1h', style: TextStyle(color: MyColors.whiteTextColor)),
-          const Padding(
-            padding: EdgeInsets.only(left: 300),
-            child: Row(
-              children: [
-                Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
-                Icon(Icons.more_vert, color: MyColors.whiteTextColor),
-              ],
-            ),
+          const Row(
+            children: [
+              Text('1h', style: TextStyle(color: MyColors.whiteTextColor)),
+              Padding(
+                padding: EdgeInsets.only(left: 270),
+                child: Row(
+                  children: [
+                    Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
+                    Icon(Icons.more_vert, color: MyColors.whiteTextColor),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
