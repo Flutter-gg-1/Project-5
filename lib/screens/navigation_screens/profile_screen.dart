@@ -105,6 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => NewsScreen(
+                                                user: widget.user,
                                                   post: widget.user!
                                                       .posts[index]))).then(
                                           (value) {
@@ -119,6 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       EditPostScreen(
+                                                        user: widget.user!,
                                                           post: widget.user!
                                                               .posts[index])))
                                           .then((value) {
@@ -198,7 +200,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()),
+                                (route) => false,
+                              );
+                            },
                             child: const Text(
                               'Login',
                               style: TextStyle(

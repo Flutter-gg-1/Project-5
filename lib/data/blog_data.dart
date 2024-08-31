@@ -1,21 +1,22 @@
-import 'package:blog_app/data/mock_data.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../models/post.dart';
 import '../models/user.dart';
 
 class BlogData {
-  List<Post> posts = mockPosts;
-  List<User> users = mockUsers;
+  List<Post> posts = [];
+  List<User> users = [];
   final box = GetStorage();
 
   BlogData() {
     loadInfo();
   }
 
-  addPost(Post post) {
+  addPost(Post post, User user) {
     posts.add(post);
+    user.posts.add(post);
     savePost();
+    saveUser();
   }
 
   deletePost({required Post post,required User user}){
@@ -24,6 +25,13 @@ class BlogData {
     savePost();
     saveUser();
   }
+
+  updatePost(Post oldPost, Post newPost){
+    oldPost = newPost;
+    savePost();
+    saveUser();
+    }
+  
 
   addUser(User user) {
     users.add(user);
@@ -35,16 +43,15 @@ class BlogData {
     for (var post in posts) {
       listOfPosts.add(post.toJson());
     }
-    // await box.write('posts', listOfPosts);
+    await box.write('posts', listOfPosts);
   }
-
 
   saveUser() async {
     List<Map<String, dynamic>> listOfUsers = [];
     for (var user in users) {
       listOfUsers.add(user.toJson());
     }
-    // await box.write('users', listOfUsers);
+    await box.write('users', listOfUsers);
   }
 
   loadInfo() async {

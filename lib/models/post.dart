@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class Post {
   final String title;
   final String summary;
@@ -8,19 +6,18 @@ class Post {
   final int readingMinutes;
   final String author;
   final String dateCreated;
-  final File? image;
+  final String? image;
   final bool isSaved;
-  Post({
-    required this.title,
-    required this.summary,
-    required this.content,
-    required this.category,
-    required this.readingMinutes,
-    required this.author,
-    required this.dateCreated,
-    this.image,
-    this.isSaved = false
-  });
+  Post(
+      {required this.title,
+      required this.summary,
+      required this.content,
+      required this.category,
+      required this.readingMinutes,
+      required this.author,
+      required this.dateCreated,
+      this.image,
+      this.isSaved = false});
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
@@ -28,8 +25,10 @@ class Post {
         summary: json['summary'],
         content: json['content'],
         category: json['category'],
-        readingMinutes: json['readingMinutes'],author: json['author'], dateCreated: json['date_created']);
-        
+        readingMinutes: json['readingMinutes'],
+        author: json['author'],
+        dateCreated: json['date_created'],
+        image: json['image']);
   }
 
   toJson() {
@@ -39,8 +38,9 @@ class Post {
       'content': content,
       'category': category,
       'readingMinutes': readingMinutes,
-      'author' : author,
-      'date_created':dateCreated
+      'author': author,
+      'date_created': dateCreated,
+      'image': image
     };
   }
 }

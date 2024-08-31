@@ -60,8 +60,10 @@ class _HomeScreenState extends State<HomeScreen>
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (contex) =>
-                                              const AddPostScreen()));
+                                          builder: (contex) => AddPostScreen(
+                                                user: user!,
+                                              ))).then(
+                                      (value) => setState(() {}));
                                 },
                                 child: const Icon(Icons.add,
                                     color: Colours.iconPrimary)),

@@ -29,12 +29,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
     super.initState();
   }
 
-  void updateResults(String word) {
-    setState(() {
-      search = word;
-      results = locator.get<BlogData>().posts;
+  updateResults(String word) {
+    results.clear();
+    search = word;
+    for (var post in locator.get<BlogData>().posts) {
+      if (post.title.toLowerCase().contains(word.toLowerCase())) {
+        results.add(post);
+      }
     }
-    );
+    setState(() {});
   }
 
   @override
@@ -65,32 +68,43 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 disabledBorder: InputBorder.none,
                 errorBorder: InputBorder.none,
               ),
-              onSubmitted: (value) {
-                updateResults(value);
+              onSubmitted: (value) async {
+                if (value.isNotEmpty) {
+                  await updateResults(value);
+                } else {
+                  setState(() {
+                    results.clear();
+                  });
+                }
               },
             ),
           ),
-          SizedBox(height: 45,),
+          SizedBox(
+            height: 45,
+          ),
           if (search.isNotEmpty)
             Expanded(
               child: results.isNotEmpty
                   ? Card(
-                    color: Colours.surfaceTertiary,
-                    child: SingleChildScrollView(
-                      child: Column(
+                      color: Colours.surfaceTertiary,
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
                             ...List.generate(results.length, (index) {
                               return Column(
                                 children: [
-                                  CustomPostTile(post: results[index], user: user),
-                                  SizedBox(height: 20,)
+                                  CustomPostTile(
+                                      post: results[index], user: user),
+                                  SizedBox(
+                                    height: 20,
+                                  )
                                 ],
                               );
                             })
                           ],
                         ),
-                    ),
-                  )
+                      ),
+                    )
                   : const Center(
                       child: Text(
                         'No results found',

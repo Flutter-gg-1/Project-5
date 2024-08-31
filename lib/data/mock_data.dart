@@ -11,7 +11,8 @@ List<Post> mockPosts = [
     'category': 'Tech',
     'readingMinutes': 2,
     'author': 'Ahmed',
-    'date_created': 'Aug 13, 2023'
+    'date_created': 'Aug 13, 2023',
+    'image' : 'assets/images/1.png'
   }),
   Post.fromJson({
     'title': 'WatchOS 10 preview: widgets all the way down',
@@ -22,7 +23,8 @@ List<Post> mockPosts = [
     'category': 'Tech',
     'readingMinutes': 3,
     'author': 'Fahad',
-    'date_created': 'Jul 25, 2023'
+    'date_created': 'Jul 25, 2023',
+    'image' : 'assets/images/2.png'
   }),
   Post.fromJson({
     'title': 'How Gen Z are disrupting the definition of ‘prestigious’ jobs',
@@ -33,7 +35,8 @@ List<Post> mockPosts = [
     'category': 'Tech',
     'readingMinutes': 5,
     'author': 'Abdulaziz',
-    'date_created': 'May 3, 2023'
+    'date_created': 'May 3, 2023',
+    'image' : 'assets/images/3.png'
   }),
   Post.fromJson({
     'title': 'Now Google’s Bard AI can talk & respond to visual prompts',
@@ -44,7 +47,8 @@ List<Post> mockPosts = [
     'category': 'Tech',
     'readingMinutes': 2,
     'author': 'Ahmed',
-    'date_created': 'Aug 13, 2023'
+    'date_created': 'Aug 13, 2023',
+    'image' : 'assets/images/1.png'
   }),
   Post.fromJson({
     'title': 'WatchOS 10 preview: widgets all the way down',
@@ -55,7 +59,8 @@ List<Post> mockPosts = [
     'category': 'Tech',
     'readingMinutes': 3,
     'author': 'Fahad',
-    'date_created': 'Jul 25, 2023'
+    'date_created': 'Jul 25, 2023',
+    'image' : 'assets/images/2.png'
   }),
   Post.fromJson({
     'title': 'How Gen Z are disrupting the definition of ‘prestigious’ jobs',
@@ -66,7 +71,8 @@ List<Post> mockPosts = [
     'category': 'Tech',
     'readingMinutes': 5,
     'author': 'Abdulaziz',
-    'date_created': 'May 3, 2023'
+    'date_created': 'May 3, 2023',
+    'image' : 'assets/images/3.png'
   }),
   Post.fromJson({
     'title': 'Advancements in AI: The Rise of Generative Models',
@@ -77,7 +83,8 @@ List<Post> mockPosts = [
     'category': 'AI',
     'readingMinutes': 4,
     'author': 'Jessica',
-    'date_created': 'Aug 25, 2023'
+    'date_created': 'Aug 25, 2023',
+    'image' : 'assets/images/4.png'
   }),
   Post.fromJson({
     'title': 'Ethical Considerations in AI Development',
@@ -88,7 +95,8 @@ List<Post> mockPosts = [
     'category': 'AI',
     'readingMinutes': 5,
     'author': 'Mark',
-    'date_created': 'Sep 10, 2023'
+    'date_created': 'Sep 10, 2023',
+    'image' : 'assets/images/5.png'
   }),
   Post.fromJson({
     'title': 'The Future of Cloud Computing: Trends and Predictions',
@@ -99,7 +107,8 @@ List<Post> mockPosts = [
     'category': 'Cloud',
     'readingMinutes': 4,
     'author': 'Samantha',
-    'date_created': 'Jul 19, 2023'
+    'date_created': 'Jul 19, 2023',
+    'image' : 'assets/images/6.png'
   }),
   Post.fromJson({
     'title': 'Cloud Migration: Best Practices for a Smooth Transition',
@@ -110,7 +119,8 @@ List<Post> mockPosts = [
     'category': 'Cloud',
     'readingMinutes': 5,
     'author': 'Oliver',
-    'date_created': 'Aug 30, 2023'
+    'date_created': 'Aug 30, 2023',
+    'image' : 'assets/images/7.png'
   }),
   Post.fromJson({
     'title': 'The Evolution of Robotics: From Industrial to Service Robots',
@@ -121,7 +131,8 @@ List<Post> mockPosts = [
     'category': 'Robotics',
     'readingMinutes': 4,
     'author': 'Laura',
-    'date_created': 'Jun 15, 2023'
+    'date_created': 'Jun 15, 2023',
+    'image' : 'assets/images/8.png'
   }),
   Post.fromJson({
     'title': 'The Impact of Robotics on Manufacturing Efficiency',
@@ -132,7 +143,8 @@ List<Post> mockPosts = [
     'category': 'Robotics',
     'readingMinutes': 5,
     'author': 'Ethan',
-    'date_created': 'Aug 5, 2023'
+    'date_created': 'Aug 5, 2023',
+    'image' : 'assets/images/9.png'
   }),
   Post.fromJson({
     'title': 'The Rise of IoT: Connecting Devices for a Smarter World',
@@ -143,7 +155,8 @@ List<Post> mockPosts = [
     'category': 'IoT',
     'readingMinutes': 4,
     'author': 'Nina',
-    'date_created': 'Jul 22, 2023'
+    'date_created': 'Jul 22, 2023',
+    'image' : 'assets/images/10.png'
   }),
   Post.fromJson({
     'title': 'Securing IoT Devices: Challenges and Solutions',
@@ -154,7 +167,8 @@ List<Post> mockPosts = [
     'category': 'IoT',
     'readingMinutes': 5,
     'author': 'Liam',
-    'date_created': 'Aug 12, 2023'
+    'date_created': 'Aug 12, 2023',
+    'image' : 'assets/images/default.png'
   }),
 ];
 

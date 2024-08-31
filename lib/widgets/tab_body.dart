@@ -9,10 +9,14 @@ import 'custom_post_tile.dart';
 class TabBody extends StatelessWidget {
   final User? user;
   final int tabIndex;
-  const TabBody({super.key, required this.user,required this.tabIndex});
+  const TabBody({super.key, required this.user, required this.tabIndex});
 
   @override
   Widget build(BuildContext context) {
+    List categories = ['Tech', 'AI', 'Cloud', 'Robotics', 'IoT'];
+    final categoryPosts = locator.get<BlogData>().posts.where((post) {
+      return post.category == categories[tabIndex];
+    }).toList();
     return SingleChildScrollView(
       child: Column(children: [
         Stack(
@@ -24,7 +28,7 @@ class TabBody extends StatelessWidget {
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
-                  'assets/images/2.png',
+                  'assets/images/0.png',
                 ))),
               ),
             ),
@@ -69,12 +73,12 @@ class TabBody extends StatelessWidget {
         ),
         Column(
           children: List.generate(
-            locator.get<BlogData>().posts.length,
+            categoryPosts.length,
             (index) {
               return Column(
                 children: [
                   CustomPostTile(
-                    post:  locator.get<BlogData>().posts[index],
+                    post: categoryPosts[index],
                     user: user,
                   ),
                   const SizedBox(height: 12),
