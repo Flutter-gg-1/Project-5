@@ -33,12 +33,15 @@ class MyContainerBlogs extends StatelessWidget {
               ),
             ],
           ),
-          const Row(
-            children: [
-              Text('1h', style: TextStyle(color: MyColors.whiteTextColor)),
-              Icon(Icons.more_vert, color: MyColors.whiteTextColor),
-              Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
-            ],
+          const Text('1h', style: TextStyle(color: MyColors.whiteTextColor)),
+          const Padding(
+            padding: EdgeInsets.only(left: 300),
+            child: Row(
+              children: [
+                Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
+                Icon(Icons.more_vert, color: MyColors.whiteTextColor),
+              ],
+            ),
           ),
         ],
       ),
@@ -49,8 +52,4 @@ class MyContainerBlogs extends StatelessWidget {
 Text(title!,
             style: const TextStyle(color: MyColors.whiteTextColor)),
          
-         const Column(
-          children: [
-          ],
-        ),
 */
