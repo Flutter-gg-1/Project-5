@@ -10,6 +10,7 @@ class TextContainer extends StatelessWidget {
     this.titleSize = 14, 
     this.titleWeight = FontWeight.w500,
     this.unlimittedLines = false,
+    this.feildlines = 1
   });
 
   final String title;
@@ -18,6 +19,7 @@ class TextContainer extends StatelessWidget {
   final double titleSize;
   final FontWeight titleWeight;
   final bool unlimittedLines;
+  final int feildlines;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +33,9 @@ class TextContainer extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         SizedBox(
-          //height: 40,
           width: 370,
           child: TextFormField(
-            minLines: 1,
+            minLines: unlimittedLines ? feildlines : 1,
             maxLines: unlimittedLines ? null : 1,
             style: const TextStyle(color: Colors.white), // User input text color
             decoration: InputDecoration(

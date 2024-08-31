@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:news_feed_app/screens/add_post.dart';
 import 'package:news_feed_app/screens/blog.dart';
 
 class FeedPage extends StatelessWidget {
@@ -24,7 +25,9 @@ class FeedPage extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(Icons.add, color: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPost()));
+              },
             ),
           ],
           bottom: const TabBar(
@@ -68,6 +71,10 @@ class FeedPage extends StatelessWidget {
                   ],
                 ),
               ),
+              Text('data'),
+              Text('data'),
+              Text('data'),
+              Text('data'),
             ],
           ),
         ),
