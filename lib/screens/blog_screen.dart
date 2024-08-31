@@ -68,6 +68,7 @@ class BlogScreen extends StatelessWidget {
                           content: e.content,
                           summary: e.summary,
                           title: e.title,
+                          id: e.id,
                         );
                       })))
                   .toList();

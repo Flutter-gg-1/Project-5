@@ -1,16 +1,26 @@
+import 'package:blog_app_project/data/blog_data.dart';
 import 'package:blog_app_project/helper/extensions/screen.dart';
 import 'package:blog_app_project/widgets/custom_textformfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-class UpdateBlogScreen extends StatelessWidget {
+class UpdateBlogScreen extends StatefulWidget {
   const UpdateBlogScreen(
       {super.key,
       required this.content,
       required this.summary,
-      required this.title});
+      required this.title,
+      required this.id});
   final String content;
   final String summary;
   final String title;
+  final int id;
+
+  @override
+  State<UpdateBlogScreen> createState() => _UpdateBlogScreenState();
+}
+
+class _UpdateBlogScreenState extends State<UpdateBlogScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +33,18 @@ class UpdateBlogScreen extends StatelessWidget {
         ),
         actions: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                final blogData = GetIt.I<BlogData>();
+                final blogIndex = blogData.blogList
+                    .indexWhere((blog) => blog.id == widget.id);
+                if (blogIndex != -1) {
+                  blogData.blogList[blogIndex].title = widget.title;
+                  blogData.blogList[blogIndex].summary = widget.summary;
+                  blogData.blogList[blogIndex].content = widget.content;
+                }
+                Navigator.pop(context);
+                setState(() {});
+              },
               child: const Text(
                 'Post',
                 style: TextStyle(color: Colors.white),
@@ -34,9 +55,9 @@ class UpdateBlogScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(children: [
             CustomeUpdateBlog(
-              title: title,
-              content: content,
-              summary: summary,
+              title: widget.title,
+              content: widget.content,
+              summary: widget.summary,
             )
           ]),
         ),
