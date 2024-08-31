@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_feed_app/screens/feed.dart';
+import 'package:news_feed_app/screens/nav_bar.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -116,7 +116,7 @@ class LoginButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => const FeedPage()));
+          Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => const NavBar()));
         },
         child: const Text(
           'Login',
