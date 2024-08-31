@@ -33,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   void _changeFilter() {
-    blogMgr.selectedCategory == BlogCategory.values[tabController.index];
     setState(() {
-      print(blogMgr.categoryBlogs.length);
+      blogMgr.selectedCategory == BlogCategory.values[tabController.index];
+      print(blogMgr.selectedCategory.name);
     });
   }
 

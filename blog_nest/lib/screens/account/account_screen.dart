@@ -40,7 +40,7 @@ class AccountScreen extends StatelessWidget {
                             children: [
                               const Text('You are not logged in yet')
                                   .styled(size: 12, weight: FW.w700),
-                              CustomBtnView(isLogin: false, callBack: () => ()),
+                              CustomBtnView(isLogin: true, callBack: () => ()),
                             ],
                           ),
                         ),
@@ -108,7 +108,7 @@ class AccountScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MAL.center,
                         children: [
-                          CustomBtnView(isLogin: true, callBack: () => ()),
+                          CustomBtnView(isLogin: false, callBack: () => ()),
                         ],
                       ),
                     ),

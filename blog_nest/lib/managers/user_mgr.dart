@@ -51,7 +51,8 @@ class UserMgr {
       }
     } catch (e) {
       // Handle the case where users are not found
-      for (var user in User.defaultUsers) {
+      var defaultUsers = await User.getDefaultUsers();
+      for (var user in defaultUsers) {
         await addNewUser(user);
       }
     }

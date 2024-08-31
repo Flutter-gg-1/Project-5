@@ -1,3 +1,7 @@
+import 'package:flutter/widgets.dart';
+import '../extensions/img_ext.dart';
+import '../utils/img_converter.dart';
+
 class User {
   int id;
   String name;
@@ -5,6 +9,7 @@ class User {
   String avatarData;
   String username;
   String password;
+  AssetImage? img;
 
   User({
     required this.id,
@@ -35,22 +40,24 @@ class User {
         'password': password
       };
 
-  static var defaultUsers = [
-    User(
-      id: 1,
-      name: 'Kyle Barr',
-      jobTitle: 'Software developer',
-      avatarData: '',
-      username: 'kyle',
-      password: '123',
-    ),
-    User(
-      id: 2,
-      name: 'John Doe',
-      jobTitle: 'Magician',
-      avatarData: '',
-      username: 'john',
-      password: '123',
-    ),
-  ];
+  static Future<List<User>> getDefaultUsers() async {
+    return [
+      User(
+        id: 1,
+        name: 'Kyle Barr',
+        jobTitle: 'Software developer',
+        avatarData: await ImgConverter.assetImgToData(Img.blueN),
+        username: 'kyle',
+        password: '123',
+      ),
+      User(
+        id: 2,
+        name: 'John Doe',
+        jobTitle: 'Magician',
+        avatarData: await ImgConverter.assetImgToData(Img.orangeN),
+        username: 'john',
+        password: '123',
+      ),
+    ];
+  }
 }
