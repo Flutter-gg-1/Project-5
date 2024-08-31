@@ -27,15 +27,11 @@ A blog application that allows users to add, display, and delete blog posts. The
 
 <img src="./assets/images/screenshots/3.png" width="364" height="800">
 
-<img src="./assets/images/screenshots/4.png" width="364" height="800">
-
 <img src="./assets/images/screenshots/5.png" width="364" height="800">
 
 <img src="./assets/images/screenshots/6.png" width="364" height="800">
 
 <img src="./assets/images/screenshots/7.png" width="364" height="800">
-
-<img src="./assets/images/screenshots/8.png" width="364" height="800">
 
 <img src="./assets/images/screenshots/9.png" width="364" height="800">
 
