@@ -35,6 +35,11 @@ class ShowPost extends StatelessWidget {
                       color: MyColors.whiteTextColor)),
               child: const Text(''),
             ),
+            SizedBox(height: context.getHeightScreen(height: 0.01)),
+            MyContainer(
+              height: context.getHeightScreen(height: 0.2),
+              child: Image.asset('assets/1.png', fit: BoxFit.cover),
+            )
           ],
         ),
       ),
