@@ -57,7 +57,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   title: titleController.text,
                   summary: summaryController.text,
                   content: contentController.text,
-                  date: DateTime.now().toString(),
+                  date: GetIt.I.get<AllPosts>().getCurrentDate(),
                   minutesToRead: int.parse(readingMinutesController.text),
                   isSaved: false
                 );

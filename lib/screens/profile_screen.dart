@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project5/data/all_posts.dart';
@@ -7,9 +6,9 @@ import 'package:project5/data/all_users.dart';
 import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
 import 'package:project5/models/user.dart';
+import 'package:project5/screens/edit_post_screen.dart';
 import 'package:project5/screens/login_screen.dart';
 import 'package:project5/screens/view_post_screen.dart';
-import 'package:project5/widgets/cards/post_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -162,7 +161,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Row(
                                   children: [
                                     InkWell(
-                                      onTap: (){},
+                                      onTap: (){
+                                        TextEditingController editTitle = TextEditingController(text: post.title);
+                                        TextEditingController editSummary = TextEditingController(text: post.summary);
+                                        TextEditingController editContent = TextEditingController(text: post.content);
+                                        context.push(
+                                          target: EditPostScreen(
+                                            post: post,
+                                            newTitleController: editTitle,
+                                            newSummaryController: editSummary,
+                                            newContentController: editContent,
+                                          ),
+                                          saveData: (p0) {
+                                            if(p0==true) {
+                                              GetIt.I.get<AllPosts>().editPost(
+                                                post:post,
+                                                newTitle : editTitle.text,
+                                                newSummary : editSummary.text,
+                                                newContent : editContent.text
+                                              );
+                                              setState(() {});
+                                            }
+                                          },
+                                        );
+                                      },
                                       child: Icon(Icons.edit_outlined, color: Colors.white,)
                                     ),
                                     InkWell(
