@@ -49,7 +49,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                       children: GetIt.I.get<GetBlog>().blogs.map((blog) {
-                    return blog.content.contains(search.text)
+                    return blog.title.contains(search.text)
                         ? StoryCard(
                             onTap: () {
                               context.navTo(ArticalScreen(
