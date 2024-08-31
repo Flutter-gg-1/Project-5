@@ -55,4 +55,22 @@ class PostData {
     }
     GetIt.I.get<UserData>().users.first.savedPostes = savedPostes;
   }
+
+  editPost(
+      {required String id,
+      required String title,
+      required String summary,
+      required String content,
+      required String category,
+      required String minutes}) {
+    for (var element in allPostes) {
+      if (id == element.id) {
+        element.title = title;
+        element.summary = summary;
+        element.content = content;
+        element.category = category;
+        element.minutes = minutes;
+      }
+    }
+  }
 }

@@ -1,37 +1,26 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:blog_app/data/post_data.dart';
-import 'package:blog_app/data/user_data.dart';
+
 import 'package:blog_app/models/post_model.dart';
 import 'package:blog_app/widgets/fields/info_feild.dart';
 import 'package:blog_app/widgets/buttons/selectable_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
-class AddScreen extends StatefulWidget {
-  const AddScreen({super.key});
-
-  @override
-  State<AddScreen> createState() => _AddScreenState();
-}
-
-class _AddScreenState extends State<AddScreen> {
-  File? selectedImage;
-  final picker = ImagePicker();
-
-  //Image Picker function to get image from gallery
-  Future getImageFromGallery() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        selectedImage = File(pickedFile.path);
-      }
-    });
-  }
+class EditScreen extends StatelessWidget {
+  final String id;
+  final String category;
+  final String title;
+  final String summary;
+  final String content;
+  final String min;
+  const EditScreen(
+      {super.key,
+      required this.category,
+      required this.title,
+      required this.summary,
+      required this.content,
+      required this.min,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -54,21 +43,13 @@ class _AddScreenState extends State<AddScreen> {
         actions: [
           TextButton(
               onPressed: () {
-                GetIt.I.get<PostData>().addPost(
-                    newPost: PostModel(
-                        userAvatar:
-                            GetIt.I.get<UserData>().users.first.avatar ?? "",
-                        image: selectedImage?.path ?? "assets/img_holder.png",
-                        id: Random().nextInt(9999).toString(),
-                        title: titleController.text,
-                        summary: sumController.text,
-                        content: contentController.text,
-                        category: catValue,
-                        minutes: minController.text,
-                        date: DateFormat.yMMMd()
-                            .format(DateTime.now())
-                            .toString(),
-                        auther: GetIt.I.get<UserData>().users.first.userName));
+                GetIt.I.get<PostData>().editPost(
+                    id: id,
+                    title: title,
+                    summary: summary,
+                    content: content,
+                    category: category,
+                    minutes: min);
                 Navigator.pop(context, true);
               },
               child: const Text(
@@ -86,30 +67,6 @@ class _AddScreenState extends State<AddScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Image",
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              const SizedBox(height: 10),
-              InkWell(
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 337,
-                    height: 140,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: selectedImage == null
-                                ? const AssetImage("assets/add 1.png")
-                                : FileImage(File(selectedImage!.path))),
-                        color: const Color.fromARGB(255, 60, 60, 60),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  onTap: () {
-                    getImageFromGallery();
-                  }),
               const SizedBox(height: 20),
               InfoFeild(
                   title: "Title",

@@ -32,7 +32,7 @@ class InfoFeild extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        TextField(
+        TextFormField(
           style: const TextStyle(color: Colors.white),
           minLines: minLines,
           maxLines: (minLines!),
