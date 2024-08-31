@@ -32,4 +32,10 @@ class ArticleDataServers {
     ),
   ];
   final box = GetStorage();
+
+  addArticle (ArticleModel article){
+    articleData.add(article);
+    box.write('articleData', articleData);
+    print('Article Added');
+  }
 }
