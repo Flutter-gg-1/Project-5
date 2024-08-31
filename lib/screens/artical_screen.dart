@@ -1,6 +1,8 @@
 import 'package:blog_app/data_layer/get_blog.dart';
+import 'package:blog_app/helper/nav.dart';
 import 'package:blog_app/helper/screen.dart';
 import 'package:blog_app/model/blog_model.dart';
+import 'package:blog_app/screens/edit_blog.dart';
 import 'package:blog_app/widget/button/divider/custom_dvider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,7 +34,21 @@ class _ArticalScreenState extends State<ArticalScreen> {
           GetIt.I.get<GetBlog>().currentUser.userName.isNotEmpty
               ? IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.navToUpdate(
+                        EditBlog(
+                          blog: widget.blog,
+                        ), () {
+                      setState(() {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ArticalScreen(
+                                      blog: widget.blog,
+                                    )));
+                      });
+                    });
+                  },
                 )
               : const SizedBox()
         ],
@@ -50,7 +66,7 @@ class _ArticalScreenState extends State<ArticalScreen> {
                 height: context.getHight(value: .2),
                 child: const Placeholder(),
               ),
-const CustomDivider(),
+              const CustomDivider(),
               TextButton(
                   onPressed: () {},
                   child: Row(
@@ -79,14 +95,12 @@ const CustomDivider(),
                   Icon(Icons.link),
                 ],
               ),
-         const CustomDivider(height: 30),
-
+              const CustomDivider(height: 30),
               ListTile(
                 title: const Text("Summary"),
                 subtitle: Text(widget.blog.summary),
               ),
-                      const CustomDivider(height: 30),
-
+              const CustomDivider(height: 30),
               ListTile(
                 title: const Text("content"),
                 subtitle: Text(widget.blog.content),
@@ -98,5 +112,3 @@ const CustomDivider(),
     );
   }
 }
-
-

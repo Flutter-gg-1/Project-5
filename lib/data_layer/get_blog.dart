@@ -16,10 +16,22 @@ class GetBlog {
     saveBlog();
   }
 
+  void update({required BlogModel oldBlog, required BlogModel newBlog}) {
+    for (var element in blogs) {
+      if (oldBlog == element) {
+        oldBlog.title = newBlog.title;
+        oldBlog.content = newBlog.content;
+        oldBlog.minutesToRead = newBlog.minutesToRead;
+        oldBlog.summary = newBlog.summary;
+      }
+    }
+    saveBlog();
+  }
+
   void saveBlog() {
     List<Map<String, dynamic>> map = [];
-    for (BlogModel tweat in blogs) {
-      map.add(tweat.toJson());
+    for (BlogModel blogs in blogs) {
+      map.add(blogs.toJson());
     }
     box.write("blog", map);
   }

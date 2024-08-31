@@ -1,11 +1,11 @@
 class BlogModel {
-  late final String category;
+  late  String category;
   late final String authorName;
-  late final String title;
-  late final String summary;
-  late final String content;
+  late  String title;
+  late  String summary;
+  late  String content;
   late final String date;
-  late final String minutesToRead;
+  late  String minutesToRead;
   late final String imageSrc;
   late bool saved;
 
