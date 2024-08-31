@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:news_feed_app/screens/add_post.dart';
-import 'package:news_feed_app/screens/blog.dart';
+import 'package:news_feed_app/widgets/image_scroll.dart';
+import 'package:news_feed_app/widgets/post_card.dart';
 
 class FeedPage extends StatelessWidget {
   const FeedPage({super.key});
@@ -47,7 +48,25 @@ class FeedPage extends StatelessWidget {
         body: Center(
           child: TabBarView(
             children: [
-              Padding(
+              TechFeed(),
+              TechFeed(),
+              TechFeed(),
+              TechFeed(),
+              TechFeed(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TechFeed extends StatelessWidget {
+  const TechFeed({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
                 padding: const EdgeInsets.all(15),
                 child: ListView(
                   children: const [
@@ -70,115 +89,6 @@ class FeedPage extends StatelessWidget {
                     StoryCard( title: 'Now Google’s Bard AI can talk & respond to visual prompts', username: 'Kyle Barr', imgPath: 'assets/images/google.png', dateAndTime: 'Jul 13, 2023 • 2 min read', ),
                   ],
                 ),
-              ),
-              Text('data'),
-              Text('data'),
-              Text('data'),
-              Text('data'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ImageScroll extends StatelessWidget {
-  const ImageScroll({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      width: 343,
-      height: 180,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-        color: Color(0xffffffff),
-      ),
-      child: Image.asset('assets/images/google.png', fit: BoxFit.cover),
-    );
-  }
-}
-
-class StoryCard extends StatelessWidget {
-  const StoryCard({super.key, required this.title, required this.username, required this.imgPath, required this.dateAndTime});
-  final String title;
-  final String username;
-  final String imgPath;
-  final String dateAndTime;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-          color: Color(0xff1E1E1E),
-        ),
-        child: InkWell(
-           onTap: () {
-             Navigator.push(context,  MaterialPageRoute(builder: (context) => const BlogPage()));
-           },
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, 
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start, // Aligns items at the top
-                  children: [
-                    Container(
-                      clipBehavior: Clip.hardEdge,
-                      width: 80,
-                      height: 62,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        color: Color(0xffffffff),
-                      ),
-                      child: Image.asset(imgPath, fit: BoxFit.cover),
-                    ),
-                    const SizedBox(width: 8),
-                     Expanded( 
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start, 
-                        children: [
-                          Text(
-                            username,
-                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xff888888)),
-                          ),
-                          Text(
-                            title,
-                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xffffffff)),
-                            maxLines: 2, 
-                            overflow: TextOverflow.ellipsis, 
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10,),
-                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Row(
-                    children: [
-                      Text(
-                      dateAndTime,
-                      style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: Color(0xff888888)),
-                    ),
-                    const Spacer(),
-                    const Row(
-                      children: [
-                        Icon(Icons.bookmark_border, color: Color(0xff888888),),
-                        Icon(Icons.more_vert, color: Color(0xff888888),),
-                      ],
-                    )        
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      );
+              );
   }
 }

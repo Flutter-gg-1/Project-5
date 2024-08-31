@@ -34,7 +34,7 @@ class EditPost extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
           child: ListView(
-            children: [
+            children: const [
               TextContainer(title: 'Title', hint: '', titleSize: 16, titleWeight: FontWeight.w700, unlimittedLines: true,),
               SizedBox(height: 30,),
               TextContainer(title: 'Summary', hint: '', titleSize: 16, titleWeight: FontWeight.w700, unlimittedLines: true,),

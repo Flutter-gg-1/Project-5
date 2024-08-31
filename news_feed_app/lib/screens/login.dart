@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_feed_app/screens/nav_bar.dart';
 import 'package:news_feed_app/widgets/custom_textfeild.dart';
+import 'package:news_feed_app/widgets/guest_enter.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -89,25 +90,6 @@ class LoginButton extends StatelessWidget {
             color: Color(0xffffffff),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class GuestEnter extends StatelessWidget {
-  const GuestEnter({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(height: 2, width: 35, color: const Color(0xffffffff)),
-          const Text('Enter as a guest', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700 ,color: Color(0xffffffff)),),
-          Container(height: 2, width: 35, color: const Color(0xffffffff)),
-        ],
       ),
     );
   }
