@@ -169,6 +169,13 @@ Google first opened up access to Bard in March, but at the time, it was availabl
     posts.add(post);
   }
 
+  deletePost({required Post post}) {
+    posts.remove(post);
+    if(GetIt.I.get<AllUsers>().currentUser!=null) {
+      GetIt.I.get<AllUsers>().currentUser!.userPosts.remove(post);
+    }
+  }
+
   searchPost({required String searchTerm}) {
     return posts.where((post)=>post.title.toLowerCase().contains(searchTerm.toLowerCase())).toList();
   }
