@@ -3,13 +3,18 @@ import 'package:blog_app/widgets/home/blog_card.dart';
 import 'package:blog_app/widgets/home/drone.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:intl/intl.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    bool isSaved = false;
     return DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -92,21 +97,98 @@ class HomeScreen extends StatelessWidget {
                       height: 10,
                     ),
                     Column(
-                      children: GetIt.I.get<AppData>().blogs.map((blog) {
+                      children: GetIt.I.get<AppData>().blogs.where(
+                        (element) {
+                          return element.category == "Technology";
+                        },
+                      ).map((blog) {
                         return BlogCard(
                           blog: blog,
+                          onSaved: () {
+                            isSaved
+                                ? {
+                                    GetIt.I
+                                        .get<AppData>()
+                                        .savedBlogs
+                                        .remove(blog),
+                                    isSaved = !isSaved
+                                  }
+                                : {
+                                    GetIt.I.get<AppData>().savedBlogs.add(blog),
+                                    isSaved = !isSaved
+                                  };
+                          },
                         );
                       }).toList(),
                     ),
-
                     const SizedBox(
                       height: 12,
                     ),
                   ],
                 ),
               ),
-              const Column(
-                children: [Text("data2")],
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Drone(),
+                    Divider(
+                      color: Colors.white.withOpacity(0.1),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Top Stories",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "See all",
+                          style:
+                              TextStyle(color: Color(0xff888888), fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      children: GetIt.I.get<AppData>().blogs.where(
+                        (element) {
+                          return element.category == "Technology";
+                        },
+                      ).map((blog) {
+                        return BlogCard(
+                          blog: blog,
+                          onSaved: () {
+                            isSaved
+                                ? {
+                                    GetIt.I
+                                        .get<AppData>()
+                                        .savedBlogs
+                                        .remove(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  }
+                                : {
+                                    GetIt.I.get<AppData>().savedBlogs.add(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  };
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                  ],
+                ),
               ),
               const Column(
                 children: [Text("data3")],

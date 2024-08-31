@@ -7,6 +7,8 @@ class AppData {
       password: "turki",
       title: "Software engineer",
       blogs: []);
+  List<Blog> savedBlogs = [];
+
   bool loggedIn = false;
 
   // Blog blog1 = Blog.create(
@@ -71,10 +73,10 @@ class AppData {
   }) {
     Blog blog = Blog.create(
         author: User(
-      username: "turki",
-      password: "turki",
-      title: "Software engineer",
-      blogs: []),
+            username: "turki",
+            password: "turki",
+            title: "Software engineer",
+            blogs: []),
         category: category,
         content: content,
         title: title,
