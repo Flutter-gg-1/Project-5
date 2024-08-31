@@ -1,4 +1,5 @@
 import 'package:blog_app_project/helper/extensions/screen.dart';
+import 'package:blog_app_project/screens/add_blog_screen.dart';
 import 'package:blog_app_project/screens/blog_screen.dart';
 import 'package:blog_app_project/widgets/custom_carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 10,
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return const AddBlogScreen();
+                  }));
+                },
                 icon: const FaIcon(
                   FontAwesomeIcons.plus,
                   color: Color(0xffffffff),
@@ -158,6 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Text('All2'),
               const Text('All3'),
               const Text('All4'),
+              const Text('All5'),
             ],
           )),
     );

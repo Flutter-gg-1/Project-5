@@ -39,8 +39,8 @@ class BlogScreen extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (BuildContext context) {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
                 return const UpdateBlogScreen();
               }));
             },
