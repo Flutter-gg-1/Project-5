@@ -17,7 +17,7 @@ class MyContainerBlogs extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyContainer(
       width: context.getWidthScreen(width: 0.9),
-      height: context.getWidthScreen(width: 0.4),
+      height: context.getWidthScreen(width: 0.46),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,12 +45,20 @@ class MyContainerBlogs extends StatelessWidget {
               SizedBox(width: context.getWidthScreen(width: 0.02)),
               Text(publishedAt!,
                   style: const TextStyle(color: MyColors.whiteTextColor)),
-              const Padding(
-                padding: EdgeInsets.only(left: 80),
+              Padding(
+                padding: const EdgeInsets.only(left: 45),
                 child: Row(
                   children: [
-                    Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
-                    Icon(Icons.more_vert, color: MyColors.whiteTextColor),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.bookmark_border,
+                          color: MyColors.whiteTextColor),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.more_vert,
+                          color: MyColors.whiteTextColor),
+                    ),
                   ],
                 ),
               ),

@@ -48,8 +48,12 @@ class _NewPostState extends State<NewPost> {
                   height: context.getWidthScreen(width: 0.4),
                   width: context.getWidthScreen(width: 0.9),
                   child: IconButton(
-                      onPressed: () {
-                        myImagePicker();
+                      onPressed: () async {
+                        await ImagePicker()
+                            .pickImage(source: ImageSource.gallery);
+                        setState(() {
+                          imageFile = File(imageFile!.path);
+                        });
                       },
                       icon: const Icon(
                         Icons.add,
@@ -152,20 +156,11 @@ class _NewPostState extends State<NewPost> {
                           context.showScreen(const MainScreen());
                         })),
                 SizedBox(height: context.getWidthScreen(width: 0.07)),
-                const Text(''),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  void myImagePicker() async {
-    await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    // setState(() {
-    //   imageFile = File(imageFile!.path);
-    // });
   }
 }
