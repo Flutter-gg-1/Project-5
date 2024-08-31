@@ -1,14 +1,17 @@
+import 'dart:io';
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/reusable_components/custom_text_field.dart';
 import 'package:blog_nest/screens/add_blog/add_blog_vm.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../extensions/color_ext.dart';
 import '../../extensions/img_ext.dart';
 import '../../model/blog.dart';
 import '../../model/enum/blog_category.dart';
 import '../../utils/typedefs.dart';
+import '../../utils/validations.dart';
 
 class AddBlogScreen extends StatefulWidget {
   const AddBlogScreen({super.key, this.blog});
@@ -39,6 +42,12 @@ class _AddBlogScreenState extends State<AddBlogScreen>
     super.dispose();
   }
 
+  void getImage() async {
+    final img = await ImagePicker().pickImage(source: ImageSource.gallery);
+    vm.selectedImg = File(img?.path ?? '');
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +59,7 @@ class _AddBlogScreenState extends State<AddBlogScreen>
             icon: const Icon(Icons.chevron_left).withSizeAndColor()),
         actions: [
           TextButton(
-              onPressed: () => (),
+              onPressed: vm.addBlog,
               child: const Text('Post').styled(size: 17, weight: FW.w700)),
         ],
       ),
@@ -83,13 +92,14 @@ class _AddBlogScreenState extends State<AddBlogScreen>
                                               fit: BoxFit.cover))
                                       : ClipRRect(
                                           borderRadius: BR.circular(16),
-                                          child: Image.file(vm.selectedImg!),
+                                          child: Image.file(vm.selectedImg!,
+                                              fit: BoxFit.cover),
                                         ),
                                 ),
                               ],
                             ),
                             IconButton(
-                                onPressed: () => vm.getImage(),
+                                onPressed: getImage,
                                 icon: const Icon(Icons.add).withSizeAndColor(
                                     size: 48, color: C.text2)),
                           ],
@@ -143,7 +153,10 @@ class _TextFieldContainer extends StatelessWidget {
         crossAxisAlignment: CAL.start,
         children: [
           Text(headerText).styled(size: 17, weight: FW.w700),
-          CustomTextField(controller: controller, hint: hintText)
+          CustomTextField(
+              controller: controller,
+              hint: hintText,
+              validation: Validations.emptyFieldValidation)
         ],
       ),
     );

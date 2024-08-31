@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -20,5 +21,10 @@ class ImgConverter {
     final Uint8List data = bytes.buffer.asUint8List();
     final String base64Image = base64Encode(data);
     return base64Image;
+  }
+
+  static Future<String> fileImgToBase64(File imageFile) async {
+    final Uint8List imageBytes = await imageFile.readAsBytes();
+    return base64Encode(imageBytes);
   }
 }

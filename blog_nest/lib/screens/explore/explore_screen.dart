@@ -5,6 +5,7 @@ import '../../extensions/color_ext.dart';
 import '../../reusable_components/blog_cell/blog_cell_view.dart';
 import '../../reusable_components/custom_text_field.dart';
 import '../../utils/typedefs.dart';
+import '../../utils/validations.dart';
 import 'explore_vm.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -33,6 +34,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 child: CustomTextField(
                   controller: TextEditingController(),
                   hint: '',
+                  validation: Validations.emptyFieldValidation,
                 ),
               ),
               if (vm.filteredBlogs.isEmpty)

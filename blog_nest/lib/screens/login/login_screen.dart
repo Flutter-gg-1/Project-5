@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
 import '../../managers/nav_mgr.dart';
 import '../../utils/typedefs.dart';
+import '../../utils/validations.dart';
 import 'login_vm.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -69,12 +70,14 @@ class _FormView extends StatelessWidget {
                 CustomTextField(
                   controller: vm.nameController,
                   hint: 'Enter your username',
+                  validation: Validations.emptyFieldValidation,
                 ),
                 const SizedBox(height: 16),
                 const Text('Password').styled(size: 15, weight: FW.w500),
                 CustomTextField(
                   controller: vm.pwdController,
                   hint: 'Enter your password',
+                  validation: Validations.emptyFieldValidation,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32),

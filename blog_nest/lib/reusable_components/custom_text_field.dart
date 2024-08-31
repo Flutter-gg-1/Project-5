@@ -8,17 +8,20 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.isObscure = false,
     required this.hint,
+    required this.validation,
   });
   final TextEditingController controller;
   final bool isObscure;
   final String hint;
+  final Function(String value) validation;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: TextField(
+      child: TextFormField(
         style: const TextStyle(color: C.text1),
+        validator: (value) => validation(value ?? ''),
         controller: controller,
         obscureText: isObscure,
         decoration: InputDecoration(
