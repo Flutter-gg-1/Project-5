@@ -14,6 +14,7 @@ class ExploreScreen extends StatelessWidget {
             child: Column(
               children: [
                 TextFormField(
+                  style: const TextStyle(color: Colors.white),
                   autovalidateMode: AutovalidateMode.onUnfocus,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.search),
@@ -32,7 +33,9 @@ class ExploreScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height:  300,),
+                const SizedBox(
+                  height: 300,
+                ),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

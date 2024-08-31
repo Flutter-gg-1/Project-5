@@ -81,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 8,
                           ),
                           TextFormField(
+                            style: const TextStyle(color: Colors.white),
                             autovalidateMode: AutovalidateMode.onUnfocus,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
@@ -128,6 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 8,
                           ),
                           TextFormField(
+                            style: const TextStyle(color: Colors.white),
                             obscureText: true,
                             autovalidateMode: AutovalidateMode.onUnfocus,
                             decoration: InputDecoration(

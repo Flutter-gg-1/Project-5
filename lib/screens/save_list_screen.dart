@@ -50,8 +50,7 @@ class _SaveListScreenState extends State<SaveListScreen> {
                         ],
                       )
                     : Column(
-                        children:
-                            GetIt.I.get<AppData>().savedBlogs.map((blog) {
+                        children: GetIt.I.get<AppData>().savedBlogs.map((blog) {
                           return BlogCard(
                             blog: blog,
                             onSaved: () {
@@ -68,6 +67,7 @@ class _SaveListScreenState extends State<SaveListScreen> {
                                           .savedBlogs
                                           .add(blog),
                                     };
+                              setState(() {});
                             },
                           );
                         }).toList(),

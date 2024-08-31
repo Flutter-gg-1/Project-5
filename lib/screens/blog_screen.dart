@@ -1,5 +1,6 @@
 import 'package:blog_app/data/app_data.dart';
 import 'package:blog_app/models/blog.dart';
+import 'package:blog_app/screens/edit_blog.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -43,9 +44,16 @@ class _BlogScreenState extends State<BlogScreen> {
             width: 10,
           ),
           if (isLoggedIn)
-            const Icon(
-              Icons.edit_outlined,
-              color: Colors.white,
+            IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return EditBlog(blog: widget.blog!);
+                }));
+              },
+              icon: const Icon(
+                Icons.edit_outlined,
+                color: Colors.white,
+              ),
             )
           else
             const SizedBox(

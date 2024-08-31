@@ -3,12 +3,12 @@ import 'package:blog_app/models/user.dart';
 
 class Blog {
   final String category;
-  final String title;
+  String title;
   final String authorName;
-  final String summary;
+  String summary;
   final String date;
   final int minToRead; // Changed to int for easier calculation
-  final String content;
+  String content;
   final String image;
 
   Blog({

@@ -8,30 +8,7 @@ class AppData {
       title: "Software engineer",
       blogs: []);
   List<Blog> savedBlogs = [];
-
   bool loggedIn = false;
-
-  // Blog blog1 = Blog.create(
-  //   category: 'Technology',
-  //   title: 'The Rise of AI in Everyday Life',
-  //   summary:
-  //       'An exploration of how AI is being integrated into daily routines.',
-  //   content:
-  //       'Artificial Intelligence (AI) is becoming increasingly prevalent in various aspects of our lives...',
-  //   image: 'https://example.com/ai.jpg',
-  //   authorName: "loggedInUser",
-  // );
-
-  // Blog blog2 = Blog.create(
-  //   category: 'Health',
-  //   title: '10 Tips for a Healthier Lifestyle',
-  //   summary: 'Simple but effective tips to improve your overall health.',
-  //   content:
-  //       'Living a healthy lifestyle doesn’t have to be complicated. Here are ten simple tips...',
-  //   image: 'https://example.com/health.jpg',
-  //   authorName: "loggedInUser",
-  // );
-
   List<Blog> blogs = [
     Blog.create(
       category: 'Technology',
@@ -84,4 +61,10 @@ class AppData {
         summary: summary);
     blogs.add(blog);
   }
+
+  // void updateBlog(Blog blog) {
+  //   for (var blog in b) {
+      
+  //   }
+  // }
 }
