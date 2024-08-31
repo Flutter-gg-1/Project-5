@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:pro_5/page/edit_blog_page.dart';
 import 'package:pro_5/widget/blog_conatan_page/bold_title_widget.dart';
 import 'package:pro_5/widget/blog_conatan_page/socail_midea_icons.dart';
 import 'package:pro_5/widget/blog_conatan_page/text_blog_widget.dart';
@@ -39,7 +40,15 @@ class BlogContantPage extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+
+
+                return  const EditBlogPage()  ;
+                
+              },));
+            },
             icon: const Icon(
               FontAwesome.pencil_solid,
               color: Colors.white,

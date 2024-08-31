@@ -32,7 +32,7 @@ class LoginContinerWidget extends StatelessWidget {
                 const SizedBox(height:5 ,),
             const Padding(
               padding: EdgeInsets.only(right: 16),
-              child: TextfieldWidget(),
+              child: TextfieldWidget(hint: "Enter your username",),
             ),
             const SizedBox(height:20 ,),
             Text("Password",
@@ -42,7 +42,7 @@ class LoginContinerWidget extends StatelessWidget {
                 const SizedBox(height:5 ,),
             const Padding(
               padding: EdgeInsets.only(right: 16),
-              child: TextfieldWidget(),
+              child: TextfieldWidget(hint: "Enter your password",),
             ),
 
             

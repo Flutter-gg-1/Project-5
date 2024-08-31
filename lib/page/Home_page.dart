@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:pro_5/page/add_blog_page.dart';
 import 'package:pro_5/widget/home_page/blog_card_widget.dart';
 import 'package:pro_5/widget/home_page/blog_slider_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,12 +22,25 @@ class HomePage extends StatelessWidget {
             Icons.menu,
             color: Colors.white,
           ),
-          actions: const [
-            Icon(Icons.search, color: Colors.white),
-            Icon(
-              FontAwesome.plus_solid,
-              color: Colors.white,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search, color: Colors.white),
             ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+
+
+                  return  AddBlogPage()   ;
+                  
+                },));
+              },
+              icon: const Icon(
+                FontAwesome.plus_solid,
+                color: Colors.white,
+              ),
+            )
           ],
           bottom: TabBar(
             tabAlignment: TabAlignment.center,
@@ -107,9 +121,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-
-
-             const BlogCardWidget()
+              const BlogCardWidget()
             ],
           ),
         ),
@@ -117,4 +129,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
