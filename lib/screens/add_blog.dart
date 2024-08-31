@@ -140,7 +140,7 @@ class _AddBlogState extends State<AddBlog> {
 
                         GetIt.I.get<GetBlog>().addblog(BlogModel(
                             category: categories[value!],
-                            authorName: "authorName",
+                            authorName: GetIt.I.get<GetBlog>().currentUser.userName,
                             title: titleFieldController.text,
                             summary: summaryFieldController.text,
                             content: contetFieldController.text,

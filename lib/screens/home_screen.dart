@@ -1,3 +1,4 @@
+import 'package:blog_app/data_layer/get_blog.dart';
 import 'package:blog_app/helper/nav.dart';
 import 'package:blog_app/screens/add_blog.dart';
 import 'package:blog_app/screens/nav_tabs/explore_screen.dart';
@@ -5,6 +6,7 @@ import 'package:blog_app/screens/nav_tabs/fead_screen.dart';
 import 'package:blog_app/screens/nav_tabs/profile_screen.dart';
 import 'package:blog_app/screens/nav_tabs/saved_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,21 +27,24 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: currentPageIndex == 0
               ? AppBar(
                   actions: [
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                          onPressed: () {
-                            context.navToUpdate(const AddBlog(), () {
-                              setState(() {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HomeScreen()));
-                              });
-                            });
-                          },
-                          icon: const Icon(Icons.add)),
-                    )
+                    GetIt.I.get<GetBlog>().currentUser.userName.isNotEmpty
+                        ? Align(
+                            alignment: Alignment.centerRight,
+                            child: IconButton(
+                                onPressed: () {
+                                  context.navToUpdate(const AddBlog(), () {
+                                    setState(() {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HomeScreen()));
+                                    });
+                                  });
+                                },
+                                icon: const Icon(Icons.add)),
+                          )
+                        : const SizedBox()
                   ],
                   backgroundColor: const Color(0xff1e1e1e),
                   bottom: const TabBar(

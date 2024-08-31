@@ -139,10 +139,13 @@ class _LoginState extends State<LoginScreen> {
       required String username,
       required String password}) {
     if (formKey.currentState!.validate()) {
+      GetIt.I.get<GetBlog>().currentUser =
+          (UserModel(userName: username, password: password));
       GetIt.I
           .get<GetBlog>()
           .saveUser(UserModel(userName: username, password: password));
-      context.navTo(HomeScreen());
+
+      context.navTo(const HomeScreen());
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Loigin success')),
       );
