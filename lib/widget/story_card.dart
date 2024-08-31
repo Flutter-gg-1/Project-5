@@ -8,7 +8,9 @@ class StoryCard extends StatelessWidget {
     required this.title,
     required this.date,
     required this.min,
-    this.onTap, required this.bookMark, this.onPressed,
+    this.onTap,
+    required this.bookMark,
+    this.onPressed,
   });
   final String writer;
   final String title;
@@ -44,7 +46,7 @@ class StoryCard extends StatelessWidget {
               children: [
                 Text(
                     style: const TextStyle(color: Color(0xffB8B8B8)),
-                    "$date . $min to read"),
+                    "$date . $min mints to read"),
                 Row(
                   children: [
                     IconButton(

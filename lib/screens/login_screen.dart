@@ -3,7 +3,7 @@ import 'package:blog_app/helper/nav.dart';
 import 'package:blog_app/helper/screen.dart';
 import 'package:blog_app/model/user_model.dart';
 import 'package:blog_app/screens/home_screen.dart';
-import 'package:blog_app/widget/button/divider/custom_divider.dart';
+import 'package:blog_app/widget/button/divider/custom_line.dart';
 import 'package:blog_app/widget/button/login_button.dart';
 import 'package:blog_app/widget/button/textfield/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class _LoginState extends State<LoginScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const CustomDivider(),
+                                  const CustomLine(),
                                   TextButton(
                                       onPressed: () {
                                         context.navTo(const HomeScreen());
@@ -115,7 +115,7 @@ class _LoginState extends State<LoginScreen> {
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white),
                                           "Enter as guest")),
-                                  const CustomDivider(),
+                                  const CustomLine(),
                                 ],
                               )
                             ],

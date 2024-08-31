@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 1,
+        length: 5,
         child: Scaffold(
           drawer: const Drawer(),
           appBar: currentPageIndex == 0
@@ -51,7 +51,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     tabs: [
                       Tab(
                         child: Text("Tech"),
-                      )
+                      ),
+                      Tab(
+                        child: Text("AI"),
+                      ),
+                      Tab(
+                        child: Text("Cloud"),
+                      ),
+                      Tab(
+                        child: Text("Robot"),
+                      ),
+                      Tab(
+                        child: Text("Iot"),
+                      ),
                     ],
                     labelColor: Colors.white,
                     indicatorColor: Colors.red,

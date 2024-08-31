@@ -1,6 +1,7 @@
 import 'package:blog_app/data_layer/get_blog.dart';
 import 'package:blog_app/helper/screen.dart';
 import 'package:blog_app/model/blog_model.dart';
+import 'package:blog_app/widget/button/divider/custom_dvider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
@@ -21,9 +22,8 @@ class _ArticalScreenState extends State<ArticalScreen> {
           IconButton(
             icon: widget.blog.saved
                 ? const Icon(Icons.bookmark)
-                :const  Icon(Icons.bookmark_border),
+                : const Icon(Icons.bookmark_border),
             onPressed: () {
-              
               GetIt.I.get<GetBlog>().editBookMark(widget.blog);
 
               setState(() {});
@@ -50,9 +50,7 @@ class _ArticalScreenState extends State<ArticalScreen> {
                 height: context.getHight(value: .2),
                 child: const Placeholder(),
               ),
-              const Divider(
-                color: Colors.transparent,
-              ),
+const CustomDivider(),
               TextButton(
                   onPressed: () {},
                   child: Row(
@@ -81,18 +79,14 @@ class _ArticalScreenState extends State<ArticalScreen> {
                   Icon(Icons.link),
                 ],
               ),
-              const Divider(
-                color: Colors.transparent,
-                height: 30,
-              ),
+         const CustomDivider(height: 30),
+
               ListTile(
                 title: const Text("Summary"),
                 subtitle: Text(widget.blog.summary),
               ),
-              const Divider(
-                color: Colors.transparent,
-                height: 30,
-              ),
+                      const CustomDivider(height: 30),
+
               ListTile(
                 title: const Text("content"),
                 subtitle: Text(widget.blog.content),
@@ -104,3 +98,5 @@ class _ArticalScreenState extends State<ArticalScreen> {
     );
   }
 }
+
+
