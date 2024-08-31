@@ -8,12 +8,14 @@ class StoryCard extends StatelessWidget {
     required this.title,
     required this.date,
     required this.min,
-    this.onTap,
+    this.onTap, required this.bookMark, this.onPressed,
   });
   final String writer;
   final String title;
   final String date;
   final String min;
+  final Widget bookMark;
+  final void Function()? onPressed;
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -46,8 +48,8 @@ class StoryCard extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.bookmark_border),
+                      onPressed: onPressed,
+                      icon: bookMark,
                     ),
                     IconButton(
                         onPressed: () {}, icon: const Icon(Icons.more_vert)),

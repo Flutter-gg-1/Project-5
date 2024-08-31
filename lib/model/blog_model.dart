@@ -7,7 +7,7 @@ class BlogModel {
   late final String date;
   late final String minutesToRead;
   late final String imageSrc;
-  late final bool saved;
+  late bool saved;
 
   BlogModel({
     required this.category,

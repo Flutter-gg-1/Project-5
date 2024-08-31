@@ -38,7 +38,6 @@ class _FeedContetState extends State<FeedContet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      
       child: Column(
         children: [
           const HighLights(
@@ -60,30 +59,34 @@ class _FeedContetState extends State<FeedContet> {
               ),
             ),
           ),
-
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: GetIt.I.get<GetBlog>().blogs.length,
             itemBuilder: (context, index) {
               return StoryCard(
-                  onTap: () {
-                    context.navTo(const ArticalScreen());
-                  },
-                  writer: GetIt.I.get<GetBlog>().blogs[index].authorName,
-                  title: GetIt.I.get<GetBlog>().blogs[index].title,
-                  date: GetIt.I.get<GetBlog>().blogs[index].date,
-                  min: GetIt.I.get<GetBlog>().blogs[index].minutesToRead);
+                onTap: () {
+                  context.navTo(ArticalScreen(
+                    blog: GetIt.I.get<GetBlog>().blogs[index],
+                  ));
+                },
+                writer: GetIt.I.get<GetBlog>().blogs[index].authorName,
+                title: GetIt.I.get<GetBlog>().blogs[index].title,
+                date: GetIt.I.get<GetBlog>().blogs[index].date,
+                min: GetIt.I.get<GetBlog>().blogs[index].minutesToRead,
+                bookMark: GetIt.I.get<GetBlog>().blogs[index].saved
+                    ? const Icon(Icons.bookmark)
+                    : const Icon(Icons.bookmark_border),
+                onPressed: () {
+                  GetIt.I
+                      .get<GetBlog>()
+                      .editBookMark(GetIt.I.get<GetBlog>().blogs[index]);
+
+                  setState(() {});
+                },
+              );
             },
           )
-          // StoryCard(
-          //     onTap: () {
-          //       context.navTo(const ArticalScreen());
-          //     },
-          //     writer: "writer",
-          //     title: "title",
-          //     date: "Jul 13, 2023",
-          //     min: "2"),
         ],
       ),
     );

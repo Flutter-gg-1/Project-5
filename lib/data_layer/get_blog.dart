@@ -52,4 +52,13 @@ class GetBlog {
       currentUser = UserModel.fromJson(box.read("user"));
     }
   }
+
+  void editBookMark(BlogModel blog) {
+    for (BlogModel element in blogs) {
+      if (blog == element) {
+        element.saved = !element.saved;
+      }
+      saveBlog();
+    }
+  }
 }
