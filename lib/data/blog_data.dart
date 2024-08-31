@@ -1,18 +1,28 @@
+import 'package:blog_app/data/mock_data.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../models/post.dart';
 import '../models/user.dart';
 
 class BlogData {
-  List<Post> posts = [];
-  List<User> users = [];
+  List<Post> posts = mockPosts;
+  List<User> users = mockUsers;
   final box = GetStorage();
 
-  BlogData();
+  BlogData() {
+    loadInfo();
+  }
 
   addPost(Post post) {
     posts.add(post);
     savePost();
+  }
+
+  deletePost({required Post post,required User user}){
+    posts.remove(post);
+    user.posts.remove(post);
+    savePost();
+    saveUser();
   }
 
   addUser(User user) {
@@ -28,6 +38,7 @@ class BlogData {
     // await box.write('posts', listOfPosts);
   }
 
+
   saveUser() async {
     List<Map<String, dynamic>> listOfUsers = [];
     for (var user in users) {
@@ -36,17 +47,17 @@ class BlogData {
     // await box.write('users', listOfUsers);
   }
 
-  // loadInfo() async {
-  //   List<Map<String, dynamic>> listOfPosts =
-  //       List.from(await box.read('posts')).cast<Map<String, dynamic>>();
-  //   List<Map<String, dynamic>> listOfUsers =
-  //       List.from(await box.read('users')).cast<Map<String, dynamic>>();
+  loadInfo() async {
+    List<Map<String, dynamic>> listOfPosts =
+        List.from(await box.read('posts')).cast<Map<String, dynamic>>();
+    List<Map<String, dynamic>> listOfUsers =
+        List.from(await box.read('users')).cast<Map<String, dynamic>>();
 
-  //   for (var post in listOfPosts) {
-  //     posts.add(Post.fromJson(post));
-  //   }
-  //   for (var user in listOfUsers) {
-  //     users.add(User.fromJson(user));
-  //   }
-  // }
+    for (var post in listOfPosts) {
+      posts.add(Post.fromJson(post));
+    }
+    for (var user in listOfUsers) {
+      users.add(User.fromJson(user));
+    }
+  }
 }

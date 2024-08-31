@@ -69,7 +69,7 @@ class EditPostScreen extends StatelessWidget {
               CustomTextField(
                   controller: titleController,
                   hint: 'Enter your blog title',
-                  heightFactor: 14),
+                  ),
               const SizedBox(
                 height: 32,
               ),
@@ -83,7 +83,7 @@ class EditPostScreen extends StatelessWidget {
               CustomTextField(
                   controller: summaryController,
                   hint: 'Give a brief summary about your blog',
-                  heightFactor: 10.97),
+                 ),
               const SizedBox(
                 height: 32,
               ),
@@ -97,7 +97,7 @@ class EditPostScreen extends StatelessWidget {
               CustomTextField(
                   controller: contentController,
                   hint: 'write your blog here',
-                  heightFactor: 4.54),
+                  ),
               const SizedBox(
                 height: 32,
               ),
@@ -130,7 +130,7 @@ class EditPostScreen extends StatelessWidget {
               CustomTextField(
                   controller: minutesController,
                   hint: 'Minutes of reading this blog',
-                  heightFactor: 14),
+                  ),
             ],
           ),
         ),

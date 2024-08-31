@@ -1,5 +1,6 @@
+import 'dart:io';
+
 class Post {
-  // Image
   final String title;
   final String summary;
   final String content;
@@ -7,6 +8,7 @@ class Post {
   final int readingMinutes;
   final String author;
   final String dateCreated;
+  final File? image;
   final bool isSaved;
   Post({
     required this.title,
@@ -16,6 +18,7 @@ class Post {
     required this.readingMinutes,
     required this.author,
     required this.dateCreated,
+    this.image,
     this.isSaved = false
   });
 

@@ -1,7 +1,8 @@
 import 'package:blog_app/services/extensions/screen.dart';
+import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/styles/colours.dart';
 import 'package:flutter/material.dart';
-import '../data/test.dart';
+import '../data/blog_data.dart';
 import '../models/user.dart';
 import 'custom_post_tile.dart';
 
@@ -12,7 +13,6 @@ class TabBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> tabName = ['Tech', 'AI', 'Cloud', 'Robotics', 'IoT'];
     return SingleChildScrollView(
       child: Column(children: [
         Stack(
@@ -69,12 +69,12 @@ class TabBody extends StatelessWidget {
         ),
         Column(
           children: List.generate(
-            posts[tabName[tabIndex]]!.length,
+            locator.get<BlogData>().posts.length,
             (index) {
               return Column(
                 children: [
                   CustomPostTile(
-                    post: posts[tabName[tabIndex]]![index],
+                    post:  locator.get<BlogData>().posts[index],
                     user: user,
                   ),
                   const SizedBox(height: 12),

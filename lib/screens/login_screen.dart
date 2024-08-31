@@ -1,9 +1,12 @@
-import 'package:blog_app/data/test.dart';
+import 'package:blog_app/data/mock_data.dart';
 import 'package:blog_app/services/extensions/screen.dart';
+import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/styles/colours.dart';
 import 'package:blog_app/widgets/custom_navigation.dart';
 import 'package:blog_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+
+import '../data/blog_data.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -51,8 +54,6 @@ class LoginScreen extends StatelessWidget {
                     CustomTextField(
                       controller: nameController,
                       hint: 'Enter your username',
-                      heightFactor: 14,
-                      widthFactor: 1.24,
                     ),
                     const SizedBox(
                       height: 15,
@@ -65,8 +66,6 @@ class LoginScreen extends StatelessWidget {
                     CustomTextField(
                       controller: passwordController,
                       hint: 'Enter your password',
-                      heightFactor: 14,
-                      widthFactor: 1.24,
                     ),
                     Align(
                       alignment: Alignment.centerRight,
@@ -88,7 +87,8 @@ class LoginScreen extends StatelessWidget {
                                     const Color(0xffBDA6F5).withOpacity(0.71)),
                             onPressed: () {
                               if (key.currentState!.validate()) {
-                                for (var user in users['users']!) {
+                                for (var user
+                                    in locator.get<BlogData>().users) {
                                   if (user.username == nameController.text &&
                                       user.password ==
                                           passwordController.text) {

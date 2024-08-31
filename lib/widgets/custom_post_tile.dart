@@ -1,3 +1,5 @@
+import 'package:blog_app/data/blog_data.dart';
+import 'package:blog_app/screens/news_screen.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:flutter/material.dart';
 import '../models/post.dart';
@@ -19,13 +21,19 @@ class _CustomPostTileState extends State<CustomPostTile> {
   @override
   void initState() {
     isBookmarked =
-        widget.user != null && !widget.user!.saved.contains(widget.post);
+        widget.user != null && widget.user!.saved.contains(widget.post);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NewsScreen(post: widget.post)));
+      },
       tileColor: Colours.surfaceTertiary,
       title: Column(
         children: [
@@ -88,11 +96,11 @@ class _CustomPostTileState extends State<CustomPostTile> {
                           setState(() {
                             isBookmarked = !isBookmarked;
                             if (isBookmarked) {
-                              locator.get<User>().saved.add(widget.post);
                               widget.user!.saved.add(widget.post);
+                              locator.get<BlogData>().saveUser();
                             } else {
-                              locator.get<User>().saved.remove(widget.post);
                               widget.user!.saved.remove(widget.post);
+                              locator.get<BlogData>().saveUser();
                             }
                           });
                         } else {

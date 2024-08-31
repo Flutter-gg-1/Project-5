@@ -1,4 +1,4 @@
-import 'package:blog_app/data/test.dart';
+import 'package:blog_app/data/mock_data.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/widgets/custom_post_tile.dart';
 import 'package:flutter/material.dart';
@@ -32,14 +32,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   void updateResults(String word) {
     setState(() {
       search = word;
-    //   results = locator
-    //       .get<PostData>()
-    //       .posts
-    //       .expand((postList) => postList)
-    //       .where(
-    //           (post) => post.title.toLowerCase().contains(search.toLowerCase()))
-    //       .toList();
-    // 
+      results = locator.get<BlogData>().posts;
     }
     );
   }

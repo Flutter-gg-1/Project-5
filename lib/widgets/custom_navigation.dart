@@ -21,9 +21,9 @@ class _CustomNavigationState extends State<CustomNavigation> {
   void initState() {
     pages = [
     HomeScreen(user: widget.user),
-    ExploreScreen(),
-    SavedScreen(),
-    ProfileScreen()
+    ExploreScreen(user: widget.user),
+    SavedScreen(user: widget.user),
+    ProfileScreen(user: widget.user)
   ];
   pageIndex = 0;
     super.initState();

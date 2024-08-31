@@ -7,15 +7,11 @@ import '../styles/colours.dart';
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
-  final double heightFactor;
-  final double widthFactor;
   final bool isEditing;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hint,
-    required this.heightFactor,
-    this.widthFactor = 1.103,
     this.isEditing = false
   });
 
@@ -25,8 +21,6 @@ class CustomTextField extends StatelessWidget {
       padding: const EdgeInsets.only(top: 7),
       child: Container(
           padding: const EdgeInsets.all(12),
-          height: context.getHeight() / heightFactor,
-          width: context.getWidth() / widthFactor,
           color: Colours.chipPrimary,
           child: TextField(
             controller: controller,

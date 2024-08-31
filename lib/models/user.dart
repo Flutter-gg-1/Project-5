@@ -20,12 +20,8 @@ class User {
         username: json['username'],
         password: json['password'],
         position: json['position'],
-       posts: (json['posts'] as List<dynamic>)
-        .map((post) => Post.fromJson(post as Map<String, dynamic>))
-        .toList(),
-    saved: (json['saved'] as List<dynamic>)
-        .map((post) => Post.fromJson(post as Map<String, dynamic>))
-        .toList(),
+       posts: json['posts'],
+    saved: json['saved']
         )
         ;
   }
