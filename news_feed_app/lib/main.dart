@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_feed_app/login.dart';
+import 'package:news_feed_app/screens/login.dart';
 
 void main() {
   runApp(const MainApp());

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_feed_app/feed.dart';
+import 'package:news_feed_app/screens/feed.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -34,7 +34,7 @@ class Login extends StatelessWidget {
                         TextCOntainer(title: 'Password', hint: 'Enter your password',),
                         SizedBox(height: 5,),
                         Row(
-                        mainAxisAlignment: MainAxisAlignment.end, // Align to the right
+                        mainAxisAlignment: MainAxisAlignment.end, 
                         children: [
                            Text(
                             'Forget password?',
@@ -43,7 +43,7 @@ class Login extends StatelessWidget {
                         ],
                       ),                        
                       SizedBox(height: 30,),
-                        CustomButton(title: 'Login',),
+                        LoginButton(title: 'Login',),
                         SizedBox(height: 15,),
                        GuestEnter()
                       ],
@@ -97,8 +97,8 @@ class TextCOntainer extends StatelessWidget {
   }
 }
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.title});
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key, required this.title});
 
   final String title;
   @override
@@ -116,7 +116,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          Navigator.push(context,  MaterialPageRoute(builder: (context) => const FeedPage()));
+          Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => const FeedPage()));
         },
         child: const Text(
           'Login',
