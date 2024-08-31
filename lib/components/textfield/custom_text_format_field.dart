@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField(
+class CustomTextFormatField extends StatelessWidget {
+  const CustomTextFormatField(
       {super.key,
       required this.hintText,
       required this.controller,
       required this.minlines,
-      this.suffixIcon});
+      this.validator,
+      required this.obsecure});
   final String hintText;
   final TextEditingController controller;
   final int minlines;
-  final Widget? suffixIcon;
+  final String? Function(String?)? validator;
+  final bool obsecure;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      obscureText: obsecure,
+      validator: validator,
       style: const TextStyle(color: Colors.white),
       minLines: minlines,
-      maxLines: 20,
+      maxLines: minlines,
       controller: controller,
       decoration: InputDecoration(
-          prefixIcon: suffixIcon,
           isDense: true,
           filled: true,
           fillColor: const Color(0x12FFFFFF),

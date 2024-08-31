@@ -5,7 +5,7 @@ class LoginModel {
   });
 
   final String? loginName;
-  final bool? isLoggedIn;
+  bool? isLoggedIn;
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(

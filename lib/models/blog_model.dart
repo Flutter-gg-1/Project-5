@@ -1,13 +1,16 @@
 class BlogModel {
-  final String category;
+   String category;
   final String authorName;
-  final String title;
-  final String summary;
-  final String content;
-  final DateTime date;
-  final int minutesToRead;
+   String title;
+   String summary;
+   String content;
+   String date;
+   String minutesToRead;
+   bool? isFavorite;
+  final int id;
 
   BlogModel({
+    required this.id,
     required this.category,
     required this.authorName,
     required this.title,
@@ -15,28 +18,33 @@ class BlogModel {
     required this.content,
     required this.date,
     required this.minutesToRead,
+    required this.isFavorite,
   });
 
   factory BlogModel.fromJson(Map<String, dynamic> json) {
     return BlogModel(
+      id: json["id"],
+      isFavorite: json["isFavorite"],
       category: json['category'],
       authorName: json['authorName'],
       title: json['title'],
       summary: json['summary'],
       content: json['content'],
-      date: DateTime.parse(json['date']),
+      date: json['date'],
       minutesToRead: json['minutesToRead'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
+      'isFavorite': isFavorite,
       'category': category,
       'authorName': authorName,
       'title': title,
       'summary': summary,
       'content': content,
-      'date': date.toIso8601String(),
+      'date': date,
       'minutesToRead': minutesToRead,
     };
   }

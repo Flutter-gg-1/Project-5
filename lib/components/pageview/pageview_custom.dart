@@ -38,7 +38,6 @@ class PageviewCustom extends StatelessWidget {
               Icons.arrow_outward_sharp,
               color: Colors.white,
             )),
-        Positioned(top: 10, left: 145, child: Image.asset("assets/Frame.png"))
       ],
     );
   }
