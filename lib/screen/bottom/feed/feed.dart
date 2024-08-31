@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/all_file.dart';
+import '../../../core/all_file.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
@@ -36,9 +36,9 @@ class FeedScreen extends StatelessWidget {
                   3,
                   (index) => Column(
                     children: [
-                      MyContainer(
-                        width: context.getWidthScreen(width: 0.96),
-                        height: context.getHeightScreen(height: 0.2),
+                      const MyContainerBlog(
+                        text: 'example',
+                        imagePath: 'assets/1.png',
                       ),
                       SizedBox(height: context.getHeightScreen(height: 0.02)),
                     ],
