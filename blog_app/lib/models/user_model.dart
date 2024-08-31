@@ -1,14 +1,19 @@
+import 'package:blog_app/models/post_model.dart';
+
 class UserModel {
   late String userName;
-  String? position;
+  late String position;
   late String password;
-  String? avatar = "assets/avatar_holder.png";
+  String? avatar;
+  List<PostModel>? posts;
+  List<PostModel>? savedPostes;
 
   UserModel(
       {required this.userName,
-      this.position,
+      required this.position,
       required this.password,
-      this.avatar});
+      required this.avatar,
+      this.posts});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     userName = json['userName'];

@@ -5,7 +5,7 @@ import 'package:blog_app/data/post_data.dart';
 import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/models/post_model.dart';
 import 'package:blog_app/widgets/fields/info_feild.dart';
-import 'package:blog_app/widgets/selectable_box.dart';
+import 'package:blog_app/widgets/buttons/selectable_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -56,6 +56,8 @@ class _AddScreenState extends State<AddScreen> {
               onPressed: () {
                 GetIt.I.get<PostData>().addPost(
                     newPost: PostModel(
+                        userAvatar:
+                            GetIt.I.get<UserData>().users.first.avatar ?? "",
                         image: selectedImage?.path ?? "assets/img_holder.png",
                         id: Random().nextInt(9999).toString(),
                         title: titleController.text,
@@ -103,7 +105,7 @@ class _AddScreenState extends State<AddScreen> {
                             image: selectedImage == null
                                 ? const AssetImage("assets/add 1.png")
                                 : FileImage(File(selectedImage!.path))),
-                        color: const Color.fromARGB(12, 255, 255, 255),
+                        color: const Color.fromARGB(255, 60, 60, 60),
                         borderRadius: BorderRadius.circular(10)),
                   ),
                   onTap: () {

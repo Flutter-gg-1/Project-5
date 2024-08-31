@@ -22,7 +22,7 @@ class NewsScreen extends StatelessWidget {
     required this.min,
     required this.date,
     required this.category,
-    this.userAvatar,
+    this.userAvatar = "assets/avatar_holder.png",
   });
 
   @override

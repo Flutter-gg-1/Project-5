@@ -1,6 +1,6 @@
 class PostModel {
   late final String id;
-  String? image;
+  late String? image;
   late final String title;
   late final String summary;
   late final String content;
@@ -8,7 +8,8 @@ class PostModel {
   late final String minutes;
   late final String date;
   late final String auther;
-  late final String? userAvatar;
+  late final String userAvatar;
+  bool? saved;
 
   PostModel(
       {this.image = "assets/img_holder.png",
@@ -20,7 +21,8 @@ class PostModel {
       required this.minutes,
       required this.date,
       required this.auther,
-      this.userAvatar});
+      required this.userAvatar,
+      this.saved = false});
 
   PostModel.fromJson(Map<String, dynamic> json) {
     image = json['image'];

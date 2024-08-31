@@ -3,8 +3,8 @@ import 'package:blog_app/data/post_data.dart';
 import 'package:blog_app/screens/add_screen.dart';
 import 'package:blog_app/screens/news_screen.dart';
 import 'package:blog_app/services/setup.dart';
-import 'package:blog_app/widgets/post_widget.dart';
-import 'package:blog_app/widgets/home_widget.dart';
+import 'package:blog_app/widgets/cards/post_widget.dart';
+import 'package:blog_app/widgets/cards/home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -89,6 +89,12 @@ class _FeedScreenState extends State<FeedScreen> {
                       .get<PostData>()
                       .allPostes
                       .map((e) => PostWidget(
+                          onSave: () {
+                            GetIt.I.get<PostData>().addToSaved(id: e.id);
+
+                            setState(() {});
+                          },
+                          isSevd: e.saved,
                           image: e.image,
                           title: e.title,
                           subTitle: e.auther,

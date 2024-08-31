@@ -48,7 +48,7 @@ class InfoFeild extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   borderSide: BorderSide.none),
               filled: true,
-              fillColor: const Color.fromARGB(12, 255, 255, 255)),
+              fillColor: const Color.fromARGB(255, 60, 60, 60)),
         ),
       ],
     );
