@@ -1,8 +1,10 @@
+import 'package:blog_app/data_layer/get_blog.dart';
 import 'package:blog_app/helper/setup.dart';
 import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/login_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:device_preview/device_preview.dart';
 
@@ -11,7 +13,6 @@ void main() async {
 
   await GetStorage.init();
   await setup();
-
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -26,12 +27,12 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       theme: ThemeData.dark(
         useMaterial3: true,
       ),
-      // home:const LoginScreen()
-      home: const HomeScreen(),
+      home: GetIt.I.get<GetBlog>().currentUser.userName.isEmpty
+          ? const LoginScreen()
+          : const HomeScreen(),
     );
   }
 }

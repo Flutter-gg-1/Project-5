@@ -9,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.obscure = false,
     required this.hintText,
-    this.maxLines,
+    this.maxLines = 1,
   });
 
   final TextEditingController userTextcontroller;

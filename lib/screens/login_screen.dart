@@ -1,8 +1,13 @@
+import 'package:blog_app/data_layer/get_blog.dart';
+import 'package:blog_app/helper/nav.dart';
 import 'package:blog_app/helper/screen.dart';
+import 'package:blog_app/model/user_model.dart';
+import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/widget/button/divider/custom_divider.dart';
 import 'package:blog_app/widget/button/login_button.dart';
 import 'package:blog_app/widget/button/textfield/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -89,7 +94,11 @@ class _LoginState extends State<LoginScreen> {
                               ),
                               LoginButton(
                                 onPressed: () {
-                                  validateLogin(formKey, context);
+                                  validateLogin(
+                                      formKey: formKey,
+                                      context: context,
+                                      password: passTextcontroller.text,
+                                      username: userTextcontroller.text);
                                 },
                               ),
 
@@ -98,7 +107,9 @@ class _LoginState extends State<LoginScreen> {
                                 children: [
                                   const CustomDivider(),
                                   TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context.navTo(const HomeScreen());
+                                      },
                                       child: const Text(
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
@@ -122,10 +133,18 @@ class _LoginState extends State<LoginScreen> {
     );
   }
 
-  void validateLogin(GlobalKey<FormState> formKey, BuildContext context) {
+  void validateLogin(
+      {required GlobalKey<FormState> formKey,
+      required BuildContext context,
+      required String username,
+      required String password}) {
     if (formKey.currentState!.validate()) {
+      GetIt.I
+          .get<GetBlog>()
+          .saveUser(UserModel(userName: username, password: password));
+      context.navTo(HomeScreen());
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Processing Data')),
+        const SnackBar(content: Text('Loigin success')),
       );
     } else {
       showDialog<String>(

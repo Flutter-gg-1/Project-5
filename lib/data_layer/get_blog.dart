@@ -1,20 +1,22 @@
 import 'package:blog_app/model/blog_model.dart';
+import 'package:blog_app/model/user_model.dart';
 import 'package:get_storage/get_storage.dart';
 
 class GetBlog {
   List<BlogModel> blogs = [];
-
+  UserModel currentUser = UserModel(password: "", userName: "");
   GetBlog() {
     loadblog();
+    loadUser();
   }
   final box = GetStorage();
 
   void addblog(BlogModel blog) {
     blogs.add(blog);
-    saveTweat();
+    saveBlog();
   }
 
-  void saveTweat() {
+  void saveBlog() {
     List<Map<String, dynamic>> map = [];
     for (BlogModel tweat in blogs) {
       map.add(tweat.toJson());
@@ -39,5 +41,15 @@ class GetBlog {
       map.add(blog.toJson());
     }
     box.write("blog", map);
+  }
+
+  void saveUser(UserModel user) {
+    box.write("user", user);
+  }
+
+  void loadUser() {
+    if (box.hasData("user")) {
+      currentUser = UserModel.fromJson(box.read("user"));
+    }
   }
 }

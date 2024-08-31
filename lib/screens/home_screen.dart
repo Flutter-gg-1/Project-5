@@ -31,8 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             context.navToUpdate(const AddBlog(), () {
                               setState(() {
-                                Navigator.pop(context);
-                                context.navTo(const HomeScreen());
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomeScreen()));
                               });
                             });
                           },
