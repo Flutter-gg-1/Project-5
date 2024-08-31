@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../core/all_file.dart';
 
 class NewPost extends StatelessWidget {
@@ -38,7 +39,9 @@ class NewPost extends StatelessWidget {
                   height: context.getWidthScreen(width: 0.4),
                   width: context.getWidthScreen(width: 0.9),
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ImagePicker().pickImage(source: ImageSource.gallery);
+                      },
                       icon: const Icon(
                         Icons.add,
                         size: 70,
@@ -101,7 +104,7 @@ class NewPost extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: context.getWidthScreen(width: 0.04)),
+                SizedBox(height: context.getWidthScreen(width: 0.05)),
                 RichText(
                     text: const TextSpan(children: [
                   TextSpan(

@@ -52,19 +52,19 @@ class HomScreen extends StatelessWidget {
                     height: context.getHeightScreen(height: 0.05),
                     width: context.getWidthScreen(width: 0.5),
                     child: MaterialButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const MainScreen()));
-                      },
+                      onPressed: () {},
                       color: MyColors.pinkColor,
                       child: const Text('Login'),
                     ),
                   ),
                   SizedBox(height: context.getHeightScreen(height: 0.01)),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MainScreen()));
+                      },
                       child: RichText(
                           text: const TextSpan(
                         children: [
