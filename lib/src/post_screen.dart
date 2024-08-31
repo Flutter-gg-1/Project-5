@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:blog_app/data_layer/blog_data.dart';
 import 'package:blog_app/extension/size_config.dart';
@@ -46,6 +47,7 @@ class _PostScreenState extends State<PostScreen> {
                     contentController.text.isNotEmpty &&
                     readingMinController.text.isNotEmpty) {
                   GetIt.I.get<BlogData>().blogs.add(BlogModel(
+                      id: Random().nextInt(999999)+999,
                       category: categoryType,
                       title: titleController.text,
                       writer: 'writer',

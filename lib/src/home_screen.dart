@@ -106,6 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
             .blogs
             .map((e) => e.category == tabName
                 ? BlogCard(
+                  id: e.id,
                     writer: e.writer,
                     title: e.title,
                     timeToRead: e.time,

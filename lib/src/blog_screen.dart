@@ -1,3 +1,4 @@
+import 'package:blog_app/src/blog_editor_screen.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -5,7 +6,7 @@ import 'package:icons_plus/icons_plus.dart';
 class BlogScreen extends StatefulWidget {
   final String category, title, writer, time, date, summary, content;
   final bool isFaveiorte;
-
+  final int id;
   const BlogScreen(
       {super.key,
       required this.category,
@@ -15,7 +16,8 @@ class BlogScreen extends StatefulWidget {
       required this.date,
       required this.summary,
       required this.content,
-      required this.isFaveiorte});
+      required this.isFaveiorte,
+      required this.id});
 
   @override
   State<BlogScreen> createState() => _BlogScreenState();
@@ -29,15 +31,24 @@ class _BlogScreenState extends State<BlogScreen> {
         actions: [
           TextButton(onPressed: () {}, child: const CustomText(text: 'Aa')),
           IconButton(
-              onPressed: (){},
-              icon:widget.isFaveiorte
+              onPressed: () {},
+              icon: widget.isFaveiorte
                   ? const Icon(
                       Icons.bookmark,
                       color: Colors.white,
                     )
                   : const Icon(Icons.bookmark_outline)),
           IconButton(
-              onPressed: () {}, icon: const Icon(Icons.edit_outlined)),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlogEditorScreen(
+                        title: widget.title,
+                        summary: widget.summary,
+                        content: widget.content,
+                        id: widget.id),
+                  )),
+              icon: const Icon(Icons.edit_outlined)),
         ],
       ),
       body: SafeArea(

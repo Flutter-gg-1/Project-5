@@ -1,4 +1,5 @@
 class BlogModel {
+  late final int id;
   late final String category;
   late final String title;
   late final String writer;
@@ -16,7 +17,8 @@ class BlogModel {
       required this.summary,
       required this.content,
       required this.creationDate,
-      required this.isFaveiorte
+      required this.isFaveiorte,
+      required this.id,
       });
 
   BlogModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class BlogModel {
     content = json['content'];
     creationDate = json['creationDate'];
     isFaveiorte = json['isFaveiorte'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +43,7 @@ class BlogModel {
     data['content'] = content;
     data['creationDate'] = creationDate;
     data['isFaveiorte'] = isFaveiorte;
+    data['id'] = id;
     return data;
   }
 }

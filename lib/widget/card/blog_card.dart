@@ -11,6 +11,7 @@ class BlogCard extends StatelessWidget {
       summary,
       content;
   final bool isFaveiorte;
+  final int id;
   final Function()? onPressedBookMark;
   const BlogCard({
     super.key,
@@ -23,6 +24,7 @@ class BlogCard extends StatelessWidget {
     required this.category,
     required this.summary,
     required this.content,
+    required this.id,
   });
 
   @override
@@ -32,14 +34,16 @@ class BlogCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => BlogScreen(
-                category: category,
-                title: title,
-                writer: writer,
-                time: timeToRead,
-                date: creationDate,
-                summary: summary,
-                content: content,
-                isFaveiorte: isFaveiorte,),
+              id: id,
+              category: category,
+              title: title,
+              writer: writer,
+              time: timeToRead,
+              date: creationDate,
+              summary: summary,
+              content: content,
+              isFaveiorte: isFaveiorte,
+            ),
           )),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10),

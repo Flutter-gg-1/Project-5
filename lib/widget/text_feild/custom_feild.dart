@@ -10,11 +10,13 @@ class CustomTextFeild extends StatelessWidget {
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final EdgeInsetsGeometry? padding;
+  final String? initialValue;
+  final Function(String)? onChanged;
   const CustomTextFeild({
     super.key,
     required this.hintText,
     required this.maxLines,
-    this.controller, this.validator, this.keyboardType, this.inputFormatters, this.padding,
+    this.controller, this.validator, this.keyboardType, this.inputFormatters, this.padding, this.initialValue, this.onChanged,
   });
 
   @override
@@ -29,6 +31,8 @@ class CustomTextFeild extends StatelessWidget {
         controller: controller,
         minLines: maxLines,
         maxLines: maxLines,
+        initialValue: initialValue,
+        onChanged: onChanged,
         decoration: InputDecoration(
             hintText: hintText,
             hintStyle: const TextStyle(fontSize: 14, color: Color(0xffb8b8b8)),
