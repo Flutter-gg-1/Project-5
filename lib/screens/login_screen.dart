@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:blog_app/data_layer/user_data.dart';
 import 'package:blog_app/helper/extension/color_ext.dart';
 import 'package:blog_app/helper/extension/nav.dart';
 import 'package:blog_app/models/user_model.dart';
-import 'package:blog_app/screens/home_screen.dart';
+import 'package:blog_app/screens/button_nav_bar.dart';
+import 'package:blog_app/services/user_services/user_services.dart';
 import 'package:blog_app/widgets/buttons/custom_button.dart';
 import 'package:blog_app/widgets/cards/login_card.dart';
 import 'package:blog_app/widgets/text_felid/custom_text_felid.dart';
@@ -71,14 +74,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         passwordController!.text.isNotEmpty) {
                       UserModel newUser = UserModel(
                         userName: usernameController!.text,
+                        id: Random().nextInt(999),
                       );
                       GetIt.I.get<UserData>().addNewUser(username: newUser);
-                      context.push(screen: const HomeScreen());
+                      GetIt.I
+                          .get<UserService>()
+                          .setUserName(usernameController!.text);
+
+                      context.push(screen: const ButtonNavBar());
                     }
                   },
                 ),
                 onTapGuest: () {
-                  context.push(screen: const HomeScreen());
+                  GetIt.I.get<UserService>().setUserName(null); 
+                  context.push(screen: const ButtonNavBar());
                 },
               )
             ],

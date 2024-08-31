@@ -1,5 +1,4 @@
 import 'package:blog_app/helper/extension/color_ext.dart';
-import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/widgets/buttons/custom_button.dart';
 import 'package:blog_app/widgets/text_felid/custom_text_felid.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +37,10 @@ class LoginCard extends StatelessWidget {
             child: Text(
               "forget password",
               style: GoogleFonts.inter(
-                  fontSize: 11,
-                  color: ColorExt.violet,
-                  fontWeight: FontWeight.w500),
+                fontSize: 11,
+                color: ColorExt.violet,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           customButton,
@@ -55,17 +55,17 @@ class LoginCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-               GestureDetector(
-                  onTap: onTapGuest,
-                  child: Text(
-                    "Enter as a guest",
-                    style: GoogleFonts.inter(
-                      fontSize: 12,
-                      color: ColorExt.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+              GestureDetector(
+                onTap: onTapGuest,
+                child: Text(
+                  "Enter as a guest",
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    color: ColorExt.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
               const SizedBox(width: 8),
               const SizedBox(
                 width: 32,

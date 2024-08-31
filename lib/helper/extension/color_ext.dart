@@ -8,4 +8,7 @@ extension ColorExt on Color {
   static Color get red => const Color(0xffDD403C);
   static Color get white => const Color(0xffFFFFFF);
   static Color get textField => const Color(0x1fFFFFFF);
+  static Color get bottomBar => const Color(0xCF111111);
+  static Color get greyOpc => const Color(0xFF595959);
+
 }
