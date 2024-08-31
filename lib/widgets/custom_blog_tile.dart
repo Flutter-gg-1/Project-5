@@ -1,8 +1,6 @@
 import 'package:blog_app/models/user.dart';
-import 'package:blog_app/services/setup.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import '../data/blog_data.dart';
 import '../styles/colours.dart';
 
 class CustomBlogTile extends StatelessWidget {
@@ -26,7 +24,11 @@ class CustomBlogTile extends StatelessWidget {
       leading: Container(
         height: 62,
         width: 80,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), image: DecorationImage(image: AssetImage(user.posts[index].image ?? 'assets/images/default.png'))),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+                image: AssetImage(
+                    user.posts[index].image ?? 'assets/images/default.png'))),
       ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

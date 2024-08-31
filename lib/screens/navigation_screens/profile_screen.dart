@@ -105,7 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => NewsScreen(
-                                                user: widget.user,
+                                                  user: widget.user,
                                                   post: widget.user!
                                                       .posts[index]))).then(
                                           (value) {
@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       EditPostScreen(
-                                                        user: widget.user!,
+                                                          user: widget.user!,
                                                           post: widget.user!
                                                               .posts[index])))
                                           .then((value) {

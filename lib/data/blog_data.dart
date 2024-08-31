@@ -1,5 +1,4 @@
 import 'package:get_storage/get_storage.dart';
-
 import '../models/post.dart';
 import '../models/user.dart';
 
@@ -19,19 +18,18 @@ class BlogData {
     saveUser();
   }
 
-  deletePost({required Post post,required User user}){
+  deletePost({required Post post, required User user}) {
     posts.remove(post);
     user.posts.remove(post);
     savePost();
     saveUser();
   }
 
-  updatePost(Post oldPost, Post newPost){
+  updatePost(Post oldPost, Post newPost) {
     oldPost = newPost;
     savePost();
     saveUser();
-    }
-  
+  }
 
   addUser(User user) {
     users.add(user);

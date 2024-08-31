@@ -32,9 +32,8 @@ class _CustomPostTileState extends State<CustomPostTile> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => NewsScreen(
-                  user: widget.user,
-                  post: widget.post)));
+                builder: (context) =>
+                    NewsScreen(user: widget.user, post: widget.post)));
       },
       tileColor: Colours.surfaceTertiary,
       title: Column(
@@ -46,8 +45,9 @@ class _CustomPostTileState extends State<CustomPostTile> {
                 width: 80,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    image:  DecorationImage(
-                        image: AssetImage(widget.post.image ?? 'assets/images/default.png'),
+                    image: DecorationImage(
+                        image: AssetImage(
+                            widget.post.image ?? 'assets/images/default.png'),
                         fit: BoxFit.contain)),
               ),
               const SizedBox(

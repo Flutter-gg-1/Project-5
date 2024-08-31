@@ -1,4 +1,3 @@
-import 'package:blog_app/services/setup.dart';
 import 'package:flutter/material.dart';
 import '../../models/user.dart';
 import '../../styles/colours.dart';
@@ -27,7 +26,7 @@ class _SavedScreenState extends State<SavedScreen> {
                 fontWeight: FontWeight.bold,
                 color: Colours.textPrimary),
           ),
-          SizedBox(height: 45,),
+          const SizedBox(height: 45,),
           if (widget.user != null)
             if (widget.user!.saved.isNotEmpty)
               Expanded(

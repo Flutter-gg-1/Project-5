@@ -1,4 +1,3 @@
-import 'package:blog_app/data/mock_data.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/widgets/custom_post_tile.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +78,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               },
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 45,
           ),
           if (search.isNotEmpty)
@@ -95,7 +94,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 children: [
                                   CustomPostTile(
                                       post: results[index], user: user),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   )
                                 ],

@@ -1,4 +1,3 @@
-import 'package:blog_app/data/mock_data.dart';
 import 'package:blog_app/services/extensions/screen.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/styles/colours.dart';

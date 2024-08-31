@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-
-import 'package:blog_app/services/extensions/screen.dart';
-
 import '../styles/colours.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final bool isEditing;
-  const CustomTextField({
-    super.key,
-    required this.controller,
-    required this.hint,
-    this.isEditing = false
-  });
+  const CustomTextField(
+      {super.key,
+      required this.controller,
+      required this.hint,
+      this.isEditing = false});
 
   @override
   Widget build(BuildContext context) {

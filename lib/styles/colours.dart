@@ -26,5 +26,5 @@ class Colours {
   static const Color surfacePrimary = Color(0xff111111);
   static const Color surfaceSecondary = Color(0xff181818);
   static const Color surfaceTertiary = Color(0xff1e1e1e);
-  static  Color surfaceNavBar = const Color(0xff111111).withOpacity(0.84);
+  static Color surfaceNavBar = const Color(0xff111111).withOpacity(0.84);
 }

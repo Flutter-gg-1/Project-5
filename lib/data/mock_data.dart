@@ -12,7 +12,7 @@ List<Post> mockPosts = [
     'readingMinutes': 2,
     'author': 'Ahmed',
     'date_created': 'Aug 13, 2023',
-    'image' : 'assets/images/1.png'
+    'image': 'assets/images/1.png'
   }),
   Post.fromJson({
     'title': 'WatchOS 10 preview: widgets all the way down',
@@ -24,7 +24,7 @@ List<Post> mockPosts = [
     'readingMinutes': 3,
     'author': 'Fahad',
     'date_created': 'Jul 25, 2023',
-    'image' : 'assets/images/2.png'
+    'image': 'assets/images/2.png'
   }),
   Post.fromJson({
     'title': 'How Gen Z are disrupting the definition of ‘prestigious’ jobs',
@@ -36,7 +36,7 @@ List<Post> mockPosts = [
     'readingMinutes': 5,
     'author': 'Abdulaziz',
     'date_created': 'May 3, 2023',
-    'image' : 'assets/images/3.png'
+    'image': 'assets/images/3.png'
   }),
   Post.fromJson({
     'title': 'Now Google’s Bard AI can talk & respond to visual prompts',
@@ -48,7 +48,7 @@ List<Post> mockPosts = [
     'readingMinutes': 2,
     'author': 'Ahmed',
     'date_created': 'Aug 13, 2023',
-    'image' : 'assets/images/1.png'
+    'image': 'assets/images/1.png'
   }),
   Post.fromJson({
     'title': 'WatchOS 10 preview: widgets all the way down',
@@ -60,7 +60,7 @@ List<Post> mockPosts = [
     'readingMinutes': 3,
     'author': 'Fahad',
     'date_created': 'Jul 25, 2023',
-    'image' : 'assets/images/2.png'
+    'image': 'assets/images/2.png'
   }),
   Post.fromJson({
     'title': 'How Gen Z are disrupting the definition of ‘prestigious’ jobs',
@@ -72,7 +72,7 @@ List<Post> mockPosts = [
     'readingMinutes': 5,
     'author': 'Abdulaziz',
     'date_created': 'May 3, 2023',
-    'image' : 'assets/images/3.png'
+    'image': 'assets/images/3.png'
   }),
   Post.fromJson({
     'title': 'Advancements in AI: The Rise of Generative Models',
@@ -84,7 +84,7 @@ List<Post> mockPosts = [
     'readingMinutes': 4,
     'author': 'Jessica',
     'date_created': 'Aug 25, 2023',
-    'image' : 'assets/images/4.png'
+    'image': 'assets/images/4.png'
   }),
   Post.fromJson({
     'title': 'Ethical Considerations in AI Development',
@@ -96,7 +96,7 @@ List<Post> mockPosts = [
     'readingMinutes': 5,
     'author': 'Mark',
     'date_created': 'Sep 10, 2023',
-    'image' : 'assets/images/5.png'
+    'image': 'assets/images/5.png'
   }),
   Post.fromJson({
     'title': 'The Future of Cloud Computing: Trends and Predictions',
@@ -108,7 +108,7 @@ List<Post> mockPosts = [
     'readingMinutes': 4,
     'author': 'Samantha',
     'date_created': 'Jul 19, 2023',
-    'image' : 'assets/images/6.png'
+    'image': 'assets/images/6.png'
   }),
   Post.fromJson({
     'title': 'Cloud Migration: Best Practices for a Smooth Transition',
@@ -120,7 +120,7 @@ List<Post> mockPosts = [
     'readingMinutes': 5,
     'author': 'Oliver',
     'date_created': 'Aug 30, 2023',
-    'image' : 'assets/images/7.png'
+    'image': 'assets/images/7.png'
   }),
   Post.fromJson({
     'title': 'The Evolution of Robotics: From Industrial to Service Robots',
@@ -132,7 +132,7 @@ List<Post> mockPosts = [
     'readingMinutes': 4,
     'author': 'Laura',
     'date_created': 'Jun 15, 2023',
-    'image' : 'assets/images/8.png'
+    'image': 'assets/images/8.png'
   }),
   Post.fromJson({
     'title': 'The Impact of Robotics on Manufacturing Efficiency',
@@ -144,7 +144,7 @@ List<Post> mockPosts = [
     'readingMinutes': 5,
     'author': 'Ethan',
     'date_created': 'Aug 5, 2023',
-    'image' : 'assets/images/9.png'
+    'image': 'assets/images/9.png'
   }),
   Post.fromJson({
     'title': 'The Rise of IoT: Connecting Devices for a Smarter World',
@@ -156,7 +156,7 @@ List<Post> mockPosts = [
     'readingMinutes': 4,
     'author': 'Nina',
     'date_created': 'Jul 22, 2023',
-    'image' : 'assets/images/10.png'
+    'image': 'assets/images/10.png'
   }),
   Post.fromJson({
     'title': 'Securing IoT Devices: Challenges and Solutions',
@@ -168,7 +168,7 @@ List<Post> mockPosts = [
     'readingMinutes': 5,
     'author': 'Liam',
     'date_created': 'Aug 12, 2023',
-    'image' : 'assets/images/default.png'
+    'image': 'assets/images/default.png'
   }),
 ];
 
@@ -184,7 +184,7 @@ List<User> mockUsers = [
     'username': 'Fahad',
     'password': 'fahad',
     'position': 'Software Engineer',
-   'posts': mockPosts.where((post) => post.author == 'Fahad').toList(),
+    'posts': mockPosts.where((post) => post.author == 'Fahad').toList(),
     'saved': <Post>[]
   }),
   User.fromJson({
@@ -205,7 +205,8 @@ List<User> mockUsers = [
     'username': 'Ethan',
     'password': 'ethan',
     'position': 'Cloud Engineer',
-'posts': mockPosts.where((post) => post.author == 'Ethan').toList(),    'saved': <Post>[]
+    'posts': mockPosts.where((post) => post.author == 'Ethan').toList(),
+    'saved': <Post>[]
   }),
   User.fromJson({
     'username': 'Olivia',

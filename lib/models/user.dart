@@ -20,10 +20,8 @@ class User {
         username: json['username'],
         password: json['password'],
         position: json['position'],
-       posts: json['posts'],
-    saved: json['saved']
-        )
-        ;
+        posts: json['posts'],
+        saved: json['saved']);
   }
 
   toJson() {
@@ -32,7 +30,7 @@ class User {
       'password': password,
       'position': position,
       'posts': posts,
-      'saved' : saved
+      'saved': saved
     };
   }
 }

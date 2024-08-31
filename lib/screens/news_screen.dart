@@ -90,10 +90,11 @@ class _NewsScreenState extends State<NewsScreen> {
                 Container(
                   height: context.getHeight() / 3.25,
                   width: context.getWidth(),
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage(widget.post.image ?? 'assets/images/default.png'))),
+                          image: AssetImage(widget.post.image ??
+                              'assets/images/default.png'))),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20),
@@ -103,11 +104,15 @@ class _NewsScreenState extends State<NewsScreen> {
                       Row(
                         children: [
                           Image.asset('assets/images/cat.png'),
-                          SizedBox(width: 8,),
+                          const SizedBox(
+                            width: 8,
+                          ),
                           Text(
                             widget.post.category.toUpperCase(),
                             style: const TextStyle(
-                                fontSize: 14, color: Colours.accentPurple, fontWeight: FontWeight.bold),
+                                fontSize: 14,
+                                color: Colours.accentPurple,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
