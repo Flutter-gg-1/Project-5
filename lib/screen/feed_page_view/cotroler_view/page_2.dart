@@ -6,24 +6,15 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: MyColors.whiteTextColor,
       body: Column(
         children: [
-          SizedBox(height: 100),
-          Image(
-            image: AssetImage('assets/images/intro/int2.png'),
-            // width: getScreenSize(context).width / 2 + 150,
+          const SizedBox(height: 100),
+          Container(
+            color: MyColors.pinkColor,
           ),
-          SizedBox(height: 30),
-          Text(
-            'We have a special discount for the disabled',
-            style: TextStyle(
-                // fontSize: getScreenSize(context).width / 20,
-                ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
         ],
       ),
     );

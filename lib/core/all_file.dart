@@ -13,4 +13,5 @@ export '../screen/bottom/feed.dart';
 export '../screen/bottom/saved.dart';
 export '../screen/bottom/explore.dart';
 export '../screen/bottom/profile.dart';
+export '../screen/feed_page_view/views/view_widget.dart';
 export '../blog/new_post.dart';
