@@ -62,9 +62,7 @@ class _AddBlogScreenState extends State<AddBlogScreen> {
                       date: DateFormat('MMM d, yyyy').format(DateTime.now()),
                     ));
                 Navigator.pop(context);
-                setState(() {
-                  //print(getIt.get<BlogData>().blogList);
-                });
+                setState(() {});
               },
               child: const Text(
                 'Save',
@@ -144,7 +142,7 @@ class AddBlogCustom extends StatelessWidget {
   final TextEditingController? controllerContent;
   final TextEditingController? controllerTime;
 
-  String? categoryType;
+  String categoryType = '';
 
   @override
   Widget build(BuildContext context) {

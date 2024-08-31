@@ -3,8 +3,14 @@ import 'package:blog_app_project/widgets/custom_textformfield.dart';
 import 'package:flutter/material.dart';
 
 class UpdateBlogScreen extends StatelessWidget {
-  const UpdateBlogScreen({super.key});
-
+  const UpdateBlogScreen(
+      {super.key,
+      required this.content,
+      required this.summary,
+      required this.title});
+  final String content;
+  final String summary;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,90 +25,107 @@ class UpdateBlogScreen extends StatelessWidget {
           TextButton(
               onPressed: () {},
               child: const Text(
-                'Save',
+                'Post',
                 style: TextStyle(color: Colors.white),
               ))
         ],
       ),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
+        child: SingleChildScrollView(
+          child: Column(children: [
+            CustomeUpdateBlog(
+              title: title,
+              content: content,
+              summary: summary,
+            )
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomeUpdateBlog extends StatelessWidget {
+  const CustomeUpdateBlog({
+    super.key,
+    required this.content,
+    required this.summary,
+    required this.title,
+  });
+  final String content;
+  final String summary;
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: context.getHeight() / 19,
+        ),
+        SizedBox(
+          height: context.getHeight() / 74,
+        ),
+        const Row(
           children: [
-            SizedBox(
-              height: context.getHeight() / 19,
-            ),
-            SizedBox(
-              height: context.getHeight() / 74,
-            ),
-            const Row(
-              children: [
-                Text(
-                  'Title',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 17,
-                      fontFamily: 'Inter'),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: context.getHeight() / 74,
-            ),
-            const CustomTextFormFelid(
-              minLines: 2,
-              content:
-                  'Now Google\'s Bard AI Chatbot can talk & respond to visual prompts!',
-            ),
-            SizedBox(
-              height: context.getHeight() / 30,
-            ),
-            const Row(
-              children: [
-                Text(
-                  'Summary',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 17,
-                      fontFamily: 'Inter'),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: context.getHeight() / 74,
-            ),
-            const CustomTextFormFelid(
-              minLines: 4,
-              content:
-                  'Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to .....',
-            ),
-            SizedBox(
-              height: context.getHeight() / 30,
-            ),
-            const Row(
-              children: [
-                Text(
-                  'Content',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 17,
-                      fontFamily: 'Inter'),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: context.getHeight() / 74,
-            ),
-            const CustomTextFormFelid(
-              minLines: 18,
-              content:
-                  'The feature that lets you add images to prompts is something that Google first showed off at its I/O conference in May. In one example, Google suggested you could use this to ask for help writing a funny caption about a picture of two dogs. Google says the feature is now available in English and is expanding to new languages “soon.” Google is introducing a few other new features, too, including the ability to pin and rename conversations, share responses with your friends, and change the tone and style of the responses you get back from Bard. Google first opened up access to Bard in March, but at the time, it was available only in the US and the UK. The company has been rolling out the chatbot to many more countries since then, and that now includes “all countries in the EEA [European Economic Area] and Brazil,” Google spokesperson Jennifer Rodstrom tells The Verge. That expansion in Europe is a notable milestone; the company\'s planned Bard launch in the EU was delayed due to privacy concerns.',
+            Text(
+              'Title',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 17,
+                  fontFamily: 'Inter'),
             ),
           ],
         ),
-      )),
+        SizedBox(
+          height: context.getHeight() / 74,
+        ),
+        CustomTextFormFelid(
+          minLines: 2,
+          content: title,
+        ),
+        SizedBox(
+          height: context.getHeight() / 30,
+        ),
+        const Row(
+          children: [
+            Text(
+              'Summary',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 17,
+                  fontFamily: 'Inter'),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: context.getHeight() / 74,
+        ),
+        CustomTextFormFelid(
+          minLines: 4,
+          content: summary,
+        ),
+        SizedBox(
+          height: context.getHeight() / 30,
+        ),
+        const Row(
+          children: [
+            Text(
+              'Content',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 17,
+                  fontFamily: 'Inter'),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: context.getHeight() / 74,
+        ),
+        CustomTextFormFelid(minLines: 18, content: content),
+      ],
     );
   }
 }

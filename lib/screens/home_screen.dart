@@ -1,9 +1,11 @@
+import 'package:blog_app_project/data/blog_data.dart';
 import 'package:blog_app_project/helper/extensions/screen.dart';
 import 'package:blog_app_project/screens/add_blog_screen.dart';
 import 'package:blog_app_project/screens/blog_screen.dart';
 import 'package:blog_app_project/widgets/custom_carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -135,28 +137,54 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       const SizedBox(height: 14),
-                      const BlogCardCustom(
-                        dateblog: 'Jul 13, 2023 • 2 min read',
-                        nameOfBlog: 'Kyle Barr',
-                        title:
-                            'Now Google\'s Bard AI can talk & respond to visual prompts',
-                        imageSrc: 'assets/STK156_Instagram_threads_2 2.png',
+                      SingleChildScrollView(
+                        child: Column(
+                          children: GetIt.I
+                              .get<BlogData>()
+                              .blogList
+                              .map((e) => BlogCardCustom(
+                                    title: e.title,
+                                    dateblog: e.date,
+                                    nameOfBlog: e.authorName,
+                                    time: e.minutesToRead.toString(),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) {
+                                        return BlogScreen(
+                                          category: e.category,
+                                          content: e.content,
+                                          dateblog: e.date,
+                                          summary: e.summary,
+                                          nameOfBlog: e.authorName,
+                                          time: e.minutesToRead.toString(),
+                                          title: e.title,
+                                          imageSrc:
+                                              'assets/STK156_Instagram_threads_2 2.png',
+                                        );
+                                      }));
+                                    },
+                                  ))
+                              .toList(),
+                        ),
                       ),
-                      BlogCardCustom(
-                        dateblog: 'Jul 13, 2023 • 2 min read',
-                        nameOfBlog: 'Kyle Barr',
-                        title:
-                            'Now Google\'s Bard AI can talk & respond to visual prompts',
-                        imageSrc: 'assets/STK156_Instagram_threads_2 2.png',
-                        onTap: () {},
-                      ),
-                      const BlogCardCustom(
-                        dateblog: 'Jul 13, 2023 • 2 min read',
-                        nameOfBlog: 'Kyle Barr',
-                        title:
-                            'Now Google\'s Bard AI can talk & respond to visual prompts',
-                        imageSrc: 'assets/STK156_Instagram_threads_2 2.png',
-                      ),
+
+                      // SizedBox(
+                      //   height: 300,
+                      //   child: ListView.builder(
+                      //     itemCount: GetIt.I.get<BlogData>().blogList.length,
+                      //     itemBuilder: (context, index) {
+                      //       final blog =
+                      //           GetIt.I.get<BlogData>().blogList[index];
+                      //       return BlogCardCustom(
+                      //         nameOfBlog: blog.authorName,
+                      //         title: blog.title,
+                      //         dateblog: blog.date,
+                      //         time: blog.minutesToRead.toString(),
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -177,25 +205,22 @@ class BlogCardCustom extends StatelessWidget {
       required this.nameOfBlog,
       required this.title,
       required this.dateblog,
-      required this.imageSrc,
+      this.imageSrc,
+      required this.time,
       this.onTap});
 
   final String nameOfBlog;
   final String title;
   final String dateblog;
-  final String imageSrc;
+  final String time;
+  final String? imageSrc;
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InkWell(
-          onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return const BlogScreen();
-            }));
-          },
+          onTap: onTap,
           child: Container(
             height: context.getHeight() / 6.5,
             width: 343,
@@ -212,7 +237,8 @@ class BlogCardCustom extends StatelessWidget {
                         margin: const EdgeInsets.only(left: 7),
                         height: 80,
                         width: 80,
-                        child: Image.asset(imageSrc)),
+                        child: Image.asset(
+                            'assets/STK156_Instagram_threads_2 1.png')),
                     Container(
                       padding: const EdgeInsets.only(top: 6, left: 10),
                       constraints:
@@ -250,7 +276,7 @@ class BlogCardCustom extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        dateblog,
+                        "$dateblog • $time min read",
                         style: const TextStyle(
                           fontSize: 14,
                           color: Color(0xff919191),

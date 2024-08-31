@@ -13,6 +13,11 @@ class BlogData {
     //box.write("tweets", tweetsList);
   }
 
+  updateBlog(BlogModel value) {
+    blogList.add(value);
+    //box.write("tweets", tweetsList);
+  }
+
   removeBlog(int id) {
     blogList.removeWhere((tweet) => tweet.id == id);
   }
