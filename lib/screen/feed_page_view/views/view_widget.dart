@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class IntroScreen extends StatefulWidget {
-  const IntroScreen({super.key});
+import '../controller_view/page_1.dart';
+import '../controller_view/page_2.dart';
+
+class MyPageView extends StatefulWidget {
+  const MyPageView({super.key});
 
   @override
-  State<IntroScreen> createState() => _IntroScreenState();
+  State<MyPageView> createState() => _MyPageViewState();
 }
 
-class _IntroScreenState extends State<IntroScreen> {
+class _MyPageViewState extends State<MyPageView> {
   final PageController _controller = PageController();
 
   bool onLastPage = false;
@@ -25,41 +28,17 @@ class _IntroScreenState extends State<IntroScreen> {
                 onLastPage = (index == 1);
               });
             },
-            children: const [],
+            children: const [
+              Page1(),
+              Page2(),
+            ],
           ),
-          Align(
-            alignment: const Alignment(0, 0.75),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'skip',
-                    style: TextStyle(color: Colors.grey.shade600),
-                  ),
-                ),
                 SmoothPageIndicator(controller: _controller, count: 2),
-                onLastPage
-                    ? TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'done',
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
-                      )
-                    : TextButton(
-                        onPressed: () {
-                          _controller.nextPage(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeIn,
-                          );
-                        },
-                        child: Text(
-                          "next",
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
-                      ),
               ],
             ),
           ),

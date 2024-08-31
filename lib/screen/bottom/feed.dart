@@ -19,6 +19,7 @@ class FeedScreen extends StatelessWidget {
                 MyContainer(
                   width: context.getWidthScreen(width: 0.96),
                   height: context.getHeightScreen(height: 0.2),
+                  child: const MyPageView(),
                 ),
                 SizedBox(height: context.getHeightScreen(height: 0.02)),
                 const Row(
