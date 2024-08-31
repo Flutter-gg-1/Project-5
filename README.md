@@ -17,7 +17,11 @@ A blog application that allows users to add, display, and delete blog posts. The
 - Used Encoding and Decoding of Image File to display in app
 - Added AlertDialogs on successful or failed operations within the app
 - Created MockData to test the app
-- 
+- Added Logged user to the storage box with the functionality to redirect user to HomeScreen if logged in (Note: a syncronization issue prevented correct load of data for Login check)
+- Added search functionality in ExploreScreen, any post title that contains query will be displayed.
+- Created class Colours to follow the colors of the design easily.
+- Used Intl package to Formate Date of creation of post as displayed in UI
+
 
 # Screenshots
 
