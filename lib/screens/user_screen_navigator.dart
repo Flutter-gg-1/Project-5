@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:project5/screens/explore_screen.dart';
-import 'package:project5/screens/home_screen.dart';
+import 'package:project5/screens/feed_screen.dart';
 
 class UserScreenNavigator extends StatefulWidget {
-  const UserScreenNavigator({super.key});
+  final int? goTo;
+  const UserScreenNavigator({super.key, this.goTo});
 
   @override
   State<UserScreenNavigator> createState() => _UserScreenNavigatorState();
 }
 
 class _UserScreenNavigatorState extends State<UserScreenNavigator> {
-  List<Widget> screens = [const HomeScreen(), const ExploreScreen(), const Placeholder(), const Placeholder()];
+  List<Widget> screens = [const FeedScreen(), const ExploreScreen(), const Placeholder(), const Placeholder()];
   List<String> labels = ['Feed', 'Explore', 'Saved', 'Profile'];
   List<IconData> icons = [Icons.newspaper, Icons.explore_outlined, Icons.bookmark_border, Icons.person_2_outlined];
-  int currentPage = 0;
+  late int currentPage = widget.goTo ?? 0;
   Color currentColor = const Color(0xffe8e8e8);
   Color notCurrentColor = const Color(0xff595959);
 

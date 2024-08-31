@@ -6,19 +6,20 @@ import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
 import 'package:project5/models/user.dart';
 import 'package:project5/screens/add_post_screen.dart';
+import 'package:project5/screens/user_screen_navigator.dart';
 import 'package:project5/screens/view_post_screen.dart';
 import 'package:project5/widgets/cards/post_card.dart';
 import 'package:project5/widgets/images_carousel.dart';
 
-class HomeScreen extends StatefulWidget {
+class FeedScreen extends StatefulWidget {
   final User? user;
-  const HomeScreen({super.key, this.user});
+  const FeedScreen({super.key, this.user});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<FeedScreen> createState() => _FeedScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _FeedScreenState extends State<FeedScreen> {
   // get lists
   List<String> categories = GetIt.I.get<AllPosts>().categories;
   List<Post> posts = GetIt.I.get<AllPosts>().posts;
@@ -38,12 +39,18 @@ class _HomeScreenState extends State<HomeScreen> {
           leading: const Icon(Icons.list,size: 28,),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => UserScreenNavigator(goTo: 1)),
+                (predicate)=>false
+              ),
               icon: const Icon(Icons.search,size: 28,)
             ),
             user!=null ? IconButton(
               onPressed: () {
-                context.push(target: const AddPostScreen(), saveData: (p0){
+                context.push(
+                  target: const AddPostScreen(),
+                  saveData: (p0){
                   if(p0==true) {
                     setState(() {});
                   }

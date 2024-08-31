@@ -16,7 +16,6 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   TextEditingController searchController = TextEditingController();
-  // String searchResult = "No Items";
   List<Post> searchResult = [];
   @override
   Widget build(BuildContext context) {
@@ -30,9 +29,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               TextField(
                 onChanged: (value) {
                   searchResult = GetIt.I.get<AllPosts>().searchPost(searchTerm: value);
-                  setState(() {
-                    
-                  });
+                  setState(() {});
                 },
                 onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
                 controller: searchController,
