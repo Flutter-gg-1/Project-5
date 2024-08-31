@@ -56,6 +56,7 @@ class _AiFeed extends State<AiFeed> {
                   .toList();
               final blog = ai[index];
               return StoryCard(
+                imageSrc: blog.imageSrc,
                 onTap: () {
                   context.navTo(ArticalScreen(
                     blog: blog,

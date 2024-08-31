@@ -4,6 +4,7 @@ import 'package:blog_app/model/blog_model.dart';
 import 'package:blog_app/widget/button/textfield/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddBlog extends StatefulWidget {
   const AddBlog({super.key});
@@ -23,7 +24,7 @@ class _AddBlogState extends State<AddBlog> {
   TextEditingController readingMinFieldController = TextEditingController();
 
   int? value = 0;
-
+  String imageSrc = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +44,12 @@ class _AddBlogState extends State<AddBlog> {
               children: [
                 const Text("Image"),
                 InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    final ImagePicker picker = ImagePicker();
+                    final XFile? image =
+                        await picker.pickImage(source: ImageSource.gallery);
+                    imageSrc = image!.path;
+                  },
                   child: SizedBox(
                     height: context.getHight(value: .2),
                     child: const Card(
@@ -140,13 +146,14 @@ class _AddBlogState extends State<AddBlog> {
 
                         GetIt.I.get<GetBlog>().addblog(BlogModel(
                             category: categories[value!],
-                            authorName: GetIt.I.get<GetBlog>().currentUser.userName,
+                            authorName:
+                                GetIt.I.get<GetBlog>().currentUser.userName,
                             title: titleFieldController.text,
                             summary: summaryFieldController.text,
                             content: contetFieldController.text,
                             date: "date",
                             minutesToRead: readingMinFieldController.text,
-                            imageSrc: "imageSrc",
+                            imageSrc: imageSrc,
                             saved: false));
                         Navigator.pop(context);
                       } else {

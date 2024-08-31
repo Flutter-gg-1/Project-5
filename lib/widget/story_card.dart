@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:blog_app/helper/screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,13 +12,14 @@ class StoryCard extends StatelessWidget {
     required this.min,
     this.onTap,
     required this.bookMark,
-    this.onPressed,
+    this.onPressed, this.imageSrc,
   });
   final String writer;
   final String title;
   final String date;
   final String min;
   final Widget bookMark;
+  final String? imageSrc;
   final void Function()? onPressed;
   final Function()? onTap;
   @override
@@ -32,7 +35,9 @@ class StoryCard extends StatelessWidget {
                 leading: SizedBox(
                   height: context.getHight(value: .1),
                   width: context.getWidth(value: .2),
-                  child: const Placeholder(),
+                  child: imageSrc != ""
+                      ? Image.file(File(imageSrc!))
+                      : const Placeholder(),
                 ),
                 title: Text(
                     style: const TextStyle(color: Color(0xffB8B8B8)), writer),

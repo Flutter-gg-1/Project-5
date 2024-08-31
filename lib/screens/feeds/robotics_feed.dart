@@ -56,6 +56,8 @@ class _RoboticsFeed extends State<RoboticsFeed> {
                   .toList();
               final blog = robotic[index];
               return StoryCard(
+                                imageSrc: blog.imageSrc,
+
                 onTap: () {
                   context.navTo(ArticalScreen(
                     blog: blog,

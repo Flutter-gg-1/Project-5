@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:blog_app/data_layer/get_blog.dart';
 import 'package:blog_app/helper/nav.dart';
 import 'package:blog_app/helper/screen.dart';
@@ -64,7 +66,9 @@ class _ArticalScreenState extends State<ArticalScreen> {
               SizedBox(
                 width: context.getWidth(),
                 height: context.getHight(value: .2),
-                child: const Placeholder(),
+                child: widget.blog.imageSrc!=""
+                      ? Image.file(File(widget.blog.imageSrc))
+                      : const Placeholder(),
               ),
               const CustomDivider(),
               TextButton(

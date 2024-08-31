@@ -24,6 +24,7 @@ class SavedScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GetIt.I.get<GetBlog>().blogs[index].saved
                         ? StoryCard(
+                          imageSrc:GetIt.I.get<GetBlog>().blogs[index].imageSrc ,
                             writer:
                                 GetIt.I.get<GetBlog>().blogs[index].authorName,
                             title: GetIt.I.get<GetBlog>().blogs[index].title,

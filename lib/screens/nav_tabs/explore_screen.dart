@@ -51,6 +51,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       children: GetIt.I.get<GetBlog>().blogs.map((blog) {
                     return blog.title.contains(search.text)
                         ? StoryCard(
+                                          imageSrc: blog.imageSrc,
+
                             onTap: () {
                               context.navTo(ArticalScreen(
                                 blog: blog,

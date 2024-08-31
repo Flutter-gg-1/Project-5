@@ -56,6 +56,8 @@ class _IotFeed extends State<IotFeed> {
                   .toList();
               final blog = iot[index];
               return StoryCard(
+                                imageSrc: blog.imageSrc,
+
                 onTap: () {
                   context.navTo(ArticalScreen(
                     blog: blog,

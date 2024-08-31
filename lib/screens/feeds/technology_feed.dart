@@ -1,4 +1,3 @@
-
 import 'package:blog_app/data_layer/get_blog.dart';
 import 'package:blog_app/helper/nav.dart';
 import 'package:blog_app/screens/artical_screen.dart';
@@ -57,6 +56,7 @@ class _TechnologyFeed extends State<TechnologyFeed> {
                   .toList();
               final blog = technology[index];
               return StoryCard(
+                imageSrc: blog.imageSrc,
                 onTap: () {
                   context.navTo(ArticalScreen(
                     blog: blog,

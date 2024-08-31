@@ -56,6 +56,8 @@ class _CloudFeed extends State<CloudFeed> {
                   .toList();
               final blog = cloudBlogs[index];
               return StoryCard(
+                                imageSrc: blog.imageSrc,
+
                 onTap: () {
                   context.navTo(ArticalScreen(
                     blog: blog,
