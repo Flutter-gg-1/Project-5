@@ -71,6 +71,26 @@ class _NewPostState extends State<NewPost> {
                 RichText(
                     text: const TextSpan(children: [
                   TextSpan(
+                      text: 'Summary',
+                      style: TextStyle(color: MyColors.whiteTextColor)),
+                  TextSpan(text: ' *', style: TextStyle(color: Colors.red)),
+                ])),
+                SizedBox(height: context.getWidthScreen(width: 0.02)),
+                MyContainer(
+                  height: context.getWidthScreen(width: 0.3),
+                  width: context.getWidthScreen(width: 0.9),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Give a short summary of your blog',
+                      hintStyle: TextStyle(color: MyColors.greyTextColor),
+                    ),
+                  ),
+                ),
+                SizedBox(height: context.getWidthScreen(width: 0.1)),
+                RichText(
+                    text: const TextSpan(children: [
+                  TextSpan(
                       text: 'Content',
                       style: TextStyle(color: MyColors.whiteTextColor)),
                   TextSpan(text: ' *', style: TextStyle(color: Colors.red)),

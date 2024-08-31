@@ -36,7 +36,7 @@ class AppBarContainer extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        context.showScreen(const ExploreScreen());
+                        context.showScreen(const NewPost());
                       },
                       icon: Icon(Icons.add,
                           color: MyColors.whiteTextColor,
