@@ -13,27 +13,44 @@ class MyContainerBlogs extends StatelessWidget {
   final String? imagePath;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: MyColors.containerBlackColor,
-      child: ListTile(
-        leading: Container(
-            width: context.getWidthScreen(width: 0.21),
-            height: context.getHeightScreen(height: 0.11),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset(imagePath!, fit: BoxFit.cover)),
-        title: Text(title!,
-            style: const TextStyle(color: MyColors.whiteTextColor)),
-        subtitle: Text(topTitle!,
-            style: const TextStyle(color: MyColors.greyTextColor)),
-        trailing: const Column(
-          children: [
-            Icon(Icons.more_vert, color: MyColors.whiteTextColor),
-            Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
-          ],
-        ),
+    return MyContainer(
+      width: context.getWidthScreen(width: 0.9),
+      height: context.getWidthScreen(width: 0.4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: context.getHeightScreen(height: 0.02)),
+          Row(
+            children: [
+              Image.asset(imagePath!, width: 150),
+              Column(
+                children: [
+                  Text(topTitle!,
+                      style: const TextStyle(color: MyColors.greyTextColor)),
+                  Text(title!,
+                      style: const TextStyle(color: MyColors.whiteTextColor)),
+                ],
+              ),
+            ],
+          ),
+          const Row(
+            children: [
+              Text('1h', style: TextStyle(color: MyColors.whiteTextColor)),
+              Icon(Icons.more_vert, color: MyColors.whiteTextColor),
+              Icon(Icons.bookmark_border, color: MyColors.whiteTextColor),
+            ],
+          ),
+        ],
       ),
     );
   }
 }
+/*
+Text(title!,
+            style: const TextStyle(color: MyColors.whiteTextColor)),
+         
+         const Column(
+          children: [
+          ],
+        ),
+*/

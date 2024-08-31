@@ -38,7 +38,7 @@ class FeedScreen extends StatelessWidget {
                   (index) => Column(
                     children: [
                       const MyContainerBlogs(
-                        topTitle: 'example',
+                        topTitle: 'example1',
                         title: 'example',
                         imagePath: 'assets/1.png',
                       ),
