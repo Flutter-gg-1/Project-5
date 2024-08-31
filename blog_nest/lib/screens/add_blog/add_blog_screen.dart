@@ -1,11 +1,10 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/reusable_components/custom_text_field.dart';
+import 'package:blog_nest/screens/add_blog/add_blog_vm.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import '../../extensions/color_ext.dart';
-import '../../managers/nav_mgr.dart';
 import '../../model/blog.dart';
 import '../../model/enum/blog_category.dart';
 import '../../utils/typedefs.dart';
@@ -20,27 +19,23 @@ class AddBlogScreen extends StatefulWidget {
 
 class _AddBlogScreenState extends State<AddBlogScreen>
     with SingleTickerProviderStateMixin {
-  final navMgr = GetIt.I.get<NavMgr>();
-
-  final titleController = TextEditingController();
-
-  final summaryController = TextEditingController();
-
-  final contentController = TextEditingController();
-
-  late TabController categoryController;
-
-  final readingMinController = TextEditingController();
+  late final vm = AddBlogVM();
 
   @override
   void initState() {
     super.initState();
 
-    categoryController = TabController(
+    vm.categoryController = TabController(
       initialIndex: 0,
       length: BlogCategory.values.length,
       vsync: this,
     );
+  }
+
+  @override
+  void dispose() {
+    vm.categoryController.dispose();
+    super.dispose();
   }
 
   @override
@@ -50,7 +45,7 @@ class _AddBlogScreenState extends State<AddBlogScreen>
       appBar: AppBar(
         backgroundColor: C.bg,
         leading: IconButton(
-            onPressed: () => navMgr.navigateBack(context: context),
+            onPressed: () => vm.navMgr.navigateBack(context: context),
             icon: const Icon(Icons.chevron_left).withSizeAndColor()),
         actions: [
           TextButton(
@@ -80,20 +75,20 @@ class _AddBlogScreenState extends State<AddBlogScreen>
                 ),
                 // Title
                 _TextFieldContainer(
-                    controller: titleController,
+                    controller: vm.titleController,
                     headerText: 'Title',
                     hintText: 'Enter your blog title'),
                 _TextFieldContainer(
-                    controller: titleController,
+                    controller: vm.summaryController,
                     headerText: 'Summary',
                     hintText: 'Give a brief summary about your blog'),
                 _TextFieldContainer(
-                    controller: titleController,
+                    controller: vm.contentController,
                     headerText: 'Content',
                     hintText: 'Wtire your blog here'),
-                _CategoryTabView(controller: categoryController),
+                _CategoryTabView(controller: vm.categoryController),
                 _TextFieldContainer(
-                    controller: titleController,
+                    controller: vm.readingMinController,
                     headerText: 'Reading minutes',
                     hintText: 'Minutes of reading this blog')
               ],

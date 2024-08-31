@@ -20,6 +20,7 @@ class _BottomNavBarViewState extends State<BottomNavBarView> {
       backgroundColor: C.bg,
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        enableFeedback: false,
         selectedItemColor: C.text1,
         unselectedItemColor: C.text3,
         unselectedLabelStyle: const TextStyle(color: C.text3),

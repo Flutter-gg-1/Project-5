@@ -20,7 +20,7 @@ class NavMgr {
       case Destination.home:
         return const PopScope(canPop: false, child: BottomNavBarView());
       case Destination.addBlog:
-        return PopScope(canPop: true, child: AddBlogScreen());
+        return const PopScope(canPop: true, child: AddBlogScreen());
       case Destination.blogDetails:
         return PopScope(canPop: true, child: BlogDetailsScreen());
       default:

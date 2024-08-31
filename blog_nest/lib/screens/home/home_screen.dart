@@ -1,12 +1,10 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
-import 'package:blog_nest/managers/blog_mgr.dart';
-import 'package:blog_nest/screens/home/home_content_view.dart';
+import 'package:blog_nest/screens/home/subviews/home_content_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import '../../extensions/color_ext.dart';
 import '../../managers/nav_mgr.dart';
-import '../../model/blog.dart';
 import '../../model/enum/blog_category.dart';
+import 'home_vm.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,26 +15,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-  final navMgr = GetIt.I.get<NavMgr>();
-  final blogMgr = GetIt.I.get<BlogMgr>();
-  late TabController tabController;
+  late final vm = HomeVM();
 
   @override
   void initState() {
     super.initState();
 
-    tabController = TabController(
+    vm.tabController = TabController(
       initialIndex: 0,
       length: BlogCategory.values.length,
       vsync: this,
     );
   }
 
+  @override
+  void dispose() {
+    vm.tabController.dispose();
+    super.dispose();
+  }
+
   void _changeFilter() {
-    setState(() {
-      blogMgr.selectedCategory == BlogCategory.values[tabController.index];
-      print(blogMgr.selectedCategory.name);
-    });
+    setState(() => vm.setSelectedCategory());
   }
 
   @override
@@ -52,12 +51,12 @@ class _HomeScreenState extends State<HomeScreen>
                 onPressed: () => (),
                 icon: const Icon(Icons.search).withSizeAndColor()),
             IconButton(
-                onPressed: () => navMgr.navigate(
-                    context: context, dest: Destination.addBlog),
+                onPressed: () => vm.navMgr
+                    .navigate(context: context, dest: Destination.addBlog),
                 icon: const Icon(Icons.add).withSizeAndColor())
           ],
           bottom: TabBar(
-            controller: tabController,
+            controller: vm.tabController,
             tabs: BlogCategory.values.map((cat) => Text(cat.tabStr())).toList(),
             onTap: (idx) => _changeFilter(),
           )),
@@ -65,11 +64,10 @@ class _HomeScreenState extends State<HomeScreen>
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: TabBarView(
-          controller: tabController,
-          children: List.generate(
-            BlogCategory.values.length,
-            (_) => HomeContentView(blogs: blogMgr.categoryBlogs),
-          ),
+          controller: vm.tabController,
+          children: BlogCategory.values.map((category) {
+            return HomeContentView(blogs: vm.blogMgr.categoryBlogs);
+          }).toList(),
         ),
       ),
     );

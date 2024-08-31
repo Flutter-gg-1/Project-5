@@ -39,7 +39,8 @@ class BlogMgr {
         throw Exception('No blogs found');
       }
     } catch (e) {
-      for (var blog in Blog.defaultBlogs) {
+      var defaultBlogs = await Blog.getDefaultBlogs();
+      for (var blog in defaultBlogs) {
         await addNewBlog(blog);
       }
     }

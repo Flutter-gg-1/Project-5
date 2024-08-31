@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import '../extensions/color_ext.dart';
 import '../model/blog.dart';
+import '../utils/img_converter.dart';
 import '../utils/typedefs.dart';
 
 class BlogCellView extends StatelessWidget {
@@ -36,11 +37,14 @@ class BlogCellView extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       flex: 1,
                       child: AspectRatio(
                         aspectRatio: 1,
-                        child: Placeholder(),
+                        child: ClipRRect(
+                            borderRadius: BR.circular(8),
+                            child: ImgConverter.imageFromBase64String(
+                                blog.imgData)),
                       ),
                     ),
                     const SizedBox(width: 8),

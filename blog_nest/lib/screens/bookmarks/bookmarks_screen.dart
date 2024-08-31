@@ -1,13 +1,16 @@
 import 'package:blog_nest/extensions/string_ext.dart';
+import 'package:blog_nest/managers/blog_mgr.dart';
 import 'package:blog_nest/reusable_components/blog_cell_view.dart';
+import 'package:blog_nest/screens/bookmarks/bookmarks_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import '../../extensions/color_ext.dart';
 import '../../model/blog.dart';
 import '../../utils/typedefs.dart';
 
 class BookmarksScreen extends StatelessWidget {
   BookmarksScreen({super.key});
-  final List<Blog> blogs = Blog.defaultBlogs;
+  var vm = BookmarksVM();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class BookmarksScreen extends StatelessWidget {
                 child:
                     const Text('Saved News').styled(size: 20, weight: FW.w700),
               ),
-              if (blogs.isEmpty)
+              if (vm.blogs.isEmpty)
                 Expanded(
                   child: Row(
                     crossAxisAlignment: CAL.center,
@@ -41,7 +44,7 @@ class BookmarksScreen extends StatelessWidget {
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: blogs
+                        children: vm.blogs
                             .map((blog) => BlogCellView(blog: blog))
                             .toList(),
                       ),

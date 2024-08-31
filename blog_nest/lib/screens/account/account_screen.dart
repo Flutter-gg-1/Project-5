@@ -1,4 +1,5 @@
 import 'package:blog_nest/extensions/string_ext.dart';
+import 'package:blog_nest/managers/blog_mgr.dart';
 import 'package:blog_nest/managers/user_mgr.dart';
 import 'package:blog_nest/screens/account/account_blog_cell_view.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ import '../../utils/typedefs.dart';
 class AccountScreen extends StatelessWidget {
   AccountScreen({super.key});
   final User? user = GetIt.I.get<UserMgr>().currentUser;
-  final List<Blog> blogs = Blog.defaultBlogs;
+  final List<Blog> blogs = GetIt.I.get<BlogMgr>().userBlogs;
 
   @override
   Widget build(BuildContext context) {

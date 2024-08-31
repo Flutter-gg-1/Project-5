@@ -2,17 +2,14 @@ import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/reusable_components/custom_btn_view.dart';
 import 'package:blog_nest/reusable_components/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import '../../extensions/color_ext.dart';
-import '../../managers/user_mgr.dart';
 import '../../managers/nav_mgr.dart';
 import '../../utils/typedefs.dart';
+import 'login_vm.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  final dataMgr = GetIt.I.get<UserMgr>();
-  final nameController = TextEditingController();
-  final pwdController = TextEditingController();
+  final vm = LoginVM();
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +25,7 @@ class LoginScreen extends StatelessWidget {
               const Text('Welcome Back').styled(size: 20, weight: FW.w700),
               const Text('Glad to see you again')
                   .styled(size: 15, weight: FW.w300),
-              _FormView(
-                  nameController: nameController, pwdController: pwdController),
+              _FormView(),
             ],
           ),
         ),
@@ -39,10 +35,8 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _FormView extends StatelessWidget {
-  _FormView({required this.nameController, required this.pwdController});
-  final navMgr = GetIt.I.get<NavMgr>();
-  final TextEditingController nameController;
-  final TextEditingController pwdController;
+  _FormView();
+  final vm = LoginVM();
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +56,13 @@ class _FormView extends StatelessWidget {
               children: [
                 const Text('Username').styled(size: 15, weight: FW.w500),
                 CustomTextField(
-                  controller: nameController,
+                  controller: vm.nameController,
                   hint: 'Enter your username',
                 ),
                 const SizedBox(height: 16),
                 const Text('Password').styled(size: 15, weight: FW.w500),
                 CustomTextField(
-                  controller: pwdController,
+                  controller: vm.pwdController,
                   hint: 'Enter your password',
                 ),
                 Padding(
@@ -88,7 +82,7 @@ class _FormView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 32.0),
                           child: CustomBtnView(
-                            callBack: () => navMgr.navigate(
+                            callBack: () => vm.navMgr.navigate(
                               context: context,
                               dest: Destination.home,
                             ),

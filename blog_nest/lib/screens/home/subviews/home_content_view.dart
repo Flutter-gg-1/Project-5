@@ -1,9 +1,10 @@
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/reusable_components/blog_cell_view.dart';
 import 'package:flutter/material.dart';
-import '../../extensions/color_ext.dart';
-import '../../model/blog.dart';
-import '../../utils/typedefs.dart';
+import '../../../extensions/color_ext.dart';
+import '../../../model/blog.dart';
+import '../../../utils/img_converter.dart';
+import '../../../utils/typedefs.dart';
 
 class HomeContentView extends StatelessWidget {
   const HomeContentView({super.key, required this.blogs});
@@ -17,7 +18,12 @@ class HomeContentView extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.only(top: 16),
             children: [
-              const AspectRatio(aspectRatio: 2, child: Placeholder()),
+              AspectRatio(
+                aspectRatio: 2,
+                child: blogs.isNotEmpty
+                    ? ImgConverter.imageFromBase64String(blogs.first.imgData)
+                    : const Placeholder(),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: Row(

@@ -2,14 +2,20 @@ import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
-import '../../model/blog.dart';
 import '../../reusable_components/blog_cell_view.dart';
 import '../../reusable_components/custom_text_field.dart';
 import '../../utils/typedefs.dart';
+import 'explore_vm.dart';
 
-class ExploreScreen extends StatelessWidget {
-  ExploreScreen({super.key});
-  final List<Blog> blogs = [];
+class ExploreScreen extends StatefulWidget {
+  const ExploreScreen({super.key});
+
+  @override
+  State<ExploreScreen> createState() => _ExploreScreenState();
+}
+
+class _ExploreScreenState extends State<ExploreScreen> {
+  final vm = ExploreVM();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class ExploreScreen extends StatelessWidget {
                   hint: '',
                 ),
               ),
-              if (blogs.isEmpty)
+              if (vm.filteredBlogs.isEmpty)
                 Expanded(
                   child: Row(
                     crossAxisAlignment: CAL.center,
@@ -47,7 +53,7 @@ class ExploreScreen extends StatelessWidget {
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: blogs
+                        children: vm.filteredBlogs
                             .map((blog) => BlogCellView(blog: blog))
                             .toList(),
                       ),
