@@ -58,9 +58,7 @@ class BlogCellView extends StatelessWidget {
                               color: C.text2,
                               lineLimit: 1,
                             ),
-                            const Text(
-                                    "Now Google's Bard AI can talk & respond to visual prompts")
-                                .styled(
+                            Text(blog.title).styled(
                               size: 16,
                               weight: FW.w600,
                               lineLimit: 2,
@@ -75,7 +73,8 @@ class BlogCellView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MAL.spaceBetween,
                   children: [
-                    const Text('Jul 13, 2023 • 2 min read').styled(
+                    Text('${blog.timeStamp} • ${blog.readingMinutes} min read')
+                        .styled(
                       color: C.text3,
                       size: 10,
                       weight: FW.w500,

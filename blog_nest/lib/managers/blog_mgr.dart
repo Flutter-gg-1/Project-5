@@ -29,13 +29,19 @@ class BlogMgr {
     _fetchBlogs();
   }
 
-  void _fetchBlogs() {
+  void _fetchBlogs() async {
     try {
-      String? jsonString = box.read('blogs');
-      List blogs = jsonDecode(jsonString!);
-      allBlogs = blogs.map((blog) => Blog.fromJson(blog)).toList();
+      String jsonString = box.read('blogs');
+      if (jsonString.isNotEmpty) {
+        List blogs = jsonDecode(jsonString);
+        allBlogs = blogs.map((blog) => Blog.fromJson(blog)).toList();
+      } else {
+        throw Exception('No blogs found');
+      }
     } catch (e) {
-      Blog.defaultBlogs.map((blog) async => await addNewBlog(blog));
+      for (var blog in Blog.defaultBlogs) {
+        await addNewBlog(blog);
+      }
     }
   }
 

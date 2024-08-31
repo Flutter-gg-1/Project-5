@@ -1,4 +1,5 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
+import 'package:blog_nest/managers/blog_mgr.dart';
 import 'package:blog_nest/screens/home/home_content_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   final navMgr = GetIt.I.get<NavMgr>();
+  final blogMgr = GetIt.I.get<BlogMgr>();
   late TabController tabController;
 
   @override
@@ -28,6 +30,13 @@ class _HomeScreenState extends State<HomeScreen>
       length: BlogCategory.values.length,
       vsync: this,
     );
+  }
+
+  void _changeFilter() {
+    blogMgr.selectedCategory == BlogCategory.values[tabController.index];
+    setState(() {
+      print(blogMgr.categoryBlogs.length);
+    });
   }
 
   @override
@@ -48,10 +57,10 @@ class _HomeScreenState extends State<HomeScreen>
                 icon: const Icon(Icons.add).withSizeAndColor())
           ],
           bottom: TabBar(
-              controller: tabController,
-              tabs: BlogCategory.values
-                  .map((cat) => Text(cat.tabStr()))
-                  .toList())),
+            controller: tabController,
+            tabs: BlogCategory.values.map((cat) => Text(cat.tabStr())).toList(),
+            onTap: (idx) => _changeFilter(),
+          )),
       backgroundColor: C.bg,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -59,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen>
           controller: tabController,
           children: List.generate(
             BlogCategory.values.length,
-            (_) => HomeContentView(blogs: Blog.defaultBlogs),
+            (_) => HomeContentView(blogs: blogMgr.categoryBlogs),
           ),
         ),
       ),
