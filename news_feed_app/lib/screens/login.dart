@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_feed_app/screens/nav_bar.dart';
+import 'package:news_feed_app/widgets/custom_textfeild.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -29,9 +30,9 @@ class Login extends StatelessWidget {
                     padding:  EdgeInsets.fromLTRB(20, 30, 20, 20),
                     child: Column(
                       children: [
-                        TextCOntainer(title: 'Username', hint: 'Enter your username',),
+                        TextContainer(title: 'Username', hint: 'Enter your username',),
                         SizedBox(height: 15,),
-                        TextCOntainer(title: 'Password', hint: 'Enter your password',),
+                        TextContainer(title: 'Password', hint: 'Enter your password',),
                         SizedBox(height: 5,),
                         Row(
                         mainAxisAlignment: MainAxisAlignment.end, 
@@ -58,44 +59,6 @@ class Login extends StatelessWidget {
   }
 }
 
-class TextCOntainer extends StatelessWidget {
-  const TextCOntainer({super.key, required this.title, required this.hint});
-  final String title;
-  final String hint;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment:CrossAxisAlignment.start,
-      mainAxisAlignment:MainAxisAlignment.center,
-      children: [
-         Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500 ,color: Color(0xfffffffff)),),
-          const SizedBox(height: 10,),
-          SizedBox(
-            height: 40,
-            width: 300,
-            child: TextFormField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: const Color.fromARGB(54, 255, 255, 255),
-                hintText: hint,
-                hintStyle: const TextStyle(fontSize: 14, color: Color(0xffB8B8B8)),
-                enabledBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                border: const OutlineInputBorder( 
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-              ),
-            ),
-          ),
-      ],
-      
-    );
-  }
-}
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key, required this.title});
