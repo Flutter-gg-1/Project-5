@@ -22,21 +22,26 @@ class MyContainerBlogs extends StatelessWidget {
           SizedBox(height: context.getHeightScreen(height: 0.02)),
           Row(
             children: [
-              Image.asset(imagePath!, width: 170),
+              SizedBox(width: context.getWidthScreen(width: 0.02)),
+              Image.asset(imagePath!, width: 150, height: 100),
+              SizedBox(width: context.getWidthScreen(width: 0.02)),
               Column(
                 children: [
                   Text(topTitle!,
                       style: const TextStyle(color: MyColors.greyTextColor)),
                   Text(title!,
                       style: const TextStyle(color: MyColors.whiteTextColor)),
+                  SizedBox(height: context.getHeightScreen(height: 0.06)),
                 ],
               ),
             ],
           ),
-          const Row(
+          Row(
             children: [
-              Text('1h', style: TextStyle(color: MyColors.whiteTextColor)),
-              Padding(
+              SizedBox(width: context.getWidthScreen(width: 0.02)),
+              const Text('1h',
+                  style: TextStyle(color: MyColors.whiteTextColor)),
+              const Padding(
                 padding: EdgeInsets.only(left: 270),
                 child: Row(
                   children: [
