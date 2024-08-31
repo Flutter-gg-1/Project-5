@@ -24,6 +24,7 @@ class _CarouselSliderCustomeState extends State<CarouselSliderCustome> {
         children: [
           CarouselSlider(
             options: CarouselOptions(
+              autoPlay: true,
               height: 190.0,
               viewportFraction: 1,
               onPageChanged: (index, reason) {

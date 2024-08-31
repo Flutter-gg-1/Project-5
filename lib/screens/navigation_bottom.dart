@@ -3,6 +3,7 @@ import 'package:blog_app_project/screens/home_screen.dart';
 import 'package:blog_app_project/screens/profile_screen.dart';
 import 'package:blog_app_project/screens/saved_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavigationBottom extends StatefulWidget {
   const NavigationBottom({super.key});
@@ -36,11 +37,19 @@ class _NavigationBottomState extends State<NavigationBottom> {
           NavigationDestination(
               icon: Icon(Icons.featured_play_list_outlined), label: 'feed'),
           NavigationDestination(
-              icon: Icon(Icons.featured_play_list_outlined), label: 'feed'),
+              icon: FaIcon(
+                FontAwesomeIcons.searchengin,
+                color: Color(0xff888888),
+              ),
+              label: 'feed'),
           NavigationDestination(
-              icon: Icon(Icons.featured_play_list_outlined), label: 'feed'),
+              icon: FaIcon(
+                FontAwesomeIcons.bookmark,
+                color: Color(0xff888888),
+              ),
+              label: 'feed'),
           NavigationDestination(
-              icon: Icon(Icons.featured_play_list_outlined), label: 'feed'),
+              icon: Icon(Icons.account_box_outlined), label: 'feed'),
         ],
       ),
       body: screens[indexScreens],

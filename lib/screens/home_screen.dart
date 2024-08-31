@@ -1,9 +1,8 @@
-import 'package:blog_app_project/helper/extensions/nav.dart';
 import 'package:blog_app_project/helper/extensions/screen.dart';
 import 'package:blog_app_project/screens/blog_screen.dart';
 import 'package:blog_app_project/widgets/custom_carousel_slider.dart';
-import 'package:blog_app_project/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,15 +25,25 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Color(0xffFFFFFF),
               size: 35,
             ),
-            actions: const [
-              Icon(
+            actions: [
+              const Icon(
                 Icons.search_rounded,
                 color: Color(0xffFFFFFF),
-                size: 35,
+                size: 30,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
-              )
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.plus,
+                  color: Color(0xffffffff),
+                ),
+              ),
+              const SizedBox(
+                width: 4,
+              ),
             ],
             bottom: const TabBar(
                 //onTap:
@@ -66,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Text(
-                    'Robotics',
+                    'Robot',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -175,8 +184,8 @@ class BlogCardCustom extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (BuildContext context) {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
               return const BlogScreen();
             }));
           },
