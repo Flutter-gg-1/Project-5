@@ -1,6 +1,6 @@
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/managers/blog_mgr.dart';
-import 'package:blog_nest/reusable_components/blog_cell_view.dart';
+import 'package:blog_nest/reusable_components/blog_cell/blog_cell_view.dart';
 import 'package:blog_nest/screens/bookmarks/bookmarks_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -8,9 +8,16 @@ import '../../extensions/color_ext.dart';
 import '../../model/blog.dart';
 import '../../utils/typedefs.dart';
 
-class BookmarksScreen extends StatelessWidget {
+class BookmarksScreen extends StatefulWidget {
   BookmarksScreen({super.key});
+
+  @override
+  State<BookmarksScreen> createState() => _BookmarksScreenState();
+}
+
+class _BookmarksScreenState extends State<BookmarksScreen> {
   var vm = BookmarksVM();
+  void callBack() => setState(() => ());
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +52,8 @@ class BookmarksScreen extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: vm.blogs
-                            .map((blog) => BlogCellView(blog: blog))
+                            .map((blog) =>
+                                BlogCellView(blog: blog, setState: callBack))
                             .toList(),
                       ),
                     ],

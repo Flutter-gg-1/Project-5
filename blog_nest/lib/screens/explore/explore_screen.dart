@@ -2,7 +2,7 @@ import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
-import '../../reusable_components/blog_cell_view.dart';
+import '../../reusable_components/blog_cell/blog_cell_view.dart';
 import '../../reusable_components/custom_text_field.dart';
 import '../../utils/typedefs.dart';
 import 'explore_vm.dart';
@@ -16,6 +16,7 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   final vm = ExploreVM();
+  void callBack() => setState(() => ());
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: vm.filteredBlogs
-                            .map((blog) => BlogCellView(blog: blog))
+                            .map((blog) =>
+                                BlogCellView(blog: blog, setState: callBack))
                             .toList(),
                       ),
                     ],

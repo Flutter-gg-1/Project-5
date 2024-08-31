@@ -9,7 +9,6 @@ import 'login_vm.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  final vm = LoginVM();
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +81,14 @@ class _FormView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 32.0),
                           child: CustomBtnView(
-                            callBack: () => vm.navMgr.navigate(
-                              context: context,
-                              dest: Destination.home,
-                            ),
+                            callBack: () async {
+                              await vm.login();
+                              if (vm.shouldNavigate) {
+                                if (!context.mounted) return;
+                                vm.navMgr.navigate(
+                                    context: context, dest: Destination.home);
+                              }
+                            },
                           ),
                         ),
                       ),

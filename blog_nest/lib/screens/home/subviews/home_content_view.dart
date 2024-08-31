@@ -1,5 +1,5 @@
 import 'package:blog_nest/extensions/string_ext.dart';
-import 'package:blog_nest/reusable_components/blog_cell_view.dart';
+import 'package:blog_nest/reusable_components/blog_cell/blog_cell_view.dart';
 import 'package:flutter/material.dart';
 import '../../../extensions/color_ext.dart';
 import '../../../model/blog.dart';
@@ -7,8 +7,9 @@ import '../../../utils/img_converter.dart';
 import '../../../utils/typedefs.dart';
 
 class HomeContentView extends StatelessWidget {
-  const HomeContentView({super.key, required this.blogs});
+  HomeContentView({super.key, required this.blogs, required this.setState});
   final List<Blog> blogs;
+  final VoidCallback setState;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,8 @@ class HomeContentView extends StatelessWidget {
                   ],
                 ),
               ),
-              ...blogs.map((blog) => BlogCellView(blog: blog))
+              ...blogs
+                  .map((blog) => BlogCellView(blog: blog, setState: setState))
             ],
           ),
         ),

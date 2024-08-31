@@ -6,8 +6,23 @@ import '../../managers/user_mgr.dart';
 class LoginVM {
   final dataMgr = GetIt.I.get<UserMgr>();
   final navMgr = GetIt.I.get<NavMgr>();
+  final userMgr = GetIt.I.get<UserMgr>();
   final nameController = TextEditingController();
   final pwdController = TextEditingController();
+  bool shouldNavigate = false;
+  bool shouldShowAlert = false;
 
-  Future<void> login() async {}
+  Future<void> login() async {
+    for (var user in userMgr.allUsers) {
+      if (user.username.toLowerCase() == nameController.text.toLowerCase() &&
+          user.password == pwdController.text) {
+        await userMgr.setCurrentUser(user: user, isSignIn: true);
+        shouldNavigate = true;
+      } else {
+        shouldShowAlert = true;
+      }
+    }
+  }
+
+  void guestLogin() => shouldNavigate = true;
 }

@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late final vm = HomeVM();
+  void callBack() => setState(() => ());
 
   @override
   void initState() {
@@ -66,7 +67,8 @@ class _HomeScreenState extends State<HomeScreen>
         child: TabBarView(
           controller: vm.tabController,
           children: BlogCategory.values.map((category) {
-            return HomeContentView(blogs: vm.blogMgr.categoryBlogs);
+            return HomeContentView(
+                blogs: vm.blogMgr.categoryBlogs, setState: callBack);
           }).toList(),
         ),
       ),

@@ -1,27 +1,31 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
-import 'package:blog_nest/managers/blog_mgr.dart';
 import 'package:blog_nest/managers/nav_mgr.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import '../extensions/color_ext.dart';
-import '../model/blog.dart';
-import '../utils/img_converter.dart';
-import '../utils/typedefs.dart';
+import '../../extensions/color_ext.dart';
+import '../../model/blog.dart';
+import '../../utils/img_converter.dart';
+import '../../utils/typedefs.dart';
+import 'blog_cell_vm.dart';
 
 class BlogCellView extends StatelessWidget {
-  BlogCellView({super.key, required this.blog, this.hasHeader = false});
-  final navMgr = GetIt.I.get<NavMgr>();
-  final blogMgr = GetIt.I.get<BlogMgr>();
+  BlogCellView({
+    super.key,
+    required this.blog,
+    this.hasHeader = false,
+    required this.setState,
+  });
+  final vm = BlogCellVM();
   final Blog blog;
   final bool hasHeader;
+  VoidCallback setState;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        blogMgr.selectedBlog = blog;
-        navMgr.navigate(context: context, dest: Destination.blogDetails);
+        vm.blogMgr.selectedBlog = blog;
+        vm.navMgr.navigate(context: context, dest: Destination.blogDetails);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -86,8 +90,11 @@ class BlogCellView extends StatelessWidget {
                     Row(
                       children: [
                         InkWell(
-                            onTap: () => (),
-                            child: const Icon(Icons.bookmark_outline)
+                            onTap: () {
+                              vm.toggleBookmark(blog.id);
+                              setState();
+                            },
+                            child: Icon(Icons.bookmark_outline)
                                 .withSizeAndColor(size: 28, color: C.text3)),
                         InkWell(
                             onTap: () => (),
