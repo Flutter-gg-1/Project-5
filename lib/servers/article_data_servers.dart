@@ -19,7 +19,7 @@ class ArticleDataServers {
       summary: 'Flutter is an open-source UI toolkit',
       content: 'Flutter is an open-source UI toolkit',
       minutesToRead: 2,
-      postImage: 'assets/1.png',
+      postImage: 'assets/2.png',
     ),
     ArticleModel(
       id: 3,
@@ -28,7 +28,7 @@ class ArticleDataServers {
       summary: 'Flutter is an open-source UI toolkit',
       content: 'Flutter is an open-source UI toolkit',
       minutesToRead: 2,
-      postImage: 'assets/1.png',
+      postImage: 'assets/3.png',
     ),
   ];
   final box = GetStorage();
