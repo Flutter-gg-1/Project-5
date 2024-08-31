@@ -1,9 +1,10 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
-import '../../extensions/color_ext.dart';
-import '../../model/blog.dart';
-import '../../utils/typedefs.dart';
+import '../../../extensions/color_ext.dart';
+import '../../../model/blog.dart';
+import '../../../utils/img_converter.dart';
+import '../../../utils/typedefs.dart';
 
 class AccountBlogCellView extends StatelessWidget {
   const AccountBlogCellView({super.key, required this.blog});
@@ -27,11 +28,14 @@ class AccountBlogCellView extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 3,
                     child: AspectRatio(
                       aspectRatio: 1.4,
-                      child: Placeholder(),
+                      child: ClipRRect(
+                          borderRadius: BR.circular(8),
+                          child:
+                              ImgConverter.imageFromBase64String(blog.imgData)),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -62,11 +66,12 @@ class AccountBlogCellView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(width: 8),
                   InkWell(
                     onTap: () => (),
                     child: const Icon(Icons.delete_outline, color: C.text3)
                         .withSizeAndColor(size: 16, color: C.red),
-                  )
+                  ),
                 ],
               ),
             ],

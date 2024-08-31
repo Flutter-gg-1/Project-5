@@ -29,26 +29,45 @@ class BlogMgr {
     _fetchBlogs();
   }
 
-  void _fetchBlogs() async {
-    try {
-      String jsonString = box.read('blogs');
-      if (jsonString.isNotEmpty) {
-        List blogs = jsonDecode(jsonString);
-        allBlogs = blogs.map((blog) => Blog.fromJson(blog)).toList();
-      } else {
-        throw Exception('No blogs found');
+  Future<void> _fetchBlogs() async {
+    List<Map<String, dynamic>> storageBlogs = [];
+
+    if (box.read('blogs') != null) {
+      storageBlogs = List.from(box.read('blogs')).cast<Map<String, dynamic>>();
+      for (var blog in storageBlogs) {
+        allBlogs.add(Blog.fromJson(blog));
       }
-    } catch (e) {
-      var defaultBlogs = await Blog.getDefaultBlogs();
-      for (var blog in defaultBlogs) {
-        await addNewBlog(blog);
+    } else {
+      allBlogs = await Blog.getDefaultBlogs();
+      List<Map<String, dynamic>> blogsAsMap = [];
+      for (var blog in allBlogs) {
+        blogsAsMap.add(blog.toJson());
       }
+      await box.write('blogs', blogsAsMap);
     }
   }
 
   Future<void> addNewBlog(Blog blog) async {
     allBlogs.add(blog);
-    String jsonString = jsonEncode(allBlogs);
-    await box.write('blogs', jsonString);
+    List<Map<String, dynamic>> blogsAsMap = [];
+    for (var blog in allBlogs) {
+      blogsAsMap.add(blog.toJson());
+    }
+    await box.write('blogs', blogsAsMap);
+  }
+
+  Future<void> removeBlog({required int blogId}) async {
+    Blog? blog =
+        allBlogs.where((blog) => blog.id == blogId).toList().firstOrNull;
+    if (blog != null) {
+      allBlogs.remove(blog);
+      List<Map<String, dynamic>> blogsAsMap = [];
+      for (var blog in allBlogs) {
+        blogsAsMap.add(blog.toJson());
+      }
+      await box.write('blogs', blogsAsMap);
+    } else {
+      // ERROR!
+    }
   }
 }

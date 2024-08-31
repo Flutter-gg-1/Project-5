@@ -57,7 +57,7 @@ class BlogCellView extends StatelessWidget {
                       child: AspectRatio(
                         aspectRatio: 4,
                         child: Column(
-                          mainAxisAlignment: MAL.spaceBetween,
+                          mainAxisAlignment: MAL.center,
                           crossAxisAlignment: CAL.start,
                           children: [
                             const Text('Hello').styled(
@@ -90,12 +90,18 @@ class BlogCellView extends StatelessWidget {
                     Row(
                       children: [
                         InkWell(
-                            onTap: () {
-                              vm.toggleBookmark(blog.id);
-                              setState();
-                            },
-                            child: Icon(Icons.bookmark_outline)
-                                .withSizeAndColor(size: 28, color: C.text3)),
+                          onTap: () {
+                            vm.toggleBookmark(blog.id);
+                            setState();
+                          },
+                          child: Icon(
+                            vm.isBookmarked(blog.id)
+                                ? Icons.bookmark
+                                : Icons.bookmark_outline,
+                            size: 28,
+                            color: C.text3,
+                          ),
+                        ),
                         InkWell(
                             onTap: () => (),
                             child: const Icon(Icons.more_vert)

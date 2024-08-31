@@ -1,15 +1,15 @@
 import 'package:blog_nest/model/blog.dart';
 
 class Bookmark {
-  int? userId;
+  int userId;
   int blogId;
 
-  Bookmark({this.userId, required this.blogId});
+  Bookmark({required this.userId, required this.blogId});
 
   factory Bookmark.fromJson(Map<String, dynamic> json) {
     return Bookmark(
       userId: json['userId'],
-      blogId: json['blog'],
+      blogId: json['blogId'],
     );
   }
 

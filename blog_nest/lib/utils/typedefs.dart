@@ -7,3 +7,5 @@ typedef AL = Alignment;
 typedef TAL = TextAlign;
 typedef MAL = MainAxisAlignment;
 typedef CAL = CrossAxisAlignment;
+// Padding
+typedef EI = EdgeInsets;

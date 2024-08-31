@@ -38,11 +38,11 @@ extension StringValues on BlogCategory {
       case BlogCategory.tech:
         return CupertinoIcons.cube_box;
       case BlogCategory.ai:
-        return CupertinoIcons.cloud;
+        return CupertinoIcons.person;
       case BlogCategory.cloud:
-        return CupertinoIcons.cloud;
+        return CupertinoIcons.paperplane;
       case BlogCategory.robotics:
-        return CupertinoIcons.cloud;
+        return CupertinoIcons.sunset;
       case BlogCategory.iot:
         return CupertinoIcons.cloud;
     }

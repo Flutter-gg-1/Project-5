@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
 import '../../managers/nav_mgr.dart';
 import '../../model/enum/blog_category.dart';
+import '../../utils/typedefs.dart';
 import 'home_vm.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,18 +16,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-  late final vm = HomeVM();
-  void callBack() => setState(() => ());
+  late HomeVM vm;
+  void callBack() => setState(() {});
 
   @override
   void initState() {
     super.initState();
-
+    vm = HomeVM();
     vm.tabController = TabController(
       initialIndex: 0,
       length: BlogCategory.values.length,
       vsync: this,
     );
+    setState(() {});
   }
 
   @override
@@ -43,24 +45,32 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: C.itemBg,
-          leading: IconButton(
+        backgroundColor: C.itemBg,
+        leading: IconButton(
+            onPressed: () => (),
+            icon: const Icon(Icons.menu).withSizeAndColor()),
+        actions: [
+          IconButton(
               onPressed: () => (),
-              icon: const Icon(Icons.menu).withSizeAndColor()),
-          actions: [
-            IconButton(
-                onPressed: () => (),
-                icon: const Icon(Icons.search).withSizeAndColor()),
-            IconButton(
-                onPressed: () => vm.navMgr
-                    .navigate(context: context, dest: Destination.addBlog),
-                icon: const Icon(Icons.add).withSizeAndColor())
-          ],
-          bottom: TabBar(
-            controller: vm.tabController,
-            tabs: BlogCategory.values.map((cat) => Text(cat.tabStr())).toList(),
-            onTap: (idx) => _changeFilter(),
-          )),
+              icon: const Icon(Icons.search).withSizeAndColor()),
+          IconButton(
+              onPressed: () => vm.navMgr
+                  .navigate(context: context, dest: Destination.addBlog),
+              icon: const Icon(Icons.add).withSizeAndColor())
+        ],
+        bottom: TabBar(
+          indicatorColor: C.red,
+          indicatorSize: TabBarIndicatorSize.tab,
+          labelColor: C.text1,
+          unselectedLabelColor: C.text3,
+          labelPadding: EI.only(bottom: 8),
+          dividerHeight: 0.1,
+          dividerColor: C.text3,
+          controller: vm.tabController,
+          tabs: BlogCategory.values.map((cat) => Text(cat.tabStr())).toList(),
+          onTap: (idx) => _changeFilter(),
+        ),
+      ),
       backgroundColor: C.bg,
       body: Padding(
         padding: const EdgeInsets.all(16.0),

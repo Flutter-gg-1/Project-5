@@ -43,14 +43,17 @@ class Blog {
   Map<String, dynamic> toJson() => {
         'id': id,
         'title': title,
+        'summary': summary,
+        'content': content,
         'category': category.toString().split('.').last,
+        'readingMinutes': readingMinutes,
         'timeStamp': timeStamp,
         'imgData': imgData,
         'authorId': authorId,
       };
 
   static Future<List<Blog>> getDefaultBlogs() async {
-    return [
+    var blogs = [
       Blog(
           id: 1,
           title:
@@ -74,7 +77,7 @@ class Blog {
           readingMinutes: 5,
           timeStamp: 'Nov 15, 2020',
           imgData: await ImgConverter.assetImgToData(Img.orangeN),
-          authorId: 1),
+          authorId: 2),
       Blog(
           id: 3,
           title: 'Iron Man found flying over NY City. Some Say he is an Alien!',
@@ -127,5 +130,6 @@ class Blog {
           imgData: await ImgConverter.assetImgToData(Img.yellowSplash),
           authorId: 1),
     ];
+    return blogs;
   }
 }

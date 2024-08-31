@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextField(
+        style: const TextStyle(color: C.text1),
         controller: controller,
         obscureText: isObscure,
         decoration: InputDecoration(

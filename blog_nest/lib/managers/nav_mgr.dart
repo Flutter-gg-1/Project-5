@@ -12,11 +12,20 @@ class NavMgr {
         .then((value) {});
   }
 
+  void signOut(
+      {required BuildContext context, Destination dest = Destination.login}) {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => getDestination(dest)),
+        (Route<dynamic> route) => false);
+  }
+
   void navigateBack({required BuildContext context, String? str}) =>
       Navigator.pop(context, str);
 
   Widget getDestination(Destination dest) {
     switch (dest) {
+      case Destination.login:
+        return PopScope(canPop: false, child: LoginScreen());
       case Destination.home:
         return const PopScope(canPop: false, child: BottomNavBarView());
       case Destination.addBlog:
@@ -34,4 +43,4 @@ class NavMgr {
 
 // MARK: - Update getDestination() when a new view is added
 
-enum Destination { home, addBlog, blogDetails }
+enum Destination { login, home, addBlog, blogDetails }

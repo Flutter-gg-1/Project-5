@@ -19,13 +19,16 @@ class BlogCellVM {
 
   void _fetchBookmarks() {
     bookmarks = userMgr.allBookmarks
-        .where((bookmark) =>
-            (bookmark.userId == currentUser?.id || bookmark.userId == null))
+        .where((bookmark) => (bookmark.userId == currentUser?.id))
         .toList();
   }
 
-  void toggleBookmark(int blogId) async {
-    await userMgr.toggleBookmark(blogId: blogId);
+  bool isBookmarked(int blogId) {
+    return bookmarks.any((bookmark) => bookmark.blogId == blogId);
+  }
+
+  void toggleBookmark(int blogId) {
+    userMgr.toggleBookmark(blogId: blogId);
     _fetchBookmarks();
   }
 }

@@ -28,9 +28,10 @@ class BlogDetailsScreen extends StatelessWidget {
               onPressed: () => (),
               icon: const Icon(Icons.bookmark_outline).withSizeAndColor()),
           if (vm.currentUser != null)
-            IconButton(
-                onPressed: () => (),
-                icon: const Icon(Icons.edit).withSizeAndColor()),
+            if (vm.blog?.authorId == vm.currentUser!.id)
+              IconButton(
+                  onPressed: () => (),
+                  icon: const Icon(Icons.edit).withSizeAndColor()),
         ],
       ),
       body: Column(
@@ -57,7 +58,7 @@ class BlogDetailsScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Row(
                           children: [
-                            const Icon(Icons.military_tech)
+                            Icon(vm.blog?.category.icon())
                                 .withSizeAndColor(size: 16, color: C.accent),
                             const SizedBox(width: 8),
                             Text(vm.blog?.category.titleStr() ?? '').styled(

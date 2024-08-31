@@ -41,7 +41,7 @@ class User {
       };
 
   static Future<List<User>> getDefaultUsers() async {
-    return [
+    var users = [
       User(
         id: 1,
         name: 'Kyle Barr',
@@ -57,7 +57,8 @@ class User {
         avatarData: await ImgConverter.assetImgToData(Img.orangeN),
         username: 'john',
         password: '123',
-      ),
+      )
     ];
+    return users;
   }
 }

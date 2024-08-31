@@ -1,19 +1,15 @@
 import 'package:blog_nest/extensions/string_ext.dart';
-import 'package:blog_nest/managers/blog_mgr.dart';
-import 'package:blog_nest/managers/user_mgr.dart';
-import 'package:blog_nest/screens/account/account_blog_cell_view.dart';
+import 'package:blog_nest/screens/account/subviews/account_blog_cell_view.dart';
+import 'package:blog_nest/screens/account/subviews/account_header_cell_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import '../../extensions/color_ext.dart';
-import '../../model/blog.dart';
-import '../../model/user.dart';
 import '../../reusable_components/custom_btn_view.dart';
 import '../../utils/typedefs.dart';
+import 'account_vm.dart';
 
 class AccountScreen extends StatelessWidget {
   AccountScreen({super.key});
-  final User? user = GetIt.I.get<UserMgr>().currentUser;
-  final List<Blog> blogs = GetIt.I.get<BlogMgr>().userBlogs;
+  final vm = AccountVM();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,7 @@ class AccountScreen extends StatelessWidget {
             crossAxisAlignment: CAL.start,
             children: [
               const Text('Account').styled(size: 20, weight: FW.w700),
-              if (user == null)
+              if (vm.currentUser == null)
                 Expanded(
                   child: Center(
                     child: AspectRatio(
@@ -50,70 +46,40 @@ class AccountScreen extends StatelessWidget {
                   ),
                 )
               else
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 24),
-                      child: AspectRatio(
-                        aspectRatio: 5,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CAL.start,
+                    children: [
+                      AccountHeaderCellView(user: vm.currentUser),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         child: Row(
                           children: [
-                            const Expanded(
-                              flex: 1,
-                              child: AspectRatio(
-                                aspectRatio: 1,
-                                child: Placeholder(),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              flex: 4,
-                              child: Column(
-                                mainAxisAlignment: MAL.center,
-                                crossAxisAlignment: CAL.start,
-                                children: [
-                                  Text(user?.name ?? '').styled(
-                                      size: 14,
-                                      weight: FW.w500,
-                                      color: C.text2),
-                                  const SizedBox(height: 4),
-                                  Text(user?.jobTitle ?? '').styled(
-                                      size: 10,
-                                      weight: FW.w500,
-                                      color: C.text2),
-                                ],
-                              ),
-                            )
+                            const Text('My Blogs')
+                                .styled(size: 18, weight: FW.w700),
                           ],
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Row(
-                        children: [
-                          const Text('My Blogs')
-                              .styled(size: 18, weight: FW.w700),
-                        ],
-                      ),
-                    ),
-                    Expanded(
+                      Expanded(
                         child: ListView(
-                      children: blogs
-                          .where((blog) => blog.authorId == user?.id)
-                          .map((blog) => AccountBlogCellView(blog: blog))
-                          .toList(),
-                    )),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Row(
-                        mainAxisAlignment: MAL.center,
-                        children: [
-                          CustomBtnView(isLogin: false, callBack: () => ()),
-                        ],
+                          children: vm.blogs
+                              .map((blog) => AccountBlogCellView(blog: blog))
+                              .toList(),
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: Row(
+                          mainAxisAlignment: MAL.center,
+                          children: [
+                            CustomBtnView(
+                                isLogin: false,
+                                callBack: () => vm.signOut(context)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
             ],
           ),

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:blog_nest/model/bookmark.dart';
-import 'package:blog_nest/model/favorite.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get_storage/get_storage.dart';
 import '../model/blog.dart';
 import '../model/user.dart';
 
-class UserMgr {
+class UserMgr extends ChangeNotifier {
   List<User> allUsers = [];
   List<Blog> allBlogs = [];
   List<Bookmark> allBookmarks = [];
@@ -16,16 +16,22 @@ class UserMgr {
     _fetchData();
   }
 
-  void _fetchData() {
+  void _fetchData() async {
     _fetchCurrentUser();
     _fetchUsers();
+    _fetchBookmarks();
   }
 
-  // Current User
-  void _fetchCurrentUser() async {
+  // C
+  Future<void> _fetchCurrentUser() async {
     try {
-      String jsonString = box.read('currentUser');
-      currentUser = jsonDecode(jsonString);
+      String? jsonString = box.read('currentUser');
+      if (jsonString != null) {
+        Map<String, dynamic> userMap = jsonDecode(jsonString);
+        currentUser = User.fromJson(userMap);
+      } else {
+        currentUser = null;
+      }
     } catch (e) {
       currentUser = null;
     }
@@ -35,50 +41,73 @@ class UserMgr {
       {required User user, required bool isSignIn}) async {
     if (isSignIn) {
       currentUser = user;
-      String jsonString = jsonEncode(user);
+      String jsonString = jsonEncode(user.toJson());
       await box.write('currentUser', jsonString);
     } else {
       currentUser = null;
-      box.remove('currentUser');
+      await box.remove('currentUser');
     }
   }
 
   // All Users
-  void _fetchUsers() async {
-    try {
-      String jsonString = box.read('users');
-      if (jsonString.isNotEmpty) {
-        List users = jsonDecode(jsonString);
-        allUsers = users.map((user) => User.fromJson(user)).toList();
-      } else {
-        throw Exception('No users found');
+  Future<void> _fetchUsers() async {
+    List<Map<String, dynamic>> storageUsers = [];
+
+    if (box.read('users') != null) {
+      storageUsers = List.from(box.read('users')).cast<Map<String, dynamic>>();
+      for (var user in storageUsers) {
+        allUsers.add(User.fromJson(user));
       }
-    } catch (e) {
-      // Handle the case where users are not found
-      var defaultUsers = await User.getDefaultUsers();
-      for (var user in defaultUsers) {
-        await addNewUser(user);
+    } else {
+      allUsers = await User.getDefaultUsers();
+      List<Map<String, dynamic>> usersAsMap = [];
+      for (var user in allUsers) {
+        usersAsMap.add(user.toJson());
       }
+      await box.write('users', usersAsMap);
     }
   }
 
+  // Add User
   Future<void> addNewUser(User user) async {
     allUsers.add(user);
-    String jsonString = jsonEncode(allUsers);
-    await box.write('users', jsonString);
+    List<Map<String, dynamic>> usersAsMap = [];
+    for (var user in allUsers) {
+      usersAsMap.add(user.toJson());
+    }
+    await box.write('users', usersAsMap);
   }
 
-  // Toggle Favorite
+  // Bookmarks
+  Future<void> _fetchBookmarks() async {
+    List<Map<String, dynamic>> storageBookmarks = [];
+    if (box.read('bookmarks') != null) {
+      storageBookmarks =
+          List.from(box.read('bookmarks')).cast<Map<String, dynamic>>();
+      for (var bookmark in storageBookmarks) {
+        allBookmarks.add(Bookmark.fromJson(bookmark));
+      }
+    }
+    print('bookmarks count: ${allBookmarks.length}');
+  }
+
+  // Toggle Bookmark
   Future<void> toggleBookmark({required int blogId}) async {
     var bookmark = allBookmarks
-        .where((f) => (f.blogId == blogId && f.userId == f.userId))
+        .where((b) => (b.blogId == blogId && b.userId == currentUser?.id))
         .toList()
         .firstOrNull;
 
     bookmark != null
         ? allBookmarks.remove(bookmark)
-        : allBookmarks.add(Bookmark(userId: currentUser?.id, blogId: blogId));
-    String jsonString = jsonEncode(allBookmarks);
-    await box.write('bookmarks', jsonString);
+        : allBookmarks
+            .add(Bookmark(userId: currentUser?.id ?? -1, blogId: blogId));
+
+    List<Map<String, dynamic>> bookmarksAsMap = [];
+
+    for (var bookmark in allBookmarks) {
+      bookmarksAsMap.add(bookmark.toJson());
+    }
+    await box.write('bookmarks', bookmarksAsMap);
   }
 }

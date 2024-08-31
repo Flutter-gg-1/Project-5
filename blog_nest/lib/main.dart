@@ -1,6 +1,7 @@
-import 'package:blog_nest/screens/login/login_screen.dart';
 import 'package:blog_nest/services/di_container.dart';
 import 'package:flutter/material.dart';
+
+import 'content_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginScreen());
+    return MaterialApp(
+        debugShowCheckedModeBanner: false, home: ContentScreen());
   }
 }
