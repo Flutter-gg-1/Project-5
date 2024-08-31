@@ -25,7 +25,7 @@ class AppData {
           blogs: []),
     ),
     Blog.create(
-      category: 'Technology',
+      category: 'TECHNOLOGY',
       title: 'The Rise of AI in Everyday Life',
       summary:
           'An exploration of how AI is being integrated into daily routines.',
@@ -62,9 +62,4 @@ class AppData {
     blogs.add(blog);
   }
 
-  // void updateBlog(Blog blog) {
-  //   for (var blog in b) {
-      
-  //   }
-  // }
 }

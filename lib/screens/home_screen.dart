@@ -1,4 +1,5 @@
 import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/screens/add_blog.dart';
 import 'package:blog_app/widgets/home/blog_card.dart';
 import 'package:blog_app/widgets/home/drone.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,33 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 10,
             ),
             GetIt.I.get<AppData>().loggedIn
-                ? const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  )
+                ? IconButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return AddBlog(
+                          onSaved: (
+                              {required content,
+                              required summary,
+                              required title,
+                              required category}) {
+                            GetIt.I.get<AppData>().createBlog(
+                                category: category,
+                                title: title,
+                                summary: summary,
+                                content: content,
+                                image: "assets/home/google.png",
+                                authorName:
+                                    GetIt.I.get<AppData>().user.username);
+                            setState(() {});
+                          },
+                        );
+                      }));
+                    },
+                    icon: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ))
                 : const SizedBox(
                     width: 10,
                   ),
@@ -99,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Column(
                       children: GetIt.I.get<AppData>().blogs.where(
                         (element) {
-                          return element.category == "Technology";
+                          return element.category == "TECHNOLOGY";
                         },
                       ).map((blog) {
                         return BlogCard(
