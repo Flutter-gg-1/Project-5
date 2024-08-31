@@ -27,7 +27,7 @@ class _NavbarState extends State<Navbar> {
         height: 70,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Color(0xff111111),
+          backgroundColor: const Color(0xff111111),
           currentIndex: pageIndex,
           selectedItemColor: Colors.white,
         

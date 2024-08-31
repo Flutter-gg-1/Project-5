@@ -10,16 +10,16 @@ class SaveListScreen extends StatefulWidget {
 class _SaveListScreenState extends State<SaveListScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff111111),
+    return const Scaffold(
+      backgroundColor: Color(0xff111111),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 15,
                 ),
                 Text(
@@ -27,10 +27,10 @@ class _SaveListScreenState extends State<SaveListScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 20,
                   fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 300,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(

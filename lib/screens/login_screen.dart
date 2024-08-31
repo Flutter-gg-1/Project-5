@@ -177,11 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           GestureDetector(
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
-                                // Replace this with your user authentication logic
                                 bool userFound = false;
-                                // Assuming `users` is a list of user objects with email and password fields
-                                // Replace the below code with your actual authentication logic
-
                                 if (GetIt.I.get<AppData>().user.username ==
                                         username &&
                                     GetIt.I.get<AppData>().user.password ==
@@ -191,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Navbar()),
+                                        builder: (context) => const Navbar()),
                                   );
                                 }
 
@@ -226,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Navbar()),
+                                    builder: (context) => const Navbar()),
                               );
                             },
                             child: Row(

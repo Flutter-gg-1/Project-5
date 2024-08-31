@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+import 'package:blog_app/models/user.dart';
 
 class Blog {
   final String category;
@@ -26,15 +28,15 @@ class Blog {
     required String summary,
     required String content,
     required String image,
-    required String authorName,
+    required User author,
   }) {
     final int minToRead = (content.split(' ').length / 200).ceil();
-    final String date = DateTime.now().toString();
+    final String date = DateFormat('MMM d, yyyy').format(DateTime.now());
 
     return Blog(
       category: category,
       title: title,
-      authorName: authorName,
+      authorName: author.username,
       summary: summary,
       date: date,
       minToRead: minToRead,

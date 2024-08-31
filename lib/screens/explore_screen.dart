@@ -6,7 +6,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff111111),
+      backgroundColor: const Color(0xff111111),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -16,7 +16,7 @@ class ExploreScreen extends StatelessWidget {
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUnfocus,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search),
                     contentPadding:
                         const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                     hintText: "Enter your password",
@@ -32,7 +32,7 @@ class ExploreScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height:  300,),
+                const SizedBox(height:  300,),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

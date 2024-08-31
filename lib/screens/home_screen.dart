@@ -1,4 +1,9 @@
+import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/widgets/home/blog_card.dart';
+import 'package:blog_app/widgets/home/drone.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,18 +14,29 @@ class HomeScreen extends StatelessWidget {
       length: 5,
       child: Scaffold(
         backgroundColor: const Color(0xff111111),
-        appBar: AppBar( 
+        appBar: AppBar(
           backgroundColor: const Color(0xff1E1E1E),
           leading: const Icon(
             Icons.menu,
             color: Colors.white,
           ),
-          actions: const [
-            Icon(
+          actions: [
+            const Icon(
               Icons.search,
               color: Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
+              width: 10,
+            ),
+            GetIt.I.get<AppData>().loggedIn
+                ? const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  )
+                : const SizedBox(
+                    width: 10,
+                  ),
+            const SizedBox(
               width: 10,
             ),
           ],
@@ -38,13 +54,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.only(top:16.0,left:16.0,right:16.0,),
+          padding: const EdgeInsets.only(
+            top: 16.0,
+            left: 16.0,
+            right: 16.0,
+          ),
           child: TabBarView(
             children: [
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    Image.asset("assets/home/drone.png"),
+                    const Drone(),
                     Divider(
                       color: Colors.white.withOpacity(0.1),
                     ),
@@ -71,356 +91,15 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                          color: const Color(0xff1E1E1E),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: 62,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(4),
-                                  child: Image.asset(
-                                    "assets/home/google.png",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Kyle Barr",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                      )),
-                                  SizedBox(
-                                    width: 240,
-                                    child: Text(
-                                        "Now Google’s Bard AI can talk & respond to visual prompts",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("Jul 13, 2023 • 2 min read",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                        fontSize: 10,
-                                      ))
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.bookmark_outline_outlined,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.more_vert,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                    Column(
+                      children: GetIt.I.get<AppData>().blogs.map((blog) {
+                        return BlogCard(
+                          blog: blog,
+                        );
+                      }).toList(),
                     ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                          color: const Color(0xff1E1E1E),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: 62,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(4),
-                                  child: Image.asset(
-                                    "assets/home/google.png",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Kyle Barr",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                      )),
-                                  SizedBox(
-                                    width: 240,
-                                    child: Text(
-                                        "Now Google’s Bard AI can talk & respond to visual prompts",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("Jul 13, 2023 • 2 min read",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                        fontSize: 10,
-                                      ))
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.bookmark_outline_outlined,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.more_vert,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                          color: const Color(0xff1E1E1E),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: 62,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(4),
-                                  child: Image.asset(
-                                    "assets/home/google.png",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Kyle Barr",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                      )),
-                                  SizedBox(
-                                    width: 240,
-                                    child: Text(
-                                        "Now Google’s Bard AI can talk & respond to visual prompts",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("Jul 13, 2023 • 2 min read",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                        fontSize: 10,
-                                      ))
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.bookmark_outline_outlined,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.more_vert,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                          color: const Color(0xff1E1E1E),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: 62,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(4),
-                                  child: Image.asset(
-                                    "assets/home/google.png",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Kyle Barr",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                      )),
-                                  SizedBox(
-                                    width: 240,
-                                    child: Text(
-                                        "Now Google’s Bard AI can talk & respond to visual prompts",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                children: [
-                                  Text("Jul 13, 2023 • 2 min read",
-                                      style: TextStyle(
-                                        color: Color(0xffB8B8B8),
-                                        fontSize: 10,
-                                      ))
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.bookmark_outline_outlined,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.more_vert,
-                                    color: Color(0xffB8B8B8),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
+
+                    const SizedBox(
                       height: 12,
                     ),
                   ],
