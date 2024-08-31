@@ -1,5 +1,8 @@
-import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/data/blog_data.dart';
+import 'package:blog_app/data/user_data.dart';
+import 'package:blog_app/screens/edit_blog.dart';
 import 'package:blog_app/widgets/profile/login.dart';
+import 'package:blog_app/widgets/profile/user_blog.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -13,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return GetIt.I.get<AppData>().loggedIn
+    return GetIt.I.get<UserData>().loggedIn
         ? Scaffold(
             backgroundColor: const Color(0xff111111),
             body: SafeArea(
@@ -57,12 +60,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        GetIt.I.get<AppData>().user.username,
+                                        GetIt.I.get<UserData>().user.username,
                                         style: const TextStyle(
                                             color: Color(0xffB8B8B8)),
                                       ),
                                       Text(
-                                        GetIt.I.get<AppData>().user.title,
+                                        GetIt.I.get<UserData>().user.title,
                                         style: const TextStyle(
                                             color: Color(0xffB8B8B8)),
                                       ),
@@ -85,83 +88,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ],
                               ),
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                padding: const EdgeInsets.all(8.0),
-                                decoration: BoxDecoration(
-                                    color: const Color(0xff1E1E1E),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          height: 62,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            child: Image.asset(
-                                              "assets/home/google.png",
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const SizedBox(
-                                              width: 240,
-                                              child: Text(
-                                                  "Now Google’s Bard AI can talk & respond to visual prompts",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 14)),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                const SizedBox(
-                                                  width: 150,
-                                                ),
-                                                IconButton(
-                                                  onPressed: () {},
-                                                  icon: const Icon(
-                                                    Icons
-                                                        .mode_edit_outline_outlined,
-                                                    color: Colors.white,
-                                                    size: 20,
-                                                  ),
-                                                ),
-                                                IconButton(
-                                                  onPressed: () {},
-                                                  icon: const Icon(
-                                                    Icons.delete,
-                                                    color: Colors.red,
-                                                    size: 20,
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              Column(
+                                  children: GetIt.I
+                                      .get<UserData>()
+                                      .user
+                                      .blogs
+                                      .map((blog) {
+                                return UserBlog(
+                                    blog: blog,
+                                    onDelete: () {
+                                      GetIt.I
+                                          .get<UserData>()
+                                          .user
+                                          .blogs
+                                          .remove(blog);
+                                      GetIt.I
+                                          .get<BlogData>()
+                                          .blogs
+                                          .remove(blog);
+                                      setState(() {});
+                                    },
+                                    onEdit: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return EditBlog(blog: blog);
+                                      }));
+                                    });
+                              }).toList())
                             ],
                           ),
                         )
@@ -169,33 +122,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Positioned(
                         bottom: 10,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  GetIt.I.get<AppData>().loggedIn = false;
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  height: 50,
-                                  width: 250,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: const Center(
-                                    child: Text(
-                                      "Login",
-                                      style: TextStyle(
-                                          color: Color(0xffBDA6F5),
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
+                        left: 50,
+                        right: 50,
+                        child: GestureDetector(
+                          onTap: () {
+                            GetIt.I.get<UserData>().loggedIn = false;
+                            setState(() {});
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 250,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Logout",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 210, 40, 10),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ]))
+                            ),
+                          ),
+                        ))
                   ]),
                 ),
               ),

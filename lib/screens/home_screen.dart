@@ -1,4 +1,5 @@
-import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/data/blog_data.dart';
+import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/screens/add_blog.dart';
 import 'package:blog_app/widgets/home/blog_card.dart';
 import 'package:blog_app/widgets/home/drone.dart';
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               width: 10,
             ),
-            GetIt.I.get<AppData>().loggedIn
+            GetIt.I.get<UserData>().loggedIn
                 ? IconButton(
                     onPressed: () {
                       Navigator.push(context,
@@ -45,14 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               required summary,
                               required title,
                               required category}) {
-                            GetIt.I.get<AppData>().createBlog(
+                            GetIt.I.get<BlogData>().createBlog(
                                 category: category,
                                 title: title,
                                 summary: summary,
                                 content: content,
                                 image: "assets/home/google.png",
                                 authorName:
-                                    GetIt.I.get<AppData>().user.username);
+                                    GetIt.I.get<UserData>().user.username);
                             setState(() {});
                           },
                         );
@@ -121,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10,
                     ),
                     Column(
-                      children: GetIt.I.get<AppData>().blogs.where(
+                      children: GetIt.I.get<BlogData>().blogs.where(
                         (element) {
                           return element.category == "TECHNOLOGY";
                         },
@@ -132,13 +133,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             isSaved
                                 ? {
                                     GetIt.I
-                                        .get<AppData>()
+                                        .get<UserData>()
                                         .savedBlogs
                                         .remove(blog),
                                     isSaved = !isSaved
                                   }
                                 : {
-                                    GetIt.I.get<AppData>().savedBlogs.add(blog),
+                                    GetIt.I.get<UserData>().savedBlogs.add(blog),
                                     isSaved = !isSaved
                                   };
                           },
@@ -182,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10,
                     ),
                     Column(
-                      children: GetIt.I.get<AppData>().blogs.where(
+                      children: GetIt.I.get<BlogData>().blogs.where(
                         (element) {
                           return element.category == "Technology";
                         },
@@ -193,14 +194,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             isSaved
                                 ? {
                                     GetIt.I
-                                        .get<AppData>()
+                                        .get<UserData>()
                                         .savedBlogs
                                         .remove(blog),
                                     isSaved = !isSaved,
                                     setState(() {})
                                   }
                                 : {
-                                    GetIt.I.get<AppData>().savedBlogs.add(blog),
+                                    GetIt.I.get<UserData>().savedBlogs.add(blog),
                                     isSaved = !isSaved,
                                     setState(() {})
                                   };

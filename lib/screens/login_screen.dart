@@ -1,4 +1,4 @@
-import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -180,12 +180,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
                                 bool userFound = false;
-                                if (GetIt.I.get<AppData>().user.username ==
+                                if (GetIt.I.get<UserData>().user.username ==
                                         username &&
-                                    GetIt.I.get<AppData>().user.password ==
+                                    GetIt.I.get<UserData>().user.password ==
                                         password) {
                                   userFound = true;
-                                  GetIt.I.get<AppData>().loggedIn = true;
+                                  GetIt.I.get<UserData>().loggedIn = true;
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(

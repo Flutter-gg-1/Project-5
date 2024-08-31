@@ -1,4 +1,4 @@
-import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/models/blog.dart';
 import 'package:blog_app/screens/blog_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class _BlogCardState extends State<BlogCard> {
   @override
   void initState() {
     super.initState();
-    isSaved = GetIt.I.get<AppData>().savedBlogs.contains(widget.blog);
+    isSaved = GetIt.I.get<UserData>().savedBlogs.contains(widget.blog);
   }
 
   @override

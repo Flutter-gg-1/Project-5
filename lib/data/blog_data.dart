@@ -1,14 +1,9 @@
+import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/models/blog.dart';
-import 'package:blog_app/models/user.dart';
+import 'package:get_it/get_it.dart';
 
-class AppData {
-  User user = User(
-      username: "turki",
-      password: "turki",
-      title: "Software engineer",
-      blogs: []);
-  List<Blog> savedBlogs = [];
-  bool loggedIn = false;
+class BlogData {
+
   List<Blog> blogs = [
     Blog.create(
       category: 'Technology',
@@ -18,11 +13,7 @@ class AppData {
       content:
           'Artificial Intelligence (AI) is becoming increasingly prevalent in various aspects of our lives...',
       image: 'assets/home/watch.png',
-      author: User(
-          username: "turki",
-          password: "turki",
-          title: "Software engineer",
-          blogs: []),
+      author: GetIt.I.get<UserData>().user
     ),
     Blog.create(
       category: 'TECHNOLOGY',
@@ -32,11 +23,7 @@ class AppData {
       content:
           'Artificial Intelligence (AI) is becoming increasingly prevalent in various aspects of our lives...',
       image: 'assets/home/business_man.png',
-      author: User(
-          username: "turki",
-          password: "turki",
-          title: "Software engineer",
-          blogs: []),
+      author: GetIt.I.get<UserData>().user
     )
   ];
 
@@ -49,17 +36,13 @@ class AppData {
     required String authorName,
   }) {
     Blog blog = Blog.create(
-        author: User(
-            username: "turki",
-            password: "turki",
-            title: "Software engineer",
-            blogs: []),
+      author: GetIt.I.get<UserData>().user,
         category: category,
         content: content,
         title: title,
         image: image,
         summary: summary);
     blogs.add(blog);
+    GetIt.I.get<UserData>().user.blogs.add(blog);
   }
-
 }

@@ -1,4 +1,4 @@
-import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/models/blog.dart';
 import 'package:blog_app/screens/edit_blog.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class BlogScreen extends StatefulWidget {
 class _BlogScreenState extends State<BlogScreen> {
   @override
   Widget build(BuildContext context) {
-    final bool isLoggedIn = GetIt.I<AppData>().loggedIn;
+    final bool isLoggedIn = GetIt.I<UserData>().loggedIn;
 
     return Scaffold(
       backgroundColor: const Color(0xff111111),

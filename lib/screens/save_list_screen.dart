@@ -1,4 +1,4 @@
-import 'package:blog_app/data/app_data.dart';
+import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/widgets/home/blog_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -32,7 +32,7 @@ class _SaveListScreenState extends State<SaveListScreen> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                GetIt.I.get<AppData>().savedBlogs.isEmpty
+                GetIt.I.get<UserData>().savedBlogs.isEmpty
                     ? const Column(
                         children: [
                           SizedBox(
@@ -50,20 +50,20 @@ class _SaveListScreenState extends State<SaveListScreen> {
                         ],
                       )
                     : Column(
-                        children: GetIt.I.get<AppData>().savedBlogs.map((blog) {
+                        children: GetIt.I.get<UserData>().savedBlogs.map((blog) {
                           return BlogCard(
                             blog: blog,
                             onSaved: () {
-                              GetIt.I.get<AppData>().savedBlogs.contains(blog)
+                              GetIt.I.get<UserData>().savedBlogs.contains(blog)
                                   ? {
                                       GetIt.I
-                                          .get<AppData>()
+                                          .get<UserData>()
                                           .savedBlogs
                                           .remove(blog),
                                     }
                                   : {
                                       GetIt.I
-                                          .get<AppData>()
+                                          .get<UserData>()
                                           .savedBlogs
                                           .add(blog),
                                     };
