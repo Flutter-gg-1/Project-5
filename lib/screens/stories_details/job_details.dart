@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:project5/data_layer/blog_data.dart';
+import 'package:project5/data_layer/user_data.dart';
 
 import '../../widgets/custom_text/custom_text.dart';
 import '../update_stories_detail.dart';
@@ -16,6 +17,7 @@ class JobDetails extends StatefulWidget {
 
 class _JobDetailsState extends State<JobDetails> {
   bool isSave = false;
+  var isLogin = GetIt.I.get<UserData>().isLogedIn();
   @override
   Widget build(BuildContext context) {
     var selectedBlog = GetIt.I.get<BlogData>().blogData.firstWhere((blog) => blog.id == widget.id);
@@ -35,7 +37,7 @@ class _JobDetailsState extends State<JobDetails> {
               color: Colors.white,
             ),
           ),
-          IconButton(onPressed: () { 
+          isLogin? IconButton(onPressed: () { 
             isSave = true;
             Navigator.of(context).push(MaterialPageRoute(builder: (context){
               return UpdateStoriesDetail(id: selectedBlog.id);
@@ -47,7 +49,7 @@ class _JobDetailsState extends State<JobDetails> {
             });
           }, icon: const Icon(Icons.edit_outlined,
             color: Colors.white,),              
-          ),
+          ) : SizedBox.shrink(),
           const Padding(
             padding: EdgeInsets.only(right: 20),
             child: Icon(

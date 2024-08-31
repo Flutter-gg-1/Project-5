@@ -19,6 +19,7 @@ class _CustomTopStoriesState extends State<CustomTopStories> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 12),
                   height: 130,
                   width: 450,
                   decoration: BoxDecoration(color: const Color(0xff1E1E1E), borderRadius: BorderRadius.circular(8)),
@@ -33,6 +34,9 @@ class _CustomTopStoriesState extends State<CustomTopStories> {
                             children: [
                               CustomText(text: widget.text, color: const Color(0xff888888), size: 10, fontWeight: FontWeight.w500,),
                               IconButton(onPressed: (){
+                                if(isSave == true){
+
+                                }
                                 setState(() {
                                   isSave = !isSave;
                                 });

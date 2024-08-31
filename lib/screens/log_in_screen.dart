@@ -84,7 +84,6 @@ class LogInScreen extends StatelessWidget {
                                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
                               return const HomeScreen();
                             }));}
-                                  
                                   else{
                                    showModalBottomSheet(
                               context: context,

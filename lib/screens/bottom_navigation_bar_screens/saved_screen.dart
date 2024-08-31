@@ -17,13 +17,8 @@ class SavedScreen extends StatelessWidget {
               child: CustomText(text: "Saved News", color: Colors.white, size: 20, fontWeight: FontWeight.bold,),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 300),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomText(text: "No news found", color: Color(0xffB8B8B8), size: 20)
-                ],
-              ),
+              padding: EdgeInsets.only(top: 300, left: 150),
+              child: CustomText(text: "No news found", color: Color(0xffB8B8B8), size: 20),
             )
           ],
         ),

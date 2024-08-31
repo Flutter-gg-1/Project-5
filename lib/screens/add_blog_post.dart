@@ -61,7 +61,6 @@ class _AddBlogPostState extends State<AddBlogPost> {
                               isSaved: false));
                       Navigator.pop(context, true);
                     }
-                    ;
                   },
                   child: const CustomText(
                     text: "Post",

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:project5/data_layer/user_data.dart';
 import 'package:project5/screens/bottom_navigation_bar_screens/explore_screen.dart';
 import 'package:project5/widgets/custom_text/custom_text.dart';
 import 'package:project5/widgets/custom_top_stories.dart';
@@ -19,6 +20,7 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
+  var isLogin = GetIt.I.get<UserData>().isLogedIn();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -38,12 +40,13 @@ class _FeedScreenState extends State<FeedScreen> {
                   return const ExploreScreen();
                 }));
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.search,
                 color: const Color(0xffffffff),
                 size: 28,
               ),
             ),
+            isLogin ?
             IconButton(
               onPressed: () {
                 Navigator.of(context)
@@ -53,12 +56,12 @@ class _FeedScreenState extends State<FeedScreen> {
                           if (value != null) {setState(() {})}
                         });
               },
-              icon: const Icon(
+              icon: Icon(               
                 Icons.add,
                 color: const Color(0xffffffff),
                 size: 28,
               ),
-            ),
+            ) : SizedBox.shrink()
           ],
           backgroundColor: const Color(0xff1E1E1E),
           bottom: const TabBar(
@@ -173,9 +176,6 @@ class _FeedScreenState extends State<FeedScreen> {
                     }));
                   },
                 ),
-                const SizedBox(
-                  height: 12,
-                ),
                 CustomTopStories(
                   image: Image.asset("assets/watch.png"),
                   title: 'Jeremy Morgan',
@@ -187,9 +187,6 @@ class _FeedScreenState extends State<FeedScreen> {
                       return const WatchosDetails();
                     }));
                   },
-                ),
-                const SizedBox(
-                  height: 12,
                 ),
                 CustomTopStories(
                   image: Image.asset("assets/job.png"),
@@ -203,9 +200,6 @@ class _FeedScreenState extends State<FeedScreen> {
                       return const WatchosDetails();
                     }));
                   },
-                ),
-                const SizedBox(
-                  height: 12,
                 ),
                 Column(
                     children: GetIt.I.get<BlogData>().blogData.map((e) {
@@ -233,7 +227,7 @@ class _FeedScreenState extends State<FeedScreen> {
                       });
                     },
                   );
-                }).toList())
+                }).toList()),
               ],
             ),
           ),

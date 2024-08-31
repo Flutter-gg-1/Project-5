@@ -24,7 +24,7 @@ class BlogData {
   }
 
   removeBlog({required int id}) {
-    blogData.firstWhere((blog) => blog.id == id);
+    blogData.removeWhere((blog) => blog.id == id);
     box.write("blogs", blogData);
   }
 }
