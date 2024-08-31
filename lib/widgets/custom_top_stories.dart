@@ -5,7 +5,7 @@ import 'custom_text/custom_text.dart';
 class CustomTopStories extends StatelessWidget {
   const CustomTopStories({super.key, this.onTap, required this.image, required this.title, required this.subtitle, required this.text});
   final Function()? onTap;
-  final Image image;
+  final ImageProvider image;
   final String title;
   final String subtitle;
   final String text;
@@ -25,7 +25,7 @@ class CustomTopStories extends StatelessWidget {
                           child: Row(
                             children: [
                               CustomText(text: text, color: const Color(0xff888888), size: 10, fontWeight: FontWeight.w500,),
-                              IconButton(onPressed: (){}, icon: const Icon(Icons.bookmark_border), padding: const EdgeInsets.only(left: 180),),
+                              IconButton(onPressed: (){}, icon: const Icon(Icons.bookmark_border), padding: const EdgeInsets.only(left: 40),),
                               IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert_outlined))
                             ],
                           ),

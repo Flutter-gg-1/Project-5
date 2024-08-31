@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project5/model/blog_data_model.dart';
 
+import '../data_layer/blog_data.dart';
 import '../widgets/custom_text/custom_text.dart';
 import '../widgets/custom_text/custom_text_rich.dart';
 import '../widgets/custom_text_form_field.dart';
@@ -15,6 +19,12 @@ class AddBlogPost extends StatefulWidget {
 }
 
 class _AddBlogPostState extends State<AddBlogPost> {
+  TextEditingController imageController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController summaryController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
+  TextEditingController categoryController = TextEditingController();
+  TextEditingController readingMinutesController = TextEditingController();
   File? selectimage;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +39,12 @@ class _AddBlogPostState extends State<AddBlogPost> {
         actions:[
           Padding(
             padding: const EdgeInsets.only(right: 20),
-            child: TextButton(onPressed: (){}, child: const CustomText(text: "Post", color: Colors.white, size: 17, fontWeight: FontWeight.bold,))
+            child: TextButton(onPressed: () async {
+              print("Post button pressed");
+              String image = base64Encode(await selectimage!.readAsBytes());
+              GetIt.I.get<BlogData>().addBlogPost(blog: BlogDataModel(category: "AI", authorName: "aaa", title: titleController.text, summary: summaryController.text, content: contentController.text, date: DateTime.now(), minutesToRead: readingMinutesController.hashCode, postImage: image));
+              Navigator.pop(context, true);
+            }, child: const CustomText(text: "Post", color: Colors.white, size: 17, fontWeight: FontWeight.bold,))
           ),
         ],
       ),
@@ -74,19 +89,19 @@ class _AddBlogPostState extends State<AddBlogPost> {
               const SizedBox(height: 30,),
               const CustomTextRich(text: 'Title',),
               const SizedBox(height: 5,),
-              const CustomTextFormField(hintmsg: "Enter your blog title"),
+              CustomTextFormField(hintmsg: "Enter your blog title", controller: titleController),
               const SizedBox(height: 30,),
               const CustomTextRich(text: 'Summary',),
               const SizedBox(height: 5,),
-              const CustomTextFormField(hintmsg: "Give a brief summary about your blog "),
+              CustomTextFormField(hintmsg: "Give a brief summary about your blog ", controller: summaryController,),
               const SizedBox(height: 30,),
               const CustomTextRich(text: 'Content',),
               const SizedBox(height: 5,),
-              const CustomTextFormField(hintmsg: "write your blog here "),
+              CustomTextFormField(hintmsg: "write your blog here ", controller: contentController,),
               const SizedBox(height: 30,),
               const CustomTextRich(text: 'Category',),
               const SizedBox(height: 5,),
-              Container(
+              SizedBox(
                 height: 30,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -129,7 +144,7 @@ class _AddBlogPostState extends State<AddBlogPost> {
               const SizedBox(height: 30,),
               const CustomTextRich(text: 'Reading minutes',),
               const SizedBox(height: 5,),
-              const CustomTextFormField(hintmsg: "Minutes of reading this blog "),
+              CustomTextFormField(hintmsg: "Minutes of reading this blog ", controller: readingMinutesController,),
             ],
           ),
         ),

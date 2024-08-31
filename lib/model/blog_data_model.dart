@@ -14,8 +14,8 @@ class BlogDataModel {
   late final String title;
   late final String summary;
   late final String content;
-  late final String date;
-  late final String minutesToRead;
+  late final DateTime date;
+  late final int minutesToRead;
   late final String postImage;
 
   BlogDataModel.fromJson(Map<String, dynamic> json) {
@@ -24,7 +24,7 @@ class BlogDataModel {
     title = json['title'];
     summary = json['summary'];
     content = json['content'];
-    date = json['date'];
+    date = DateTime.parse(json['date']);
     minutesToRead = json['minutesToRead'];
     postImage = json['postImage'];
   }
@@ -36,7 +36,7 @@ class BlogDataModel {
     data['title'] = title;
     data['summary'] = summary;
     data['content'] = content;
-    data['date'] = date;
+    data['date'] = date.toString();
     data['minutesToRead'] = minutesToRead;
     data['postImage'] = postImage;
     return data;

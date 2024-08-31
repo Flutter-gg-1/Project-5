@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:project5/screens/home_screen.dart';
 
+import '../data_layer/user_data.dart';
 import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_text/custom_text.dart';
 import '../widgets/custom_text_form_field.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
       backgroundColor: const Color(0xff111111),
       body: SafeArea(
@@ -39,7 +43,7 @@ class LogInScreen extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      const CustomTextFormField(hintmsg: "Enter your username"),
+                      CustomTextFormField(hintmsg: "Enter your username", controller: usernameController,),
                       const SizedBox(
                         height: 20,
                       ),
@@ -47,7 +51,7 @@ class LogInScreen extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      const CustomTextFormField(hintmsg: "Enter your password"),
+                      CustomTextFormField(hintmsg: "Enter your password", controller: passwordController,),
                       const SizedBox(
                         height: 8,
                       ),
@@ -81,9 +85,21 @@ class LogInScreen extends StatelessWidget {
                           ),
                           TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
+                                bool successfulLogIn = GetIt.I.get<UserData>().logIn(userName: usernameController.text, password: passwordController.text);
+                                if(successfulLogIn){
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
                             return const HomeScreen();
                           }), ModalRoute.withName('/'));
+                                }
+                                else{
+                                  showBottomSheet(context: context, builder: (BuildContext context){
+                                    return Container(
+                                      height: 100,
+                                      child: Text("Ivalid username or password"),
+                                    );
+                                  });
+                                }
+                                
                               },
                               child: const CustomText(text: "Enter as a guest", color: Colors.white, size: 12)
                                ),
