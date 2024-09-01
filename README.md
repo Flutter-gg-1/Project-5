@@ -77,6 +77,12 @@ The purpose of this app is to Allow user to discover and post manage blogs with 
 
 ### Demo GIF
 
+#### Slider
+
+![assest/readme/blogGif.gif](assest/readme/sliderGif.gif)
+
+#### Full Demo
+
 ![assest/readme/blogGif.gif](assest/readme/blogGif.gif)
 
 ## License

@@ -14,7 +14,7 @@ class ImageSlider extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(16),
       width: double.infinity,
-      height: 180,
+      height: 200,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: CarouselCustomSlider.advancedCarouselSlider(
         isDisplayIndicator: false,
