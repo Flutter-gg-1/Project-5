@@ -105,7 +105,6 @@
 //   }
 // }
 
-
 // import 'package:flutter/material.dart';
 // import 'package:vlog_project/model/blog_model.dart';
 // import 'package:vlog_project/screens/User_Screens/user_blog_page_screen.dart';
@@ -212,18 +211,19 @@
 //   }
 // }
 
-
-
 import 'package:flutter/material.dart';
 import 'package:vlog_project/model/blog_model.dart';
+import 'package:vlog_project/screens/User_Screens/blog_details_screen.dart';
 import 'package:vlog_project/screens/User_Screens/user_blog_page_screen.dart';
+import 'package:vlog_project/widget/guest_card_view.dart';
 import 'package:vlog_project/widget/user_card_view.dart';
 
 class UserAiContentScreen extends StatelessWidget {
   final List<Blog> blogs;
-  final Function(Blog blog)? onSave;  // Add the onSave parameter
+  final Function(Blog blog)? onSave; // Add the onSave parameter
 
-  const UserAiContentScreen({Key? key, required this.blogs, this.onSave}) : super(key: key);
+  const UserAiContentScreen({Key? key, required this.blogs, this.onSave})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -298,6 +298,16 @@ class UserAiContentScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
+            const SizedBox(height: 10),
+            const GuestCardView(
+              screentogo: UserBlogPageWithEdit(),
+              title: "Kyle Barr",
+              subtitle:
+                  "Now Google’s Bard AI can talk\n& respond to visual prompts",
+              date: "Jul 13, 2023 • 2 min read",
+              imagePath: "assets/google.png",
+            ),
+            const SizedBox(height: 10),
             for (var blog in blogs)
               Column(
                 children: [
@@ -311,7 +321,9 @@ class UserAiContentScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    onSave: onSave != null ? () => onSave!(blog) : null,  // Pass the onSave callback
+                    onSave: onSave != null
+                        ? () => onSave!(blog)
+                        : null, // Pass the onSave callback
                   ),
                   const SizedBox(height: 10),
                 ],

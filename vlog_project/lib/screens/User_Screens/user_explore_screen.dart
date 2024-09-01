@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:vlog_project/screens/User_Screens/blog_details_screen.dart';
+import 'package:vlog_project/widget/guest_card_view.dart';
 
-class ExploreGuestScreen extends StatelessWidget {
-  const ExploreGuestScreen({super.key});
+class ExploreUserScreen extends StatelessWidget {
+  const ExploreUserScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +15,14 @@ class ExploreGuestScreen extends StatelessWidget {
               height: 80,
             ),
             SizedBox(
-                width: 400,
+                width: 450,
                 child: TextField(
                   decoration: InputDecoration(
                       prefixIcon: const Icon(
                         Icons.search,
                         color: Colors.grey,
                       ),
-                      hintText: "Enter your search",
+                      hintText: "Google",
                       filled: true,
                       fillColor: const Color(0xff393939),
                       border: OutlineInputBorder(
@@ -28,30 +30,25 @@ class ExploreGuestScreen extends StatelessWidget {
                           borderSide: BorderSide.none),
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 10),
-                      hintStyle: const TextStyle(color: Colors.grey)),
+                      hintStyle: const TextStyle(color: Colors.white)),
                   style: const TextStyle(color: Colors.white),
                 )),
-            const SizedBox(
-              height: 300,
+            SizedBox(
+              height: 20,
             ),
-            const Center(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                  size: 35,
+                const GuestCardView(
+                  screentogo: UserBlogPageWithEdit(),
+                  title: "Kyle Barr",
+                  subtitle:
+                      "Now Google’s Bard AI can talk\n& respond to visual prompts",
+                  date: "Jul 13, 2023 • 2 min read",
+                  imagePath: "assets/google.png",
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "Search for news",
-                  style: TextStyle(color: Colors.grey, fontSize: 20),
-                )
               ],
-            ))
+            )
           ],
         ));
   }

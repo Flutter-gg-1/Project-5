@@ -49,6 +49,32 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                Image.asset(
+                  "assets/profile_page.png",
+                  height: 60,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: [
+                    Text(
+                      "Najwa Aldahri",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      "Software developer",
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                )
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
             const Text(
               'My Blogs',
               style: TextStyle(

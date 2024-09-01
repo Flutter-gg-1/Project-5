@@ -8,23 +8,23 @@ class GuestCardView extends StatelessWidget {
     required this.subtitle,
     required this.date,
     required this.imagePath,
-    required this.screentogo,  // Add the screentogo parameter
+    required this.screentogo, // Add the screentogo parameter
   }) : super(key: key);
 
   final String title;
   final String subtitle;
   final String date;
   final String imagePath;
-  final Widget screentogo;  // Define the screentogo variable
+  final Widget screentogo; // Define the screentogo variable
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(screen: screentogo);  // Handle navigation when tapped
+        context.push(screen: screentogo); // Handle navigation when tapped
       },
       child: Container(
-        width: 400,
+        width: 450,
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: const Color(0xff1E1E1E),
