@@ -15,6 +15,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  var isLogin = GetIt.I.get<UserData>().isLogedIn();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Padding(
           padding: const EdgeInsets.all(25),
           child: SingleChildScrollView(
-            child: Column(
+            child: isLogin ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomText(
@@ -50,7 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   title: CustomText(
                     text: GetIt.I.get<UserData>().currentUser,
-                    color: Color(0xffB8B8B8),
+                    color: const Color(0xffB8B8B8),
                     size: 14,
                     fontWeight: FontWeight.w500,
                   ),
@@ -73,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Column(
                     children: GetIt.I.get<BlogData>().blogData.map((e) {
                   return Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: const EdgeInsets.only(top: 10),
                     height: 130,
                     width: 400,
                     decoration: BoxDecoration(
@@ -157,6 +158,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     width: 255,
                     fontSize: 24,
                   ),
+                )
+              ],
+            ):  Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const CustomText(
+                  text: "Account",
+                  color: Colors.white,
+                  size: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 200),
+                  child: AlertDialog(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    backgroundColor: const Color(0xff1E1E1E),
+                            title: const Padding(
+                              padding: EdgeInsets.only(left: 50),
+                              child: CustomText(text: "You are not logged in yet", color: Colors.white, size: 12, fontWeight: FontWeight.bold,),
+                            ),
+                            actions: [
+                               Padding(
+                                 padding: const EdgeInsets.only(top: 50),
+                                 child: CustomElevatedButton(text: "Log in", textColor: const Color(0xffBDA6F5), backgroundColor: Colors.white, width: 200, height: 28, fontSize: 24, onPressed: () {
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                                    return const LogInScreen();
+                                  }));
+                                                               },),
+                               )
+                            ],
+                          ),
                 )
               ],
             ),

@@ -73,7 +73,7 @@ class _StoriesDetailState extends State<StoriesDetail> {
               height: 266,
               width: 470,
               child: Image.asset(
-                "assets/job_large.png",
+                "assets/google_large.png",
                 fit: BoxFit.cover,
               ),
             ),
