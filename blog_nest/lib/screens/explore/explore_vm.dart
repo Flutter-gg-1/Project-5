@@ -11,9 +11,19 @@ class ExploreVM {
     return searchText == ''
         ? []
         : blogs
-            .where((blog) => (blog.title.contains(searchText) ||
-                blog.category.titleStr().contains(searchText) ||
-                blog.category.tabStr().contains(searchText)))
+            .where(
+              (blog) => (blog.title
+                      .toLowerCase()
+                      .contains(searchText.toLowerCase()) ||
+                  blog.category
+                      .titleStr()
+                      .toLowerCase()
+                      .contains(searchText.toLowerCase()) ||
+                  blog.category
+                      .tabStr()
+                      .toLowerCase()
+                      .contains(searchText.toLowerCase())),
+            )
             .toList();
   }
 }

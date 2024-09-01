@@ -26,18 +26,16 @@ class _MyHeroImgViewState extends State<HeroImgView> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Expanded(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (value) => _changePage(value),
-          children: widget.blogs
-              .map(
-                (blog) => ClipRRect(
-                    borderRadius: BR.circular(16),
-                    child: ImgConverter.imageFromBase64String(blog.imgData)),
-              )
-              .toList(),
-        ),
+      PageView(
+        controller: _pageController,
+        onPageChanged: (value) => _changePage(value),
+        children: widget.blogs
+            .map(
+              (blog) => ClipRRect(
+                  borderRadius: BR.circular(16),
+                  child: ImgConverter.imageFromBase64String(blog.imgData)),
+            )
+            .toList(),
       ),
       Align(
         alignment: AL.topCenter,

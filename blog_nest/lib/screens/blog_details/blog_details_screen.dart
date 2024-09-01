@@ -2,14 +2,33 @@ import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/model/enum/blog_category.dart';
 import 'package:blog_nest/screens/blog_details/blog_details_vm.dart';
+import 'package:blog_nest/screens/edit_blog/edit_blog_screen.dart';
 import 'package:blog_nest/utils/img_converter.dart';
 import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
+import '../../model/blog.dart';
 import '../../utils/typedefs.dart';
 
-class BlogDetailsScreen extends StatelessWidget {
-  BlogDetailsScreen({super.key});
+class BlogDetailsScreen extends StatefulWidget {
+  const BlogDetailsScreen({super.key, required this.blog});
+  final Blog blog;
+
+  @override
+  State<BlogDetailsScreen> createState() => _BlogDetailsScreenState();
+}
+
+class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
   final vm = BlogDetailsVM();
+
+  void _navigate(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (context) => EditBlogScreen(blog: widget.blog),
+    ))
+        .then((value) {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +44,15 @@ class BlogDetailsScreen extends StatelessWidget {
               onPressed: () => (),
               icon: const Icon(Icons.text_format).withSizeAndColor()),
           IconButton(
-              onPressed: () => (),
-              icon: const Icon(Icons.bookmark_outline).withSizeAndColor()),
+              onPressed: () =>
+                  setState(() => vm.toggleBookmark(widget.blog.id)),
+              icon: vm.isBookmarked(widget.blog.id)
+                  ? const Icon(Icons.bookmark).withSizeAndColor()
+                  : const Icon(Icons.bookmark_outline).withSizeAndColor()),
           if (vm.currentUser != null)
-            if (vm.blog?.authorId == vm.currentUser!.id)
+            if (widget.blog.authorId == vm.currentUser!.id)
               IconButton(
-                  onPressed: () => (),
+                  onPressed: () => _navigate(context),
                   icon: const Icon(Icons.edit).withSizeAndColor()),
         ],
       ),
@@ -41,12 +63,9 @@ class BlogDetailsScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 16),
               children: [
                 AspectRatio(
-                  aspectRatio: 2,
-                  child: vm.blog?.imgData != null
-                      ? ImgConverter.imageFromBase64String(
-                          vm.blog?.imgData ?? '')
-                      : const Placeholder(),
-                ),
+                    aspectRatio: 2,
+                    child: ImgConverter.imageFromBase64String(
+                        widget.blog.imgData)),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -58,17 +77,16 @@ class BlogDetailsScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Row(
                           children: [
-                            Icon(vm.blog?.category.icon())
+                            Icon(widget.blog.category.icon())
                                 .withSizeAndColor(size: 16, color: C.accent),
                             const SizedBox(width: 8),
-                            Text(vm.blog?.category.titleStr() ?? '').styled(
+                            Text(widget.blog.category.titleStr()).styled(
                                 size: 14, weight: FW.w600, color: C.accent),
                           ],
                         ),
                       ),
                       // Title
-                      Text(vm.blog?.title ?? '')
-                          .styled(size: 20, weight: FW.w700),
+                      Text(widget.blog.title).styled(size: 20, weight: FW.w700),
                       // User Avatar
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -90,7 +108,7 @@ class BlogDetailsScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: Text(
-                                '${vm.blog?.readingMinutes ?? 0} min read • ${vm.blog?.timeStamp ?? '?'}')
+                                '${widget.blog.readingMinutes} min read • ${widget.blog.timeStamp}')
                             .styled(size: 12, weight: FW.w500, color: C.text3),
                       ),
                       // Icons
@@ -131,7 +149,7 @@ class BlogDetailsScreen extends StatelessWidget {
                             const Text('Summary')
                                 .styled(size: 16, weight: FW.w600),
                             const SizedBox(height: 16),
-                            Text(vm.blog?.summary ?? '').styled(
+                            Text(widget.blog.summary).styled(
                                 size: 14, weight: FW.w400, color: C.text2),
                           ],
                         ),
@@ -145,7 +163,7 @@ class BlogDetailsScreen extends StatelessWidget {
                             const Text('Content')
                                 .styled(size: 16, weight: FW.w600),
                             const SizedBox(height: 16),
-                            Text(vm.blog?.content ?? '').styled(
+                            Text(widget.blog.content).styled(
                                 size: 14, weight: FW.w400, color: C.text2),
                           ],
                         ),

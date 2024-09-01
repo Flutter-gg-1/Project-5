@@ -1,4 +1,5 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
+import 'package:blog_nest/screens/add_blog/add_blog_screen.dart';
 import 'package:blog_nest/screens/home/subviews/home_content_view.dart';
 import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
@@ -18,6 +19,16 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late HomeVM vm;
   void callBack() => setState(() {});
+
+  void _navigate(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (context) => const AddBlogScreen(),
+    ))
+        .then((value) {
+      setState(() {});
+    });
+  }
 
   @override
   void initState() {
@@ -55,8 +66,7 @@ class _HomeScreenState extends State<HomeScreen>
               icon: const Icon(Icons.search).withSizeAndColor()),
           if (vm.currentUser != null)
             IconButton(
-                onPressed: () => vm.navMgr
-                    .navigate(context: context, dest: Destination.addBlog),
+                onPressed: () => _navigate(context),
                 icon: const Icon(Icons.add).withSizeAndColor())
         ],
         bottom: TabBar(

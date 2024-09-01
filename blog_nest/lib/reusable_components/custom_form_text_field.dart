@@ -10,10 +10,14 @@ class CustomFormTextField extends StatelessWidget {
     required this.controller,
     required this.headerText,
     required this.hintText,
+    this.minLines = 1,
+    this.maxLines = 1,
   });
   final TextEditingController controller;
   final String headerText;
   final String hintText;
+  final int? minLines;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +30,8 @@ class CustomFormTextField extends StatelessWidget {
           CustomTextField(
               controller: controller,
               hint: hintText,
+              minLines: minLines,
+              maxLines: maxLines,
               validation: Validations.emptyFieldValidation)
         ],
       ),

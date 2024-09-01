@@ -2,13 +2,34 @@ import 'package:get_it/get_it.dart';
 import '../../managers/blog_mgr.dart';
 import '../../managers/nav_mgr.dart';
 import '../../managers/user_mgr.dart';
+import '../../model/bookmark.dart';
 import '../../model/user.dart';
 
 class BlogDetailsVM {
   final navMgr = GetIt.I.get<NavMgr>();
-  final blog = GetIt.I.get<BlogMgr>().selectedBlog;
-  final users = GetIt.I.get<UserMgr>().allUsers;
-  final User? currentUser = GetIt.I.get<UserMgr>().currentUser;
+  final blogMgr = GetIt.I.get<BlogMgr>();
+  final userMgr = GetIt.I.get<UserMgr>();
+
+  get users => userMgr.allUsers;
+  get blog => blogMgr.selectedBlog;
+  User? get currentUser => userMgr.currentUser;
+
+  List<Bookmark> bookmarks = [];
+
+  void _fetchBookmarks() {
+    bookmarks = userMgr.allBookmarks
+        .where((bookmark) => (bookmark.userId == currentUser?.id))
+        .toList();
+  }
+
+  bool isBookmarked(int blogId) {
+    return bookmarks.any((bookmark) => bookmark.blogId == blogId);
+  }
+
+  void toggleBookmark(int blogId) {
+    userMgr.toggleBookmark(blogId: blogId);
+    _fetchBookmarks();
+  }
 
   User get author {
     return users

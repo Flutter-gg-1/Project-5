@@ -106,4 +106,13 @@ class UserMgr extends ChangeNotifier {
     }
     await box.write('bookmarks', bookmarksAsMap);
   }
+
+  Future<void> deleteBookmark(Bookmark bookmark) async {
+    allBookmarks.remove(bookmark);
+    List<Map<String, dynamic>> bookmarksAsMap = [];
+    for (var bookmark in allBookmarks) {
+      bookmarksAsMap.add(bookmark.toJson());
+    }
+    await box.write('bookmarks', bookmarksAsMap);
+  }
 }

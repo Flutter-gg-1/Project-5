@@ -14,8 +14,18 @@ class AccountVM {
   User? get currentUser => userMgr.currentUser;
   List<Blog> get blogs => blogMgr.userBlogs;
 
-  void removeBlog({required int blogId}) {
+  Future<void> removeBlog({required int blogId}) async {
+    await removeRelatedBookmarks(blogId);
     blogMgr.removeBlog(blogId: blogId);
+  }
+
+  Future<void> removeRelatedBookmarks(int blogId) async {
+    var allBookmarks = userMgr.allBookmarks;
+    for (var bookmark in allBookmarks) {
+      if (bookmark.blogId == blogId) {
+        await userMgr.deleteBookmark(bookmark);
+      }
+    }
   }
 
   void signOut(BuildContext context) {

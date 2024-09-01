@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 enum BlogCategory { tech, ai, cloud, robotics, iot }
 
@@ -36,15 +37,15 @@ extension StringValues on BlogCategory {
   IconData icon() {
     switch (this) {
       case BlogCategory.tech:
-        return CupertinoIcons.cube_box;
+        return Icons.memory;
       case BlogCategory.ai:
-        return CupertinoIcons.person;
+        return Icons.smart_toy;
       case BlogCategory.cloud:
-        return CupertinoIcons.paperplane;
+        return Icons.cloud;
       case BlogCategory.robotics:
-        return CupertinoIcons.sunset;
+        return Icons.precision_manufacturing;
       case BlogCategory.iot:
-        return CupertinoIcons.cloud;
+        return Icons.sensors;
     }
   }
 }

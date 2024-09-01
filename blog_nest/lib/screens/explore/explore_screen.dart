@@ -31,10 +31,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: CustomTextField(
-                  controller: TextEditingController(),
-                  hint: '',
-                  validation: Validations.emptyFieldValidation,
+                child: TextField(
+                  style: const TextStyle(color: C.text1),
+                  onChanged: (value) {
+                    setState(() => vm.searchText = value);
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    filled: true,
+                    fillColor: C.metal,
+                    hintText: 'Search for News',
+                    hintStyle: const TextStyle(
+                        color: C.text3, fontSize: 15, fontWeight: FW.w500),
+                    prefixIcon:
+                        Icon(Icons.search).withSizeAndColor(color: C.text3),
+                  ),
                 ),
               ),
               if (vm.filteredBlogs.isEmpty)
@@ -55,12 +68,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   child: ListView(
                     children: [
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: vm.filteredBlogs
-                            .map((blog) =>
-                                BlogCellView(blog: blog, setState: callBack))
-                            .toList(),
-                      ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: vm.filteredBlogs
+                              .map((blog) =>
+                                  BlogCellView(blog: blog, setState: callBack))
+                              .toList()),
                     ],
                   ),
                 )

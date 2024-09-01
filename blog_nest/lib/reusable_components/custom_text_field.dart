@@ -8,11 +8,15 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.isObscure = false,
     required this.hint,
+    this.minLines = 1,
+    this.maxLines = 1,
     required this.validation,
   });
   final TextEditingController controller;
   final bool isObscure;
   final String hint;
+  final int? minLines;
+  final int? maxLines;
   final Function(String value) validation;
 
   @override
@@ -24,6 +28,8 @@ class CustomTextField extends StatelessWidget {
         validator: (value) => validation(value ?? ''),
         controller: controller,
         obscureText: isObscure,
+        minLines: minLines,
+        maxLines: maxLines,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),

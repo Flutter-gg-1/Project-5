@@ -1,6 +1,7 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/managers/nav_mgr.dart';
+import 'package:blog_nest/screens/blog_details/blog_details_screen.dart';
 import 'package:flutter/material.dart';
 import '../../extensions/color_ext.dart';
 import '../../model/blog.dart';
@@ -18,14 +19,25 @@ class BlogCellView extends StatelessWidget {
   final vm = BlogCellVM();
   final Blog blog;
   final bool hasHeader;
-  VoidCallback setState;
+  final VoidCallback setState;
+
+  void _navigate(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (context) => BlogDetailsScreen(blog: blog),
+    ))
+        .then((value) {
+      setState();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         vm.blogMgr.selectedBlog = blog;
-        vm.navMgr.navigate(context: context, dest: Destination.blogDetails);
+        _navigate(context);
+        // vm.navMgr.navigate(context: context, dest: Destination.blogDetails);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),

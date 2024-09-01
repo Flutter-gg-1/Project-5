@@ -2,13 +2,13 @@ import 'dart:io';
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/screens/add_blog/add_blog_vm.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../extensions/color_ext.dart';
 import '../../extensions/img_ext.dart';
 import '../../model/blog.dart';
 import '../../model/enum/blog_category.dart';
+import '../../reusable_components/category_tab_view.dart';
 import '../../reusable_components/custom_form_text_field.dart';
 import '../../utils/typedefs.dart';
 
@@ -47,6 +47,11 @@ class _AddBlogScreenState extends State<AddBlogScreen>
     setState(() {});
   }
 
+  void _addBlog(BuildContext context) {
+    vm.addBlog();
+    vm.navMgr.navigateBack(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +63,7 @@ class _AddBlogScreenState extends State<AddBlogScreen>
             icon: const Icon(Icons.chevron_left).withSizeAndColor()),
         actions: [
           TextButton(
-              onPressed: vm.addBlog,
+              onPressed: () => _addBlog(context),
               child: const Text('Post').styled(size: 17, weight: FW.w700)),
         ],
       ),
@@ -113,14 +118,20 @@ class _AddBlogScreenState extends State<AddBlogScreen>
                     headerText: 'Title',
                     hintText: 'Enter your blog title'),
                 CustomFormTextField(
-                    controller: vm.summaryController,
-                    headerText: 'Summary',
-                    hintText: 'Give a brief summary about your blog'),
+                  controller: vm.summaryController,
+                  headerText: 'Summary',
+                  hintText: 'Give a brief summary about your blog',
+                  minLines: 3,
+                  maxLines: 4,
+                ),
                 CustomFormTextField(
-                    controller: vm.contentController,
-                    headerText: 'Content',
-                    hintText: 'Write your blog here'),
-                _CategoryTabView(controller: vm.categoryController),
+                  controller: vm.contentController,
+                  headerText: 'Content',
+                  hintText: 'Write your blog here',
+                  minLines: 8,
+                  maxLines: null,
+                ),
+                CategoryTabView(controller: vm.categoryController),
                 CustomFormTextField(
                     controller: vm.readingMinController,
                     headerText: 'Reading minutes',
@@ -128,51 +139,6 @@ class _AddBlogScreenState extends State<AddBlogScreen>
               ],
             ),
           )
-        ],
-      ),
-    );
-  }
-}
-
-class _CategoryTabView extends StatelessWidget {
-  const _CategoryTabView({required this.controller});
-  final TabController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CAL.start,
-        children: [
-          const Text('Select Category').styled(size: 17, weight: FW.w700),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TabBar(
-              controller: controller,
-              tabAlignment: TabAlignment.center,
-              isScrollable: true,
-              dragStartBehavior: DragStartBehavior.down,
-              dividerColor: Colors.transparent,
-              tabs: BlogCategory.values
-                  .map(
-                    (cat) => Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Text(cat.titleStr()),
-                    ),
-                  )
-                  .toList(),
-              indicator: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BR.circular(4),
-                border: Border.all(color: Colors.white),
-              ),
-              labelColor: C.accent,
-              labelStyle: const TextStyle(fontSize: 14),
-              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-              unselectedLabelColor: C.text3,
-            ),
-          ),
         ],
       ),
     );
