@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pro_5/data_handle/git_it/setup.dart';
 import 'package:pro_5/data_handle/models/app_model.dart';
-import 'package:pro_5/page/home_page.dart';
+
 import 'package:pro_5/page/navbar_page.dart';
 import 'package:pro_5/widget/button_widget.dart';
 import 'package:pro_5/widget/login_page/gust_row_widget.dart';

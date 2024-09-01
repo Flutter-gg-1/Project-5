@@ -7,7 +7,7 @@ import 'package:pro_5/data_handle/models/user_model.dart';
 import 'package:pro_5/page/edit_blog_page.dart';
 import 'package:pro_5/page/login_page.dart';
 import 'package:pro_5/widget/button_widget.dart';
-import 'package:pro_5/widget/home_page/blog_card_widget.dart';
+
 import 'package:pro_5/widget/profile_page/blog_profile_widget.dart';
 
 class ProfilePage extends StatefulWidget {

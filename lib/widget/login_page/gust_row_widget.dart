@@ -14,7 +14,7 @@ class GustRowWidget extends StatelessWidget {
         const SizedBox(
           width: 30,
           child: Divider(
-            // thickness: 3,
+            
             color: Colors.white,
           ),
         ),
@@ -26,7 +26,7 @@ class GustRowWidget extends StatelessWidget {
         const SizedBox(
           width: 30,
           child: Divider(
-            // thickness: 3,
+            
             color: Colors.white,
           ),
         ),

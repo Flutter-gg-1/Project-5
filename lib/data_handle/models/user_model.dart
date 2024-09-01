@@ -9,8 +9,7 @@ class UserModel {
 
   late final int id;
 
-  // final List<int> likedBlog = [];
-  // final List<int> doneBlog = [];
+  
 
   UserModel(
       {required this.name, required this.passowrd, required this.isGust}) {

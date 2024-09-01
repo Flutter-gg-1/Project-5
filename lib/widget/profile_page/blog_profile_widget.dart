@@ -46,7 +46,7 @@ class _BlogProfileWidgetState extends State<BlogProfileWidget> {
                 child: Row(
                   children: [
                     Image.asset(
-                      // "asset/img/STK156_Instagram_threads_2 2.png",
+                      
                       widget.blogDataModel.img,
                       width: 75,
                       height: 62,

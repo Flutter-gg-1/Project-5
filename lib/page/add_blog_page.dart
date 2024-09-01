@@ -62,9 +62,7 @@ class _AddBlogPageState extends State<AddBlogPage> {
                   date: dateFormat()));
 
 
-                  // getIt.get<AppModel>().userLogin!.doneBlog.add(getIt.get<AppModel>().blogList.last.id);
-
-                  // getIt.get<AppModel>().addDone();
+                
 
                   
 

@@ -1,4 +1,4 @@
-import 'dart:math';
+
 
 import 'package:get_storage/get_storage.dart';
 import 'package:pro_5/data_handle/models/blog_data_model.dart';
@@ -119,9 +119,7 @@ class AppModel {
 
   void addLiked() {}
 
-  // int addDone(){
-
-  // }
+ 
 
   bool isBlogLike({required BlogDataModel blogDataModel}) {
     for (var val in blogDataModel.userLiked) {

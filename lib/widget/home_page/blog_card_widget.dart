@@ -57,7 +57,7 @@ class _BlogCardWidgetState extends State<BlogCardWidget> {
                 child: Row(
                   children: [
                     Image.asset(
-                      // "asset/img/STK156_Instagram_threads_2 2.png",
+                      
                       widget.blogDataModel.img,
                       width: 75,
                       height: 62,

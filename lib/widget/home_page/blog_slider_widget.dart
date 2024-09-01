@@ -7,7 +7,7 @@ class BlogSliderWidget extends StatefulWidget {
   const BlogSliderWidget({
     super.key,  
   });
-  // final Function(int, CarouselPageChangedReason)? onPageChanged;
+  
 
   @override
   State<BlogSliderWidget> createState() => _BlogSliderWidgetState();
@@ -21,7 +21,7 @@ class _BlogSliderWidgetState extends State<BlogSliderWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // color: Colors.red,
+      
       height: 180,
       width: 340,
       child: Stack(
@@ -73,9 +73,9 @@ class _BlogSliderWidgetState extends State<BlogSliderWidget> {
           ),
     
           SizedBox(
-            // color: Colors.amber,
+            
             width: double.infinity,
-            // height: 20,
+            
             child: Padding(
               padding: const EdgeInsets.only(bottom: 16,left: 16),
               child: Column(

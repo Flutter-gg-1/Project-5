@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icons_plus/icons_plus.dart';
+
 import 'package:pro_5/widget/textfield_widget.dart';
 
 class ExplorePage extends StatelessWidget {

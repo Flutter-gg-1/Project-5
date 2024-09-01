@@ -31,7 +31,7 @@ class _BlogContantPageState extends State<BlogContantPage> {
   @override
   void initState() {
     log(user.id.toString());
-    // log(widget.blogDataModel.userId.toString());
+    
     super.initState();
   }
   @override
