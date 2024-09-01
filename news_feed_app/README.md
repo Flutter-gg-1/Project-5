@@ -66,9 +66,5 @@ This Blog App is designed to provide users with a platform for reading and writi
 ### Installation
 
 1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd blog_app
-   ```
 2. flutter pub get
 3. Run the app
