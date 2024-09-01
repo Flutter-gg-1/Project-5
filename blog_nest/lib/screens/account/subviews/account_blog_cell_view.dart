@@ -1,5 +1,6 @@
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
+import 'package:blog_nest/screens/edit_blog/edit_blog_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../extensions/color_ext.dart';
 import '../../../model/blog.dart';
@@ -12,6 +13,16 @@ class AccountBlogCellView extends StatelessWidget {
   final vm = AccountVM();
   final Blog blog;
   final VoidCallback setState;
+
+  void _navigate(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+      builder: (context) => EditBlogScreen(blog: blog),
+    ))
+        .then((value) {
+      setState;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +70,7 @@ class AccountBlogCellView extends StatelessWidget {
                             children: [
                               const Spacer(),
                               InkWell(
-                                  onTap: () => (),
+                                  onTap: () => _navigate(context),
                                   child: const Icon(Icons.edit, color: C.text3)
                                       .withSizeAndColor(
                                           size: 16, color: C.text3)),
