@@ -47,7 +47,7 @@ class _AddBlogPostState extends State<AddBlogPost> {
                           base64Encode(await selectimage!.readAsBytes());
                       GetIt.I.get<BlogData>().addBlogPost(
                           blog: BlogDataModel(
-                              category: "AI",
+                              category: "Technology",
                               authorName: GetIt.I.get<UserData>().currentUser,
                               title: titleController.text,
                               summary: summaryController.text,
