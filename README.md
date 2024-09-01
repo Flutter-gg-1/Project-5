@@ -101,6 +101,6 @@ Restarting the app will keep the blogs saved and login status.
 
 ![Transition](./assets/screenshots/page%20transition.gif)
 
-A nice FadeScaleTransition
+A nice FadeScaleTransition in compination with an animation package.
 
 Feel free to test the app yourself :)

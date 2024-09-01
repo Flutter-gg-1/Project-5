@@ -83,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value == null || value.isEmpty) {
                                 return "Enter a username";
                               }
+                              return null;
                             },
                             minlines: 1,
                             controller: controllerUsername,
@@ -113,6 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value.length < 8) {
                                 return "Password must be more than 8 characters";
                               }
+                              return null;
                             },
                             minlines: 1,
                             controller: controllerPassword,

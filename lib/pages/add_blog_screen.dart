@@ -183,7 +183,7 @@ class _AddBlogScreenState extends State<AddBlogScreen> {
                       children: categoriesList
                           .map((item) => ChoiceChip(
                               showCheckmark: false,
-                              backgroundColor: Color(0xFF595959),
+                              backgroundColor: const Color(0xFF595959),
                               selectedColor: Colors.white,
                               onSelected: (bool selected) {
                                 selectedItem = selected ? item : null;
@@ -193,8 +193,8 @@ class _AddBlogScreenState extends State<AddBlogScreen> {
                                 item,
                                 style: TextStyle(
                                   color: selectedItem == item
-                                      ? Color(0xFFA48BE2)
-                                      : Color(0xFF2C2C2C),
+                                      ? const Color(0xFFA48BE2)
+                                      : const Color(0xFF2C2C2C),
                                 ),
                               ),
                               selected: selectedItem == item))

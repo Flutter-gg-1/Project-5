@@ -48,9 +48,9 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
         .firstWhere((e) => e.id == widget.selectedId);
 
     return Scaffold(
-      backgroundColor: Color(0xff111111),
+      backgroundColor: const Color(0xff111111),
       appBar: AppBar(
-        backgroundColor: Color(0xff111111),
+        backgroundColor: const Color(0xff111111),
         actions: [
           TextButton(
               onPressed: () {

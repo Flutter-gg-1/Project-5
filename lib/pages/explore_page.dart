@@ -8,7 +8,7 @@ import 'package:project_5/pages/blog_page.dart';
 import 'package:project_5/services/setup.dart';
 
 class ExplorePage extends StatefulWidget {
-  ExplorePage({super.key});
+  const ExplorePage({super.key});
 
   @override
   State<ExplorePage> createState() => _ExplorePageState();

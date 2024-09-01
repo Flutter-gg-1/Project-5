@@ -52,7 +52,8 @@ class _BlogPageState extends State<BlogPage> {
           ),
           IconButton(
               onPressed: () {
-                selectedBlog.isFavorite = !selectedBlog.isFavorite!;
+                getIt.get<BlogData>().toggleFavorite(id: widget.selectedId);
+
                 saveChanges = true;
                 setState(() {});
               },

@@ -17,8 +17,8 @@ class _NavbarState extends State<Navbar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    ExplorePage(),
-     SavedPage(),
+    const ExplorePage(),
+     const SavedPage(),
     const AccountPage()
   ];
   @override
@@ -102,37 +102,5 @@ class _NavbarState extends State<Navbar> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, int index) {
-    final isSelected = _selectedIndex == index;
-    final iconColor = isSelected ? Colors.blueAccent : Colors.black87;
-    final double scaleFactor = isSelected ? 1.2 : 1.0;
-
-    return TweenAnimationBuilder(
-      tween: Tween<double>(begin: 1.0, end: scaleFactor),
-      duration: const Duration(milliseconds: 300),
-      builder: (context, scale, child) {
-        return Transform.scale(
-          scale: scale,
-          child: Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: isSelected ? Colors.white : Colors.transparent,
-              shape: BoxShape.circle,
-              boxShadow: isSelected
-                  ? [
-                      BoxShadow(
-                        color: Colors.blueAccent.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        offset: const Offset(0, 3),
-                      ),
-                    ]
-                  : [],
-            ),
-            child: Icon(icon, size: 30, color: iconColor),
-          ),
-        );
-      },
-    );
-  }
+  
 }

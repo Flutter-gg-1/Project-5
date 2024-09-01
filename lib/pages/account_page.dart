@@ -150,7 +150,7 @@ class _AccountPageState extends State<AccountPage> {
                                                   TextButton(
                                                     onPressed: () {
                                                       Navigator.of(context)
-                                                          .pop(); // Close the dialog
+                                                          .pop();
                                                     },
                                                     child: const Text(
                                                       'Cancel',
@@ -177,7 +177,7 @@ class _AccountPageState extends State<AccountPage> {
                                                           .deleteBlog(id: e.id);
                                                       setState(() {});
                                                       Navigator.of(context)
-                                                          .pop(); // Close the dialog
+                                                          .pop();
                                                     },
                                                     child: const Text(
                                                       'Delete',
