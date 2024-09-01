@@ -7,8 +7,12 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  custom_radio_grouped_button: ^2.2.1
   flutter:
     sdk: flutter
+  get_it: ^7.7.0
+  get_storage: ^2.1.1
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +21,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+  - lib/gust_page/images/
+  - lib/profaile.dart/images/

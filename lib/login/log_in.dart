@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/login/lofin_form.dart';
+import 'package:project/login/login_form.dart';
 import 'package:project/login/welcome.dart';
 
 class LogIn extends StatelessWidget {
