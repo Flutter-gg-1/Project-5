@@ -1,9 +1,15 @@
 import 'package:get_it/get_it.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:project5/data/all_users.dart';
 import 'package:project5/models/post.dart';
-import 'package:project5/models/user.dart';
 
 class AllPosts {
+
+  AllPosts() {
+    loadPosts();
+    // postsBox.erase();
+  }
+
   // list of posts categories
   final List<String> categories = ['Tech', 'AI', 'Cloud', 'Robotics', 'IoT'];
   
@@ -17,7 +23,10 @@ class AllPosts {
   };
 
   // posts data
-  final List<Post> posts = [
+  final List<Post> posts = [];
+
+  // initial posts data
+  final List<Post> initialPosts = [
     // Tech
     Post(
         category: 'Tech',
@@ -154,6 +163,39 @@ Google first opened up access to Bard in March, but at the time, it was availabl
     ),
   ];
 
+  final postsBox = GetStorage();
+
+  loadPosts() {
+    if(postsBox.hasData('posts')) {
+      // get posts as an iterable of dynamics
+      List<dynamic> tempBox = postsBox.read('posts');
+
+      // convert to list of maps
+      List<Map<String,dynamic>> tempList = List.from(tempBox).cast<Map<String,dynamic>>();
+
+      // update posts
+      for(var jsonPost in tempList) {
+        posts.add(Post.fromJson(jsonPost));
+      }
+
+      // update saved posts
+      if(GetIt.I.get<AllUsers>().currentUser != null) {
+        for(int i=0; i< GetIt.I.get<AllUsers>().currentUser!.savedPosts.length; i++) {
+          if(GetIt.I.get<AllUsers>().currentUser!.savedPosts.contains(posts[i])) {
+            posts[i].isSaved = true;
+          }
+          else {
+            posts[i].isSaved = false;
+          }
+        }
+      }
+      
+    }
+    else {
+      posts.addAll(initialPosts);
+      postsBox.write('posts', posts);
+    }
+  }
 
   getCarousel({required String category}) {
     return carouselMap[category];
@@ -163,10 +205,12 @@ Google first opened up access to Bard in March, but at the time, it was availabl
     post.title = newTitle;
     post.summary = newSummary;
     post.content = newContent;
+    postsBox.write('posts', posts);
   }
 
   addPost({required Post post}) {
     posts.add(post);
+    postsBox.write('posts', posts);
   }
 
   deletePost({required Post post}) {
@@ -174,24 +218,11 @@ Google first opened up access to Bard in March, but at the time, it was availabl
     if(GetIt.I.get<AllUsers>().currentUser!=null) {
       GetIt.I.get<AllUsers>().currentUser!.userPosts.remove(post);
     }
+    postsBox.write('posts', posts);
   }
 
   searchPost({required String searchTerm}) {
     return posts.where((post)=>post.title.toLowerCase().contains(searchTerm.toLowerCase())).toList();
-  }
-
-  addToUserSavedPosts({required Post post}) {
-    User? user = GetIt.I.get<AllUsers>().currentUser; 
-    if(user!=null) {
-      user.savedPosts.add(post);
-    }
-  }
-
-  removeFromUserSavedPosts({required Post post}) {
-    User? user = GetIt.I.get<AllUsers>().currentUser; 
-    if(user!=null) {
-      user.savedPosts.remove(post);
-    }
   }
 
   String getCurrentDate() {
@@ -201,5 +232,9 @@ Google first opened up access to Bard in March, but at the time, it was availabl
     Map months = {1:'Jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May', 6:'Jun', 7:'Jul', 8:'Aug', 9:'Sep', 10:'Oct', 11:'Nov', 12:'Dec'};
     String monthy = months[month];
     return '$monthy $day, $year ';
+  }
+
+  refreshPosts() {
+    postsBox.write('posts', posts);
   }
 }

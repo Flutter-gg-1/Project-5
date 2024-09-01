@@ -9,19 +9,20 @@ class Post {
   final String postImage;
   bool isSaved;
 
-  Post({required this.category, required this.authorName, required this.title, required this.summary, required this.content, required this.date, required this.minutesToRead, this.postImage='assets/placeholder.png', required this.isSaved});
+  Post({required this.category, required this.authorName, required this.title, required this.summary, required this.content, required this.date, required this.minutesToRead, this.postImage='assets/placeholder.png', this.isSaved=false});
   
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-        category: json['category'],
-        authorName: json['authorName'],
-        title: json['title'],
-        summary: json['summary'],
-        content: json['content'],
-        date: json['date'],
-        minutesToRead: json['minutesToRead'],
-        postImage: json['postImage'],
-        isSaved: json['isSaved']);
+      category: json['category'],
+      authorName: json['authorName'],
+      title: json['title'],
+      summary: json['summary'],
+      content: json['content'],
+      date: json['date'],
+      minutesToRead: json['minutesToRead'],
+      postImage: json['postImage'],
+      isSaved: json['isSaved']
+    );
   }
 
 

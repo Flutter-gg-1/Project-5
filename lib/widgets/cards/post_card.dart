@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:project5/data/all_users.dart';
 import 'package:project5/models/post.dart';
+import 'package:project5/models/user.dart';
 
 class PostCard extends StatefulWidget {
   final Post post;
@@ -13,6 +16,8 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
+
+  User? user = GetIt.I.get<AllUsers>().currentUser;
 
   @override
   Widget build(BuildContext context) {

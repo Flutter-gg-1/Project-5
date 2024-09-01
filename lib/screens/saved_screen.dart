@@ -54,8 +54,16 @@ class _SavedScreenState extends State<SavedScreen> {
                             );
                           },
                           onSave: () {
-                            GetIt.I.get<AllPosts>().removeFromUserSavedPosts(post: post);
-                            post.isSaved = false;
+                            User? user = GetIt.I.get<AllUsers>().currentUser;
+                            if(user!=null) {
+                              user.savedPosts.contains(post) ? GetIt.I.get<AllUsers>().removeFromUserSavedPosts(post: post)
+                              : GetIt.I.get<AllUsers>().addToUserSavedPosts(post: post);
+                              post.isSaved = !post.isSaved;
+                            }
+                            // GetIt.I.get<AllPosts>().refreshPosts();
+                            // GetIt.I.get<AllUsers>().refreshSaved();
+                            // post.isSaved = false;
+                            // GetIt.I.get<AllUsers>().removeFromUserSavedPosts(post: post);
                             setState(() {});
                           },
                         ),

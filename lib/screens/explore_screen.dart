@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:project5/data/all_posts.dart';
+import 'package:project5/data/all_users.dart';
 import 'package:project5/extensions/screen_push.dart';
 import 'package:project5/models/post.dart';
+import 'package:project5/models/user.dart';
 import 'package:project5/screens/view_post_screen.dart';
 import 'package:project5/widgets/cards/post_card.dart';
 import 'package:project5/widgets/no_results_found.dart';
@@ -65,10 +67,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             );
                           },
                           onSave: () {
-                            post.isSaved ?
-                            GetIt.I.get<AllPosts>().removeFromUserSavedPosts(post: post)
-                            : GetIt.I.get<AllPosts>().addToUserSavedPosts(post: post);
-                            post.isSaved = !post.isSaved;
+                            User? user = GetIt.I.get<AllUsers>().currentUser;
+                            if(user!=null) {
+                              user.savedPosts.contains(post) ? GetIt.I.get<AllUsers>().removeFromUserSavedPosts(post: post)
+                              : GetIt.I.get<AllUsers>().addToUserSavedPosts(post: post);
+                              post.isSaved = !post.isSaved;
+                            }
+                            // GetIt.I.get<AllUsers>().refreshSaved();
+                            // GetIt.I.get<AllPosts>().refreshPosts();
                             setState(() {});
                           },
                         ),

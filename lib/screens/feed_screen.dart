@@ -41,7 +41,7 @@ class _FeedScreenState extends State<FeedScreen> {
             IconButton(
               onPressed: () => Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => UserScreenNavigator(goTo: 1)),
+                MaterialPageRoute(builder: (context) => const UserScreenNavigator(goTo: 1)),
                 (predicate)=>false
               ),
               icon: const Icon(Icons.search,size: 28,)
@@ -109,10 +109,18 @@ class _FeedScreenState extends State<FeedScreen> {
                                     target: ViewPostScreen(
                                       post: post,
                                       onSave: () {
-                                        post.isSaved ?
-                                        GetIt.I.get<AllPosts>().removeFromUserSavedPosts(post: post)
-                                        : GetIt.I.get<AllPosts>().addToUserSavedPosts(post: post);
-                                        post.isSaved = !post.isSaved;
+                                        // GetIt.I.get<AllUsers>().refreshSaved();
+                                        // GetIt.I.get<AllPosts>().refreshPosts();
+                                        // post.isSaved ?
+                                        // GetIt.I.get<AllUsers>().removeFromUserSavedPosts(post: post)
+                                        // : GetIt.I.get<AllUsers>().addToUserSavedPosts(post: post);
+                                        // post.isSaved = !post.isSaved;
+                                        User? user = GetIt.I.get<AllUsers>().currentUser;
+                                        if(user!=null) {
+                                          user.savedPosts.contains(post) ? GetIt.I.get<AllUsers>().removeFromUserSavedPosts(post: post)
+                                          : GetIt.I.get<AllUsers>().addToUserSavedPosts(post: post);
+                                          post.isSaved = !post.isSaved;
+                                        }
                                         setState(() {});
                                       },
                                     ),
@@ -124,10 +132,18 @@ class _FeedScreenState extends State<FeedScreen> {
                                   );
                                 },
                                 onSave: () {
-                                  post.isSaved ?
-                                  GetIt.I.get<AllPosts>().removeFromUserSavedPosts(post: post)
-                                  : GetIt.I.get<AllPosts>().addToUserSavedPosts(post: post);
-                                  post.isSaved = !post.isSaved;
+                                  // post.isSaved ?
+                                  // GetIt.I.get<AllUsers>().removeFromUserSavedPosts(post: post)
+                                  // : GetIt.I.get<AllUsers>().addToUserSavedPosts(post: post);
+                                  // post.isSaved = !post.isSaved;
+                                  // GetIt.I.get<AllUsers>().refreshSaved();
+                                  // GetIt.I.get<AllPosts>().refreshPosts();
+                                  User? user = GetIt.I.get<AllUsers>().currentUser;
+                                  if(user!=null) {
+                                    user.savedPosts.contains(post) ? GetIt.I.get<AllUsers>().removeFromUserSavedPosts(post: post)
+                                    : GetIt.I.get<AllUsers>().addToUserSavedPosts(post: post);
+                                    post.isSaved = !post.isSaved;
+                                  }
                                   setState(() {});
                                 },
                               ),
