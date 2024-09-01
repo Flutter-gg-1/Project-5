@@ -70,9 +70,12 @@ The purpose of this app is to Allow user to discover and post manage blogs with 
 
 ### Screenshot
 
+![alt text](assest/readme/login.png)
 ![alt text](assest/readme/image-1.png)
 ![alt text](assest/readme/image-2.png)
 ![alt text](assest/readme/image-3.png)
+![alt text](assest/readme/profile.png)
+![alt text](assest/readme/gust.png)
 ![alt text](assest/readme/image.png)
 
 ### Demo GIF
