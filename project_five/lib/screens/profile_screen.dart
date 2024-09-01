@@ -83,9 +83,10 @@ class ProfilePageState extends State<ProfilePage> {
                 child: ListView(
                   children: <Widget>[
                     buildSectionHeader('Account'),
+                       UserProfileTile(username: username),
                     SizedBox(height: 20),
                     buildSectionHeader('My Blogs'),
-                    UserProfileTile(username: username),
+                 
                     blogs.isEmpty
                         ? NoBlogsAvailable()
                         : BlogsList(

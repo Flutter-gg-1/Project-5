@@ -6,7 +6,6 @@ import '../models/blog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-
 class EditBlogScreen extends StatefulWidget {
   final Blog blog;
 
@@ -24,7 +23,7 @@ class EditBlogScreenState extends State<EditBlogScreen> {
   late TextEditingController summaryController;
   late TextEditingController contentController;
   late TextEditingController minutesToReadController;
-  File? _selectedImage;
+  File? selectedImage;
 
   @override
   void initState() {
@@ -43,7 +42,7 @@ class EditBlogScreenState extends State<EditBlogScreen> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
-        _selectedImage = File(pickedFile.path);
+        selectedImage = File(pickedFile.path);
       }
     });
   }
@@ -58,7 +57,7 @@ class EditBlogScreenState extends State<EditBlogScreen> {
       content: contentController.text,
       date: widget.blog.date,
       minutesToRead: minutesToReadController.text,
-      postImage: _selectedImage?.path ?? widget.blog.postImage,
+      postImage: selectedImage?.path ?? widget.blog.postImage,
     );
 
     blogService.updateBlog(updatedBlog);
@@ -89,14 +88,13 @@ class EditBlogScreenState extends State<EditBlogScreen> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            // 
+            //
             CustomTextField(
               label: 'Title',
               controller: titleController,
               hintText: 'Enter blog title',
             ),
 
-            
             CustomTextField(
               label: 'Summary',
               controller: summaryController,
@@ -105,7 +103,7 @@ class EditBlogScreenState extends State<EditBlogScreen> {
               maxLines: 6,
             ),
 
-            // 
+            //
             CustomTextField(
               label: 'Content',
               controller: contentController,

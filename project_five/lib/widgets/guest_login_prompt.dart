@@ -31,14 +31,15 @@ class GuestLoginPrompt extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onLoginPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(189, 166, 245, 0.71),
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
                 child: Text(
                   'Login',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color:  Color.fromRGBO(189, 166, 245, 0.71),fontSize: 30
+                  ,fontWeight: FontWeight.bold),
                 ),
               ),
             ),

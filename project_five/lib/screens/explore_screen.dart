@@ -15,33 +15,33 @@ class ExploreScreen extends StatefulWidget {
 class ExploreScreenState extends State<ExploreScreen> {
   final BlogService blogService = locator<BlogService>();
   List<Blog> allBlogs = [];
-  List<Blog> filteredBlogs = [];
-  final TextEditingController searchController = TextEditingController();
+  List<Blog> _filteredBlogs = [];
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     loadBlogs();
-    searchController.addListener(() {
-      filterBlogs(searchController.text);
+    _searchController.addListener(() {
+      _filterBlogs(_searchController.text);
     });
   }
 
   void loadBlogs() {
     setState(() {
       allBlogs = blogService.getBlogs();
-      filteredBlogs = allBlogs;
+      _filteredBlogs = allBlogs;
     });
   }
 
-  void filterBlogs(String query) {
+  void _filterBlogs(String query) {
     if (query.isEmpty) {
       setState(() {
-        filteredBlogs = allBlogs;
+        _filteredBlogs = allBlogs;
       });
     } else {
       setState(() {
-        filteredBlogs = allBlogs.where((blog) {
+        _filteredBlogs = allBlogs.where((blog) {
           return blog.title.toLowerCase().contains(query.toLowerCase());
         }).toList();
       });
@@ -52,103 +52,106 @@ class ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-    appBar: AppBar(backgroundColor: Colors.black,),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             SearchField(
-              controller: searchController,
-              onChanged: filterBlogs,
+              controller: _searchController,
+              onChanged: _filterBlogs,
             ),
-            SizedBox(height: 16.0), 
+            SizedBox(height: 16.0),
             Expanded(
-              child: filteredBlogs.isEmpty
+              child: _filteredBlogs.isEmpty
                   ? Center(child: Text('No blogs found.'))
                   : ListView.builder(
-                      itemCount: filteredBlogs.length,
+                      itemCount: _filteredBlogs.length,
                       itemBuilder: (context, index) {
-                        Blog blog = filteredBlogs[index];
+                        Blog blog = _filteredBlogs[index];
                         return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(30, 30, 30, 1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.file(
-                              File(blog.postImage),
-                              height: 62,
-                              width: 80,
-                              fit: BoxFit.cover,
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(30, 30, 30, 1),
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                          ),
-                          title: Text(
-                            blog.authorName,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          subtitle: Text(
-                            blog.summary,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    BlogDetailScreen(blog: blog),
-                              ),
-                            );
-                          },
-                          trailing: IconButton(
-                            icon: Icon(
-                                blog.isSaved
-                                    ? Icons.bookmark
-                                    : Icons.bookmark_border,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  if (!blog.isSaved) {
-                                    blogService.saveBlog(blog);
-                                    blog.isSaved = true;
-                                  }
-                                });
-                              },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(16.0, 6, 16, 6),
-                          child: Row(
-                            children: [
-                              Text(
-                                "${blog.date} • ${blog.minutesToRead.toString()}",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w600,
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.file(
+                                      File(blog.postImage),
+                                      height: 62,
+                                      width: 80,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  title: Text(
+                                    blog.authorName,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  subtitle: Text(
+                                    blog.summary,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            BlogDetailScreen(blog: blog),
+                                      ),
+                                    );
+                                  },
+                                  trailing: IconButton(
+                                    icon: Icon(
+                                      blog.isSaved
+                                          ? Icons.bookmark
+                                          : Icons.bookmark_border,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        if (!blog.isSaved) {
+                                          blogService.saveBlog(blog);
+                                          blog.isSaved = true;
+                                        }
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(16.0, 6, 16, 6),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        "${blog.date} • ${blog.minutesToRead.toString()}",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                        );
                       },
                     ),
             ),
@@ -160,7 +163,7 @@ class ExploreScreenState extends State<ExploreScreen> {
 
   @override
   void dispose() {
-    searchController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 }

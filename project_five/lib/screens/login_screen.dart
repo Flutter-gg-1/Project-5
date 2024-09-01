@@ -5,7 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import '../data/services/auth_service.dart';
 import '../helper/locator.dart';
 
-
 class LoginScreen extends StatefulWidget {
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -69,9 +68,8 @@ class LoginScreenState extends State<LoginScreen> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(
-                        30, 30, 30, 1), 
-                    borderRadius: BorderRadius.circular(8.0), 
+                    color: Color.fromRGBO(30, 30, 30, 1),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                   padding: EdgeInsets.all(4.0),
                   child: Form(
@@ -111,11 +109,10 @@ class LoginScreenState extends State<LoginScreen> {
                           child: ElevatedButton(
                             onPressed: login,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(
-                                  189, 166, 245, 0.71), 
+                              backgroundColor:
+                                  Color.fromRGBO(189, 166, 245, 0.71),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    5.0), 
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                             ),
                             child: Text(
@@ -129,11 +126,10 @@ class LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width:
-                                  50, 
+                              width: 50,
                               child: Divider(
-                                color: Colors.white, 
-                                thickness: 1, 
+                                color: Colors.white,
+                                thickness: 1,
                               ),
                             ),
                             Padding(
@@ -148,11 +144,10 @@ class LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             SizedBox(
-                              width:
-                                  50, 
+                              width: 50,
                               child: Divider(
-                                color: Colors.white, 
-                                thickness: 1, 
+                                color: Colors.white,
+                                thickness: 1,
                               ),
                             ),
                           ],

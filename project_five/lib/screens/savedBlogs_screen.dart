@@ -21,7 +21,7 @@ class SavedBlogsScreenState extends State<SavedBlogsScreen> {
     savedBlogs = blogService.getSavedBlogs();
   }
 
-  void _removeBlog(int index) {
+  void removeBlog(int index) {
     Blog blog = savedBlogs[index];
     blogService.removeSavedBlog(blog.id); 
     setState(() {
@@ -102,7 +102,7 @@ class SavedBlogsScreenState extends State<SavedBlogsScreen> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              _removeBlog(index);
+                              removeBlog(index);
                             },
                           ),
                         ),

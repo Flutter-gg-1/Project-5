@@ -32,7 +32,7 @@ class FeedScreenState extends State<FeedScreen>
 
   void loadBlogs() {
     setState(() {
-      blogs = blogService.getBlogs(); 
+      blogs = blogService.getBlogs();
     });
   }
 
@@ -41,7 +41,7 @@ class FeedScreenState extends State<FeedScreen>
       context,
       MaterialPageRoute(builder: (context) => AddBlogScreen()),
     );
-    loadBlogs(); 
+    loadBlogs();
   }
 
   List<Blog> filterBlogsByCategory(String category) {

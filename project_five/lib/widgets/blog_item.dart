@@ -44,7 +44,7 @@ class BlogItem extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                blog.summary,
+                blog.title,
                 style: TextStyle(
                   color: Colors.white70,
                   fontSize: 14,
@@ -78,7 +78,7 @@ class BlogItem extends StatelessWidget {
                         onPressed: () => onEdit(blog),
                       ),
                       IconButton(
-                        icon: Icon(Icons.delete, color: Colors.red),
+                        icon: Icon(Icons.delete_outline_outlined, color: Colors.red),
                         onPressed: () => onDelete(blog),
                       ),
                     ],

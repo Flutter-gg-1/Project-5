@@ -43,7 +43,7 @@ class CustomTextField extends StatelessWidget {
             hintText: hintText,
             hintStyle: TextStyle(color: Color.fromRGBO(184, 184, 184, 1)),
             filled: true,
-            fillColor: Color.fromRGBO(255, 255, 255, 0.12),
+            fillColor: Color.fromRGBO(246, 242, 242, 0.118),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide.none,

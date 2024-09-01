@@ -23,7 +23,7 @@ class BottomNavBar extends StatelessWidget {
           BottomNavigationBarType.fixed, 
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.feed),
           label: 'Feed',
         ),
         BottomNavigationBarItem(
