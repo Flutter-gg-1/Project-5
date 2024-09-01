@@ -1,4 +1,3 @@
-import 'package:blog_app/data/blog_data.dart';
 import 'package:blog_app/data/user_data.dart';
 import 'package:blog_app/screens/edit_blog.dart';
 import 'package:blog_app/widgets/profile/login.dart';
