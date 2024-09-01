@@ -27,7 +27,7 @@ class Login extends StatelessWidget {
                     color: Color(0xff1E1E1E),
                     borderRadius:BorderRadius.all(Radius.circular(8))
                   ),
-                  child: const Padding(
+                  child:  Padding(
                     padding:  EdgeInsets.fromLTRB(20, 30, 20, 20),
                     child: Column(
                       children: [

@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 
 class CategoryList extends StatelessWidget {
-  const CategoryList({super.key, required this.controller});
-  final GroupButtonController controller;
+  const CategoryList({
+    super.key,
+    this.selectedValue,
+    required this.onCategorySelected,
+  });
+
+  final String? selectedValue;
+  final ValueChanged<String> onCategorySelected; 
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +18,6 @@ class CategoryList extends StatelessWidget {
       child: Row(
         children: [
           GroupButton(
-            controller: controller,
             options: const GroupButtonOptions(
               borderRadius: BorderRadius.all(Radius.circular(2)),
               selectedColor: Color(0xffffffff),
@@ -22,7 +27,9 @@ class CategoryList extends StatelessWidget {
             ),
             isRadio: true,
             buttons: const ['TECHNOLOGY', 'AI', 'CLOUD', 'ROBOTICS', 'IOT'],
-            onSelected: (value, index, isSelected) {},
+            onSelected: (value, index, isSelected) {
+              onCategorySelected(value); // Notify the parent about the selection
+            },
           ),
         ],
       ),

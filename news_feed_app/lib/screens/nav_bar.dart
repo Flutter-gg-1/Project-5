@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:news_feed_app/screens/explore.dart';
 import 'package:news_feed_app/screens/feed.dart';
+import 'package:news_feed_app/screens/profile.dart';
 import 'package:news_feed_app/screens/saved_news.dart';
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -17,7 +18,7 @@ class _NavBarState extends State<NavBar> {
     FeedPage(),
     ExplorePage(),
     SavedNews(),
-    FeedPage(),
+    Profile(),
     
   ];
 

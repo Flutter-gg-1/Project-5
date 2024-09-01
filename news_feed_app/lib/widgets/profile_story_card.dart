@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:news_feed_app/screens/blog.dart';
+import 'package:news_feed_app/screens/edit_post.dart';
 
-class StoryCard extends StatelessWidget {
-  const StoryCard({
+class ProfileStoryCard extends StatelessWidget {
+  const ProfileStoryCard({
     super.key,
     required this.title,
-    required this.username,
     required this.imgPath,
-    required this.dateAndTime,
-    required this.id, // Add an id parameter
+    required this.id,
+    required this.onEdit,
+    required this.onDelete, // Add onDelete callback
   });
 
   final String title;
-  final String username;
   final String imgPath;
-  final String dateAndTime;
-  final int id; // Post ID
+  final int id; 
+  final VoidCallback onEdit;
+  final VoidCallback onDelete; // Create a callback for deleting
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +27,10 @@ class StoryCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          // Pass the id to the BlogPage
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BlogPage(postId: id), // Update with postId
+              builder: (context) => BlogPage(postId: id),
             ),
           );
         },
@@ -58,14 +58,6 @@ class StoryCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          username,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xff888888),
-                          ),
-                        ),
-                        Text(
                           title,
                           style: const TextStyle(
                             fontSize: 16,
@@ -75,33 +67,35 @@ class StoryCard extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.create_outlined, color: Colors.white),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => EditPost(postId: id)),
+                                ).then((value) {
+                                  if (value == true) {
+                                    onEdit();
+                                  }
+                                });
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete_outlined, color: Color(0xffDD403C)),
+                              onPressed: () {
+                                // Call the delete function
+                                onDelete();
+                              },
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
                 ],
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: Row(
-                  children: [
-                    Text(
-                      dateAndTime,
-                      style: const TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff888888),
-                      ),
-                    ),
-                    const Spacer(),
-                    const Row(
-                      children: [
-                        Icon(Icons.bookmark_border, color: Color(0xff888888)),
-                        Icon(Icons.more_vert, color: Color(0xff888888)),
-                      ],
-                    ),
-                  ],
-                ),
               ),
             ],
           ),

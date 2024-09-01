@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TextContainer extends StatelessWidget {
-  const TextContainer({
+   TextContainer({
     super.key,
     required this.title,
     required this.hint,
@@ -10,7 +10,8 @@ class TextContainer extends StatelessWidget {
     this.titleSize = 14, 
     this.titleWeight = FontWeight.w500,
     this.unlimittedLines = false,
-    this.feildlines = 1
+    this.feildlines = 1,
+    this.textController
   });
 
   final String title;
@@ -20,6 +21,8 @@ class TextContainer extends StatelessWidget {
   final FontWeight titleWeight;
   final bool unlimittedLines;
   final int feildlines;
+
+  final TextEditingController? textController;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class TextContainer extends StatelessWidget {
         SizedBox(
           width: 370,
           child: TextFormField(
+            controller: textController,
             minLines: unlimittedLines ? feildlines : 1,
             maxLines: unlimittedLines ? null : 1,
             style: const TextStyle(color: Colors.white), // User input text color

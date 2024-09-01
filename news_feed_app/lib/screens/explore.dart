@@ -11,7 +11,7 @@ class ExplorePage extends StatelessWidget {
       backgroundColor: const Color(0xff111111),
       appBar: AppBar(
         backgroundColor: const Color(0xff111111),
-        bottom: const PreferredSize(
+        bottom:  PreferredSize(
           preferredSize: Size.fromHeight(30.0),
           child: TextContainer(title: '', hint: 'Search for News', showIcon: true),
         ),

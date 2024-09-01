@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
+import 'package:news_feed_app/post_data.dart';
 import 'package:news_feed_app/screens/add_post.dart';
 import 'package:news_feed_app/widgets/image_scroll.dart';
 import 'package:news_feed_app/widgets/post_card.dart';
 
-class FeedPage extends StatelessWidget {
+class FeedPage extends StatefulWidget {
   const FeedPage({super.key});
 
+  @override
+  State<FeedPage> createState() => _FeedPageState();
+}
+
+class _FeedPageState extends State<FeedPage> {
+  
+      reBuild() {
+      setState(() {});
+    }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -14,6 +25,7 @@ class FeedPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: const Color(0xff111111),
         appBar: AppBar(
+          
           leading: IconButton(
             icon: SvgPicture.asset('assets/svg/menu.svg'),
             onPressed: () {},
@@ -27,7 +39,12 @@ class FeedPage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.add, color: Colors.white),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPost()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPost())
+                ).then((value) {
+                if (value == true) {
+                  reBuild(); // Refresh the page after editing
+                }
+              });
               },
             ),
           ],
@@ -45,7 +62,7 @@ class FeedPage extends StatelessWidget {
             ],
           ),
         ),
-        body: Center(
+        body: const Center(
           child: TabBarView(
             children: [
               TechFeed(),
@@ -60,35 +77,49 @@ class FeedPage extends StatelessWidget {
     );
   }
 }
-
 class TechFeed extends StatelessWidget {
   const TechFeed({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-                padding: const EdgeInsets.all(15),
-                child: ListView(
-                  children: const [
-                    ImageScroll(),
-                    SizedBox(height: 10,),
-                    Divider(color:  Color.fromARGB(55, 255, 255, 255),),
-                    SizedBox(height: 20,),
-                    Row(
-                      children: [
-                        Text('Top Stories', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700 ,color: Color(0xfffffffff)),),
-                        Spacer(),
-                        Text('See all', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600 ,color: Color(0xff888888)),),
-                      ],
-                    ),
-                    SizedBox(height: 20,),
-                    StoryCard( title: 'Now Google’s Bard AI can talk & respond to visual prompts', username: 'Kyle Barr', imgPath: 'assets/images/google.png', dateAndTime: 'Jul 13, 2023 • 2 min read', ),
-                    SizedBox(height: 10,),
-                    StoryCard( title: 'Now Google’s Bard AI can talk & respond to visual prompts', username: 'Kyle Barr', imgPath: 'assets/images/google.png', dateAndTime: 'Jul 13, 2023 • 2 min read', ),
-                    SizedBox(height: 10,),
-                    StoryCard( title: 'Now Google’s Bard AI can talk & respond to visual prompts', username: 'Kyle Barr', imgPath: 'assets/images/google.png', dateAndTime: 'Jul 13, 2023 • 2 min read', ),
-                  ],
-                ),
-              );
+      padding: const EdgeInsets.all(15),
+      child: ListView(
+        children: [
+          const ImageScroll(),
+          const SizedBox(height: 10),
+          const Divider(color: Color.fromARGB(55, 255, 255, 255)),
+          const SizedBox(height: 20),
+          const Row(
+            children: [
+              Text(
+                'Top Stories',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xffffffff)),
+              ),
+              Spacer(),
+              Text(
+                'See all',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xff888888)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10), 
+          Column(
+            children: GetIt.I.get<PostData>().postsList
+                .map((e) => Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: StoryCard(
+                        id: e.id,
+                        title: e.title,
+                        username: e.author,
+                        imgPath: e.image,
+                        dateAndTime: e.minutes,
+                      ),
+                    ))
+                .toList(),
+          ),
+        ],
+      ),
+    );
   }
 }

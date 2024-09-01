@@ -27,7 +27,7 @@ class SavedNews extends StatelessWidget {
           //         maxLines: 2, 
           //         overflow: TextOverflow.ellipsis, 
           //       ),
-                  StoryCard( title: 'Now Google’s Bard AI can talk & respond to visual prompts', username: 'Kyle Barr', imgPath: 'assets/images/google.png', dateAndTime: 'Jul 13, 2023 • 2 min read', ),
+                  //StoryCard( title: 'Now Google’s Bard AI can talk & respond to visual prompts', username: 'Kyle Barr', imgPath: 'assets/images/google.png', dateAndTime: 'Jul 13, 2023 • 2 min read', ),
         ],
       ),
     );

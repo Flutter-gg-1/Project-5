@@ -2,92 +2,152 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Post extends StatelessWidget {
-  const Post({super.key});
+  const Post({
+    super.key,
+    required this.title,
+    required this.username,
+    required this.imgPath,
+    required this.dateAndTime,
+    required this.summary,
+    required this.content, required this.category, required this.minutes,
+  });
+
+  final String category;
+  final String title;
+  final String username;
+  final String imgPath;
+  final String dateAndTime;
+  final String minutes;
+  final String summary;
+  final String content;
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-        children: [
-          SizedBox(
-            width: 375,
-            height: 240,
-            child: Image.asset('assets/images/google.png', fit: BoxFit.cover),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset('assets/svg/Technology.svg'),
-                    const SizedBox(width: 5,),
-                    const Text(
-                    'TECHNOLOGY',
-                    style: TextStyle(
+      children: [
+        SizedBox(
+          width: 375,
+          height: 240,
+          child: Image.asset(imgPath, fit: BoxFit.cover),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  SvgPicture.asset('assets/svg/Technology.svg'),
+                  const SizedBox(width: 5),
+                   Text(
+                    category,
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Color(0xffBDA6F5),
                     ),
                   ),
-                  ],
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xffffffff),
                 ),
-                const SizedBox(height: 10,),
-                const Text(
-                    'Now Google’s Bard AI can talk & respond to visual prompts',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Color(0xffffffff)),
-                    maxLines: 2, 
-                    overflow: TextOverflow.ellipsis, 
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 10),
+              Container(
+                width: 30,
+                height: 30,
+                decoration: const BoxDecoration(
+                  color: Color(0xffffffff),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                username,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xffB8B8B8),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Row(
+                children: [ Text(
+                  dateAndTime,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xff888888),
                   ),
-                const SizedBox(height: 10,),
-                Container(
-                  width: 30,
-                  height: 30,
-                    decoration: const BoxDecoration(
-                    color: Color(0xffffffff),
-                    shape: BoxShape.circle,
-                  ),
                 ),
-                 const SizedBox(height: 8,),
-                const Text(
-                  'username',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xffB8B8B8)),
+                Text(
+                ' • ',
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff888888),
                 ),
-                const SizedBox(height: 15,),
-                const Text(
-                  '2 min read • Jul 13, 2023',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xff888888)),
+              ),
+              Text(
+                minutes,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff888888),
                 ),
-                const SizedBox(height: 15,),
-                SvgPicture.asset('assets/svg/socials.svg'), 
-                const SizedBox(height: 40,),
-                const Text(
-                    'Summary',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xffffffff)),
-                    maxLines: 2, 
-                    overflow: TextOverflow.ellipsis, 
-                  ),
-                  const SizedBox(height: 10,),
-                  const Text(
-                  'Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU. In a blog post, Google is positioning Bard’s spoken responses as a helpful way to “correct ',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xffB8B8B8)),
+              ),
+                ]
+              ),
+              const SizedBox(height: 15),
+              SvgPicture.asset('assets/svg/socials.svg'),
+              const SizedBox(height: 40),
+              const Text(
+                'Summary',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xffffffff),
                 ),
-                const SizedBox(height: 40,),
-                const Text(
-                    'Content',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color(0xffffffff)),
-                    maxLines: 2, 
-                    overflow: TextOverflow.ellipsis, 
-                  ),
-                  const SizedBox(height: 10,),
-                  const Text(
-                    'The feature that lets you add images to prompts is something that Google first showed off at its I/O conference in May. In one example, Google suggested you could use this to ask for help writing a funny caption about a picture of two dogs. Google says the feature is now available in English and is expanding to new languages “soon.” Google is introducing a few other new features, too, including the ability to pin and rename conversations, share responses with your friends, and change the tone and style of the responses you get back from Bard. Google first opened up access to Bard in March, but at the time, it was available only in the US and the UK. The company has been rolling out the chatbot to many more countries since then, and that now includes “all countries in the EEA [European Economic Area] and Brazil,” Google spokesperson Jennifer Rodstrom tells The Verge. That expansion in Europe is a notable milestone; the company’s planned Bard launch in the EU was delayed due to privacy c',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xffB8B8B8)),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                summary,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xffB8B8B8),
                 ),
-              ],
-            )
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                'Content',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xffffffff),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                content,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xffB8B8B8),
+                ),
+              ),
+            ],
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 }
