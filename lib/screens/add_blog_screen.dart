@@ -57,6 +57,7 @@ class _AddBlogScreenState extends State<AddBlogScreen> {
                       content: controllerContent!.text,
                       summary: controllerSummary!.text,
                       title: controllerTitle!.text,
+                      isSaved: false,
                       minutesToRead:
                           int.tryParse(controllerRreadingTime!.text)!,
                       date: DateFormat('MMM d, yyyy').format(DateTime.now()),

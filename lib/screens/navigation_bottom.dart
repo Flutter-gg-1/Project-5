@@ -41,15 +41,14 @@ class _NavigationBottomState extends State<NavigationBottom> {
                 FontAwesomeIcons.searchengin,
                 color: Color(0xff888888),
               ),
-              label: 'feed'),
+              label: 'Explore'),
           NavigationDestination(
               icon: FaIcon(
                 FontAwesomeIcons.bookmark,
                 color: Color(0xff888888),
               ),
-              label: 'feed'),
-          NavigationDestination(
-              icon: Icon(Icons.account_box_outlined), label: 'feed'),
+              label: 'Saved'),
+          NavigationDestination(icon: Icon(Icons.people), label: 'Profile'),
         ],
       ),
       body: screens[indexScreens],

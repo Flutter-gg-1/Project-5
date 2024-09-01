@@ -18,10 +18,13 @@ class BlogData {
     //box.write("tweets", tweetsList);
   }
 
-  removeBlog(int id) {
-    blogList.removeWhere((tweet) => tweet.id == id);
+  // removeBlog(int id) {
+  //   blogList.removeWhere((tweet) => tweet.id == id);
+  // }
+  removeBlog({required int id}) {
+    blogList.removeAt(id);
+    //saveTweet();
   }
-
   // loadTweets() {
   //   if (box.hasData("tweets")) {
   //     for (var tweet in box.read("tweets")) {

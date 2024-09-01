@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 class LoginContainerWidget extends StatelessWidget {
   const LoginContainerWidget({
     super.key,
+    this.onDone,
   });
+  final Function()? onDone;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +83,7 @@ class LoginContainerWidget extends StatelessWidget {
           ),
           CustomButton(
             title: 'Login',
-            onDone: () {},
+            onDone: onDone,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +94,7 @@ class LoginContainerWidget extends StatelessWidget {
                 color: const Color(0xffFFFFFF),
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: onDone,
                   child: const Text(
                     'Enter as a guest',
                     style: TextStyle(

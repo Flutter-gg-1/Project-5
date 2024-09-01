@@ -147,6 +147,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     dateblog: e.date,
                                     nameOfBlog: e.authorName,
                                     time: e.minutesToRead.toString(),
+                                    onPressed: () {
+                                      e.isSaved = !e.isSaved!;
+                                      setState(() {});
+                                    },
+                                    icon: e.isSaved!
+                                        ? Icons.bookmark
+                                        : Icons.bookmark_border,
                                     onTap: () {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
@@ -200,14 +207,16 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class BlogCardCustom extends StatelessWidget {
-  const BlogCardCustom(
+  BlogCardCustom(
       {super.key,
       required this.nameOfBlog,
       required this.title,
       required this.dateblog,
       this.imageSrc,
       required this.time,
-      this.onTap});
+      this.onTap,
+      this.onPressed,
+      this.icon});
 
   final String nameOfBlog;
   final String title;
@@ -215,6 +224,8 @@ class BlogCardCustom extends StatelessWidget {
   final String time;
   final String? imageSrc;
   final Function()? onTap;
+  final Function()? onPressed;
+  IconData? icon;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -286,7 +297,7 @@ class BlogCardCustom extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.bookmark_outline),
+                            icon: Icon(icon),
                           ),
                           IconButton(
                             onPressed: () {},
