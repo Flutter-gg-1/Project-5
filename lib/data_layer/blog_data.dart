@@ -5,7 +5,7 @@ class BlogData {
   final box = GetStorage();
   final List<BlogModel> blogData = [
     BlogModel(
-      id:3 ,
+      id:6 ,
       title: "Now Google's Bard AI can talk & respond to visual prompts",
       summary:
           "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU. In a blog post, Google is positioning Bard’s spoken responses as a helpful way to “correct ",
@@ -44,9 +44,9 @@ class BlogData {
       writer: 'Amber Israelsen',
     ),
   ];
-  BlogData() {
-    loadNews();
-  }
+  // BlogData() {
+  //   loadNews();
+  // }
 
   void addNewNews({required BlogModel news}) {
     blogData.add(news);
@@ -56,7 +56,6 @@ class BlogData {
   Future<void> saveNews() async {
   List<Map<String, dynamic>> newsAsMap =
       blogData.map((e) => e.toJson()).toList();
-  print('Saving news data: $newsAsMap');
   await box.write("blogData", newsAsMap);
 }
 
@@ -68,25 +67,19 @@ void loadNews() {
     for (var element in newsSaved) {
       blogData.add(BlogModel.fromJson(element));
     }
-    print('Loaded news data: $blogData');
   }
 }
-
 
   Future<void> refreshBlogs() async {
     loadNews();
   }
 
   Future<void> updateBlog(BlogModel updatedBlog) async {
-  print('Attempting to update blog with id: ${updatedBlog.id}');
   final index = blogData.indexWhere((blog) => blog.id == updatedBlog.id);
   if (index != -1) {
     blogData[index] = updatedBlog;
-    print('Blog found, updating...');
     await saveNews();
-    print('Blog updated successfully');
   } else {
-    print('Blog with id "${updatedBlog.id}" not found');
   }
 }
 
