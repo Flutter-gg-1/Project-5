@@ -1,7 +1,7 @@
 ![My Image](./assets/img_Tuwaiq.png)
 
 
-![My Image](./assets/)
+![My Image](./assets/vid.gif)
 
 # blog app
 
