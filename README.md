@@ -7,6 +7,7 @@ In this project, we are supposed to create a blog application using Flutter.
 The app contains a lot of features including but not limited to the following :
 
 **Multi User Support** : The application is fully supported for multi user usage.\
+**Save user state** : Users can close the app and re-open it and they would be still signed in.\
 **Post a Blog** : Users can post their own blog in the application.\
 **Browse Blogs** : Users can browse all blogs in the application.\
 **Edit a Blog** : Users can edit their own blogs.\
