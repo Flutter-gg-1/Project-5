@@ -21,7 +21,7 @@ class PostDataModel {
     required this.image,
   });
 
-  factory PostDataModel.fromMap(Map<String, dynamic> map) {
+  factory PostDataModel.fromjson(Map<String, dynamic> map) {
     return PostDataModel(
       id: map['ID'],
       category: map['Category'],
@@ -35,7 +35,7 @@ class PostDataModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> tojson() {
     return {
       'ID': id,
       'Category': category,

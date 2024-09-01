@@ -1,15 +1,17 @@
-
-
+import 'package:get_storage/get_storage.dart';
 import 'package:news_feed_app/data/models/post_data_model.dart';
 
 class PostData {
-  final List<PostDataModel> postsList = [];
+  List<PostDataModel> postsList = [];
+  final box = GetStorage();
 
-  PostData();
+  PostData() {
+    loadPosts(); // Load posts when the instance is created
+  }
 
   void addNewPost({required PostDataModel newPost}) {
     postsList.add(newPost);
-    //save
+    savePosts(); // Save posts after adding a new one
   }
 
   void updatePost(int id, {required String title, required String summary, required String content}) {
@@ -19,37 +21,33 @@ class PostData {
       postsList[index] = PostDataModel(
         id: post.id,
         category: post.category,
-        author: post.author,     
+        author: post.author,
         title: title,
         summary: summary,
         content: content,
-        date: post.date,      
-        minutes: post.minutes,  
-        image: post.image,     
+        date: post.date,
+        minutes: post.minutes,
+        image: post.image,
       );
+      savePosts(); // Save posts after updating
     }
   }
 
-    void deletePost(int id) {
+  void deletePost(int id) {
     postsList.removeWhere((post) => post.id == id);
-    // save
+    savePosts(); // Save posts after deletion
   }
 
-  
-  // addTweet(PostDataModel value) {
-  //   tweetsList.add(value);
-  //   box.write("tweets", tweetsList);
-  // }
+  void savePosts() async {
+    // Convert postsList to a list of maps for storage
+    List<Map<String, dynamic>> postsToSave = postsList.map((post) => post.tojson()).toList();
+    await box.write('postsList', postsToSave);
+  }
 
-  // removeTweet(int id) {
-  //   tweetsList.removeWhere((tweet) => tweet.tweetId == id);
-  // }
-
-  // loadTweets() {
-  //   if (box.hasData("tweets")) {
-  //     for (var tweet in box.read("tweets")) {
-  //       tweetsList.add(PostDataModel.fromJson(tweet));
-  //     }
-  //   }
-  // }
+  void loadPosts() {
+    if (box.hasData('postsList')) {
+      List<dynamic> loadedPosts = box.read('postsList');
+      postsList = loadedPosts.map((postMap) => PostDataModel.fromjson(postMap)).toList();
+    }
+  }
 }
