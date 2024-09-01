@@ -9,6 +9,9 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: TextStyle(
+        color: Colors.white
+      ),
       controller: controller,
       decoration: InputDecoration(
                               hintText: "Search for Blogs",
