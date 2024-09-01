@@ -99,7 +99,7 @@ class ExploreScreenState extends State<ExploreScreen> {
                                     ),
                                   ),
                                   subtitle: Text(
-                                    blog.summary,
+                                    blog.title,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,
