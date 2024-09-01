@@ -117,6 +117,11 @@ The app differ from loged in user in these screens:
 <img src="assets/output_images/guest_profile.png" alt="Tuwaiq" width="400"/>
 <br/>
 
+3. Geust blog detail
+<p align="center">
+<img src="assets/output_images/guest_blog_detail.png" alt="Tuwaiq" width="400"/>
+<br/>
+
 ## Notes
 1. When adding a blog, the image is required to select but not appeared in top stories list (apear default image).
 
