@@ -1,5 +1,5 @@
+import 'dart:io'; // Add this import for using File
 import 'package:flutter/material.dart';
-import 'package:vlog_project/helper/navigation.dart';
 import 'package:vlog_project/model/blog_model.dart';
 import 'package:vlog_project/screens/User_Screens/edit_page_screen.dart';
 import 'package:vlog_project/screens/auth/log_in_screen.dart';
@@ -24,7 +24,7 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
 
   void _loadBlogs() {
     setState(() {
-      _blogs = _blogService.getBlogs(); // Load all blogs from storage
+      _blogs = _blogService.getBlogs();
     });
   }
 
@@ -57,11 +57,11 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                   "assets/profile_page.png",
                   height: 60,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Column(
-                  children: [
+                  children: const [
                     Text(
                       "Najwa Aldahri",
                       style: TextStyle(color: Colors.white),
@@ -74,7 +74,7 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             const Text(
@@ -105,8 +105,8 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                               width: 60,
                               height: 60,
                               child: blog.imageUrl.isNotEmpty
-                                  ? Image.asset(
-                                      blog.imageUrl,
+                                  ? Image.file(
+                                      File(blog.imageUrl),
                                       fit: BoxFit.cover,
                                       errorBuilder:
                                           (context, error, stackTrace) =>

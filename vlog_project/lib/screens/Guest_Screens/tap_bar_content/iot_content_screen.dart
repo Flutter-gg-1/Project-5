@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vlog_project/screens/Guest_Screens/full_page_news_screen.dart';
-import 'package:vlog_project/widget/card_view_viedo.dart';
 import 'package:vlog_project/widget/guest_card_view.dart';
 
 class IotContentScreen extends StatelessWidget {

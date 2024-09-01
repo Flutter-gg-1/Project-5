@@ -1,4 +1,4 @@
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:vlog_project/model/blog_model.dart';
 
@@ -38,8 +38,8 @@ class UserCardView extends StatelessWidget {
                     width: 60,
                     height: 60,
                     child: blog.imageUrl.isNotEmpty
-                        ? Image.asset(
-                            blog.imageUrl,
+                        ? Image.file(
+                            File(blog.imageUrl),
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) =>
                                 const Placeholder(
