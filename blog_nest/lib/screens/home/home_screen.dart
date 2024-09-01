@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen>
           indicatorSize: TabBarIndicatorSize.tab,
           labelColor: C.text1,
           unselectedLabelColor: C.text3,
-          labelPadding: EI.only(bottom: 8),
+          labelPadding: const EI.only(bottom: 8),
           dividerHeight: 0.1,
           dividerColor: C.text3,
           controller: vm.tabController,
@@ -77,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen>
         padding: const EdgeInsets.all(16.0),
         child: TabBarView(
           controller: vm.tabController,
+          physics: const NeverScrollableScrollPhysics(),
           children: BlogCategory.values.map((category) {
             return HomeContentView(
                 blogs: vm.blogMgr.categoryBlogs, setState: callBack);

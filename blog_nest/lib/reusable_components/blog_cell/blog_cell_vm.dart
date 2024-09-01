@@ -17,6 +17,9 @@ class BlogCellVM {
     _fetchBookmarks();
   }
 
+  String getAuthorName({required int authorId}) =>
+      userMgr.allUsers.where((user) => user.id == authorId).first.name;
+
   void _fetchBookmarks() {
     bookmarks = userMgr.allBookmarks
         .where((bookmark) => (bookmark.userId == currentUser?.id))

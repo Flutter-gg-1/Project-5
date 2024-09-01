@@ -1,13 +1,16 @@
 import 'package:blog_nest/extensions/string_ext.dart';
 import 'package:blog_nest/reusable_components/blog_cell/blog_cell_view.dart';
+import 'package:blog_nest/screens/home/subviews/hero_img_view.dart';
 import 'package:flutter/material.dart';
 import '../../../extensions/color_ext.dart';
+import '../../../extensions/img_ext.dart';
 import '../../../model/blog.dart';
 import '../../../utils/img_converter.dart';
 import '../../../utils/typedefs.dart';
 
 class HomeContentView extends StatelessWidget {
-  HomeContentView({super.key, required this.blogs, required this.setState});
+  const HomeContentView(
+      {super.key, required this.blogs, required this.setState});
   final List<Blog> blogs;
   final VoidCallback setState;
 
@@ -21,9 +24,18 @@ class HomeContentView extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 2,
-                child: blogs.isNotEmpty
-                    ? ImgConverter.imageFromBase64String(blogs.first.imgData)
-                    : const Placeholder(),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: blogs.isNotEmpty
+                          ? HeroImgView(blogs: blogs)
+                          : ClipRRect(
+                              borderRadius: BR.circular(16),
+                              child: const Image(
+                                  image: Img.noContent, fit: BoxFit.cover)),
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16),

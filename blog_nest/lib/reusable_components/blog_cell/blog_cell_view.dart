@@ -60,7 +60,8 @@ class BlogCellView extends StatelessWidget {
                           mainAxisAlignment: MAL.center,
                           crossAxisAlignment: CAL.start,
                           children: [
-                            const Text('Hello').styled(
+                            Text(vm.getAuthorName(authorId: blog.authorId))
+                                .styled(
                               size: 12,
                               weight: FW.w500,
                               color: C.text2,

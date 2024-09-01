@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:blog_nest/extensions/icon_ext.dart';
 import 'package:blog_nest/extensions/string_ext.dart';
-import 'package:blog_nest/reusable_components/custom_text_field.dart';
 import 'package:blog_nest/screens/add_blog/add_blog_vm.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +9,8 @@ import '../../extensions/color_ext.dart';
 import '../../extensions/img_ext.dart';
 import '../../model/blog.dart';
 import '../../model/enum/blog_category.dart';
+import '../../reusable_components/custom_form_text_field.dart';
 import '../../utils/typedefs.dart';
-import '../../utils/validations.dart';
 
 class AddBlogScreen extends StatefulWidget {
   const AddBlogScreen({super.key, this.blog});
@@ -109,54 +108,26 @@ class _AddBlogScreenState extends State<AddBlogScreen>
                   ),
                 ),
                 // Title
-                _TextFieldContainer(
+                CustomFormTextField(
                     controller: vm.titleController,
                     headerText: 'Title',
                     hintText: 'Enter your blog title'),
-                _TextFieldContainer(
+                CustomFormTextField(
                     controller: vm.summaryController,
                     headerText: 'Summary',
                     hintText: 'Give a brief summary about your blog'),
-                _TextFieldContainer(
+                CustomFormTextField(
                     controller: vm.contentController,
                     headerText: 'Content',
-                    hintText: 'Wtire your blog here'),
+                    hintText: 'Write your blog here'),
                 _CategoryTabView(controller: vm.categoryController),
-                _TextFieldContainer(
+                CustomFormTextField(
                     controller: vm.readingMinController,
                     headerText: 'Reading minutes',
                     hintText: 'Minutes of reading this blog')
               ],
             ),
           )
-        ],
-      ),
-    );
-  }
-}
-
-class _TextFieldContainer extends StatelessWidget {
-  const _TextFieldContainer({
-    required this.controller,
-    required this.headerText,
-    required this.hintText,
-  });
-  final TextEditingController controller;
-  final String headerText;
-  final String hintText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CAL.start,
-        children: [
-          Text(headerText).styled(size: 17, weight: FW.w700),
-          CustomTextField(
-              controller: controller,
-              hint: hintText,
-              validation: Validations.emptyFieldValidation)
         ],
       ),
     );
