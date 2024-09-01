@@ -1,6 +1,4 @@
 import 'package:blog_app/data/post_data.dart';
-
-import 'package:blog_app/models/post_model.dart';
 import 'package:blog_app/widgets/fields/info_feild.dart';
 import 'package:blog_app/widgets/buttons/selectable_box.dart';
 import 'package:flutter/material.dart';
@@ -8,19 +6,19 @@ import 'package:get_it/get_it.dart';
 
 class EditScreen extends StatelessWidget {
   final String id;
-  final String category;
   final String title;
   final String summary;
   final String content;
+  final String category;
   final String min;
   const EditScreen(
       {super.key,
-      required this.category,
+      required this.id,
       required this.title,
       required this.summary,
       required this.content,
-      required this.min,
-      required this.id});
+      required this.category,
+      required this.min});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +27,16 @@ class EditScreen extends StatelessWidget {
     TextEditingController contentController = TextEditingController();
     TextEditingController minController = TextEditingController();
     String catValue = "";
+
+    titleController = TextEditingController(text: title);
+    contentController = TextEditingController(text: content);
+    sumController = TextEditingController(text: summary);
+    minController = TextEditingController(text: min);
+
+    final newTitle = titleController.text;
+    final newContent = contentController.text;
+    final newSum = titleController.text;
+    final newMin = minController.text;
 
     return Scaffold(
       backgroundColor: const Color(0xff111111),
@@ -45,12 +53,13 @@ class EditScreen extends StatelessWidget {
               onPressed: () {
                 GetIt.I.get<PostData>().editPost(
                     id: id,
-                    title: title,
-                    summary: summary,
-                    content: content,
-                    category: category,
-                    minutes: min);
-                Navigator.pop(context, true);
+                    title: newTitle,
+                    summary: newSum,
+                    content: newContent,
+                    category: catValue,
+                    minutes: newMin);
+
+                Navigator.pop(context);
               },
               child: const Text(
                 "Post",

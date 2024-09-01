@@ -4,7 +4,7 @@ import 'package:blog_app/screens/add_screen.dart';
 import 'package:blog_app/screens/news_screen.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:blog_app/widgets/cards/post_widget.dart';
-import 'package:blog_app/widgets/cards/home_widget.dart';
+import 'package:blog_app/widgets/cards/home_ad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

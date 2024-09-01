@@ -57,7 +57,8 @@ class _AddScreenState extends State<AddScreen> {
                 GetIt.I.get<PostData>().addPost(
                     newPost: PostModel(
                         userAvatar:
-                            GetIt.I.get<UserData>().users.first.avatar ?? "",
+                            GetIt.I.get<UserData>().users.first.avatar ??
+                                "assets/avatar_holder.png",
                         image: selectedImage?.path ?? "assets/img_holder.png",
                         id: Random().nextInt(9999).toString(),
                         title: titleController.text,

@@ -71,7 +71,7 @@ class _SavedScreenState extends State<SavedScreen> {
                           .toList(),
                 )
               : const Center(
-                  child: Text("No blogs saved",
+                  child: Text("you need to login to save blogs",
                       style:
                           TextStyle(color: Color(0xffB8B8B8), fontSize: 15)))),
     );

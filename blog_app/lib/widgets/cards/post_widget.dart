@@ -46,7 +46,7 @@ class PostWidget extends StatelessWidget {
                   const TextStyle(color: Color(0xffB8B8B8), fontSize: 12),
               subtitleTextStyle: const TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w400),
               title: Text(subTitle),
               subtitle: Text(title),

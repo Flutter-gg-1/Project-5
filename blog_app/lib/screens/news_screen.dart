@@ -89,7 +89,7 @@ class NewsScreen extends StatelessWidget {
                       AssetImage(userAvatar ?? "assets/avatar_holder.png")),
               const SizedBox(height: 5),
               Text(
-                GetIt.I.get<PostData>().allPostes.first.auther,
+                GetIt.I.get<PostData>().allPostes.last.auther,
                 style: const TextStyle(fontSize: 14, color: Color(0xffB8B8B8)),
               ),
               const SizedBox(height: 15),

@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({
+    super.key,
+  });
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -34,90 +36,95 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Padding(
           padding: const EdgeInsets.all(16),
           child: box.read("token") != null
-              ? Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        textColor: const Color(0xffB8B8B8),
-                        leading: Image.asset(
-                            GetIt.I.get<UserData>().users.first.avatar ?? ""),
-                        title:
-                            Text(GetIt.I.get<UserData>().users.first.userName),
-                        subtitle:
-                            Text(GetIt.I.get<UserData>().users.first.position),
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          textColor: const Color(0xffB8B8B8),
+                          leading: Image.asset(
+                              GetIt.I.get<UserData>().users.first.avatar ?? ""),
+                          title: Text(
+                              GetIt.I.get<UserData>().users.first.userName),
+                          subtitle: Text(
+                              GetIt.I.get<UserData>().users.first.position),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("My Blogs",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    const SizedBox(height: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: GetIt.I.get<UserData>().users.first.posts ==
-                              null
-                          ? ([
-                              const Text("No blogs yet",
-                                  style: TextStyle(
-                                      color: Color(0xffB8B8B8), fontSize: 16))
-                            ])
-                          : GetIt.I
-                              .get<UserData>()
-                              .users
-                              .first
-                              .posts!
-                              .map((e) => UserBlog(
-                                    onEdit: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return EditScreen(
-                                            id: e.id,
-                                            title: e.title,
-                                            summary: e.summary,
-                                            content: e.content,
-                                            min: e.minutes,
-                                            category: e.category);
-                                      }));
-                                    },
-                                    onDelete: () {
-                                      GetIt.I
-                                          .get<PostData>()
-                                          .removePost(id: e.id);
-                                      setState(() {});
-                                    },
-                                    image: e.image,
-                                    title: e.title,
-                                  ))
-                              .toList(),
-                    ),
-                    const SizedBox(height: 50),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.red,
-                              fixedSize: const Size(255, 50),
-                              shape: BeveledRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5))),
-                          onPressed: () {
-                            box.remove("token");
-                            // box.erase();
-                            context.navTo(page: const SigninScreen());
-                          },
-                          child: const Text(
-                            "Logout",
+                      const SizedBox(height: 20),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("My Blogs",
                             style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.w800),
-                          )),
-                    ),
-                  ],
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      const SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children:
+                            GetIt.I.get<UserData>().users.first.posts == null
+                                ? ([
+                                    const Text("No blogs yet",
+                                        style: TextStyle(
+                                            color: Color(0xffB8B8B8),
+                                            fontSize: 16))
+                                  ])
+                                : GetIt.I
+                                    .get<UserData>()
+                                    .users
+                                    .first
+                                    .posts!
+                                    .map((e) => UserBlog(
+                                          onEdit: () async {
+                                            await Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return EditScreen(
+                                                title: e.title,
+                                                category: e.category,
+                                                content: e.content,
+                                                min: e.minutes,
+                                                summary: e.summary,
+                                                id: e.id,
+                                              );
+                                            }));
+                                            setState(() {});
+                                          },
+                                          onDelete: () {
+                                            GetIt.I
+                                                .get<PostData>()
+                                                .removePost(id: e.id);
+                                            setState(() {});
+                                          },
+                                          image: e.image,
+                                          title: e.title,
+                                        ))
+                                    .toList(),
+                      ),
+                      const SizedBox(height: 50),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.red,
+                                fixedSize: const Size(255, 50),
+                                shape: BeveledRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5))),
+                            onPressed: () {
+                              box.remove("token");
+                              context.navTo(page: const SigninScreen());
+                            },
+                            child: const Text(
+                              "Logout",
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.w800),
+                            )),
+                      ),
+                    ],
+                  ),
                 )
               : Center(
                   child: Container(

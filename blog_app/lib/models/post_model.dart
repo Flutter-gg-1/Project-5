@@ -1,14 +1,14 @@
 class PostModel {
   late final String id;
   late String? image;
-  late final String title;
-  late final String summary;
-  late final String content;
-  late final String category;
-  late final String minutes;
+  late String title;
+  late String summary;
+  late String content;
+  late String category;
+  late String minutes;
   late final String date;
   late final String auther;
-  late final String userAvatar;
+  late String? userAvatar;
   bool? saved;
 
   PostModel(
@@ -21,7 +21,7 @@ class PostModel {
       required this.minutes,
       required this.date,
       required this.auther,
-      required this.userAvatar,
+      this.userAvatar,
       this.saved = false});
 
   PostModel.fromJson(Map<String, dynamic> json) {
