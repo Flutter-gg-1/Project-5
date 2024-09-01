@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:vlog_project/User_Screens/user_home_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/guest_home.dart';
+import 'package:vlog_project/screens/User_Screens/user_home_screen.dart';
 import 'package:vlog_project/helper/constants.dart';
 import 'package:vlog_project/helper/navigation.dart';
 
 class LogInScreen extends StatelessWidget {
-  LogInScreen({super.key});
+  LogInScreen({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  final box = GetStorage();  // GetStorage instance for persistent storage
+  final box = GetStorage(); // GetStorage instance for persistent storage
 
   void _login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       // Assuming 'admin' as hardcoded credentials for simplicity
-      if (usernameController.text == "admin" && passwordController.text == "admin") {
+      if (usernameController.text == "najwa" &&
+          passwordController.text == "aldahri") {
         // Save login state
         box.write(Constants.loggedInKey, true);
         box.write(Constants.usernameKey, usernameController.text);
-        
+
         // Redirect to the Home screen
         context.push(screen: const UserHomeScreen());
       } else {
@@ -35,7 +37,8 @@ class LogInScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff111111),
       body: Center(
-        child: SingleChildScrollView( // Added scrolling for smaller screens
+        child: SingleChildScrollView(
+          // Added scrolling for smaller screens
           child: Form(
             key: _formKey,
             child: Column(
@@ -135,7 +138,7 @@ class LogInScreen extends StatelessWidget {
                       const Align(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          "Forgot Password",
+                          "Forgot Password?",
                           style: TextStyle(color: Color(0xffBDA6F5)),
                         ),
                       ),
@@ -161,7 +164,7 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      const Row(
+                      Row(
                         mainAxisAlignment:
                             MainAxisAlignment.center, // Center-align the row
                         children: [
@@ -173,12 +176,16 @@ class LogInScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              "Enter as a guest",
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ),
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  context.push(screen: HomeScreen());
+                                },
+                                child: Text(
+                                  "Enter as a guest",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              )),
                           SizedBox(
                             width: 32, // Set a fixed width for the divider
                             child: Divider(

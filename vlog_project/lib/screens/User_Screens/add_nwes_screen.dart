@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:get_storage/get_storage.dart'; 
+import 'package:uuid/uuid.dart'; 
+import 'package:vlog_project/model/blog_model.dart';
 
 class AddNewScreen extends StatefulWidget {
-  const AddNewScreen({super.key});
+  const AddNewScreen({Key? key}) : super(key: key);
 
   @override
   State<AddNewScreen> createState() => _AddNewScreenState();
@@ -12,23 +15,25 @@ class AddNewScreen extends StatefulWidget {
 class _AddNewScreenState extends State<AddNewScreen> {
   final _formKey = GlobalKey<FormState>();
   final ImagePicker _picker = ImagePicker();
+  final box = GetStorage(); 
+  final _uuid = Uuid(); 
+
   File? _selectedImage;
   String _selectedCategory = 'TECHNOLOGY';
 
-  final List<String> _categories = [
-    'TECHNOLOGY',
-    'AI',
-    'CLOUD',
-    'ROBOTIC',
-    'IOT',
-  ];
-
-  // Controllers for form fields
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _summaryController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   final TextEditingController _readingMinutesController =
       TextEditingController();
+
+  final List<String> _categories = [
+    'TECHNOLOGY',
+    'AI',
+    'CLOUD',
+    'ROBOTICS',
+    'IOT',
+  ];
 
   Future<void> _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -41,12 +46,23 @@ class _AddNewScreenState extends State<AddNewScreen> {
 
   void _saveForm() {
     if (_formKey.currentState!.validate()) {
-      // All fields are valid
-      // Proceed with saving data or navigating
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Form successfully saved!')),
+      final newBlog = Blog(
+        id: _uuid.v4(),
+        category: _selectedCategory,
+        authorName: 'Current User',
+        title: _titleController.text,
+        summary: _summaryController.text,
+        content: _contentController.text,
+        date: DateTime.now(),
+        imageUrl: _selectedImage?.path ?? '',
+        minutesToRead: int.tryParse(_readingMinutesController.text) ?? 5,
       );
-      // Perform your saving logic here
+
+      List<dynamic> blogs = box.read('blogs') ?? [];
+      blogs.add(newBlog.toJson());
+      box.write('blogs', blogs);
+
+      Navigator.pop(context, true); 
     }
   }
 
@@ -75,7 +91,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -167,21 +183,6 @@ class _AddNewScreenState extends State<AddNewScreen> {
                     }
                     return null;
                   },
-                ),
-                const SizedBox(height: 20),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: _saveForm,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffBDA6F5),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 15.0, horizontal: 30.0),
-                    ),
-                    child: const Text(
-                      "Save",
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                  ),
                 ),
               ],
             ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:vlog_project/Guest_Screens/explore_guest_screen.dart';
-import 'package:vlog_project/Guest_Screens/guest_profile_screen.dart';
-import 'package:vlog_project/Guest_Screens/saved_guest_screen.dart';
-import 'package:vlog_project/Guest_Screens/tap_bar_content/Tech_content_screen.dart';
-import 'package:vlog_project/Guest_Screens/tap_bar_content/ai_content_screen.dart';
-import 'package:vlog_project/Guest_Screens/tap_bar_content/cloud_content_screen.dart';
-import 'package:vlog_project/Guest_Screens/tap_bar_content/iot_content_screen.dart';
-import 'package:vlog_project/Guest_Screens/tap_bar_content/robotics_content_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/explore_guest_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/guest_profile_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/saved_guest_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/tap_bar_content/Tech_content_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/tap_bar_content/ai_content_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/tap_bar_content/cloud_content_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/tap_bar_content/iot_content_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/tap_bar_content/robotics_content_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

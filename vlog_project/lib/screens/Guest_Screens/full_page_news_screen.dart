@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vlog_project/Guest_Screens/guest_home.dart';
+import 'package:vlog_project/screens/Guest_Screens/guest_home.dart';
 import 'package:vlog_project/helper/navigation.dart';
 
 class GuestBlogPage extends StatelessWidget {

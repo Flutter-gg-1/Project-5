@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vlog_project/Guest_Screens/full_page_news_screen.dart';
+import 'package:vlog_project/screens/Guest_Screens/full_page_news_screen.dart';
 import 'package:vlog_project/widget/card_view_viedo.dart';
+import 'package:vlog_project/widget/guest_card_view.dart';
 
 class RoboticsContentScreen extends StatelessWidget {
   const RoboticsContentScreen({super.key});
@@ -10,7 +11,6 @@ class RoboticsContentScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff111111),
       body: SingleChildScrollView(
-        // Makes the content scrollable
         child: Column(
           children: [
             const SizedBox(height: 10),
@@ -24,27 +24,32 @@ class RoboticsContentScreen extends StatelessWidget {
                       width: 430,
                     ),
                     const Positioned(
-                        top: 160,
-                        child: Text(
-                          "  DJI • Jul 10, 2023",
-                          style: TextStyle(color: Colors.white),
-                        )),
+                      top: 160,
+                      child: Text(
+                        "  DJI • Jul 10, 2023",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                     const Positioned(
-                        top: 190,
-                        child: Text(
-                          "  A month with DJI Mini 3 Pro",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
-                        )),
-                    const Positioned(
-                        top: 180,
-                        right: 10,
-                        child: Icon(
-                          Icons.arrow_outward_sharp,
+                      top: 190,
+                      child: Text(
+                        "  A month with DJI Mini 3 Pro",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
-                        ))
+                        ),
+                      ),
+                    ),
+                    const Positioned(
+                      top: 180,
+                      right: 10,
+                      child: Icon(
+                        Icons.arrow_outward_sharp,
+                        color: Colors.white,
+                      ),
+                    ),
                   ],
-                )
+                ),
               ],
             ),
             const SizedBox(height: 10),
@@ -61,41 +66,42 @@ class RoboticsContentScreen extends StatelessWidget {
                 Text(
                   "Top Stories",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
                 SizedBox(width: 300),
                 Text(
                   "See all",
                   style: TextStyle(color: Colors.grey),
-                )
+                ),
               ],
             ),
             const SizedBox(height: 10),
-            const CardView(
+            const GuestCardView(
               screentogo: GuestBlogPage(),
               title: "Kyle Barr",
-              subtitle:
-                  "Now Google’s Bard AI can talk\n& respond to visual prompts",
+              subtitle: "Now Google’s Bard AI can talk\n& respond to visual prompts",
               date: "Jul 13, 2023 • 2 min read",
               imagePath: "assets/instagram.png",
             ),
             const SizedBox(height: 10),
-            const CardView(
-                screentogo: GuestBlogPage(),
-                title: "Jeremy Morgan",
-                subtitle: "WatchOS 10 preview: widgets\nall the way down",
-                date: "Jul 10, 2023 • 4 min read",
-                imagePath: "assets/desk.png"),
+            const GuestCardView(
+              screentogo: GuestBlogPage(),
+              title: "Jeremy Morgan",
+              subtitle: "WatchOS 10 preview: widgets\nall the way down",
+              date: "Jul 10, 2023 • 4 min read",
+              imagePath: "assets/desk.png",
+            ),
             const SizedBox(height: 10),
-            const CardView(
-                screentogo: GuestBlogPage(),
-                title: "Amber Israelsen",
-                subtitle:
-                    "How Gen Z are disrupting the\ndefinition of ‘prestigious’ jobs",
-                date: "Jul 24, 2023 • 8 min read",
-                imagePath: "assets/bus.png"),
+            const GuestCardView(
+              screentogo: GuestBlogPage(),
+              title: "Amber Israelsen",
+              subtitle: "How Gen Z are disrupting the\ndefinition of ‘prestigious’ jobs",
+              date: "Jul 24, 2023 • 8 min read",
+              imagePath: "assets/bus.png",
+            ),
             const SizedBox(height: 10),
           ],
         ),

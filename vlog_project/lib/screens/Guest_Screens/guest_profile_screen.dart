@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vlog_project/helper/navigation.dart';
-import 'package:vlog_project/log_in_screen.dart';
+import 'package:vlog_project/screens/auth/log_in_screen.dart';
 
 class GuestProfileScreen extends StatelessWidget {
   const GuestProfileScreen({super.key});
