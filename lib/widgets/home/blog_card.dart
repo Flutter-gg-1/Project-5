@@ -143,3 +143,74 @@ class _BlogCardState extends State<BlogCard> {
     );
   }
 }
+              // TopStories(
+              //   category: "TECHNOLOGY",
+              //   onSaved: (Blog blog) {
+              //     isSaved
+              //         ? {
+              //             GetIt.I.get<UserData>().savedBlogs.remove(blog),
+              //             isSaved = !isSaved
+              //           }
+              //         : {
+              //             GetIt.I.get<UserData>().savedBlogs.add(blog),
+              //             isSaved = !isSaved
+              //           };
+              //   },
+              // ),
+              // TopStories(
+              //   category: "AI",
+              //   onSaved: (Blog blog) {
+              //     isSaved
+              //         ? {
+              //             GetIt.I.get<UserData>().savedBlogs.remove(blog),
+              //             isSaved = !isSaved
+              //           }
+              //         : {
+              //             GetIt.I.get<UserData>().savedBlogs.add(blog),
+              //             isSaved = !isSaved
+              //           };
+              //   },
+              // ),
+              // TopStories(
+              //   category: "CLOUD",
+              //   onSaved: (Blog blog) {
+              //     isSaved
+              //         ? {
+              //             GetIt.I.get<UserData>().savedBlogs.remove(blog),
+              //             isSaved = !isSaved
+              //           }
+              //         : {
+              //             GetIt.I.get<UserData>().savedBlogs.add(blog),
+              //             isSaved = !isSaved
+              //           };
+              //   },
+              // ),
+              // TopStories(
+              //   category: "ROBOTICS",
+              //   onSaved: (Blog blog) {
+              //     isSaved
+              //         ? {
+              //             GetIt.I.get<UserData>().savedBlogs.remove(blog),
+              //             isSaved = !isSaved
+              //           }
+              //         : {
+              //             GetIt.I.get<UserData>().savedBlogs.add(blog),
+              //             isSaved = !isSaved
+              //           };
+              //   },
+              // ),
+              // TopStories(
+              //   category: "IOT",
+              //   onSaved: (Blog blog) {
+              //     isSaved
+              //         ? {
+              //             GetIt.I.get<UserData>().savedBlogs.remove(blog),
+              //             isSaved = !isSaved
+              //           }
+              //         : {
+              //             GetIt.I.get<UserData>().savedBlogs.add(blog),
+              //             isSaved = !isSaved
+              //           };
+              //   },
+              // ),
+    

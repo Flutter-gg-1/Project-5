@@ -99,13 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     onDelete: () {
                                       GetIt.I
                                           .get<UserData>()
-                                          .user
-                                          .blogs
-                                          .remove(blog);
-                                      GetIt.I
-                                          .get<BlogData>()
-                                          .blogs
-                                          .remove(blog);
+                                          .deleteBlog(blog);
                                       setState(() {});
                                     },
                                     onEdit: () {

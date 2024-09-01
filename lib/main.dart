@@ -2,8 +2,8 @@ import 'package:blog_app/screens/login_screen.dart';
 import 'package:blog_app/services/setup.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  setup();
+void main() async {
+  await setup();
   runApp(const MainApp());
 }
 

@@ -45,7 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               {required content,
                               required summary,
                               required title,
-                              required category}) {
+                              required category
+                            }) {
                             GetIt.I.get<BlogData>().createBlog(
                                 category: category,
                                 title: title,
@@ -185,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Column(
                       children: GetIt.I.get<BlogData>().blogs.where(
                         (element) {
-                          return element.category == "Technology";
+                          return element.category == "AI";
                         },
                       ).map((blog) {
                         return BlogCard(
@@ -215,15 +216,197 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              const Column(
-                children: [Text("data3")],
+                  SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Drone(),
+                    Divider(
+                      color: Colors.white.withOpacity(0.1),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Top Stories",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "See all",
+                          style:
+                              TextStyle(color: Color(0xff888888), fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      children: GetIt.I.get<BlogData>().blogs.where(
+                        (element) {
+                          return element.category == "AI";
+                        },
+                      ).map((blog) {
+                        return BlogCard(
+                          blog: blog,
+                          onSaved: () {
+                            isSaved
+                                ? {
+                                    GetIt.I
+                                        .get<UserData>()
+                                        .savedBlogs
+                                        .remove(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  }
+                                : {
+                                    GetIt.I.get<UserData>().savedBlogs.add(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  };
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                  ],
+                ),
               ),
-              const Column(
-                children: [Text("data4")],
+          
+            SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Drone(),
+                    Divider(
+                      color: Colors.white.withOpacity(0.1),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Top Stories",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "See all",
+                          style:
+                              TextStyle(color: Color(0xff888888), fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      children: GetIt.I.get<BlogData>().blogs.where(
+                        (element) {
+                          return element.category == "AI";
+                        },
+                      ).map((blog) {
+                        return BlogCard(
+                          blog: blog,
+                          onSaved: () {
+                            isSaved
+                                ? {
+                                    GetIt.I
+                                        .get<UserData>()
+                                        .savedBlogs
+                                        .remove(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  }
+                                : {
+                                    GetIt.I.get<UserData>().savedBlogs.add(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  };
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                  ],
+                ),
               ),
-              const Column(
-                children: [Text("data5")],
+            SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Drone(),
+                    Divider(
+                      color: Colors.white.withOpacity(0.1),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Top Stories",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "See all",
+                          style:
+                              TextStyle(color: Color(0xff888888), fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      children: GetIt.I.get<BlogData>().blogs.where(
+                        (element) {
+                          return element.category == "AI";
+                        },
+                      ).map((blog) {
+                        return BlogCard(
+                          blog: blog,
+                          onSaved: () {
+                            isSaved
+                                ? {
+                                    GetIt.I
+                                        .get<UserData>()
+                                        .savedBlogs
+                                        .remove(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  }
+                                : {
+                                    GetIt.I.get<UserData>().savedBlogs.add(blog),
+                                    isSaved = !isSaved,
+                                    setState(() {})
+                                  };
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                  ],
+                ),
               ),
+          
             ],
           ),
         ),

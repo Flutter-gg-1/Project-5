@@ -19,7 +19,6 @@ class _EditBlogState extends State<EditBlog> {
   @override
   void initState() {
     super.initState();
-    // Initialize controllers with the existing blog data
     titleController = TextEditingController(text: widget.blog.title);
     summaryController = TextEditingController(text: widget.blog.summary);
     contentController = TextEditingController(text: widget.blog.content);
