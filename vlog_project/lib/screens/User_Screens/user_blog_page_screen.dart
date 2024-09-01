@@ -32,9 +32,7 @@ class UserBlogPage extends StatelessWidget {
                 ),
               ).then((result) {
                 if (result == true) {
-                  // Handle the update, e.g., refresh the list or display a message
-                  // Since this is a stateless widget, you'd need to rebuild the whole page
-                  // or use a state management solution like setState in the parent widget.
+                
                 }
               });
             },
