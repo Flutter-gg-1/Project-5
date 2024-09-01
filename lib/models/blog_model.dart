@@ -26,7 +26,7 @@ class BlogModel {
     readingMinutes = json['readingMinutes'];
     image = json['image'];
     date = json['date'];
-    date = json['writer'];
+    writer = json['writer'];
   }
 
   Map<String, dynamic> toJson() {

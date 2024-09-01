@@ -1,6 +1,6 @@
 import 'package:blog_app/helper/extension/color_ext.dart';
 import 'package:blog_app/screens/explore_screen.dart';
-import 'package:blog_app/screens/feed_screen.dart';
+import 'package:blog_app/screens/feed_screen/feed_screen.dart';
 import 'package:blog_app/screens/profile_screen.dart';
 import 'package:blog_app/screens/saved_screen.dart';
 import 'package:flutter/material.dart';

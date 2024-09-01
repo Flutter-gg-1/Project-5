@@ -47,10 +47,10 @@ class LoginCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 32,
                 child: Divider(
-                  color: Colors.white,
+                  color: ColorExt.white,
                   thickness: 1,
                 ),
               ),
@@ -67,10 +67,10 @@ class LoginCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              const SizedBox(
+              SizedBox(
                 width: 32,
                 child: Divider(
-                  color: Colors.white,
+                  color: ColorExt.white,
                   thickness: 1,
                 ),
               ),

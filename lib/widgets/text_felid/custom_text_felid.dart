@@ -8,13 +8,13 @@ class CustomTextFelid extends StatelessWidget {
       this.title,
       this.controller,
       required this.hint,
-      this.maxLines = 1,
+      this.minLins = 1,
       this.validator});
 
   final String? title;
   final String hint;
   final String? Function(String?)? validator;
-  final int? maxLines;
+  final int? minLins;
   final TextEditingController? controller;
 
   @override
@@ -22,14 +22,15 @@ class CustomTextFelid extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title!,
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-            color: ColorExt.white,
+        if (title != null)
+          Text(
+            title!,
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              color: ColorExt.white,
+            ),
           ),
-        ),
         const SizedBox(
           height: 8,
         ),
@@ -40,8 +41,8 @@ class CustomTextFelid extends StatelessWidget {
             ),
             controller: controller,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            minLines: 1,
-            maxLines: maxLines!,
+            minLines: minLins,
+            maxLines: 10,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),

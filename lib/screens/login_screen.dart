@@ -14,9 +14,7 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({
-    super.key,
-  });
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -76,17 +74,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         userName: usernameController!.text,
                         id: Random().nextInt(999),
                       );
-                      GetIt.I.get<UserData>().addNewUser(username: newUser);
+                      UserData userData = GetIt.I.get<UserData>();
+                      userData.setCurrentUser(newUser);
                       GetIt.I
                           .get<UserService>()
                           .setUserName(usernameController!.text);
 
                       context.push(screen: const ButtonNavBar());
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                              Text('Please enter both username and password.'),
+                        ),
+                      );
                     }
                   },
                 ),
                 onTapGuest: () {
-                  GetIt.I.get<UserService>().setUserName(null); 
+                  GetIt.I.get<UserService>().setUserName(null);
                   context.push(screen: const ButtonNavBar());
                 },
               )
