@@ -68,10 +68,10 @@ You can navgatie to this page using the edit icon.
 
 
 #### - SignInScreen:
-<img width="200"  alt="README_assets\signin.jpg" src="README_Assets\signIn.jpg">
+<img width="200"  alt="README_assets\signin.jpg" src="README_assets\signin.jpg">
 
 #### - HomeScreen:
-<img width="200"  alt="README_assets\homepage.jpg" src="README_Assets\homePage.jpg">
+<img width="200"  alt="README_assets\homepage.jpg" src="README_assets\homepage.jpg">
 
 #### - ExploreScreen:
 <img width="200"  alt="README_assets\explore.jpg" src="README_assets\explore.jpg">
