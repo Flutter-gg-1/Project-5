@@ -74,13 +74,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: GetIt.I.get<BlogData>().blogData.map((e) {
                   return Container(
                     margin: EdgeInsets.only(top: 10),
-                    height: 90,
+                    height: 130,
                     width: 400,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: const Color(0xff1E1E1E)),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 20, top: 10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -89,54 +89,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Image.asset("assets/google_small.png"),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 20, bottom: 50),
-                                child: CustomText(
-                                    text: e.title, color: Colors.white, size: 11),
+                                    const EdgeInsets.only(left: 20, bottom: 30),
+                                child: SizedBox(
+                                  height: 40,
+                                  width: 240,
+                                  child: CustomText(
+                                      text: e.title, color: Colors.white, size: 14),
+                                ),
                               ),
-                              Row(
+                              
+                            ],
+                          ),
+                          Stack(
+                            clipBehavior: Clip.none,
                                 children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 150, top: 25),
-                                    child: IconButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) {
-                                            return UpdateStoriesDetail(id: e.id);
-                                          }));
-                                        },
-                                        icon: const Icon(
-                                          Icons.edit_outlined,
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 25),
-                                    child: IconButton(
-                                        onPressed: () {
-                                          GetIt.I
-                                              .get<BlogData>()
-                                              .removeBlog(id: e.id);
-                                              setState(() {
-                                              });
-                                        },
-                                        icon: const Icon(
-                                          Icons.delete_outline,
-                                          color: Color(0xffDD403C),
-                                        )),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return UpdateStoriesDetail(id: e.id);
+                                            }));
+                                          },
+                                          icon: const Icon(
+                                            Icons.edit_outlined,
+                                            color: Colors.white,
+                                          )),
+                                      IconButton(
+                                          onPressed: () {
+                                            GetIt.I
+                                                .get<BlogData>()
+                                                .removeBlog(id: e.id);
+                                                setState(() {
+                                                });
+                                          },
+                                          icon: const Icon(
+                                            Icons.delete_outline,
+                                            color: Color(0xffDD403C),
+                                          )),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
                         ],
                       ),
                     ),
                   );
                 }).toList()),
                 Padding(
-                  padding: const EdgeInsets.only(top: 350),
+                  padding: const EdgeInsets.only(top: 450),
                   child: CustomElevatedButton(
                     text: "Logout",
                     onPressed: () {

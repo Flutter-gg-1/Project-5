@@ -4,18 +4,18 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:project5/data_layer/blog_data.dart';
 import 'package:project5/data_layer/user_data.dart';
 
-import '../../widgets/custom_text/custom_text.dart';
-import '../update_stories_detail.dart';
+import '../widgets/custom_text/custom_text.dart';
+import 'update_stories_detail.dart';
 
-class JobDetails extends StatefulWidget {
-  const JobDetails({super.key, required this.id});
+class StoriesDetail extends StatefulWidget {
+  const StoriesDetail({super.key, required this.id});
   final int id;
 
   @override
-  State<JobDetails> createState() => _JobDetailsState();
+  State<StoriesDetail> createState() => _StoriesDetailState();
 }
 
-class _JobDetailsState extends State<JobDetails> {
+class _StoriesDetailState extends State<StoriesDetail> {
   bool isSave = false;
   var isLogin = GetIt.I.get<UserData>().isLogedIn();
   @override
@@ -25,9 +25,9 @@ class _JobDetailsState extends State<JobDetails> {
       backgroundColor: const Color(0xff111111),
       appBar: AppBar(
         backgroundColor: const Color(0xff1E1E1E),
-        leading: const Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.white,
+        leading: IconButton(onPressed: () { 
+          Navigator.pop(context);
+         }, icon: Icon(Icons.arrow_back_ios_new, color: Colors.white,),
         ),
         actions: [
           const Padding(

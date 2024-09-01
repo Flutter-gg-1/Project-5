@@ -4,6 +4,7 @@ import 'package:project5/data_layer/blog_data.dart';
 import 'package:project5/widgets/custom_text/custom_text.dart';
 import 'package:project5/widgets/custom_text_form_field.dart';
 
+// ignore: must_be_immutable
 class UpdateStoriesDetail extends StatefulWidget {
   UpdateStoriesDetail({super.key, required this.id});
   final int id;
@@ -30,9 +31,9 @@ class _UpdateStoriesDetailState extends State<UpdateStoriesDetail> {
       backgroundColor: const Color(0xff111111),
       appBar: AppBar(
         backgroundColor:  Colors.transparent,
-        leading: const Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.white,
+        leading: IconButton(onPressed: () { 
+          Navigator.pop(context);
+         }, icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white,),
         ),
         actions:[
           Padding(
@@ -55,15 +56,30 @@ class _UpdateStoriesDetailState extends State<UpdateStoriesDetail> {
             children: [
               const CustomText(text: "Title", color: Colors.white, size: 20, fontWeight: FontWeight.bold,),
               const SizedBox(height: 5,),
-              CustomTextFormField(hintmsg: "Title", controller: widget.titleControoler,),
+              CustomTextFormField(hintmsg: "Title", controller: widget.titleControoler, validator: (value) {
+                          if (value == null || value.isEmpty) {
+                                return "Please enter title";
+                              }
+                              return null;
+                        },),
               const SizedBox(height: 30,),
               const CustomText(text: "Summary", color: Colors.white, size: 20, fontWeight: FontWeight.bold,),
               const SizedBox(height: 5,),
-              CustomTextFormField(hintmsg: "Summary", controller: widget.summaryControoler,),
+              CustomTextFormField(hintmsg: "Summary", controller: widget.summaryControoler, validator: (value) {
+                          if (value == null || value.isEmpty) {
+                                return "Please enter summary";
+                              }
+                              return null;
+                        },),
               const SizedBox(height: 30,),
               const CustomText(text: "Content", color: Colors.white, size: 20, fontWeight: FontWeight.bold,),
               const SizedBox(height: 5,),
-              CustomTextFormField(hintmsg: "Content", controller: widget.contentControoler,),
+              CustomTextFormField(hintmsg: "Content", controller: widget.contentControoler, validator: (value) {
+                          if (value == null || value.isEmpty) {
+                                return "Please enter content";
+                              }
+                              return null;
+                        },),
             ],
           ),
         ),

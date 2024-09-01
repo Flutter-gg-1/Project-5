@@ -47,12 +47,7 @@ class LogInScreen extends StatelessWidget {
                         const SizedBox(
                           height: 8,
                         ),
-                        CustomTextFormField(hintmsg: "Enter your username", controller: usernameController, validator: (value) {
-                          if (value == null || value.isEmpty) {
-                                return "Please enter your email";
-                              }
-                              return null;
-                        },),
+                        CustomTextFormField(hintmsg: "Enter your username", controller: usernameController, ),
                         const SizedBox(
                           height: 20,
                         ),

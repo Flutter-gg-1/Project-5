@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List screens = [
     const FeedScreen(),
     const ExploreScreen(),
-    SavedScreen(),
+    const SavedScreen(),
     const ProfileScreen(),
   ];
   int currentIndex = 0;

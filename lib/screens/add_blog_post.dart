@@ -1,14 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project5/data_layer/user_data.dart';
 import 'package:project5/model/blog_data_model.dart';
-
 import '../data_layer/blog_data.dart';
+import '../widgets/custom_lists/custom_list_view.dart';
 import '../widgets/custom_text/custom_text.dart';
 import '../widgets/custom_text/custom_text_rich.dart';
 import '../widgets/custom_text_form_field.dart';
@@ -34,9 +33,9 @@ class _AddBlogPostState extends State<AddBlogPost> {
       backgroundColor: const Color(0xff111111),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: const Icon(
-          Icons.arrow_back_ios_new,
-          color: Colors.white,
+        leading: IconButton(onPressed: () { 
+          Navigator.pop(context);
+         }, icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white,),
         ),
         actions: [
           Padding(
@@ -129,7 +128,13 @@ class _AddBlogPostState extends State<AddBlogPost> {
               ),
               CustomTextFormField(
                   hintmsg: "Enter your blog title",
-                  controller: titleController),
+                  controller: titleController,
+                  validator: (value) {
+                          if (value == null || value.isEmpty) {
+                                return "Please enter title";
+                              }
+                              return null;
+                        },),
               const SizedBox(
                 height: 30,
               ),
@@ -142,6 +147,12 @@ class _AddBlogPostState extends State<AddBlogPost> {
               CustomTextFormField(
                 hintmsg: "Give a brief summary about your blog ",
                 controller: summaryController,
+                validator: (value) {
+                          if (value == null || value.isEmpty) {
+                                return "Please enter summary";
+                              }
+                              return null;
+                        },
               ),
               const SizedBox(
                 height: 30,
@@ -155,6 +166,12 @@ class _AddBlogPostState extends State<AddBlogPost> {
               CustomTextFormField(
                 hintmsg: "write your blog here ",
                 controller: contentController,
+                validator: (value) {
+                          if (value == null || value.isEmpty) {
+                                return "Please enter content";
+                              }
+                              return null;
+                        },
               ),
               const SizedBox(
                 height: 30,
@@ -165,97 +182,9 @@ class _AddBlogPostState extends State<AddBlogPost> {
               const SizedBox(
                 height: 5,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Container(
-                        height: 30,
-                        width: 110,
-                        decoration: BoxDecoration(
-                            color: const Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(2)),
-                        child: const Center(
-                          child: CustomText(
-                            text: "Technology",
-                            color: Color(0xffA48BE2),
-                            size: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                        height: 30,
-                        width: 50,
-                        decoration: BoxDecoration(
-                            color: const Color(0xff595959),
-                            borderRadius: BorderRadius.circular(2)),
-                        child: const Center(
-                          child: CustomText(
-                            text: "AI",
-                            color: Color(0xff2C2C2C),
-                            size: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                        height: 30,
-                        width: 70,
-                        decoration: BoxDecoration(
-                            color: const Color(0xff595959),
-                            borderRadius: BorderRadius.circular(2)),
-                        child: const Center(
-                          child: CustomText(
-                            text: "Cloud",
-                            color: Color(0xff2C2C2C),
-                            size: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 30,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff595959),
-                          borderRadius: BorderRadius.circular(2)),
-                      child: const Center(
-                        child: CustomText(
-                          text: "Robotic",
-                          color: Color(0xff2C2C2C),
-                          size: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 30,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          color: const Color(0xff595959),
-                          borderRadius: BorderRadius.circular(2)),
-                      child: const Center(
-                        child: CustomText(
-                          text: "IoT",
-                          color: Color(0xff2C2C2C),
-                          size: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                child: CustomListView()
               ),
               const SizedBox(
                 height: 30,
@@ -269,6 +198,12 @@ class _AddBlogPostState extends State<AddBlogPost> {
               CustomTextFormField(
                 hintmsg: "Minutes of reading this blog ",
                 controller: readingMinutesController,
+                validator: (value) {
+                          if (value == null || value.isEmpty) {
+                                return "Please enter Minutes of reading";
+                              }
+                              return null;
+                        },
               ),
             ],
           ),

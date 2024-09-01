@@ -8,9 +8,7 @@ import 'package:project5/widgets/custom_text/custom_text.dart';
 import 'package:project5/widgets/custom_top_stories.dart';
 import '../../data_layer/blog_data.dart';
 import '../add_blog_post.dart';
-import '../stories_details/google_details.dart';
-import '../stories_details/job_details.dart';
-import '../stories_details/watchOS_details.dart';
+import '../stories_detail.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -163,53 +161,6 @@ class _FeedScreenState extends State<FeedScreen> {
                 const SizedBox(
                   height: 12,
                 ),
-                CustomTopStories(
-                  image: Image.asset("assets/google_small.png"),
-                  title: 'Kyle Barr',
-                  subtitle:
-                      'Now Google’s Bard AI can talk & respond to visual prompts',
-                  text: "Jul 13, 2023 • 2 min read",
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const GoogleDetails();
-                    }));
-                  }, id: 3, isSave: false,
-                  onPressed: (){
-                    GetIt.I.get<BlogData>().changeSaveState(id: 3);
-                  },
-                ),
-                CustomTopStories(
-                  image: Image.asset("assets/watch.png"),
-                  title: 'Jeremy Morgan',
-                  subtitle: 'WatchOS 10 preview: widgets all the way down',
-                  text: "Jul 10, 2023 • 4 min read",
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const WatchosDetails();
-                    }));
-                  }, id: 2, isSave: false,
-                  onPressed: () {
-                    GetIt.I.get<BlogData>().changeSaveState(id: 2);
-                  },
-                ),
-                CustomTopStories(
-                  image: Image.asset("assets/job.png"),
-                  title: 'Amber Israelsen',
-                  subtitle:
-                      'How Gen Z are disrupting the definition of ‘prestigious’ jobs',
-                  text: "Jul 13, 2023 • 2 min read",
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return const WatchosDetails();
-                    }));
-                  }, id: 1, isSave: true,
-                  onPressed: () {
-                    GetIt.I.get<BlogData>().changeSaveState(id: 1);
-                  },
-                ),
                 Column(
                     children: GetIt.I.get<BlogData>().blogData.map((e) {
                   Image image;
@@ -227,7 +178,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     onTap: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return JobDetails(id: e.id);
+                        return StoriesDetail(id: e.id);
                       })).then((value) => {
                         if(value != null){
                           setState(() {

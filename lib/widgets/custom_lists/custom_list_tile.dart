@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom_text/custom_text.dart';
+import '../custom_text/custom_text.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({super.key, required this.image, required this.title, required this.subtitle});
