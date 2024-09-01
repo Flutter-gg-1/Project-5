@@ -14,20 +14,6 @@ class UserData {
   UserData() {
     loadStatus();
   }
-  reMarkBlog({
-    required int id,
-  }) {
-    for (var element in blogDataLocator.blogs) {
-      if (element.id == id) {
-        markedBlogs.removeWhere((element) => markedBlogs.contains(element));
-      }
-    }
-  }
-
-  markBlog({required BlogModel blog, required String writer}) {
-    markedBlogs.add(blog);
-  }
-
   Future<void> changeUserStatus({required String username}) async {
     await box.write('currentUser', username);
     await box.write('login', true);
