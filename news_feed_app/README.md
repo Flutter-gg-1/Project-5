@@ -35,6 +35,9 @@ This Blog App is designed to provide users with a platform for reading and writi
 
 - **Update/Delete Blog**: Users can update or delete their existing blog posts.
 
+![Simulator Screenshot - iPhone 15 - 2024-09-01 at 09 47 44](https://github.com/user-attachments/assets/25be9108-37d0-4a9c-8ed9-848e26b593cf)
+
+
 ### Data Storage
 ![Simulator Screenshot - iPhone 15 - 2024-09-01 at 09 47 11](https://github.com/user-attachments/assets/314d75d1-ec28-45c2-bd1a-072e81371ef0)
 
@@ -51,7 +54,6 @@ This Blog App is designed to provide users with a platform for reading and writi
 
 
 - **Favorite Blogs**: Users can save their favorite blogs for easy access later.
-![Simulator Screenshot - iPhone 15 - 2024-09-01 at 09 47 44](https://github.com/user-attachments/assets/25be9108-37d0-4a9c-8ed9-848e26b593cf)
 
 ## Getting Started
 
