@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:blog_app/data_layer/blog_data.dart';
 import 'package:blog_app/extension/size_config.dart';
 import 'package:blog_app/src/home_screen.dart';

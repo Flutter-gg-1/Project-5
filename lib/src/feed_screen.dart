@@ -20,23 +20,21 @@ class _FeedScreenState extends State<FeedScreen> {
     List<Map<String, String>> slides = [
       {
         "image":
-            "https://devloop01.github.io/voyage-slider/images/scotland-mountains.jpg",
-        "title": "Highlands",
-        "subtitle": "Scotland",
-        "description": "The mountains are calling"
+            "https://th.bing.com/th/id/OIP.4Y7DJ3yCxAJ9-W_gzkI6WAHaEE?w=283&h=180&c=7&r=0&o=5&pid=1.7",
+        "subtitle": "Flutter 3",
+        "description": "What is new in Flutter 3"
       },
       {
         "image":
-            "https://devloop01.github.io/voyage-slider/images/machu-pichu.jpg",
-        "title": "Machu Pichu",
-        "subtitle": "Peru",
-        "description": "Adventure is never far away"
+            "https://th.bing.com/th/id/OIP.47gr1-6546gJhTDQ9bGZ9AHaE8?w=276&h=184&c=7&r=0&o=5&pid=1.7",
+
+        "subtitle": "AI & Drone Future",
+        "description": "AI is never far away from Drones"
       },
       {
         "image":
-            "https://devloop01.github.io/voyage-slider/images/chamonix.jpg",
-        "title": "Chamonix",
-        "subtitle": "France",
+            "https://th.bing.com/th/id/OIP.ZI0r7piRykPs-z2vwM5a6QHaEK?w=282&h=180&c=7&r=0&o=5&pid=1.7",
+        "subtitle": "GPU New RTX",
         "description": "Let your dreams come true"
       },
     ];
