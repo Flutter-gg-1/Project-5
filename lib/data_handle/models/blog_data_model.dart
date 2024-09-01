@@ -11,11 +11,7 @@ class BlogDataModel {
   int userId;
   List<int> userLiked = [];
 
-  
-
-
-
-  static int classId = 0;
+  static int classId = 1;
 
   late final int id;
 
@@ -28,13 +24,43 @@ class BlogDataModel {
       required this.readingMin,
       required this.date,
       required this.userName,
-      required this.userId
-      }){
+      required this.userId}) {
+    id = classId;
 
-        id = classId;
+    classId += 1;
+  }
 
-        classId +=1;
+  factory BlogDataModel.fromJson(Map<String, dynamic> json) {
+    return BlogDataModel(
+        summary: json["summary"],
+        content: json["content"],
+        title: json["title"],
+        category: json["category"],
+        img: json["img"],
+        readingMin: json["readingMin"],
+        date: json["date"],
+        userName: json["userName"],
+        userId: json["userId"]);
+  }
 
 
-      }
+
+  Map<String,dynamic> toJson(){
+
+
+    return{
+      "summary" : summary,
+      "content" : content,
+      "title" : title,
+      "category" : category,
+      "img" : img,
+      "readingMin" : readingMin,
+      "date" : date,
+      "userName" : userName,
+      "userId" : userId,
+
+
+
+    };
+  }
 }

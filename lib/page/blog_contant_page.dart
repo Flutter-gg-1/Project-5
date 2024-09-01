@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:pro_5/data_handle/git_it/setup.dart';
+import 'package:pro_5/data_handle/models/app_model.dart';
 import 'package:pro_5/data_handle/models/blog_data_model.dart';
+import 'package:pro_5/data_handle/models/user_model.dart';
 import 'package:pro_5/page/edit_blog_page.dart';
 import 'package:pro_5/widget/blog_conatan_page/bold_title_widget.dart';
 import 'package:pro_5/widget/blog_conatan_page/socail_midea_icons.dart';
@@ -12,12 +17,23 @@ class BlogContantPage extends StatefulWidget {
 
 
   final BlogDataModel  blogDataModel;
+  
 
   @override
   State<BlogContantPage> createState() => _BlogContantPageState();
 }
 
 class _BlogContantPageState extends State<BlogContantPage> {
+
+  UserModel user =  getIt.get<AppModel>().userLogin!;
+
+
+  @override
+  void initState() {
+    log(user.id.toString());
+    // log(widget.blogDataModel.userId.toString());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +64,7 @@ class _BlogContantPageState extends State<BlogContantPage> {
               color: Colors.white,
             ),
           ),
-          IconButton(
+            user.id == widget.blogDataModel.userId ? IconButton(
             onPressed: () {
 
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
@@ -68,7 +84,7 @@ class _BlogContantPageState extends State<BlogContantPage> {
               FontAwesome.pencil_solid,
               color: Colors.white,
             ),
-          ),
+          ) : const Text("data")
         ],
       ),
       body: SingleChildScrollView(
@@ -159,9 +175,9 @@ class _BlogContantPageState extends State<BlogContantPage> {
               height: 38,
             ),
 
-            BoldTitleWidget( text: "Content",),
+            const BoldTitleWidget( text: "Content",),
 
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
 
             TextBlogWidget(text: widget.blogDataModel.content,)
 

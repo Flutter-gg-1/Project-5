@@ -4,6 +4,7 @@ import 'package:pro_5/data_handle/git_it/setup.dart';
 import 'package:pro_5/data_handle/models/app_model.dart';
 import 'package:pro_5/page/home_page.dart';
 import 'package:pro_5/page/navbar_page.dart';
+import 'package:pro_5/widget/button_widget.dart';
 import 'package:pro_5/widget/login_page/gust_row_widget.dart';
 import 'package:pro_5/widget/textfield_widget.dart';
 
@@ -21,6 +22,29 @@ class _LoginContinerWidgetState extends State<LoginContinerWidget> {
   String name = "";
 
   String password = "";
+
+  @override
+  void initState() {
+
+
+
+    
+   
+WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (getIt.get<AppModel>().userLogin != null) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) {
+          return const NavbarPage();
+        }),
+      );
+    }
+  });
+
+
+
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,17 +108,32 @@ class _LoginContinerWidgetState extends State<LoginContinerWidget> {
             const SizedBox(height: 34,),
             Align(
               alignment: Alignment.center,
-              child: SizedBox(
-                height: 35,
-                width: 170,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffBDA6F5).withOpacity(0.71),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {
+              child: ButtonWidget(
+                opacity: 0.71,
 
-                    getIt.get<AppModel>().userLog(name: name, passowrd: password);
+                onPressed: () {
+                  
+                   getIt.get<AppModel>().userLog(name: name, passowrd: password);
+    
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+    
+    
+            return const NavbarPage();
+            
+          },));
+                },
+                
+               
+                
+                ),
+            ),
+            const SizedBox(height: 20,),
+            GestureDetector(
+
+              onTap: () {
+
+
+                 getIt.get<AppModel>().gustUserMain();
 
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
 
@@ -102,20 +141,17 @@ class _LoginContinerWidgetState extends State<LoginContinerWidget> {
                       return const NavbarPage();
                       
                     },));
-                  },
-                  child: Text(
-                    "Login",
-                    style: GoogleFonts.inter(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20,),
-            const GustRowWidget()
+                
+              },
+              
+              
+              
+              child: const GustRowWidget())
           ],
         ),
       ),
     );
   }
 }
+
 

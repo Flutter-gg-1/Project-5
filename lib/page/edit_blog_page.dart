@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pro_5/data_handle/git_it/setup.dart';
+import 'package:pro_5/data_handle/models/app_model.dart';
 import 'package:pro_5/data_handle/models/blog_data_model.dart';
 import 'package:pro_5/widget/textfield_widget.dart';
 
@@ -58,6 +60,8 @@ class _EditBlogPageState extends State<EditBlogPage> {
               widget.blogDataModel.title = title;
               widget.blogDataModel.summary = summary;
               widget.blogDataModel.content = contnat;
+
+              getIt.get<AppModel>().saveblogList();
 
                Navigator.pop(context,true);
 

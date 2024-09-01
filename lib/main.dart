@@ -15,9 +15,11 @@ void main() async{
 
 
 
-  setup();
+  
 
   await GetStorage.init();
+
+  setup();
 
   runApp(const MainApp());
 }
