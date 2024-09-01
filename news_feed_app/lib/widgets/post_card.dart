@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:news_feed_app/data/models/profile_data_model.dart'; // Ensure this is the correct model
 import 'package:news_feed_app/screens/blog.dart';
 
-class StoryCard extends StatelessWidget {
+class StoryCard extends StatefulWidget {
   const StoryCard({
     super.key,
     required this.title,
     required this.username,
     required this.imgPath,
     required this.dateAndTime,
-    required this.id, // Add an id parameter
+    required this.id, 
   });
 
   final String title;
@@ -16,6 +18,33 @@ class StoryCard extends StatelessWidget {
   final String imgPath;
   final String dateAndTime;
   final int id; // Post ID
+
+  @override
+  _StoryCardState createState() => _StoryCardState();
+}
+
+class _StoryCardState extends State<StoryCard> {
+  late bool isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    final userModel = GetIt.I.get<UserModel>();
+    // Check if the post is in the user's favorites
+    isFavorite = userModel.isFavorite(widget.id);
+  }
+
+  void toggleFavorite() {
+    final userModel = GetIt.I.get<UserModel>();
+    if (isFavorite) {
+      userModel.removeFavorite(widget.id);
+    } else {
+      userModel.addFavorite(widget.id);
+    }
+    setState(() {
+      isFavorite = !isFavorite; // Update favorite status
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +59,7 @@ class StoryCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BlogPage(postId: id), // Update with postId
+              builder: (context) => BlogPage(postId: widget.id), // Update with postId
             ),
           );
         },
@@ -50,7 +79,7 @@ class StoryCard extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(4)),
                       color: Color(0xffffffff),
                     ),
-                    child: Image.asset(imgPath, fit: BoxFit.cover),
+                    child: Image.asset(widget.imgPath, fit: BoxFit.cover),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
@@ -58,7 +87,7 @@ class StoryCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          username,
+                          widget.username,
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -66,7 +95,7 @@ class StoryCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          title,
+                          widget.title,
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -86,7 +115,7 @@ class StoryCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      dateAndTime,
+                      widget.dateAndTime,
                       style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
@@ -94,10 +123,16 @@ class StoryCard extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    const Row(
+                    Row(
                       children: [
-                        Icon(Icons.bookmark_border, color: Color(0xff888888)),
-                        Icon(Icons.more_vert, color: Color(0xff888888)),
+                        IconButton(
+                          onPressed: toggleFavorite,
+                          icon: Icon(
+                            isFavorite ? Icons.bookmark : Icons.bookmark_border,
+                            color: const Color(0xff888888),
+                          ),
+                        ),
+                        const Icon(Icons.more_vert, color: Color(0xff888888)),
                       ],
                     ),
                   ],

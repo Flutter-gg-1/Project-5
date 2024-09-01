@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:news_feed_app/post_data.dart';
+import 'package:news_feed_app/data/post_data.dart';
 import 'package:news_feed_app/widgets/custom_textfeild.dart';
 
 class EditPost extends StatefulWidget {

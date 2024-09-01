@@ -17,7 +17,6 @@ class ImagePickerWidget extends StatelessWidget {
 
   Future<void> pickImage(BuildContext context) async {
     try {
-      await determinePosition();
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image != null) {
         onImageSelected(File(image.path));

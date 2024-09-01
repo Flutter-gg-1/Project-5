@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:news_feed_app/post_data.dart';
-import 'package:news_feed_app/widgets/profile_story_card.dart'; // Ensure the correct import
+import 'package:news_feed_app/data/post_data.dart';
+import 'package:news_feed_app/widgets/profile_story_card.dart'; 
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -15,7 +15,7 @@ class _ProfileState extends State<Profile> {
     
   void deletePost(int id) {
     GetIt.I.get<PostData>().deletePost(id);
-    reBuild(); // Rebuild the Profile widget after deletion
+    reBuild(); 
   }
       reBuild() {
       setState(() {});
@@ -36,6 +36,49 @@ class _ProfileState extends State<Profile> {
       ),
       body: ListView(
         children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: const BoxDecoration(
+                    color: Color(0xffffffff),
+                    borderRadius: BorderRadius.all(Radius.circular(4))
+                  ),
+                   child: Image.asset('assets/images/person.png', fit: BoxFit.cover),
+                ),
+                SizedBox(width: 20,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                'Kyle Barr',
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xffB8B8B8),
+                ),
+              ),
+              Text(
+                'Software developer',
+                style: const TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xffB8B8B8),
+                ),
+              ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Text(
+            'Account',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Color(0xffffffff)),
+          ),
           const SizedBox(height: 30),
           Column(
            children: GetIt.I.get<PostData>().postsList

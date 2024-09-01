@@ -9,7 +9,7 @@ class ProfileStoryCard extends StatelessWidget {
     required this.imgPath,
     required this.id,
     required this.onEdit,
-    required this.onDelete, // Add onDelete callback
+    required this.onDelete, 
   });
 
   final String title;

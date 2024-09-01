@@ -68,6 +68,7 @@ class Post extends StatelessWidget {
                   color: Color(0xffffffff),
                   shape: BoxShape.circle,
                 ),
+                 child: Image.asset('assets/images/person.png', fit: BoxFit.cover),
               ),
               const SizedBox(height: 8),
               Text(

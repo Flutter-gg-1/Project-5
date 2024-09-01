@@ -5,6 +5,7 @@ import 'package:news_feed_app/setup.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
+  
   runApp(const MainApp());
 }
 

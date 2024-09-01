@@ -1,6 +1,6 @@
 
 
-import 'package:news_feed_app/post_data_model.dart';
+import 'package:news_feed_app/data/models/post_data_model.dart';
 
 class PostData {
   final List<PostDataModel> postsList = [];

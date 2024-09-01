@@ -3,8 +3,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:news_feed_app/post_data.dart';
-import 'package:news_feed_app/post_data_model.dart';
+import 'package:news_feed_app/data/models/profile_data_model.dart';
+import 'package:news_feed_app/data/post_data.dart';
+import 'package:news_feed_app/data/models/post_data_model.dart';
 import 'package:news_feed_app/widgets/category_list.dart';
 import 'package:news_feed_app/widgets/custom_textfeild.dart';
 import 'package:news_feed_app/widgets/image_picker.dart';
@@ -25,7 +26,7 @@ class _AddPostState extends State<AddPost> {
   
   String? categorySelected;
   File? selectedImage;
-
+  final UserModel userModel = UserModel();
 
 String getCurrentDate() {
   return DateFormat('MMM dd, yyyy').format(DateTime.now());
@@ -57,7 +58,7 @@ String getCurrentDate() {
                 PostDataModel newPost = PostDataModel(
                   id: Random().nextInt(999),
                   category: categorySelected!,
-                  author: 'user',
+                  author: userModel.username,
                   title: titleController.text,
                   summary: summaryController.text,
                   content: contentController.text,

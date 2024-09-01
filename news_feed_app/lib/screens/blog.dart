@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:news_feed_app/post_data.dart';
+import 'package:news_feed_app/data/post_data.dart';
 import 'package:news_feed_app/screens/edit_post.dart';
 import 'package:news_feed_app/widgets/post.dart';
 
