@@ -127,6 +127,8 @@ The app differ from loged in user in these screens:
 
 2. When adding a blog, the category section is about an UI (will take the default value "technology").
 
+3. When editing a blog and pressing a save button ther is a another save button in blog detail screen to save the changed content in top stories list.
+
 ## Created by
 Amjad Noor Elahi
 
