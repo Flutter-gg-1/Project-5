@@ -48,8 +48,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       scale: 3,
                     ),
                   ),
-                  title: const CustomText(
-                    text: "Kyle Barr",
+                  title: CustomText(
+                    text: GetIt.I.get<UserData>().currentUser,
                     color: Color(0xffB8B8B8),
                     size: 14,
                     fontWeight: FontWeight.w500,
@@ -127,7 +127,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         )),
                                   ),
                                 ],
-                                
                               ),
                             ],
                           ),

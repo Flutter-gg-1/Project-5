@@ -65,7 +65,8 @@ class LogInScreen extends StatelessWidget {
                                 return "Please enter password";
                               }
                               return null;
-                            },),
+                            },
+                            ),
                         const SizedBox(
                           height: 8,
                         ),

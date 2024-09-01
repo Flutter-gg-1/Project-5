@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project5/data_layer/user_data.dart';
 import 'package:project5/model/blog_data_model.dart';
 
 import '../data_layer/blog_data.dart';
@@ -48,7 +49,7 @@ class _AddBlogPostState extends State<AddBlogPost> {
                       GetIt.I.get<BlogData>().addBlogPost(
                           blog: BlogDataModel(
                               category: "AI",
-                              authorName: "aaa",
+                              authorName: GetIt.I.get<UserData>().currentUser,
                               title: titleController.text,
                               summary: summaryController.text,
                               content: contentController.text,

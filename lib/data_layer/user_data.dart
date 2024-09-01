@@ -6,11 +6,6 @@ class UserData {
   List<UserDataModel> userData = [];
   final box = GetStorage();
   
-  addUser({required UserDataModel user}){
-    userData.add(user);
-    saveUserDetail();
-  }
-
   bool isLogedIn(){
     if(box.hasData("islogin")){
     return true;
@@ -20,19 +15,11 @@ class UserData {
     }
   }
 
-  logIn({required String userName, required String password}) async {
+  logIn({required String userName, required String password}) {
     loadData();
-        await box.write("islogin", true);
-        await box.write("userName", userName);
+         box.write("islogin", true);
+         box.write("userName", userName);
       }
-
-  saveUserDetail() async{
-    List<Map<String, dynamic>> saveData = [];
-    for (var element in userData) {
-      saveData.add(element.toJson());
-    }
-    await box.write("userData", saveData);
-  }
 
   get currentUser { 
     return box.read('userName');
@@ -47,10 +34,8 @@ class UserData {
     }
   }
 
-  logOut() async {
-    await box.remove("islogin");
+  logOut() {
+    box.remove("islogin");
   }
-
-  
 
 }

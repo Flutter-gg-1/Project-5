@@ -40,9 +40,9 @@ class _FeedScreenState extends State<FeedScreen> {
                   return const ExploreScreen();
                 }));
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
-                color: const Color(0xffffffff),
+                color: Color(0xffffffff),
                 size: 28,
               ),
             ),
@@ -56,12 +56,12 @@ class _FeedScreenState extends State<FeedScreen> {
                           if (value != null) {setState(() {})}
                         });
               },
-              icon: Icon(               
+              icon: const Icon(               
                 Icons.add,
-                color: const Color(0xffffffff),
+                color: Color(0xffffffff),
                 size: 28,
               ),
-            ) : SizedBox.shrink()
+            ) : const SizedBox.shrink()
           ],
           backgroundColor: const Color(0xff1E1E1E),
           bottom: const TabBar(
@@ -174,6 +174,9 @@ class _FeedScreenState extends State<FeedScreen> {
                         .push(MaterialPageRoute(builder: (context) {
                       return const GoogleDetails();
                     }));
+                  }, id: 3, isSave: false,
+                  onPressed: (){
+                    GetIt.I.get<BlogData>().changeSaveState(id: 3);
                   },
                 ),
                 CustomTopStories(
@@ -186,6 +189,9 @@ class _FeedScreenState extends State<FeedScreen> {
                         .push(MaterialPageRoute(builder: (context) {
                       return const WatchosDetails();
                     }));
+                  }, id: 2, isSave: false,
+                  onPressed: () {
+                    GetIt.I.get<BlogData>().changeSaveState(id: 2);
                   },
                 ),
                 CustomTopStories(
@@ -199,6 +205,9 @@ class _FeedScreenState extends State<FeedScreen> {
                         .push(MaterialPageRoute(builder: (context) {
                       return const WatchosDetails();
                     }));
+                  }, id: 1, isSave: true,
+                  onPressed: () {
+                    GetIt.I.get<BlogData>().changeSaveState(id: 1);
                   },
                 ),
                 Column(
@@ -224,6 +233,10 @@ class _FeedScreenState extends State<FeedScreen> {
                           setState(() {
                           })
                         }
+                      });
+                    }, id: e.id, isSave: e.isSaved, onPressed: () {
+                      GetIt.I.get<BlogData>().changeSaveState(id: e.id);
+                      setState(() {
                       });
                     },
                   );

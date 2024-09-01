@@ -10,9 +10,9 @@ class BlogData {
     loadBlogs();
   }
 
-  addBlogPost({required BlogDataModel blog}) async {
+  addBlogPost({required BlogDataModel blog}) {
     blogData.add(blog);
-    await box.write("blogs", blogData);
+    box.write("blogs", blogData);
   }
 
   loadBlogs(){
@@ -26,5 +26,22 @@ class BlogData {
   removeBlog({required int id}) {
     blogData.removeWhere((blog) => blog.id == id);
     box.write("blogs", blogData);
+  }
+
+  changeSaveState({
+    required int id,
+  }) {
+    for (var element in blogData) {
+      if (element.id == id) {
+        element.isSaved = !element.isSaved;
+      }
+    }
+  }
+  List<BlogDataModel> getSavedBlog() {
+    return blogData.where((blog) => blog.isSaved).toList();
+  }
+
+    removeSavedBlog() {
+    return blogData.remove((blog) => blog.isSaved);
   }
 }

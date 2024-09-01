@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, required this.hintmsg, this.prefixIcon, this.controller, this.validator});
+  const CustomTextFormField({super.key, required this.hintmsg, this.prefixIcon, this.controller, this.validator,});
   final String hintmsg;
   final Widget? prefixIcon;
   final TextEditingController? controller;
