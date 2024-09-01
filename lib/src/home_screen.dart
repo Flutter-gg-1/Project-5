@@ -1,19 +1,13 @@
-import 'package:blog_app/data_layer/blog_data.dart';
-import 'package:blog_app/extension/size_config.dart';
+import 'package:blog_app/data_layer/user_data.dart';
 import 'package:blog_app/src/explore_screen.dart';
 import 'package:blog_app/src/feed_screen.dart';
 import 'package:blog_app/src/post_screen.dart';
 import 'package:blog_app/src/profile_screen.dart';
 import 'package:blog_app/src/saved_blog_screen.dart';
-import 'package:blog_app/widget/bars/bottom_nav_bar.dart';
 import 'package:blog_app/widget/bars/custom_app_bar.dart';
-import 'package:blog_app/widget/card/blog_card.dart';
-import 'package:blog_app/widget/slider/image_slider.dart';
-import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,6 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
     SavedBlogScreen(),
     ProfileScreen()
   ];
+  @override
+  void initState() {
+    GetIt.I.get<UserData>().loadStatus();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

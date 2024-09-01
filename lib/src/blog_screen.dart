@@ -1,6 +1,8 @@
+import 'package:blog_app/data_layer/user_data.dart';
 import 'package:blog_app/src/blog_editor_screen.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class BlogScreen extends StatefulWidget {
@@ -24,6 +26,7 @@ class BlogScreen extends StatefulWidget {
 }
 
 class _BlogScreenState extends State<BlogScreen> {
+  final locator = GetIt.I.get<UserData>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,7 @@ class _BlogScreenState extends State<BlogScreen> {
                       color: Colors.white,
                     )
                   : const Icon(Icons.bookmark_outline)),
-          IconButton(
+         locator.isGust == true ? IconButton(
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -48,7 +51,7 @@ class _BlogScreenState extends State<BlogScreen> {
                         content: widget.content,
                         id: widget.id),
                   )),
-              icon: const Icon(Icons.edit_outlined)),
+              icon: const Icon(Icons.edit_outlined)):const Text(''),
         ],
       ),
       body: SafeArea(

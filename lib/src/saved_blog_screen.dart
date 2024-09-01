@@ -26,15 +26,17 @@ class SavedBlogScreen extends StatelessWidget {
                   .markedBlogs
                   .map(
                     (e) => BlogCard(
-                        writer: e.writer,
-                        title: e.title,
-                        timeToRead: e.time,
-                        creationDate: e.creationDate,
-                        isFaveiorte: e.isFaveiorte,
-                        category: e.category,
-                        summary: e.summary,
-                        content: e.content,
-                        id: e.id),
+                      writer: e.writer,
+                      title: e.title,
+                      timeToRead: e.time,
+                      creationDate: e.creationDate,
+                      isFaveiorte: e.isFaveiorte,
+                      category: e.category,
+                      summary: e.summary,
+                      content: e.content,
+                      id: e.id,
+                      removeOption: false,
+                    ),
                   )
                   .toList(),
             ),

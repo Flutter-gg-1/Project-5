@@ -98,6 +98,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     category: e.category,
                     summary: e.summary,
                     content: e.content,
+                    removeOption: false,
                     onPressedBookMark: () {
                       e.isFaveiorte = !e.isFaveiorte;
 
@@ -105,18 +106,18 @@ class _FeedScreenState extends State<FeedScreen> {
                       if (e.isFaveiorte) {
                         GetIt.I.get<BlogData>().markBlog(
                             blog: BlogModel(
-                                category: e.category,
-                                title: e.title,
-                                writer: e.writer,
-                                time: e.time,
-                                summary: e.summary,
-                                content: e.content,
-                                creationDate: e.creationDate,
-                                isFaveiorte: e.isFaveiorte,
-                                id: e.id),
+                              category: e.category,
+                              title: e.title,
+                              writer: e.writer,
+                              time: e.time,
+                              summary: e.summary,
+                              content: e.content,
+                              creationDate: e.creationDate,
+                              isFaveiorte: e.isFaveiorte,
+                              id: e.id,
+                            ),
                             writer: 'writer');
-                      }
-                      else{
+                      } else {
                         GetIt.I.get<BlogData>().reMarkBlog(id: e.id);
                       }
                     },

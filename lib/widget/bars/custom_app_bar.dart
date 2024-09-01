@@ -1,7 +1,10 @@
+import 'package:blog_app/data_layer/user_data.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 AppBar customAppBar({final Function()? onPressed}) {
+  final locator = GetIt.I.get<UserData>();
   return AppBar(
     iconTheme: const IconThemeData(color: Colors.white),
     leading: const Icon(
@@ -14,10 +17,10 @@ AppBar customAppBar({final Function()? onPressed}) {
       const SizedBox(
         width: 16,
       ),
-      IconButton(
+     locator.isGust==true ? IconButton(
         onPressed: onPressed,
         icon: const Icon(Iconsax.add_outline),
-      ),
+      ):const Text(''),
       const SizedBox(
         width: 6.5,
       ),

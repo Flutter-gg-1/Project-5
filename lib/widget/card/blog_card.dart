@@ -12,7 +12,9 @@ class BlogCard extends StatelessWidget {
       content;
   final bool isFaveiorte;
   final int id;
+  final bool? removeOption;
   final Function()? onPressedBookMark;
+  final Function()? onPressedDelate;
   const BlogCard({
     super.key,
     required this.writer,
@@ -25,6 +27,7 @@ class BlogCard extends StatelessWidget {
     required this.summary,
     required this.content,
     required this.id,
+    this.removeOption, this.onPressedDelate,
   });
 
   @override
@@ -100,9 +103,13 @@ class BlogCard extends StatelessWidget {
                             color: Colors.white,
                           )
                         : const Icon(Icons.bookmark_outline)),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.more_vert_rounded)),
+                removeOption == false
+                    ? IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.more_vert_rounded))
+                    : IconButton(
+                        onPressed: onPressedDelate,
+                        icon: const Icon(Icons.delete,color: Colors.red,))
               ],
             )
           ],

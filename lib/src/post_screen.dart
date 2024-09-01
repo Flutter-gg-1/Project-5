@@ -2,8 +2,10 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:blog_app/data_layer/blog_data.dart';
+import 'package:blog_app/data_layer/user_data.dart';
 import 'package:blog_app/extension/size_config.dart';
 import 'package:blog_app/model/blog_model.dart';
+import 'package:blog_app/src/home_screen.dart';
 import 'package:blog_app/widget/bars/category_tabs.dart';
 import 'package:blog_app/widget/text/custom_text.dart';
 import 'package:blog_app/widget/text/required_text.dart';
@@ -28,6 +30,7 @@ class _PostScreenState extends State<PostScreen> {
   TextEditingController readingMinController = TextEditingController();
   String categoryType = 'Technology';
   File? selectedImage;
+  final locator = GetIt.I.get<UserData>();
   @override
   Widget build(BuildContext context) {
     List<String> category = [
@@ -46,18 +49,23 @@ class _PostScreenState extends State<PostScreen> {
                     summaryController.text.isNotEmpty &&
                     contentController.text.isNotEmpty &&
                     readingMinController.text.isNotEmpty) {
-                  GetIt.I.get<BlogData>().blogs.add(BlogModel(
-                      id: Random().nextInt(999999)+999,
-                      category: categoryType,
-                      title: titleController.text,
-                      writer: 'writer',
-                      time: readingMinController.text,
-                      isFaveiorte: false,
-                      summary: summaryController.text,
-                      content: contentController.text,
-                      creationDate:
-                          DateFormat('MMM dd, yyyy').format(DateTime.now())));
-                  Navigator.pop(context, true);
+                  GetIt.I.get<BlogData>().addNewBlog(
+                      blog: BlogModel(
+                          id: Random().nextInt(999999) + 999,
+                          category: categoryType,
+                          title: titleController.text,
+                          writer: locator.currentUser,
+                          time: readingMinController.text,
+                          isFaveiorte: false,
+                          summary: summaryController.text,
+                          content: contentController.text,
+                          creationDate: DateFormat('MMM dd, yyyy')
+                              .format(DateTime.now())));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ));
                 } else {
                   showModalBottomSheet(
                     context: context,
