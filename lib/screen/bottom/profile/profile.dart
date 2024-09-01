@@ -81,7 +81,6 @@ class ProfileScreen extends StatelessWidget {
                   minWidth: context.getWidthScreen(width: 0.6),
                   height: context.getHeightScreen(height: 0.05),
                   onPressed: () {
-                    context.showScreen(const NewPost());
                   },
                   child: const Text(
                     'Logout',
