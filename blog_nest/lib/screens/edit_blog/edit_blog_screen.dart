@@ -44,8 +44,9 @@ class _EditBlogScreenState extends State<EditBlogScreen>
     super.dispose();
   }
 
-  void _editBlog(BuildContext context, Blog blog) {
-    vm.editBlog(blog);
+  void _editBlog(BuildContext context, Blog blog) async {
+    await vm.editBlog(blog);
+    if (!context.mounted) return;
     vm.navMgr.navigateBack(context: context);
   }
 

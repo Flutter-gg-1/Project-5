@@ -25,7 +25,7 @@ class EditBlogVM {
 
   final readingMinController = TextEditingController();
 
-  void editBlog(Blog blog) async {
+  Future<void> editBlog(Blog blog) async {
     var updatedBlog = Blog(
       id: blog.id,
       title: titleController.text,

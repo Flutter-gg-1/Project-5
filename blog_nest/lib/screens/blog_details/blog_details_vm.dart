@@ -14,6 +14,10 @@ class BlogDetailsVM {
   get blog => blogMgr.selectedBlog;
   User? get currentUser => userMgr.currentUser;
 
+  BlogDetailsVM() {
+    _fetchBookmarks();
+  }
+
   List<Bookmark> bookmarks = [];
 
   void _fetchBookmarks() {

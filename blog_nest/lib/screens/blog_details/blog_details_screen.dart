@@ -25,7 +25,7 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
         .push(MaterialPageRoute(
       builder: (context) => EditBlogScreen(blog: widget.blog),
     ))
-        .then((value) {
+        .then((_) {
       setState(() {});
     });
   }
@@ -44,11 +44,12 @@ class _BlogDetailsScreenState extends State<BlogDetailsScreen> {
               onPressed: () => (),
               icon: const Icon(Icons.text_format).withSizeAndColor()),
           IconButton(
-              onPressed: () =>
-                  setState(() => vm.toggleBookmark(widget.blog.id)),
-              icon: vm.isBookmarked(widget.blog.id)
-                  ? const Icon(Icons.bookmark).withSizeAndColor()
-                  : const Icon(Icons.bookmark_outline).withSizeAndColor()),
+            onPressed: () => setState(() => vm.toggleBookmark(widget.blog.id)),
+            icon: Icon(vm.isBookmarked(widget.blog.id)
+                    ? Icons.bookmark
+                    : Icons.bookmark_outline)
+                .withSizeAndColor(),
+          ),
           if (vm.currentUser != null)
             if (widget.blog.authorId == vm.currentUser!.id)
               IconButton(

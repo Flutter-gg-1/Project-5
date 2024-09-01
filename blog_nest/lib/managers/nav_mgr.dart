@@ -18,8 +18,8 @@ class NavMgr {
         (Route<dynamic> route) => false);
   }
 
-  void navigateBack({required BuildContext context, String? str}) =>
-      Navigator.pop(context, str);
+  void navigateBack({required BuildContext context}) =>
+      Navigator.of(context).pop();
 
   Widget getDestination(Destination dest) {
     switch (dest) {
