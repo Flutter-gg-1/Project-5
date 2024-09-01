@@ -222,7 +222,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:vlog_project/screens/User_Screens/user_home_screen.dart';
 
@@ -244,11 +243,14 @@ class _UserBlogPageWithEditState extends State<UserBlogPageWithEdit> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(
-        text: "Now Google’s Bard AI Chatbot can\ntalk & respond to visual prompts!");
+        text:
+            "Now Google’s Bard AI Chatbot can\ntalk & respond to visual prompts!");
     _summaryController = TextEditingController(
-        text: "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU.");
+        text:
+            "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU.");
     _contentController = TextEditingController(
-        text: "The feature that lets you add images to prompts is something that Google first showed off at its I/O conference in May. In one example, Google suggested you could use this to ask for help writing a funny caption about a picture of two dogs. Google says the feature is now available in English and is expanding to new languages 'soon.'");
+        text:
+            "The feature that lets you add images to prompts is something that Google first showed off at its I/O conference in May. In one example, Google suggested you could use this to ask for help writing a funny caption about a picture of two dogs. Google says the feature is now available in English and is expanding to new languages 'soon.'");
   }
 
   @override
@@ -284,8 +286,8 @@ class _UserBlogPageWithEditState extends State<UserBlogPageWithEdit> {
         backgroundColor: const Color(0xff111111),
         leading: IconButton(
           onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => const UserHomeScreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => const UserHomeScreen()));
           },
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
         ),
@@ -293,6 +295,14 @@ class _UserBlogPageWithEditState extends State<UserBlogPageWithEdit> {
           IconButton(
             onPressed: _toggleEditing,
             icon: const Icon(Icons.edit_outlined, color: Colors.white),
+          ),
+          Icon(
+            Icons.bookmark_border,
+            color: Colors.white,
+          ),
+          Text(
+            "Aa",
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           const SizedBox(width: 10),
         ],
@@ -477,5 +487,3 @@ class _UserBlogPageWithEditState extends State<UserBlogPageWithEdit> {
     );
   }
 }
-
-

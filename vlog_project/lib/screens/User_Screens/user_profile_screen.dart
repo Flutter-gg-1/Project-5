@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vlog_project/helper/navigation.dart';
 import 'package:vlog_project/model/blog_model.dart';
 import 'package:vlog_project/screens/User_Screens/edit_page_screen.dart';
+import 'package:vlog_project/screens/auth/log_in_screen.dart';
 import 'package:vlog_project/service/blog_service.dart';
 
 class UserAccountScreen extends StatefulWidget {
@@ -161,6 +163,31 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                         );
                       },
                     ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 173,
+                height: 35,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffFFFFFF),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LogInScreen()),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
+                  child: const Text(
+                    "Log out",
+                    style: TextStyle(
+                        color: Color(0xffDD403C), fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

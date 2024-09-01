@@ -44,21 +44,36 @@ class LogInScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const ListTile(
-                  title: Text(
-                    "Welcome Back!",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
-                  ),
-                  subtitle: Text(
-                    "Glad to see you again",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 15),
-                  ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 150,
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "Welcome Back!",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Glad to see you again",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Container(
                   width: 337,

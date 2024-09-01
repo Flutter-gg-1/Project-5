@@ -82,9 +82,10 @@ class TechContentScreen extends StatelessWidget {
             const GuestCardView(
               screentogo: GuestBlogPage(),
               title: "Kyle Barr",
-              subtitle: "Now Google’s Bard AI can talk\n& respond to visual prompts",
+              subtitle:
+                  "Now Google’s Bard AI can talk\n& respond to visual prompts",
               date: "Jul 13, 2023 • 2 min read",
-              imagePath: "assets/instagram.png",
+              imagePath: "assets/google.png",
             ),
             const SizedBox(height: 10),
             const GuestCardView(
@@ -98,7 +99,8 @@ class TechContentScreen extends StatelessWidget {
             const GuestCardView(
               screentogo: GuestBlogPage(),
               title: "Amber Israelsen",
-              subtitle: "How Gen Z are disrupting the\ndefinition of ‘prestigious’ jobs",
+              subtitle:
+                  "How Gen Z are disrupting the\ndefinition of ‘prestigious’ jobs",
               date: "Jul 24, 2023 • 8 min read",
               imagePath: "assets/bus.png",
             ),
