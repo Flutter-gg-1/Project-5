@@ -5,6 +5,7 @@ class BlogData {
   final box = GetStorage();
   final List<BlogModel> blogData = [
     BlogModel(
+      id:3 ,
       title: "Now Google's Bard AI can talk & respond to visual prompts",
       summary:
           "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU. In a blog post, Google is positioning Bard’s spoken responses as a helpful way to “correct ",
@@ -17,6 +18,7 @@ class BlogData {
       writer: 'Kyle Barr',
     ),
     BlogModel(
+      id: 1,
       title: 'WatchOS 10 preview: widgets all the way down',
       summary:
           "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU. In a blog post, Google is positioning Bard’s spoken responses as a helpful way to “correct ",
@@ -29,6 +31,7 @@ class BlogData {
       writer: 'Jeremy Morgan',
     ),
     BlogModel(
+      id:2,
       title: "How Gen Z are disrupting the definition of 'prestigious' jobs",
       summary:
           "Google is adding some new features to its Bard AI chatbot, including the ability for Bard to speak its answers to you and for it to respond to prompts that also include images. The chatbot is also now available in much of the world, including the EU. In a blog post, Google is positioning Bard’s spoken responses as a helpful way to “correct ",
@@ -51,34 +54,41 @@ class BlogData {
   }
 
   Future<void> saveNews() async {
-    List<Map<String, dynamic>> newsAsMap =
-        blogData.map((e) => e.toJson()).toList();
-    await box.write("blogData", newsAsMap);
-  }
+  List<Map<String, dynamic>> newsAsMap =
+      blogData.map((e) => e.toJson()).toList();
+  print('Saving news data: $newsAsMap');
+  await box.write("blogData", newsAsMap);
+}
 
-  void loadNews() {
-    if (box.hasData('blogData')) {
-      List<Map<String, dynamic>> newsSaved =
-          List.from(box.read('blogData')).cast<Map<String, dynamic>>();
-      blogData.clear();
-      for (var element in newsSaved) {
-        blogData.add(BlogModel.fromJson(element));
-      }
+void loadNews() {
+  if (box.hasData('blogData')) {
+    List<Map<String, dynamic>> newsSaved =
+        List.from(box.read('blogData')).cast<Map<String, dynamic>>();
+    blogData.clear();
+    for (var element in newsSaved) {
+      blogData.add(BlogModel.fromJson(element));
     }
+    print('Loaded news data: $blogData');
   }
+}
+
 
   Future<void> refreshBlogs() async {
     loadNews();
   }
 
   Future<void> updateBlog(BlogModel updatedBlog) async {
-    final index =
-        blogData.indexWhere((blog) => blog.title == updatedBlog.title);
-    if (index != -1) {
-      blogData[index] = updatedBlog;
-      await saveNews();
-    }
+  print('Attempting to update blog with id: ${updatedBlog.id}');
+  final index = blogData.indexWhere((blog) => blog.id == updatedBlog.id);
+  if (index != -1) {
+    blogData[index] = updatedBlog;
+    print('Blog found, updating...');
+    await saveNews();
+    print('Blog updated successfully');
+  } else {
+    print('Blog with id "${updatedBlog.id}" not found');
   }
+}
 
   Future<void> removeBlog(BlogModel blogToRemove) async {
     blogData.removeWhere((blog) => blog.title == blogToRemove.title);

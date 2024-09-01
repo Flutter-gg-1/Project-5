@@ -84,6 +84,7 @@ class _EditNewsScreenState extends State<EditNewsScreen> {
     }
 
     final updatedBlog = BlogModel(
+      id:widget.blog.id,
       title: title,
       summary: summary,
       content: content,
@@ -94,7 +95,10 @@ class _EditNewsScreenState extends State<EditNewsScreen> {
       writer: widget.blog.writer,
     );
 
+    try {
+    print('Updating blog with title: $title');
     await _blogData.updateBlog(updatedBlog);
+    print('Blog updated');
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -102,7 +106,15 @@ class _EditNewsScreenState extends State<EditNewsScreen> {
       );
       Navigator.pop(context);
     }
+  } catch (e) {
+    print('Error updating blog: $e');
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to update the blog. Please try again.')),
+      );
+    }
   }
+}
 
   @override
   Widget build(BuildContext context) {

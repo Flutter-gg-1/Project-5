@@ -1,5 +1,7 @@
 class BlogModel {
   BlogModel({
+    
+    required this.id,
     required this.title,
     required this.summary,
     required this.content,
@@ -9,6 +11,7 @@ class BlogModel {
     required this.date,
     required this.writer,
   });
+  late final int id;
   late final String title;
   late final String writer;
   late final String summary;
@@ -18,20 +21,24 @@ class BlogModel {
   late final String date;
   late final String image;
 
-  BlogModel.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    summary = json['summary'];
-    content = json['content'];
-    category = json['category'];
-    readingMinutes = json['readingMinutes'];
-    image = json['image'];
-    date = json['date'];
-    writer = json['writer'];
+  factory BlogModel.fromJson(Map<String, dynamic> json) {
+    return BlogModel(
+      id: json['id'] ?? 0, 
+      title: json['title'] ?? '',
+      summary: json['summary'] ?? '',
+      content: json['content'] ?? '',
+      category: json['category'] ?? '',
+      readingMinutes: json['readingMinutes'] ?? '',
+      image: json['image'] ?? 'assets/G.png',
+      date: json['date'] ?? '',
+      writer: json['writer'] ?? '',
+    );
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['title'] = title;
+    data['id'] = id;
     data['summary'] = summary;
     data['content'] = content;
     data['category'] = category;

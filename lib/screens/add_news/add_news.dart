@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:blog_app/data_layer/blog_data.dart';
 import 'package:blog_app/data_layer/user_data.dart';
 import 'package:blog_app/widgets/container/image_container.dart';
@@ -68,6 +69,7 @@ class _AddNewsState extends State<AddNews> {
     final writerName = userData.currentUser?.userName ?? "";
 
     final newBlog = BlogModel(
+      id: Random().nextInt(999),
       title: title,
       summary: summary,
       content: content,
